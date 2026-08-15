@@ -1,0 +1,1006 @@
+/* =========================================================
+   DOSTEA — REACH US PAGE
+   reach-us.css
+========================================================= */
+
+:root {
+    --reach-bg: #080806;
+    --reach-card: #11100c;
+
+    --reach-gold: #d8ad5c;
+    --reach-gold-light: #f2d28f;
+    --reach-gold-dark: #9b7434;
+
+    --reach-white: #f7f3ea;
+    --reach-muted: #9b968c;
+    --reach-muted-dark: #6e6a62;
+
+    --reach-border: rgba(216, 173, 92, 0.16);
+    --reach-border-light: rgba(255, 255, 255, 0.075);
+}
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--reach-bg);
+    color: var(--reach-white);
+}
+
+.main-content {
+    overflow-x: hidden;
+}
+
+.reach-page-content {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+
+    padding: 24px 28px 35px;
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+.reach-cart-button {
+    position: relative;
+}
+
+.reach-cart-count {
+    position: absolute;
+
+    top: -4px;
+    right: -4px;
+
+    min-width: 17px;
+    height: 17px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0 4px;
+
+    border: 2px solid #080806;
+    border-radius: 50px;
+
+    background: var(--reach-gold);
+    color: #151006;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.reach-hero {
+    position: relative;
+
+    width: 100%;
+    min-height: calc(100vh - 130px);
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid var(--reach-border);
+    border-radius: 34px;
+
+    background: #070705;
+
+    box-shadow:
+        0 35px 90px rgba(0, 0, 0, 0.42);
+}
+
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.reach-hero-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    filter:
+        brightness(0.76)
+        contrast(1.05)
+        saturate(0.95);
+
+    transform: scale(1.002);
+
+    transition:
+        filter 1.2s ease,
+        transform 8s ease;
+}
+
+.reach-hero:hover .reach-hero-image {
+    filter:
+        brightness(0.82)
+        contrast(1.05)
+        saturate(1);
+
+    transform: scale(1.025);
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.reach-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 5, 4, 0.98) 0%,
+            rgba(5, 5, 4, 0.9) 31%,
+            rgba(5, 5, 4, 0.57) 58%,
+            rgba(5, 5, 4, 0.19) 100%
+        );
+}
+
+.reach-hero-gradient {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(5, 5, 4, 0.95) 0%,
+            transparent 38%
+        );
+}
+
+
+/* =========================================================
+   GOLD GLOW
+========================================================= */
+
+.reach-hero-glow {
+    position: absolute;
+
+    left: -170px;
+    bottom: -220px;
+
+    width: 500px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(216, 173, 92, 0.09);
+
+    filter: blur(120px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MAIN HERO CONTENT
+========================================================= */
+
+.reach-hero-content {
+    position: relative;
+    z-index: 5;
+
+    width: min(700px, 60%);
+
+    padding:
+        70px
+        0
+        145px
+        70px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.reach-status {
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 25px;
+    padding: 8px 13px;
+
+    border: 1px solid rgba(216, 173, 92, 0.2);
+    border-radius: 100px;
+
+    background:
+        rgba(8, 8, 6, 0.62);
+
+    backdrop-filter: blur(10px);
+
+    color: #beb8ad;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1.6px;
+}
+
+.reach-status > span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #77b96c;
+
+    box-shadow:
+        0 0 11px rgba(119, 185, 108, 0.7);
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.reach-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    color: var(--reach-gold);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2.8px;
+}
+
+.reach-eyebrow::before {
+    content: "";
+
+    width: 30px;
+    height: 1px;
+
+    background: var(--reach-gold);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.reach-hero-content h1 {
+    max-width: 650px;
+
+    margin: 17px 0 21px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(60px, 6vw, 88px);
+    font-weight: 500;
+
+    line-height: 0.96;
+    letter-spacing: -3px;
+}
+
+.reach-hero-content h1 em {
+    display: block;
+
+    color: var(--reach-gold-light);
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.reach-hero-content > p {
+    max-width: 530px;
+
+    margin: 0;
+
+    color: #ada79b;
+
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.reach-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.reach-primary-btn,
+.reach-secondary-btn {
+    min-height: 49px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+
+    padding: 0 21px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.reach-primary-btn {
+    border: 1px solid var(--reach-gold);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--reach-gold-light),
+            var(--reach-gold)
+        );
+
+    color: #171107;
+
+    box-shadow:
+        0 14px 34px rgba(216, 173, 92, 0.13);
+}
+
+.reach-primary-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 42px rgba(216, 173, 92, 0.22);
+}
+
+.reach-secondary-btn {
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    color: #e7e1d7;
+}
+
+.reach-secondary-btn:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(216, 173, 92, 0.3);
+
+    background:
+        rgba(216, 173, 92, 0.055);
+}
+
+
+/* =========================================================
+   ADDRESS CARD
+========================================================= */
+
+.reach-address-card {
+    position: absolute;
+    z-index: 6;
+
+    right: 42px;
+    bottom: 118px;
+
+    width: 350px;
+
+    padding: 23px;
+
+    border: 1px solid rgba(216, 173, 92, 0.23);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 16, 11, 0.94),
+            rgba(8, 8, 6, 0.89)
+        );
+
+    backdrop-filter: blur(17px);
+
+    box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.42);
+}
+
+
+/* =========================================================
+   ADDRESS TOP
+========================================================= */
+
+.reach-address-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 16px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.065);
+}
+
+.reach-address-top > span {
+    color: var(--reach-gold);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.reach-open-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px 8px;
+
+    border:
+        1px solid
+        rgba(119, 185, 108, 0.2);
+
+    border-radius: 100px;
+
+    background:
+        rgba(119, 185, 108, 0.055);
+
+    color: #8cc881;
+
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.reach-open-badge > span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #77b96c;
+}
+
+
+/* =========================================================
+   ADDRESS MAIN
+========================================================= */
+
+.reach-address-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    padding: 19px 0;
+}
+
+.reach-address-icon {
+    width: 43px;
+    height: 43px;
+
+    flex: 0 0 43px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(216, 173, 92, 0.18);
+    border-radius: 12px;
+
+    background:
+        rgba(216, 173, 92, 0.055);
+
+    color: var(--reach-gold);
+
+    font-size: 14px;
+}
+
+.reach-address-main span,
+.reach-address-main strong,
+.reach-address-main p {
+    display: block;
+}
+
+.reach-address-main span {
+    color: #716d64;
+
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.reach-address-main strong {
+    margin-top: 5px;
+
+    color: #e0d9cd;
+
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.reach-address-main p {
+    margin: 5px 0 0;
+
+    color: #89847b;
+
+    font-size: 9px;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.reach-address-divider {
+    height: 1px;
+
+    background:
+        rgba(255, 255, 255, 0.065);
+}
+
+
+/* =========================================================
+   MINI DETAILS
+========================================================= */
+
+.reach-mini-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+
+    margin: 17px 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.055);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+}
+
+.reach-mini-details > div {
+    padding: 12px;
+
+    background: #0d0c09;
+}
+
+.reach-mini-details span,
+.reach-mini-details strong {
+    display: block;
+}
+
+.reach-mini-details span {
+    color: #67635b;
+
+    font-size: 7px;
+    letter-spacing: 1.2px;
+}
+
+.reach-mini-details strong {
+    margin-top: 5px;
+
+    color: #d8d2c7;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   MAP LINK
+========================================================= */
+
+.reach-address-card > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.065);
+
+    color: var(--reach-gold-light);
+
+    text-decoration: none;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.reach-address-card > a i {
+    font-size: 9px;
+
+    transition: transform 0.3s ease;
+}
+
+.reach-address-card > a:hover i {
+    transform:
+        translate(2px, -2px);
+}
+
+
+/* =========================================================
+   TRAVEL STRIP
+========================================================= */
+
+.reach-travel-strip {
+    position: absolute;
+    z-index: 6;
+
+    left: 70px;
+    right: 70px;
+    bottom: 30px;
+
+    display: flex;
+    align-items: center;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+}
+
+.reach-travel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reach-travel-item > i {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(216, 173, 92, 0.16);
+
+    border-radius: 10px;
+
+    background:
+        rgba(216, 173, 92, 0.04);
+
+    color: var(--reach-gold);
+
+    font-size: 11px;
+}
+
+.reach-travel-item span,
+.reach-travel-item strong {
+    display: block;
+}
+
+.reach-travel-item span {
+    color: #68645d;
+
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.reach-travel-item strong {
+    margin-top: 4px;
+
+    color: #d5cfc4;
+
+    font-size: 9px;
+}
+
+.reach-travel-divider {
+    width: 1px;
+    height: 30px;
+
+    margin: 0 28px;
+
+    background:
+        rgba(255, 255, 255, 0.09);
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1200
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .reach-hero-content {
+        width: 64%;
+
+        padding-left: 50px;
+    }
+
+    .reach-address-card {
+        right: 30px;
+
+        width: 320px;
+    }
+
+    .reach-travel-strip {
+        left: 50px;
+        right: 50px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1000
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .reach-hero {
+        min-height: 750px;
+
+        align-items: flex-start;
+    }
+
+    .reach-hero-content {
+        width: 100%;
+
+        padding:
+            55px
+            45px
+            300px;
+    }
+
+    .reach-hero-content > p {
+        max-width: 500px;
+    }
+
+    .reach-address-card {
+        left: 45px;
+        right: auto;
+        bottom: 110px;
+
+        width: 350px;
+    }
+
+    .reach-travel-strip {
+        left: 45px;
+        right: 45px;
+        bottom: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .reach-page-content {
+        padding:
+            14px
+            14px
+            25px;
+    }
+
+    .reach-hero {
+        min-height: 780px;
+
+        border-radius: 24px;
+    }
+
+    .reach-hero-content h1 {
+        font-size: 58px;
+    }
+
+    .reach-travel-item:nth-of-type(3) {
+        display: none;
+    }
+
+    .reach-travel-divider:nth-of-type(2) {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .reach-page-content {
+        padding:
+            10px
+            10px
+            20px;
+    }
+
+
+    /* HERO */
+
+    .reach-hero {
+        min-height: 820px;
+
+        border-radius: 21px;
+    }
+
+    .reach-hero-image {
+        object-position: center;
+    }
+
+    .reach-hero-overlay {
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(5, 5, 4, 0.28),
+                rgba(5, 5, 4, 0.82) 42%,
+                rgba(5, 5, 4, 0.99) 72%
+            );
+    }
+
+    .reach-hero-content {
+        padding:
+            42px
+            23px
+            390px;
+    }
+
+    .reach-hero-content h1 {
+        margin-top: 14px;
+
+        font-size: 48px;
+
+        letter-spacing: -1.8px;
+    }
+
+    .reach-hero-content > p {
+        font-size: 11px;
+        line-height: 1.75;
+    }
+
+    .reach-hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .reach-primary-btn,
+    .reach-secondary-btn {
+        width: 100%;
+    }
+
+
+    /* ADDRESS */
+
+    .reach-address-card {
+        left: 20px;
+        right: 20px;
+        bottom: 126px;
+
+        width: auto;
+
+        padding: 18px;
+    }
+
+
+    /* TRAVEL */
+
+    .reach-travel-strip {
+        left: 21px;
+        right: 21px;
+        bottom: 22px;
+
+        justify-content: space-between;
+    }
+
+    .reach-travel-divider {
+        margin:
+            0
+            13px;
+    }
+
+    .reach-travel-item > i {
+        width: 32px;
+        height: 32px;
+
+        flex: 0 0 32px;
+    }
+
+    .reach-travel-item strong {
+        font-size: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .reach-hero {
+        min-height: 850px;
+    }
+
+    .reach-hero-content h1 {
+        font-size: 43px;
+    }
+
+    .reach-status {
+        font-size: 7px;
+    }
+
+    .reach-address-card {
+        bottom: 128px;
+    }
+
+    .reach-travel-item:nth-of-type(2) {
+        display: none;
+    }
+
+    .reach-travel-divider {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}

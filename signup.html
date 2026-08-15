@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOSTEA | Create Account</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+
+<body>
+
+<div class="auth-page">
+
+
+    <!-- =====================================================
+         LEFT VISUAL
+    ====================================================== -->
+
+    <section class="auth-visual">
+
+        <div class="visual-glow glow-one"></div>
+        <div class="visual-glow glow-two"></div>
+
+        <div class="visual-ring ring-one"></div>
+        <div class="visual-ring ring-two"></div>
+
+
+        <!-- BRAND -->
+
+        <a href="index.html" class="auth-brand">
+
+            <div class="brand-mark">
+                D
+            </div>
+
+            <div class="brand-copy">
+
+                <h1>
+                    DOSTEA
+                </h1>
+
+                <span>
+                   HOTEL • CAFÉ • LIFESTYLE
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- CONTENT -->
+
+        <div class="visual-content">
+
+            <span class="visual-eyebrow">
+                JOIN DOSTEA
+            </span>
+
+            <h2>
+                More than coffee.
+                <em>Your space, your taste.</em>
+            </h2>
+
+            <p>
+                Create your DOSTEA account to order
+                favourites, reserve tables and keep
+                everything in one place.
+            </p>
+
+
+            <!-- FEATURES -->
+
+            <div class="signup-features">
+
+                <div class="signup-feature">
+
+                    <span class="feature-number">
+                        01
+                    </span>
+
+                    <div>
+                        <strong>
+                            Order your favourites
+                        </strong>
+
+                        <p>
+                            Add items to your cart and
+                            keep track of every order.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="signup-feature">
+
+                    <span class="feature-number">
+                        02
+                    </span>
+
+                    <div>
+                        <strong>
+                            Reserve your table
+                        </strong>
+
+                        <p>
+                            Plan your next café visit
+                            directly from your account.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="signup-feature">
+
+                    <span class="feature-number">
+                        03
+                    </span>
+
+                    <div>
+                        <strong>
+                            One DOSTEA profile
+                        </strong>
+
+                        <p>
+                            Your orders, reservations and
+                            account details stay together.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="visual-footer">
+
+            <span></span>
+
+            <p>
+                BREW. BITE. REPEAT.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RIGHT SIDE
+    ====================================================== -->
+
+    <main class="auth-main">
+
+
+        <!-- MOBILE BRAND -->
+
+        <a href="index.html" class="mobile-brand">
+
+            <div>
+                D
+            </div>
+
+            <span>
+                DOSTEA
+            </span>
+
+        </a>
+
+
+        <!-- BACK -->
+
+        <a href="index.html" class="back-home">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to DOSTEA
+
+        </a>
+
+
+
+        <!-- =================================================
+             SIGNUP WRAPPER
+        ================================================== -->
+
+        <div class="signup-wrapper">
+
+
+            <!-- HEADER -->
+
+            <div class="signup-heading">
+
+                <span>
+                    CREATE CUSTOMER ACCOUNT
+                </span>
+
+                <h1>
+                    Join DOSTEA.
+                </h1>
+
+                <p>
+                    Create your account and make
+                    every DOSTEA visit simpler.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                id="signupForm"
+                class="signup-form"
+                novalidate
+            >
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="signupName">
+                        Full Name
+                    </label>
+
+                    <div class="form-input">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="signupName"
+                            placeholder="Your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                    <span
+                        class="field-error"
+                        id="nameError"
+                    ></span>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="signupEmail">
+                        Email Address
+                    </label>
+
+                    <div class="form-input">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                    <span
+                        class="field-error"
+                        id="emailError"
+                    ></span>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <div class="form-input password-input">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="signupPassword"
+                            aria-label="Show password"
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- PASSWORD STRENGTH -->
+
+                    <div class="password-strength">
+
+                        <div class="strength-bars">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <span id="strengthText">
+                            Use at least 8 characters
+                        </span>
+
+                    </div>
+
+
+                    <span
+                        class="field-error"
+                        id="passwordError"
+                    ></span>
+
+                </div>
+
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="form-input password-input">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Repeat your password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmPassword"
+                            aria-label="Show password"
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                    <span
+                        class="field-error"
+                        id="confirmError"
+                    ></span>
+
+                </div>
+
+
+
+                <!-- TERMS -->
+
+                <div class="terms-wrapper">
+
+                    <label class="terms-option">
+
+                        <input
+                            type="checkbox"
+                            id="acceptTerms"
+                        >
+
+                        <span class="custom-checkbox">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </span>
+
+                        <span class="terms-text">
+
+                            I agree to DOSTEA's
+
+                            <a href="#">
+                                Terms
+                            </a>
+
+                            and
+
+                            <a href="#">
+                                Privacy Policy
+                            </a>.
+
+                        </span>
+
+                    </label>
+
+                    <span
+                        class="field-error terms-error"
+                        id="termsError"
+                    ></span>
+
+                </div>
+
+
+
+                <!-- GLOBAL ERROR -->
+
+                <div
+                    class="signup-message"
+                    id="signupMessage"
+                >
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    <span></span>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="signup-submit-btn"
+                    id="signupSubmitBtn"
+                >
+
+                    <span>
+                        Create Account
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- DIVIDER -->
+
+            <div class="auth-divider">
+
+                <span></span>
+
+                <p>
+                    OR CONTINUE WITH
+                </p>
+
+                <span></span>
+
+            </div>
+
+
+
+            <!-- GOOGLE -->
+
+            <button
+                type="button"
+                class="google-signup-btn"
+                id="googleSignupBtn"
+            >
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                Continue with Google
+
+            </button>
+
+
+
+            <!-- LOGIN LINK -->
+
+            <p class="auth-switch">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Sign in
+                </a>
+
+            </p>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     SUCCESS MODAL
+========================================================= -->
+
+<div
+    class="signup-success-modal"
+    id="signupSuccessModal"
+>
+
+    <div class="signup-success-card">
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+        <span>
+            WELCOME TO DOSTEA
+        </span>
+
+        <h2>
+            Account created.
+        </h2>
+
+        <p>
+            Your customer account is ready.
+            Taking you to sign in...
+        </p>
+
+        <div class="success-loader">
+
+            <span></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           ELEMENTS
+        ====================================================== */
+
+        const form =
+            document.getElementById(
+                "signupForm"
+            );
+
+        const nameInput =
+            document.getElementById(
+                "signupName"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "signupEmail"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "signupPassword"
+            );
+
+        const confirmInput =
+            document.getElementById(
+                "confirmPassword"
+            );
+
+        const termsInput =
+            document.getElementById(
+                "acceptTerms"
+            );
+
+        const submitButton =
+            document.getElementById(
+                "signupSubmitBtn"
+            );
+
+        const messageBox =
+            document.getElementById(
+                "signupMessage"
+            );
+
+        const successModal =
+            document.getElementById(
+                "signupSuccessModal"
+            );
+
+
+        const nameError =
+            document.getElementById(
+                "nameError"
+            );
+
+        const emailError =
+            document.getElementById(
+                "emailError"
+            );
+
+        const passwordError =
+            document.getElementById(
+                "passwordError"
+            );
+
+        const confirmError =
+            document.getElementById(
+                "confirmError"
+            );
+
+        const termsError =
+            document.getElementById(
+                "termsError"
+            );
+
+
+
+        /* =====================================================
+           PASSWORD SHOW / HIDE
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                ".password-toggle"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const targetId =
+                                button.dataset.target;
+
+
+                            const input =
+                                document.getElementById(
+                                    targetId
+                                );
+
+
+                            if (!input) {
+                                return;
+                            }
+
+
+                            const isVisible =
+                                input.type === "text";
+
+
+                            input.type =
+                                isVisible
+                                    ? "password"
+                                    : "text";
+
+
+                            const icon =
+                                button.querySelector(
+                                    "i"
+                                );
+
+
+                            icon.className =
+                                isVisible
+                                    ? "fa-regular fa-eye"
+                                    : "fa-regular fa-eye-slash";
+
+
+                            button.setAttribute(
+                                "aria-label",
+                                isVisible
+                                    ? "Show password"
+                                    : "Hide password"
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           EMAIL VALIDATION
+        ====================================================== */
+
+        function validEmail(email) {
+
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(email);
+
+        }
+
+
+
+        /* =====================================================
+           PASSWORD STRENGTH
+        ====================================================== */
+
+        const strengthBars =
+            document.querySelectorAll(
+                ".strength-bars span"
+            );
+
+        const strengthText =
+            document.getElementById(
+                "strengthText"
+            );
+
+
+        function getPasswordStrength(
+            password
+        ) {
+
+            let score = 0;
+
+
+            if (
+                password.length >= 8
+            ) {
+                score++;
+            }
+
+
+            if (
+                /[A-Z]/.test(password) &&
+                /[a-z]/.test(password)
+            ) {
+                score++;
+            }
+
+
+            if (
+                /\d/.test(password)
+            ) {
+                score++;
+            }
+
+
+            if (
+                /[^A-Za-z0-9]/.test(
+                    password
+                )
+            ) {
+                score++;
+            }
+
+
+            return score;
+
+        }
+
+
+        function updatePasswordStrength() {
+
+            const password =
+                passwordInput.value;
+
+
+            const strength =
+                getPasswordStrength(
+                    password
+                );
+
+
+            strengthBars.forEach(
+                function (bar, index) {
+
+                    bar.classList.remove(
+                        "active"
+                    );
+
+
+                    if (
+                        index < strength
+                    ) {
+
+                        bar.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (!password) {
+
+                strengthText.textContent =
+                    "Use at least 8 characters";
+
+                return;
+
+            }
+
+
+            const messages = [
+                "Password is too weak",
+                "Weak password",
+                "Fair password",
+                "Good password",
+                "Strong password"
+            ];
+
+
+            strengthText.textContent =
+                messages[strength];
+
+        }
+
+
+        passwordInput.addEventListener(
+            "input",
+            updatePasswordStrength
+        );
+
+
+
+        /* =====================================================
+           ERRORS
+        ====================================================== */
+
+        function clearErrors() {
+
+            [
+                nameError,
+                emailError,
+                passwordError,
+                confirmError,
+                termsError
+
+            ].forEach(
+                function (error) {
+
+                    error.textContent = "";
+
+                }
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".form-input"
+                )
+                .forEach(
+                    function (input) {
+
+                        input.classList.remove(
+                            "error"
+                        );
+
+                    }
+                );
+
+
+            messageBox.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        function showFieldError(
+            input,
+            errorElement,
+            message
+        ) {
+
+            input
+                .closest(".form-input")
+                ?.classList.add(
+                    "error"
+                );
+
+
+            errorElement.textContent =
+                message;
+
+        }
+
+
+        function showMessage(message) {
+
+            messageBox
+                .querySelector("span")
+                .textContent =
+                    message;
+
+
+            messageBox.classList.add(
+                "show"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           LOAD USERS
+        ====================================================== */
+
+        function getUsers() {
+
+            try {
+
+                const saved =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_users"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(saved)
+                    ? saved
+                    : [];
+
+            }
+            catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CREATE ACCOUNT
+        ====================================================== */
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                clearErrors();
+
+
+                const fullName =
+                    nameInput
+                        .value
+                        .trim();
+
+
+                const email =
+                    emailInput
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                const password =
+                    passwordInput.value;
+
+
+                const confirmPassword =
+                    confirmInput.value;
+
+
+                let valid = true;
+
+
+
+                /* NAME */
+
+                if (!fullName) {
+
+                    showFieldError(
+                        nameInput,
+                        nameError,
+                        "Your name is required."
+                    );
+
+                    valid = false;
+
+                }
+                else if (
+                    fullName.length < 2
+                ) {
+
+                    showFieldError(
+                        nameInput,
+                        nameError,
+                        "Enter your full name."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                /* EMAIL */
+
+                if (!email) {
+
+                    showFieldError(
+                        emailInput,
+                        emailError,
+                        "Email address is required."
+                    );
+
+                    valid = false;
+
+                }
+                else if (
+                    !validEmail(email)
+                ) {
+
+                    showFieldError(
+                        emailInput,
+                        emailError,
+                        "Enter a valid email address."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                /* PASSWORD */
+
+                if (!password) {
+
+                    showFieldError(
+                        passwordInput,
+                        passwordError,
+                        "Create a password."
+                    );
+
+                    valid = false;
+
+                }
+                else if (
+                    password.length < 8
+                ) {
+
+                    showFieldError(
+                        passwordInput,
+                        passwordError,
+                        "Password must contain at least 8 characters."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                /* CONFIRM */
+
+                if (!confirmPassword) {
+
+                    showFieldError(
+                        confirmInput,
+                        confirmError,
+                        "Confirm your password."
+                    );
+
+                    valid = false;
+
+                }
+                else if (
+                    password !==
+                    confirmPassword
+                ) {
+
+                    showFieldError(
+                        confirmInput,
+                        confirmError,
+                        "Passwords do not match."
+                    );
+
+                    valid = false;
+
+                }
+
+
+
+                /* TERMS */
+
+                if (
+                    !termsInput.checked
+                ) {
+
+                    termsError.textContent =
+                        "Please accept the terms to continue.";
+
+                    valid = false;
+
+                }
+
+
+                if (!valid) {
+                    return;
+                }
+
+
+
+                /* =================================================
+                   DUPLICATE EMAIL
+                ================================================= */
+
+                const users =
+                    getUsers();
+
+
+                const alreadyExists =
+                    users.some(
+                        function (user) {
+
+                            return (
+                                String(
+                                    user.email || ""
+                                )
+                                    .toLowerCase() ===
+                                email
+                            );
+
+                        }
+                    );
+
+
+                if (alreadyExists) {
+
+                    showFieldError(
+                        emailInput,
+                        emailError,
+                        "An account with this email already exists."
+                    );
+
+
+                    showMessage(
+                        "This email is already registered. Try signing in instead."
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                /* =================================================
+                   CREATE USER
+
+                   Temporary localStorage authentication.
+                   Replace with Supabase Auth later.
+                ================================================= */
+
+                const user = {
+
+                    id:
+                        "DST-U-" +
+                        Date.now(),
+
+                    fullName:
+                        fullName,
+
+                    email:
+                        email,
+
+                    password:
+                        password,
+
+                    createdAt:
+                        new Date()
+                            .toISOString()
+
+                };
+
+
+                users.push(user);
+
+
+                localStorage.setItem(
+                    "dostea_users",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+
+                /* =================================================
+                   INITIAL PROFILE
+                ================================================= */
+
+                const profile = {
+
+                    userId:
+                        user.id,
+
+                    fullName:
+                        user.fullName,
+
+                    email:
+                        user.email,
+
+                    phone: "",
+
+                    joinedAt:
+                        user.createdAt
+
+                };
+
+
+                localStorage.setItem(
+                    "dostea_profile",
+                    JSON.stringify(
+                        profile
+                    )
+                );
+
+
+
+                /* =================================================
+                   REMEMBER EMAIL FOR LOGIN
+                ================================================= */
+
+                localStorage.setItem(
+                    "dostea_remembered_email",
+                    email
+                );
+
+
+
+                /* =================================================
+                   LOADING STATE
+                ================================================= */
+
+                submitButton.disabled =
+                    true;
+
+
+                submitButton.classList.add(
+                    "loading"
+                );
+
+
+                submitButton.innerHTML = `
+
+                    <span>
+                        Creating Account
+                    </span>
+
+                    <i
+                        class="fa-solid fa-circle-notch fa-spin"
+                    ></i>
+
+                `;
+
+
+
+                /* =================================================
+                   SUCCESS
+                ================================================= */
+
+                setTimeout(
+                    function () {
+
+                        successModal
+                            .classList.add(
+                                "show"
+                            );
+
+
+                        document.body
+                            .classList.add(
+                                "modal-open"
+                            );
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+                            1500
+                        );
+
+                    },
+                    450
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           REMOVE FIELD ERRORS WHILE TYPING
+        ====================================================== */
+
+        [
+            {
+                input: nameInput,
+                error: nameError
+            },
+
+            {
+                input: emailInput,
+                error: emailError
+            },
+
+            {
+                input: passwordInput,
+                error: passwordError
+            },
+
+            {
+                input: confirmInput,
+                error: confirmError
+            }
+
+        ].forEach(
+            function (field) {
+
+                field.input.addEventListener(
+                    "input",
+                    function () {
+
+                        field.error.textContent =
+                            "";
+
+
+                        field.input
+                            .closest(
+                                ".form-input"
+                            )
+                            ?.classList.remove(
+                                "error"
+                            );
+
+
+                        messageBox
+                            .classList.remove(
+                                "show"
+                            );
+
+                    }
+                );
+
+            }
+        );
+
+
+        termsInput.addEventListener(
+            "change",
+            function () {
+
+                termsError.textContent =
+                    "";
+
+            }
+        );
+
+
+
+        /* =====================================================
+           GOOGLE SIGNUP
+        ====================================================== */
+
+        document
+            .getElementById(
+                "googleSignupBtn"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    showMessage(
+                        "Google signup will be available after authentication is connected."
+                    );
+
+                }
+            );
+
+    }
+);
+
+</script>
+
+</body>
+</html>

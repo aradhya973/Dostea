@@ -1,0 +1,2097 @@
+/* =========================================================
+   DOSTEA — CUSTOMER SIGNUP
+   File: css/signup.css
+========================================================= */
+
+:root {
+    --bg: #070707;
+    --surface: #0d0d0d;
+    --surface-light: #111110;
+
+    --gold: #d4af37;
+    --gold-light: #f0d778;
+    --gold-dark: #9f8127;
+
+    --text-primary: #f5f1e8;
+    --text-secondary: #b7b0a3;
+    --text-muted: #706b62;
+
+    --border: rgba(255, 255, 255, 0.06);
+    --gold-border: rgba(212, 175, 55, 0.14);
+
+    --danger: #b96d6d;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background: var(--bg);
+    color: var(--text-primary);
+
+    font-family: "DM Sans", sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(420px, 0.95fr)
+        minmax(500px, 1.05fr);
+
+    background: #070707;
+}
+
+
+/* =========================================================
+   LEFT VISUAL
+========================================================= */
+
+.auth-visual {
+    min-height: 100vh;
+
+    padding: 38px 46px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-right:
+        1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at 28% 32%,
+            rgba(212, 175, 55, 0.075),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 78% 78%,
+            rgba(212, 175, 55, 0.035),
+            transparent 25%
+        ),
+        linear-gradient(
+            145deg,
+            #0d0d0c,
+            #080808 62%,
+            #0b0a08
+        );
+}
+
+
+/* GRID TEXTURE */
+
+.auth-visual::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #000 18%,
+            #000 82%,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   DECORATIVE GLOW
+========================================================= */
+
+.visual-glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.glow-one {
+    width: 430px;
+    height: 430px;
+
+    top: -230px;
+    right: -180px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212, 175, 55, 0.075),
+            transparent 68%
+        );
+}
+
+.glow-two {
+    width: 360px;
+    height: 360px;
+
+    left: -210px;
+    bottom: -160px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212, 175, 55, 0.05),
+            transparent 68%
+        );
+}
+
+
+/* =========================================================
+   RINGS
+========================================================= */
+
+.visual-ring {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.055);
+
+    pointer-events: none;
+}
+
+.ring-one {
+    width: 360px;
+    height: 360px;
+
+    right: -190px;
+    top: 24%;
+}
+
+.ring-two {
+    width: 220px;
+    height: 220px;
+
+    right: -90px;
+    top: calc(24% + 70px);
+
+    border-color:
+        rgba(212, 175, 55, 0.085);
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.auth-brand {
+    width: fit-content;
+
+    position: relative;
+    z-index: 5;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: inherit;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.25);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.12),
+            rgba(212, 175, 55, 0.025)
+        );
+
+    color: var(--gold-light);
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 22px;
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0, 0, 0, 0.25);
+}
+
+.brand-copy h1 {
+    color: var(--text-primary);
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.brand-copy span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--gold-dark);
+
+    font-size: 6px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+
+/* =========================================================
+   VISUAL CONTENT
+========================================================= */
+
+.visual-content {
+    width: min(510px, 100%);
+
+    margin: auto 0;
+
+    position: relative;
+    z-index: 4;
+}
+
+.visual-eyebrow {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--gold);
+
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: 2.4px;
+}
+
+.visual-content > h2 {
+    max-width: 480px;
+
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(36px, 3.8vw, 56px);
+
+    font-weight: 500;
+
+    line-height: 1.08;
+}
+
+.visual-content > h2 em {
+    display: block;
+
+    color: var(--gold-light);
+
+    font-weight: 500;
+}
+
+.visual-content > p {
+    max-width: 430px;
+
+    margin: 19px 0 27px;
+
+    color: #716c63;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   SIGNUP FEATURES
+========================================================= */
+
+.signup-features {
+    max-width: 445px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.signup-feature {
+    min-height: 68px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.signup-feature:hover {
+    transform:
+        translateX(4px);
+
+    border-color:
+        rgba(212, 175, 55, 0.07);
+
+    background:
+        rgba(212, 175, 55, 0.025);
+}
+
+.feature-number {
+    width: 39px;
+    height: 39px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.1);
+
+    border-radius: 9px;
+
+    background:
+        rgba(212, 175, 55, 0.045);
+
+    color: var(--gold);
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.signup-feature strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #d7d1c6;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.signup-feature p {
+    margin: 0;
+
+    color: #5d5952;
+
+    font-size: 7px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   VISUAL FOOTER
+========================================================= */
+
+.visual-footer {
+    position: relative;
+    z-index: 4;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+.visual-footer > span {
+    width: 25px;
+    height: 1px;
+
+    background:
+        var(--gold-dark);
+}
+
+.visual-footer p {
+    margin: 0;
+
+    color: #5c5850;
+
+    font-size: 6px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.auth-main {
+    min-height: 100vh;
+
+    padding: 65px 50px 40px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 90% 5%,
+            rgba(212, 175, 55, 0.025),
+            transparent 22%
+        ),
+        #080808;
+}
+
+
+/* =========================================================
+   BACK HOME
+========================================================= */
+
+.back-home {
+    position: absolute;
+
+    top: 34px;
+    right: 40px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #68635b;
+
+    font-size: 8px;
+    font-weight: 500;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back-home i {
+    font-size: 7px;
+}
+
+.back-home:hover {
+    transform:
+        translateX(-2px);
+
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   MOBILE BRAND
+========================================================= */
+
+.mobile-brand {
+    display: none;
+}
+
+
+/* =========================================================
+   SIGNUP WRAPPER
+========================================================= */
+
+.signup-wrapper {
+    width: min(410px, 100%);
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.signup-heading {
+    margin-bottom: 23px;
+}
+
+.signup-heading > span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--gold);
+
+    font-size: 6px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.signup-heading h1 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 33px;
+    font-weight: 600;
+
+    line-height: 1.15;
+}
+
+.signup-heading p {
+    max-width: 310px;
+
+    margin: 8px 0 0;
+
+    color: #68635b;
+
+    font-size: 9px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.signup-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 11px;
+}
+
+.form-group > label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #928b80;
+
+    font-size: 7px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.form-input {
+    height: 44px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 9px;
+
+    background: #0c0c0c;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-input:focus-within {
+    border-color:
+        rgba(212, 175, 55, 0.3);
+
+    background: #0e0e0e;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212, 175, 55, 0.025);
+}
+
+.form-input.error {
+    border-color:
+        rgba(210, 82, 82, 0.4);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(210, 82, 82, 0.025);
+}
+
+.form-input > i {
+    width: 42px;
+
+    flex-shrink: 0;
+
+    color: #5d5952;
+
+    font-size: 9px;
+
+    text-align: center;
+
+    transition:
+        color 0.2s ease;
+}
+
+.form-input:focus-within > i {
+    color: var(--gold-dark);
+}
+
+.form-input input {
+    width: 100%;
+    height: 100%;
+
+    padding:
+        0 13px 0 0;
+
+    outline: none;
+    border: 0;
+
+    background: transparent;
+
+    color: #d8d2c7;
+
+    font-size: 9px;
+}
+
+.form-input input::placeholder {
+    color: #4c4944;
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-input input {
+    padding-right: 45px;
+}
+
+.password-toggle {
+    width: 42px;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #5c5851;
+
+    font-size: 9px;
+
+    transition:
+        color 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   PASSWORD STRENGTH
+========================================================= */
+
+.password-strength {
+    margin-top: 6px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.strength-bars {
+    width: 95px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 3px;
+}
+
+.strength-bars span {
+    height: 2px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.strength-bars span.active {
+    background:
+        var(--gold);
+
+    box-shadow:
+        0 0 7px
+        rgba(212, 175, 55, 0.2);
+}
+
+.password-strength > span {
+    color: #514d47;
+
+    font-size: 5.5px;
+}
+
+
+/* =========================================================
+   FIELD ERROR
+========================================================= */
+
+.field-error {
+    min-height: 12px;
+
+    padding-top: 3px;
+
+    display: block;
+
+    color: var(--danger);
+
+    font-size: 6px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   TERMS
+========================================================= */
+
+.terms-wrapper {
+    margin:
+        3px 0 14px;
+}
+
+.terms-option {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.terms-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.custom-checkbox {
+    width: 16px;
+    height: 16px;
+
+    margin-top: 1px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    border-radius: 4px;
+
+    background: #0d0d0d;
+
+    color: transparent;
+
+    font-size: 6px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.terms-option
+input:checked
++ .custom-checkbox {
+    border-color:
+        var(--gold);
+
+    background:
+        var(--gold);
+
+    color: #080808;
+}
+
+.terms-text {
+    color: #625e57;
+
+    font-size: 6.5px;
+
+    line-height: 1.6;
+}
+
+.terms-text a {
+    color: var(--gold-dark);
+
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease;
+}
+
+.terms-text a:hover {
+    color: var(--gold-light);
+}
+
+.terms-error {
+    padding-left: 24px;
+}
+
+
+/* =========================================================
+   GLOBAL MESSAGE
+========================================================= */
+
+.signup-message {
+    min-height: 38px;
+
+    margin-bottom: 12px;
+    padding: 0 11px;
+
+    display: none;
+    align-items: center;
+
+    gap: 8px;
+
+    border:
+        1px solid
+        rgba(210, 82, 82, 0.12);
+
+    border-radius: 7px;
+
+    background:
+        rgba(210, 82, 82, 0.035);
+
+    color: var(--danger);
+
+    font-size: 7px;
+}
+
+.signup-message.show {
+    display: flex;
+}
+
+.signup-message i {
+    flex-shrink: 0;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   CREATE ACCOUNT BUTTON
+========================================================= */
+
+.signup-submit-btn {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border:
+        1px solid var(--gold);
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color: #080808;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    box-shadow:
+        0 9px 28px
+        rgba(212, 175, 55, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.signup-submit-btn:hover:not(:disabled) {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 13px 32px
+        rgba(212, 175, 55, 0.12);
+
+    filter: brightness(1.03);
+}
+
+.signup-submit-btn:active:not(:disabled) {
+    transform:
+        translateY(0);
+}
+
+.signup-submit-btn:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.8;
+}
+
+.signup-submit-btn.loading {
+    justify-content: center;
+
+    gap: 9px;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.auth-divider {
+    margin:
+        18px 0 14px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.auth-divider > span {
+    height: 1px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+.auth-divider p {
+    margin: 0;
+
+    color: #4e4a44;
+
+    font-size: 5px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   GOOGLE
+========================================================= */
+
+.google-signup-btn {
+    width: 100%;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 9px;
+
+    background: #0c0c0c;
+
+    color: #aaa398;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.google-signup-btn:hover {
+    transform:
+        translateY(-1px);
+
+    border-color:
+        rgba(212, 175, 55, 0.15);
+
+    background:
+        rgba(212, 175, 55, 0.025);
+
+    color: var(--text-primary);
+}
+
+.google-icon {
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+
+    background: #111;
+
+    color: var(--gold-light);
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   LOGIN SWITCH
+========================================================= */
+
+.auth-switch {
+    margin: 18px 0 0;
+
+    color: #69645c;
+
+    font-size: 8px;
+
+    text-align: center;
+}
+
+.auth-switch a {
+    margin-left: 3px;
+
+    color: var(--gold);
+
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease;
+}
+
+.auth-switch a:hover {
+    color: var(--gold-light);
+}
+
+
+/* =========================================================
+   SUCCESS MODAL
+========================================================= */
+
+.signup-success-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    visibility: hidden;
+
+    background:
+        rgba(0, 0, 0, 0);
+
+    backdrop-filter:
+        blur(0);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        background 0.25s ease,
+        backdrop-filter 0.25s ease;
+}
+
+.signup-success-modal.show {
+    visibility: visible;
+
+    background:
+        rgba(0, 0, 0, 0.78);
+
+    backdrop-filter:
+        blur(8px);
+
+    opacity: 1;
+}
+
+.signup-success-card {
+    width:
+        min(390px, 100%);
+
+    padding:
+        32px 26px;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.15);
+
+    border-radius: 15px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(212, 175, 55, 0.08),
+            transparent 38%
+        ),
+        #101010;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0, 0, 0, 0.55);
+
+    text-align: center;
+
+    transform:
+        translateY(15px)
+        scale(0.97);
+
+    transition:
+        transform 0.25s ease;
+}
+
+.signup-success-modal.show
+.signup-success-card {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.success-icon {
+    width: 58px;
+    height: 58px;
+
+    margin:
+        0 auto 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.2);
+
+    border-radius: 50%;
+
+    background:
+        rgba(212, 175, 55, 0.07);
+
+    color: var(--gold);
+
+    font-size: 15px;
+
+    box-shadow:
+        0 0 35px
+        rgba(212, 175, 55, 0.06);
+}
+
+.signup-success-card > span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--gold-dark);
+
+    font-size: 5px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.signup-success-card h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.signup-success-card p {
+    max-width: 270px;
+
+    margin:
+        8px auto 20px;
+
+    color: #625e57;
+
+    font-size: 7px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SUCCESS LOADER
+========================================================= */
+
+.success-loader {
+    width: 100%;
+    height: 2px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+.success-loader span {
+    width: 40%;
+    height: 100%;
+
+    display: block;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold-dark),
+            var(--gold-light)
+        );
+
+    animation:
+        successLoading
+        1.2s ease-in-out infinite;
+}
+
+@keyframes successLoading {
+
+    0% {
+        transform:
+            translateX(-110%);
+    }
+
+    100% {
+        transform:
+            translateX(350%);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — LAPTOP
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .auth-page {
+        grid-template-columns:
+            minmax(350px, 0.8fr)
+            minmax(470px, 1.2fr);
+    }
+
+    .auth-visual {
+        padding:
+            34px 32px;
+    }
+
+    .visual-content > h2 {
+        font-size: 39px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 820px) {
+
+    .auth-page {
+        display: block;
+    }
+
+    .auth-visual {
+        display: none;
+    }
+
+    .auth-main {
+        min-height: 100vh;
+
+        padding:
+            95px 25px 45px;
+
+        align-items: flex-start;
+    }
+
+
+    /* MOBILE BRAND */
+
+    .mobile-brand {
+        position: absolute;
+
+        top: 27px;
+        left: 25px;
+
+        display: inline-flex;
+        align-items: center;
+
+        gap: 9px;
+
+        color: var(--text-primary);
+    }
+
+    .mobile-brand > div {
+        width: 34px;
+        height: 34px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border:
+            1px solid
+            rgba(212, 175, 55, 0.22);
+
+        border-radius: 8px;
+
+        background:
+            rgba(212, 175, 55, 0.055);
+
+        color: var(--gold-light);
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        font-size: 17px;
+    }
+
+    .mobile-brand > span {
+        font-family:
+            "Playfair Display",
+            serif;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        letter-spacing: 1.7px;
+    }
+
+    .back-home {
+        top: 35px;
+        right: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .auth-main {
+        padding:
+            90px 18px 35px;
+    }
+
+    .signup-wrapper {
+        width: 100%;
+    }
+
+    .signup-heading {
+        margin-bottom: 21px;
+    }
+
+    .signup-heading h1 {
+        font-size: 29px;
+    }
+
+    .signup-heading p {
+        font-size: 8px;
+    }
+
+
+    /* BACK HOME ICON ONLY */
+
+    .back-home {
+        font-size: 0;
+    }
+
+    .back-home i {
+        width: 31px;
+        height: 31px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.06);
+
+        border-radius: 7px;
+
+        background: #0c0c0c;
+
+        font-size: 8px;
+    }
+
+
+    /* INPUTS */
+
+    .form-input {
+        height: 47px;
+    }
+
+    .signup-submit-btn {
+        height: 48px;
+    }
+
+    .google-signup-btn {
+        height: 46px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .auth-main {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .mobile-brand {
+        left: 14px;
+    }
+
+    .back-home {
+        right: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   DOSTEA SIGNUP — FINAL SIZE + 100VH FIX
+   Add at END of signup.css
+========================================================= */
+
+
+/* =========================================================
+   DESKTOP — EXACT FULL SCREEN
+========================================================= */
+
+@media (min-width: 821px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .auth-page {
+        width: 100%;
+        height: 100vh;
+        min-height: 0;
+
+        overflow: hidden;
+    }
+
+    .auth-visual,
+    .auth-main {
+        height: 100vh;
+        min-height: 0;
+    }
+
+
+    /* LEFT SIDE */
+
+    .auth-visual {
+        padding: 30px 42px;
+    }
+
+    .auth-brand-mark,
+    .brand-mark {
+        width: 46px;
+        height: 46px;
+
+        font-size: 24px;
+    }
+
+    .brand-copy h1 {
+        font-size: 22px;
+    }
+
+    .brand-copy span {
+        font-size: 8px;
+    }
+
+    .visual-content {
+        margin: auto 0;
+    }
+
+    .visual-eyebrow {
+        margin-bottom: 10px;
+
+        font-size: 10px;
+    }
+
+    .visual-content > h2 {
+        font-size: clamp(38px, 3.5vw, 54px);
+    }
+
+    .visual-content > p {
+        margin: 14px 0 18px;
+
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+
+    /* FEATURES */
+
+    .signup-features {
+        gap: 2px;
+    }
+
+    .signup-feature {
+        min-height: 58px;
+        padding: 8px 10px;
+    }
+
+    .feature-number {
+        width: 40px;
+        height: 40px;
+
+        font-size: 11px;
+    }
+
+    .signup-feature strong {
+        margin-bottom: 2px;
+
+        font-size: 12px;
+    }
+
+    .signup-feature p {
+        font-size: 10px;
+    }
+
+    .visual-footer p {
+        font-size: 8px;
+    }
+
+
+    /* =====================================================
+       RIGHT SIDE
+    ====================================================== */
+
+    .auth-main {
+        padding: 28px 50px;
+
+        overflow: hidden;
+    }
+
+    .signup-wrapper {
+        width: min(430px, 100%);
+
+        max-height: calc(100vh - 45px);
+    }
+
+    .back-home {
+        top: 24px;
+        right: 35px;
+
+        font-size: 10px;
+    }
+
+    .back-home i {
+        font-size: 9px;
+    }
+
+
+    /* HEADING */
+
+    .signup-heading {
+        margin-bottom: 16px;
+    }
+
+    .signup-heading > span {
+        margin-bottom: 5px;
+
+        font-size: 8px;
+    }
+
+    .signup-heading h1 {
+        font-size: 34px;
+    }
+
+    .signup-heading p {
+        margin-top: 5px;
+
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       FORM
+    ====================================================== */
+
+    .form-group {
+        margin-bottom: 6px;
+    }
+
+    .form-group > label {
+        margin-bottom: 5px;
+
+        font-size: 10px;
+    }
+
+    .form-input {
+        height: 43px;
+    }
+
+    .form-input > i {
+        width: 42px;
+
+        font-size: 11px;
+    }
+
+    .form-input input {
+        font-size: 11px;
+    }
+
+    .form-input input::placeholder {
+        font-size: 11px;
+    }
+
+    .password-toggle {
+        font-size: 11px;
+    }
+
+
+    /* PASSWORD STRENGTH */
+
+    .password-strength {
+        margin-top: 4px;
+    }
+
+    .password-strength > span {
+        font-size: 8px;
+    }
+
+    .strength-bars {
+        width: 100px;
+    }
+
+    .strength-bars span {
+        height: 3px;
+    }
+
+
+    /* ERRORS */
+
+    .field-error {
+        min-height: 9px;
+
+        padding-top: 2px;
+
+        font-size: 8px;
+    }
+
+
+    /* TERMS */
+
+    .terms-wrapper {
+        margin: 1px 0 8px;
+    }
+
+    .terms-text {
+        font-size: 9px;
+    }
+
+    .terms-error {
+        padding-left: 24px;
+    }
+
+
+    /* ERROR BOX */
+
+    .signup-message {
+        min-height: 34px;
+
+        margin-bottom: 7px;
+
+        font-size: 9px;
+    }
+
+
+    /* CREATE ACCOUNT */
+
+    .signup-submit-btn {
+        height: 43px;
+
+        font-size: 11px;
+    }
+
+
+    /* DIVIDER */
+
+    .auth-divider {
+        margin: 11px 0;
+    }
+
+    .auth-divider p {
+        font-size: 7px;
+    }
+
+
+    /* GOOGLE */
+
+    .google-signup-btn {
+        height: 41px;
+
+        font-size: 10px;
+    }
+
+    .google-icon {
+        font-size: 10px;
+    }
+
+
+    /* LOGIN LINK */
+
+    .auth-switch {
+        margin-top: 11px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   SHORT LAPTOP SCREENS
+   Example: 1366 × 768
+========================================================= */
+
+@media (min-width: 821px) and (max-height: 800px) {
+
+    .auth-visual {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .visual-content > h2 {
+        font-size: 40px;
+    }
+
+    .visual-content > p {
+        margin: 10px 0 12px;
+
+        font-size: 11px;
+    }
+
+    .signup-feature {
+        min-height: 51px;
+        padding: 6px 8px;
+    }
+
+    .signup-feature strong {
+        font-size: 11px;
+    }
+
+    .signup-feature p {
+        font-size: 9px;
+    }
+
+
+    /* RIGHT */
+
+    .auth-main {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .signup-heading {
+        margin-bottom: 10px;
+    }
+
+    .signup-heading h1 {
+        font-size: 30px;
+    }
+
+    .signup-heading p {
+        font-size: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 3px;
+    }
+
+    .form-group > label {
+        margin-bottom: 3px;
+    }
+
+    .form-input {
+        height: 39px;
+    }
+
+    .field-error {
+        min-height: 7px;
+    }
+
+    .password-strength {
+        margin-top: 3px;
+    }
+
+    .terms-wrapper {
+        margin-bottom: 5px;
+    }
+
+    .signup-submit-btn {
+        height: 40px;
+    }
+
+    .auth-divider {
+        margin: 8px 0;
+    }
+
+    .google-signup-btn {
+        height: 39px;
+    }
+
+    .auth-switch {
+        margin-top: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   Scroll allowed so content never gets cut
+========================================================= */
+
+@media (max-width: 820px) {
+
+    html,
+    body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .auth-page {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .auth-main {
+        height: auto;
+        min-height: 100vh;
+
+        overflow: visible;
+    }
+
+    .signup-heading > span {
+        font-size: 8px;
+    }
+
+    .signup-heading h1 {
+        font-size: 34px;
+    }
+
+    .signup-heading p {
+        font-size: 11px;
+    }
+
+    .form-group > label {
+        font-size: 10px;
+    }
+
+    .form-input input {
+        font-size: 11px;
+    }
+
+    .field-error {
+        font-size: 8px;
+    }
+
+    .password-strength > span {
+        font-size: 8px;
+    }
+
+    .terms-text {
+        font-size: 9px;
+    }
+
+    .signup-submit-btn {
+        font-size: 11px;
+    }
+
+    .google-signup-btn {
+        font-size: 10px;
+    }
+
+    .auth-switch {
+        font-size: 10px;
+    }
+
+}

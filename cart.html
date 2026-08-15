@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSTEA | My Cart</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="cart.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+<!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+<aside class="sidebar" id="sidebar">
+<!-- BRAND -->
+<div class="sidebar-brand">
+<a href="index.html">
+<div class="brand-mark">
+                    D
+                </div>
+<div class="brand-copy">
+<h1>DOSTEA</h1>
+<span>
+                       HOTEL • CAFÉ • LIFESTYLE
+                    </span>
+</div>
+</a>
+</div>
+<!-- NAVIGATION -->
+<nav class="sidebar-navigation">
+<!-- HOME -->
+<a class="nav-link" href="index.html">
+<span class="nav-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+<span>Home</span>
+</a>
+<!-- CAFE -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-mug-hot"></i>
+</span>
+<span>Café</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
+<a class="nav-link" href="reservations.html">
+                        Reserve Table
+                    </a>
+<a class="nav-link" href="about.html">
+                        About DOSTEA
+                    </a>
+</div>
+</div>
+<!-- ORDERS -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</span>
+<span>Orders</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="orders.html">
+                        My Orders
+                    </a>
+<a class="nav-link active" href="cart.html">
+                        My Cart
+                    </a>
+</div>
+</div>
+<!-- Restaurant -->
+<div class="sidebar-accordion open">
+<button aria-expanded="true" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+ <i class="fa-solid fa-utensils"></i>
+</span>
+<span>Restaurant </span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="Restaurant.html">
+                        Restaurant
+                    </a>
+<a class="nav-link" href="amenities.html">
+                        Amenities
+                    </a>
+<a class="nav-link" href="booking.html">
+                        Book a Room
+                    </a>
+</div>
+</div>
+<!-- CONTACT -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-phone"></i>
+</span>
+<span>Contact</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="contact.html">
+                        Contact Us
+                    </a>
+<a class="nav-link" href="reach-us.html">
+                        Reach Us
+                    </a>
+</div>
+</div>
+<!-- PROFILE -->
+<a class="nav-link" href="profile.html">
+<span class="nav-icon">
+<i class="fa-regular fa-user"></i>
+</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- USER -->
+<div class="sidebar-bottom">
+<div class="sidebar-user">
+<div class="sidebar-avatar" id="sidebarAvatar">
+                    D
+                </div>
+<div class="sidebar-user-info">
+<strong id="sidebarUserName">
+                        DOSTEA User
+                    </strong>
+<span id="sidebarUserEmail">
+                        customer@dostea.com
+                    </span>
+</div>
+</div>
+<a class="sidebar-profile-btn" href="profile.html" title="Profile">
+<i class="fa-solid fa-chevron-right"></i>
+</a>
+</div>
+</aside>
+<!-- =====================================================
+         MAIN
+    ====================================================== -->
+<main class="main-content">
+<!-- =================================================
+             TOPBAR
+        ================================================== -->
+<header class="topbar">
+<div class="topbar-left">
+<button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+<div>
+<span class="topbar-eyebrow">
+                        YOUR ORDER
+                    </span>
+<h2>My Cart</h2>
+</div>
+</div>
+<div class="topbar-actions">
+<a class="continue-top-btn" href="menu.html">
+<i class="fa-solid fa-plus"></i>
+
+                    Add More
+
+                </a>
+<a class="topbar-user" href="profile.html">
+<div class="topbar-avatar" id="topbarAvatar">
+                        D
+                    </div>
+<div>
+<strong id="topbarUserName">
+                            DOSTEA User
+                        </strong>
+<span>Customer</span>
+</div>
+</a>
+</div>
+</header>
+<!-- =================================================
+             CART PAGE
+        ================================================== -->
+<div class="cart-page">
+<!-- =================================================
+                 PAGE HEADER
+            ================================================== -->
+<section class="cart-header">
+<div>
+<span class="section-label">
+                        YOUR SELECTION
+                    </span>
+<h1>
+                        Almost ready to order.
+                    </h1>
+<p>
+                        Review your items, adjust quantities
+                        and continue when everything looks right.
+                    </p>
+</div>
+<button class="clear-cart-btn" id="clearCartBtn" type="button">
+<i class="fa-regular fa-trash-can"></i>
+
+                    Clear Cart
+
+                </button>
+</section>
+<!-- =================================================
+                 CART CONTENT
+            ================================================== -->
+<div class="cart-layout" id="cartLayout">
+<!-- =============================================
+                     ITEMS
+                ============================================== -->
+<section class="cart-items-section">
+<div class="cart-section-header">
+<div>
+<span>ORDER ITEMS</span>
+<h3>
+                                Your Cart
+                            </h3>
+</div>
+<div class="item-counter">
+<strong id="cartItemCount">
+                                0
+                            </strong>
+<span>items</span>
+</div>
+</div>
+<!-- ITEMS GENERATED BY JS -->
+<div class="cart-items" id="cartItems"></div>
+<!-- CONTINUE -->
+<a class="continue-shopping" href="menu.html">
+<i class="fa-solid fa-arrow-left"></i>
+
+                        Continue browsing menu
+
+                    </a>
+</section>
+<!-- =============================================
+                     SUMMARY
+                ============================================== -->
+<aside class="order-summary">
+<div class="summary-heading">
+<span>PAYMENT</span>
+<h3>
+                            Order Summary
+                        </h3>
+</div>
+<div class="summary-lines">
+<div class="summary-row">
+<span>
+                                Subtotal
+                            </span>
+<strong id="subtotal">
+                                ₹0
+                            </strong>
+</div>
+<div class="summary-row">
+<span>
+                                GST
+                                <small>(5%)</small>
+</span>
+<strong id="tax">
+                                ₹0
+                            </strong>
+</div>
+<div class="summary-row">
+<span>
+                                Packaging
+                            </span>
+<strong id="packaging">
+                                ₹0
+                            </strong>
+</div>
+</div>
+<div class="summary-divider"></div>
+<!-- TOTAL -->
+<div class="summary-total">
+<div>
+<span>
+                                TOTAL AMOUNT
+                            </span>
+<p>
+                                Inclusive of applicable taxes
+                            </p>
+</div>
+<strong id="grandTotal">
+                            ₹0
+                        </strong>
+</div>
+<!-- ORDER TYPE -->
+<div class="order-type-section">
+<label>
+                            ORDER TYPE
+                        </label>
+<div class="order-type-options">
+<button class="order-type-btn active" data-type="dine-in" type="button">
+<i class="fa-solid fa-utensils"></i>
+<span>Dine In</span>
+</button>
+<button class="order-type-btn" data-type="takeaway" type="button">
+<i class="fa-solid fa-bag-shopping"></i>
+<span>Takeaway</span>
+</button>
+</div>
+</div>
+<!-- CHECKOUT -->
+<button class="checkout-btn" id="checkoutBtn" type="button">
+<span>
+                            Place Order
+                        </span>
+<i class="fa-solid fa-arrow-right"></i>
+</button>
+<!-- SECURE -->
+<div class="secure-note">
+<i class="fa-solid fa-shield-halved"></i>
+<span>
+                            Secure DOSTEA checkout
+                        </span>
+</div>
+</aside>
+</div>
+<!-- =================================================
+                 EMPTY CART
+            ================================================== -->
+<section class="empty-cart" id="emptyCart">
+<div class="empty-cart-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</div>
+<span>
+                    YOUR CART IS EMPTY
+                </span>
+<h2>
+                    Nothing brewing here yet.
+                </h2>
+<p>
+                    Explore the DOSTEA menu and add
+                    something you love.
+                </p>
+<a href="menu.html">
+
+                    Explore Menu
+
+                    <i class="fa-solid fa-arrow-right"></i>
+</a>
+</section>
+</div>
+</main>
+</div>
+<!-- =========================================================
+     CLEAR CART MODAL
+========================================================= -->
+<div class="cart-modal" id="clearModal">
+<div class="cart-modal-card">
+<div class="modal-icon danger">
+<i class="fa-regular fa-trash-can"></i>
+</div>
+<span>
+            CLEAR CART
+        </span>
+<h2>
+            Remove everything?
+        </h2>
+<p>
+            All items currently in your cart
+            will be removed.
+        </p>
+<div class="modal-actions">
+<button class="modal-cancel" id="cancelClear" type="button">
+                Keep Items
+            </button>
+<button class="modal-confirm" id="confirmClear" type="button">
+                Clear Cart
+            </button>
+</div>
+</div>
+</div>
+<!-- =========================================================
+     ORDER SUCCESS MODAL
+========================================================= -->
+<div class="cart-modal" id="successModal">
+<div class="cart-modal-card success-card">
+<div class="modal-icon success">
+<i class="fa-solid fa-check"></i>
+</div>
+<span>
+            ORDER CONFIRMED
+        </span>
+<h2>
+            Your order is in.
+        </h2>
+<p>
+            DOSTEA has received your order.
+            You can track it from My Orders.
+        </p>
+<div class="success-order-id" id="successOrderId">
+            #DOSTEA0000
+        </div>
+<button class="view-orders-btn" id="viewOrdersBtn" type="button">
+
+            View My Orders
+
+            <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           CURRENT USER
+        ====================================================== */
+
+        let currentUser = null;
+
+
+        try {
+
+            currentUser =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_current_user"
+                    )
+                );
+
+        }
+        catch (error) {
+
+            currentUser = null;
+
+        }
+
+
+        if (!currentUser) {
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
+
+        }
+
+
+
+        /* =====================================================
+           ELEMENTS
+        ====================================================== */
+
+        const cartItems =
+            document.getElementById(
+                "cartItems"
+            );
+
+
+        const cartLayout =
+            document.getElementById(
+                "cartLayout"
+            );
+
+
+        const emptyCart =
+            document.getElementById(
+                "emptyCart"
+            );
+
+
+        const clearButton =
+            document.getElementById(
+                "clearCartBtn"
+            );
+
+
+        const checkoutButton =
+            document.getElementById(
+                "checkoutBtn"
+            );
+
+
+        const clearModal =
+            document.getElementById(
+                "clearModal"
+            );
+
+
+        const successModal =
+            document.getElementById(
+                "successModal"
+            );
+
+
+        let selectedOrderType =
+            "dine-in";
+
+
+
+        /* =====================================================
+           USER
+        ====================================================== */
+
+        const userName =
+            currentUser.fullName ||
+            currentUser.name ||
+            "DOSTEA User";
+
+
+        const userEmail =
+            currentUser.email || "";
+
+
+        const initial =
+            userName
+                .trim()
+                .charAt(0)
+                .toUpperCase() || "D";
+
+
+        [
+            "sidebarAvatar",
+            "topbarAvatar"
+
+        ].forEach(
+            function (id) {
+
+                document.getElementById(
+                    id
+                ).textContent =
+                    initial;
+
+            }
+        );
+
+
+        [
+            "sidebarUserName",
+            "topbarUserName"
+
+        ].forEach(
+            function (id) {
+
+                document.getElementById(
+                    id
+                ).textContent =
+                    userName;
+
+            }
+        );
+
+
+        document.getElementById(
+            "sidebarUserEmail"
+        ).textContent =
+            userEmail;
+
+
+
+        /* =====================================================
+           CART STORAGE
+        ====================================================== */
+
+        function getCart() {
+
+            try {
+
+                const cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_cart"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(cart)
+                    ? cart
+                    : [];
+
+            }
+            catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        function saveCart(cart) {
+
+            localStorage.setItem(
+                "dostea_cart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+
+        /* =====================================================
+           MONEY
+        ====================================================== */
+
+        function money(value) {
+
+            return (
+                "₹" +
+                Math.round(
+                    Number(value) || 0
+                ).toLocaleString("en-IN")
+            );
+
+        }
+
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value || "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+
+        /* =====================================================
+           CALCULATE
+        ====================================================== */
+
+        function calculateCart(cart) {
+
+            let subtotal = 0;
+
+            let count = 0;
+
+
+            cart.forEach(
+                function (item) {
+
+                    const quantity =
+                        Math.max(
+                            1,
+                            Number(
+                                item.quantity || 1
+                            )
+                        );
+
+
+                    const price =
+                        Number(
+                            item.price || 0
+                        );
+
+
+                    subtotal +=
+                        price * quantity;
+
+
+                    count += quantity;
+
+                }
+            );
+
+
+            const tax =
+                subtotal * 0.05;
+
+
+            const packaging =
+                cart.length
+                    ? 20
+                    : 0;
+
+
+            const total =
+                subtotal +
+                tax +
+                packaging;
+
+
+            return {
+                subtotal,
+                tax,
+                packaging,
+                total,
+                count
+            };
+
+        }
+
+
+
+        /* =====================================================
+           RENDER CART
+        ====================================================== */
+
+        function renderCart() {
+
+            const cart =
+                getCart();
+
+
+            if (!cart.length) {
+
+                cartLayout.style.display =
+                    "none";
+
+
+                emptyCart.classList.add(
+                    "show"
+                );
+
+
+                clearButton.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            cartLayout.style.display =
+                "";
+
+
+            emptyCart.classList.remove(
+                "show"
+            );
+
+
+            clearButton.style.display =
+                "";
+
+
+            cartItems.innerHTML =
+                cart.map(
+                    function (item, index) {
+
+                        const quantity =
+                            Math.max(
+                                1,
+                                Number(
+                                    item.quantity || 1
+                                )
+                            );
+
+
+                        const price =
+                            Number(
+                                item.price || 0
+                            );
+
+
+                        const itemTotal =
+                            price * quantity;
+
+
+                        const image =
+                            item.image
+                                ? `
+                                <img
+                                    src="${escapeHTML(item.image)}"
+                                    alt="${escapeHTML(item.name)}"
+                                >
+                                `
+                                : `
+                                <div class="cart-item-placeholder">
+                                    <i class="fa-solid fa-mug-hot"></i>
+                                </div>
+                                `;
+
+
+                        return `
+
+                        <article
+                            class="cart-item"
+                            data-index="${index}"
+                        >
+
+                            <div class="cart-item-image">
+
+                                ${image}
+
+                            </div>
+
+
+                            <div class="cart-item-info">
+
+                                <span class="item-category">
+                                    ${escapeHTML(
+                                        item.category ||
+                                        "DOSTEA"
+                                    )}
+                                </span>
+
+
+                                <h3>
+                                    ${escapeHTML(
+                                        item.name ||
+                                        "DOSTEA Item"
+                                    )}
+                                </h3>
+
+
+                                <p>
+                                    ${escapeHTML(
+                                        item.description ||
+                                        "Freshly prepared for you."
+                                    )}
+                                </p>
+
+
+                                <div class="mobile-item-price">
+
+                                    ${money(price)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="cart-item-price">
+
+                                <span>
+                                    PRICE
+                                </span>
+
+                                <strong>
+                                    ${money(price)}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="quantity-control">
+
+                                <button
+                                    type="button"
+                                    class="quantity-btn minus-btn"
+                                    data-index="${index}"
+                                    aria-label="Decrease quantity"
+                                >
+
+                                    <i class="fa-solid fa-minus"></i>
+
+                                </button>
+
+
+                                <span>
+                                    ${quantity}
+                                </span>
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-btn plus-btn"
+                                    data-index="${index}"
+                                    aria-label="Increase quantity"
+                                >
+
+                                    <i class="fa-solid fa-plus"></i>
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="cart-item-total">
+
+                                <span>
+                                    TOTAL
+                                </span>
+
+                                <strong>
+                                    ${money(itemTotal)}
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="remove-item-btn"
+                                data-index="${index}"
+                                aria-label="Remove item"
+                            >
+
+                                <i class="fa-regular fa-trash-can"></i>
+
+                            </button>
+
+                        </article>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+
+
+            const totals =
+                calculateCart(cart);
+
+
+            document.getElementById(
+                "cartItemCount"
+            ).textContent =
+                totals.count;
+
+
+            document.getElementById(
+                "subtotal"
+            ).textContent =
+                money(totals.subtotal);
+
+
+            document.getElementById(
+                "tax"
+            ).textContent =
+                money(totals.tax);
+
+
+            document.getElementById(
+                "packaging"
+            ).textContent =
+                money(totals.packaging);
+
+
+            document.getElementById(
+                "grandTotal"
+            ).textContent =
+                money(totals.total);
+
+
+
+            /* =============================================
+               QUANTITY -
+            ============================================== */
+
+            document
+                .querySelectorAll(
+                    ".minus-btn"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                updateQuantity(
+                                    Number(
+                                        button.dataset.index
+                                    ),
+                                    -1
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+
+            /* =============================================
+               QUANTITY +
+            ============================================== */
+
+            document
+                .querySelectorAll(
+                    ".plus-btn"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                updateQuantity(
+                                    Number(
+                                        button.dataset.index
+                                    ),
+                                    1
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+
+            /* =============================================
+               REMOVE
+            ============================================== */
+
+            document
+                .querySelectorAll(
+                    ".remove-item-btn"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                removeItem(
+                                    Number(
+                                        button.dataset.index
+                                    )
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        /* =====================================================
+           QUANTITY
+        ====================================================== */
+
+        function updateQuantity(
+            index,
+            change
+        ) {
+
+            const cart =
+                getCart();
+
+
+            if (!cart[index]) {
+                return;
+            }
+
+
+            const currentQuantity =
+                Math.max(
+                    1,
+                    Number(
+                        cart[index].quantity ||
+                        1
+                    )
+                );
+
+
+            const newQuantity =
+                currentQuantity +
+                change;
+
+
+            if (newQuantity <= 0) {
+
+                cart.splice(
+                    index,
+                    1
+                );
+
+            }
+            else {
+
+                cart[index].quantity =
+                    newQuantity;
+
+            }
+
+
+            saveCart(cart);
+
+            renderCart();
+
+        }
+
+
+
+        /* =====================================================
+           REMOVE ITEM
+        ====================================================== */
+
+        function removeItem(index) {
+
+            const cart =
+                getCart();
+
+
+            if (!cart[index]) {
+                return;
+            }
+
+
+            cart.splice(
+                index,
+                1
+            );
+
+
+            saveCart(cart);
+
+            renderCart();
+
+        }
+
+
+
+        /* =====================================================
+           ORDER TYPE
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                ".order-type-btn"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            document
+                                .querySelectorAll(
+                                    ".order-type-btn"
+                                )
+                                .forEach(
+                                    function (item) {
+
+                                        item.classList.remove(
+                                            "active"
+                                        );
+
+                                    }
+                                );
+
+
+                            button.classList.add(
+                                "active"
+                            );
+
+
+                            selectedOrderType =
+                                button.dataset.type;
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CLEAR CART
+        ====================================================== */
+
+        clearButton.addEventListener(
+            "click",
+            function () {
+
+                if (!getCart().length) {
+                    return;
+                }
+
+
+                clearModal.classList.add(
+                    "show"
+                );
+
+
+                document.body.classList.add(
+                    "modal-open"
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "cancelClear"
+        ).addEventListener(
+            "click",
+            closeClearModal
+        );
+
+
+        function closeClearModal() {
+
+            clearModal.classList.remove(
+                "show"
+            );
+
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+        document.getElementById(
+            "confirmClear"
+        ).addEventListener(
+            "click",
+            function () {
+
+                saveCart([]);
+
+                closeClearModal();
+
+                renderCart();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           ORDERS
+        ====================================================== */
+
+        function getOrders() {
+
+            try {
+
+                const orders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_orders"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(orders)
+                    ? orders
+                    : [];
+
+            }
+            catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           PLACE ORDER
+        ====================================================== */
+
+        checkoutButton.addEventListener(
+            "click",
+            function () {
+
+                const cart =
+                    getCart();
+
+
+                if (!cart.length) {
+                    return;
+                }
+
+
+                const totals =
+                    calculateCart(cart);
+
+
+                const orderId =
+                    "DOSTEA" +
+                    Date.now()
+                        .toString()
+                        .slice(-7);
+
+
+                const order = {
+
+                    id:
+                        orderId,
+
+                    userEmail:
+                        userEmail,
+
+                    customerName:
+                        userName,
+
+                    items:
+                        cart,
+
+                    itemCount:
+                        totals.count,
+
+                    subtotal:
+                        Math.round(
+                            totals.subtotal
+                        ),
+
+                    tax:
+                        Math.round(
+                            totals.tax
+                        ),
+
+                    packaging:
+                        totals.packaging,
+
+                    total:
+                        Math.round(
+                            totals.total
+                        ),
+
+                    type:
+                        selectedOrderType,
+
+                    status:
+                        "preparing",
+
+                    createdAt:
+                        new Date()
+                            .toISOString()
+
+                };
+
+
+                const orders =
+                    getOrders();
+
+
+                /*
+                   Newest order first
+                */
+
+                orders.unshift(
+                    order
+                );
+
+
+                localStorage.setItem(
+                    "dostea_orders",
+                    JSON.stringify(
+                        orders
+                    )
+                );
+
+
+                /*
+                   Empty cart after successful order
+                */
+
+                saveCart([]);
+
+
+
+                document.getElementById(
+                    "successOrderId"
+                ).textContent =
+                    "#" + orderId;
+
+
+
+                successModal.classList.add(
+                    "show"
+                );
+
+
+                document.body.classList.add(
+                    "modal-open"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           VIEW ORDERS
+        ====================================================== */
+
+        document.getElementById(
+            "viewOrdersBtn"
+        ).addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "orders.html";
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const sidebarOverlay =
+            document.getElementById(
+                "sidebarOverlay"
+            );
+
+
+        const mobileMenuBtn =
+            document.getElementById(
+                "mobileMenuBtn"
+            );
+
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.add(
+                    "open"
+                );
+
+
+                sidebarOverlay.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+
+        sidebarOverlay.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.remove(
+                    "open"
+                );
+
+
+                sidebarOverlay.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           ACCORDION
+        ====================================================== */
+
+        const accordions =
+            document.querySelectorAll(
+                ".sidebar-accordion"
+            );
+
+
+        accordions.forEach(
+            function (accordion) {
+
+                const button =
+                    accordion.querySelector(
+                        ".sidebar-parent"
+                    );
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const isOpen =
+                            accordion.classList.contains(
+                                "open"
+                            );
+
+
+                        accordions.forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "open"
+                                );
+
+
+                                item
+                                    .querySelector(
+                                        ".sidebar-parent"
+                                    )
+                                    ?.setAttribute(
+                                        "aria-expanded",
+                                        "false"
+                                    );
+
+                            }
+                        );
+
+
+                        if (!isOpen) {
+
+                            accordion.classList.add(
+                                "open"
+                            );
+
+
+                            button.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           MODAL OUTSIDE CLICK
+        ====================================================== */
+
+        clearModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    clearModal
+                ) {
+
+                    closeClearModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           INITIAL
+        ====================================================== */
+
+        renderCart();
+
+    }
+);
+
+</script>
+
+<script>
+/* DOSTEA GLOBAL AUTH UI SYNC */
+document.addEventListener("DOMContentLoaded", function () {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem("dostea_current_user")); } catch(e) { user = null; }
+
+    const name = user ? (user.fullName || user.name || "DOSTEA User") : "";
+    const email = user ? (user.email || "") : "";
+    const initial = name ? name.trim().charAt(0).toUpperCase() : "D";
+
+    /* Existing guest/logged blocks */
+    document.querySelectorAll("#guestSidebar, #topbarGuest").forEach(el => {
+        el.style.display = user ? "none" : "flex";
+    });
+    document.querySelectorAll("#loggedInSidebar, #topbarUser").forEach(el => {
+        el.style.display = user ? "flex" : "none";
+    });
+
+    /* Update standard user fields */
+    document.querySelectorAll("#sidebarAvatar, #topbarAvatar, .user-avatar, .top-profile-avatar").forEach(el => {
+        if (user) el.textContent = initial;
+    });
+    document.querySelectorAll("#sidebarUserName, #topbarUserName, .user-details h4, .top-profile-info strong").forEach(el => {
+        if (user) el.textContent = name;
+    });
+    document.querySelectorAll("#sidebarUserEmail").forEach(el => {
+        if (user) el.textContent = email;
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in sidebar user */
+    document.querySelectorAll(".sidebar > .sidebar-user").forEach(oldUser => {
+        if (oldUser.closest("#loggedInSidebar")) return;
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".user-details h4");
+            const av = oldUser.querySelector(".user-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            if (!oldUser.parentElement.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                oldUser.insertAdjacentElement("afterend", auth);
+            }
+        }
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in top profile */
+    document.querySelectorAll(".topbar-actions .top-profile, .topbar-actions > .topbar-user:not(#topbarUser)").forEach(oldUser => {
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".top-profile-info strong, strong");
+            const av = oldUser.querySelector(".top-profile-avatar, .topbar-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            const actions = oldUser.parentElement;
+            if (actions && !actions.querySelector(".dostea-auto-topbar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-topbar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                actions.appendChild(auth);
+            }
+        }
+    });
+
+    /* Pages with sidebar-bottom but no guest/logged wrappers */
+    document.querySelectorAll(".sidebar-bottom").forEach(bottom => {
+        if (bottom.querySelector("#guestSidebar, #loggedInSidebar")) return;
+        const existingUser = bottom.querySelector(".sidebar-user, .sidebar-user-content");
+        if (user) {
+            if (existingUser) existingUser.style.display = "flex";
+        } else {
+            if (existingUser) existingUser.style.display = "none";
+            if (!bottom.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                bottom.appendChild(auth);
+            }
+        }
+    });
+
+    /* Shared styling for auto-created auth controls */
+    if (!document.getElementById("dosteaAuthSyncStyle")) {
+        const style = document.createElement("style");
+        style.id = "dosteaAuthSyncStyle";
+        style.textContent = `
+            .dostea-auto-sidebar-auth{display:flex;gap:8px;padding:14px 16px;width:100%;box-sizing:border-box}
+            .dostea-auto-sidebar-auth a,.dostea-auto-topbar-auth a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 12px/1 'DM Sans',sans-serif;border-radius:9px;transition:.25s ease}
+            .dostea-auto-sidebar-auth a{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-sidebar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+            .dostea-auto-topbar-auth{display:flex;align-items:center;gap:8px}
+            .dostea-auto-topbar-auth a{padding:10px 14px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-topbar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+        `;
+        document.head.appendChild(style);
+    }
+});
+</script>
+
+</body>
+</html>

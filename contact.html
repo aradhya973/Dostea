@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOSTEA | Contact Us</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Existing CSS -->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
+
+
+    <!-- Contact CSS -->
+    <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         MOBILE OVERLAY
+    ====================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <!-- BRAND -->
+
+        <a href="index.html" class="sidebar-brand">
+
+            <div class="brand-mark">
+                D
+            </div>
+
+            <div class="brand-info">
+
+                <h1>DOSTEA</h1>
+
+                <p>
+                    HOTEL • CAFÉ • LIFESTYLE
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="sidebar-navigation">
+
+
+            <!-- HOME -->
+
+            <a href="index.html" class="nav-link">
+
+                <span class="nav-icon">
+                    <i class="fa-solid fa-house"></i>
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <!-- =================================================
+                 CAFÉ
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </span>
+
+                        <span>
+                            Café
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a href="menu.html" class="nav-link">
+                        Menu
+                    </a>
+
+                    <a href="reservations.html" class="nav-link">
+                        Reserve Table
+                    </a>
+
+                    <a href="about.html" class="nav-link">
+                        About DOSTEA
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ORDERS
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
+
+                        <span>
+                            Orders
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a href="orders.html" class="nav-link">
+                        My Orders
+                    </a>
+
+                    <a href="cart.html" class="nav-link">
+                        My Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESTAURANT
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            Restaurant
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a href="restaurant.html" class="nav-link">
+                        Restaurant
+                    </a>
+
+                    <a href="amenities.html" class="nav-link">
+                        Amenities
+                    </a>
+
+                    <a href="menu.html" class="nav-link">
+                        Menu
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <div class="sidebar-accordion open">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="true"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+
+                        <span>
+                            Contact
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="contact.html"
+                        class="nav-link active"
+                    >
+                        Contact Us
+                    </a>
+
+                    <a
+                        href="reach-us.html"
+                        class="nav-link"
+                    >
+                        Reach Us
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <a href="profile.html" class="nav-link">
+
+                <span class="nav-icon">
+                    <i class="fa-regular fa-user"></i>
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             SIDEBAR USER
+        ================================================== -->
+
+        <div class="sidebar-user">
+
+            <a
+                href="profile.html"
+                class="user-avatar"
+                id="sidebarAvatar"
+            >
+                D
+            </a>
+
+            <div class="user-details">
+
+                <h4 id="sidebarUserName">
+                    DOSTEA User
+                </h4>
+
+                <p>
+                    Customer
+                </p>
+
+            </div>
+
+            <a
+                href="profile.html"
+                class="user-menu-btn"
+                aria-label="Profile"
+            >
+                <i class="fa-solid fa-ellipsis"></i>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open navigation"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="page-location">
+
+                    DOSTEA /
+
+                    <span>
+                        Contact Us
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+
+                <!-- CART -->
+
+                <a
+                    href="cart.html"
+                    class="icon-button contact-cart-button"
+                    aria-label="Cart"
+                >
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span
+                        class="contact-cart-count"
+                        id="topCartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <!-- NOTIFICATION -->
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    aria-label="Notifications"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- PROFILE -->
+
+                <a
+                    href="profile.html"
+                    class="top-profile"
+                >
+
+                    <div
+                        class="top-profile-avatar"
+                        id="topProfileAvatar"
+                    >
+                        D
+                    </div>
+
+                    <div class="top-profile-info">
+
+                        <strong id="topProfileName">
+                            DOSTEA User
+                        </strong>
+
+                        <span>
+                            Customer
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             CONTACT PAGE
+        ====================================================== -->
+
+        <div class="page-content contact-page-content">
+
+
+            <!-- =================================================
+                 HERO — ONLY IMAGE ON PAGE
+            ================================================== -->
+
+            <section class="contact-hero">
+
+                <img
+                    src="amenities-hero.jpg"
+                    alt="DOSTEA Restaurant"
+                    class="contact-hero-image"
+                >
+
+                <div class="contact-hero-overlay"></div>
+
+                <div class="contact-hero-glow"></div>
+
+
+                <div class="contact-hero-content">
+
+                    <span class="contact-eyebrow">
+                        CONTACT DOSTEA
+                    </span>
+
+                    <h1>
+                        We'd love to
+                        <em>hear from you.</em>
+                    </h1>
+
+                    <p>
+                        Questions, feedback or planning a visit?
+                        Get in touch with DOSTEA and our team will
+                        be happy to help.
+                    </p>
+
+                    <a
+                        href="#contactSection"
+                        class="contact-hero-btn"
+                    >
+                        Get in Touch
+
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="contact-hero-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div>
+
+                        <span>
+                            VISIT US
+                        </span>
+
+                        <strong>
+                            Badlapur, Maharashtra
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CONTACT SECTION
+            ================================================== -->
+
+            <section
+                class="contact-main-section"
+                id="contactSection"
+            >
+
+
+                <!-- =================================================
+                     LEFT — CONTACT DETAILS
+                ================================================== -->
+
+                <div class="contact-info">
+
+
+                    <span class="contact-section-label">
+                        GET IN TOUCH
+                    </span>
+
+
+                    <h2>
+                        Let's start a
+                        <em>conversation.</em>
+                    </h2>
+
+
+                    <p class="contact-intro">
+                        Whether you have a question about our menu,
+                        reservations, restaurant or your order,
+                        we're here to help.
+                    </p>
+
+
+                    <!-- PHONE -->
+
+                    <div class="contact-info-item">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                CALL US
+                            </span>
+
+                            <strong>
+                                +91 98765 43210
+                            </strong>
+
+                            <p>
+                                Daily, 9:00 AM – 11:00 PM
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-info-item">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                EMAIL
+                            </span>
+
+                            <strong>
+                                hello@dostea.com
+                            </strong>
+
+                            <p>
+                                We'll get back to you as soon as possible.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="contact-info-item">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                LOCATION
+                            </span>
+
+                            <strong>
+                                DOSTEA, Badlapur
+                            </strong>
+
+                            <p>
+                                Badlapur, Thane, Maharashtra
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HOURS -->
+
+                    <div class="contact-info-item">
+
+                        <div class="contact-info-icon">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+
+                        <div>
+
+                            <span>
+                                OPENING HOURS
+                            </span>
+
+                            <strong>
+                                Open Daily
+                            </strong>
+
+                            <p>
+                                9:00 AM – 11:00 PM
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- REACH US LINK -->
+
+                    <a
+                        href="reach-us.html"
+                        class="contact-reach-link"
+                    >
+
+                        <span>
+                            Need directions?
+                        </span>
+
+                        <strong>
+                            See how to reach DOSTEA
+                        </strong>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- =================================================
+                     RIGHT — CONTACT FORM
+                ================================================== -->
+
+                <div class="contact-form-card">
+
+
+                    <div class="contact-form-header">
+
+                        <span>
+                            SEND A MESSAGE
+                        </span>
+
+                        <h3>
+                            How can we help?
+                        </h3>
+
+                        <p>
+                            Fill in the form and we'll get back to you.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        class="contact-form"
+                        id="contactForm"
+                    >
+
+
+                        <!-- NAME + EMAIL -->
+
+                        <div class="contact-form-row">
+
+
+                            <div class="contact-field">
+
+                                <label for="contactName">
+                                    Your Name
+                                </label>
+
+                                <div class="contact-input-wrap">
+
+                                    <i class="fa-regular fa-user"></i>
+
+                                    <input
+                                        type="text"
+                                        id="contactName"
+                                        placeholder="Enter your name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="contact-field">
+
+                                <label for="contactEmail">
+                                    Email Address
+                                </label>
+
+                                <div class="contact-input-wrap">
+
+                                    <i class="fa-regular fa-envelope"></i>
+
+                                    <input
+                                        type="email"
+                                        id="contactEmail"
+                                        placeholder="Enter your email"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PHONE + SUBJECT -->
+
+                        <div class="contact-form-row">
+
+
+                            <div class="contact-field">
+
+                                <label for="contactPhone">
+                                    Phone Number
+                                </label>
+
+                                <div class="contact-input-wrap">
+
+                                    <i class="fa-solid fa-phone"></i>
+
+                                    <input
+                                        type="tel"
+                                        id="contactPhone"
+                                        placeholder="+91 XXXXX XXXXX"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="contact-field">
+
+                                <label for="contactSubject">
+                                    Subject
+                                </label>
+
+                                <div class="contact-input-wrap">
+
+                                    <i class="fa-regular fa-message"></i>
+
+                                    <select
+                                        id="contactSubject"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select subject
+                                        </option>
+
+                                        <option value="general">
+                                            General Enquiry
+                                        </option>
+
+                                        <option value="reservation">
+                                            Table Reservation
+                                        </option>
+
+                                        <option value="order">
+                                            Order Support
+                                        </option>
+
+                                        <option value="feedback">
+                                            Feedback
+                                        </option>
+
+                                        <option value="other">
+                                            Other
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="contact-field">
+
+                            <label for="contactMessage">
+                                Message
+                            </label>
+
+                            <div class="contact-textarea-wrap">
+
+                                <textarea
+                                    id="contactMessage"
+                                    rows="6"
+                                    maxlength="500"
+                                    placeholder="Tell us how we can help..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="contact-character-count">
+
+                                <span id="messageCount">
+                                    0
+                                </span>
+
+                                / 500
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="contact-submit-btn"
+                            id="contactSubmitBtn"
+                        >
+
+                            <span>
+                                Send Message
+                            </span>
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SIMPLE BOTTOM CTA
+            ================================================== -->
+
+            <section class="contact-bottom-cta">
+
+                <div>
+
+                    <span class="contact-section-label">
+                        VISITING DOSTEA?
+                    </span>
+
+                    <h2>
+                        Find your way to
+                        <em>DOSTEA.</em>
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="reach-us.html"
+                    class="contact-outline-btn"
+                >
+
+                    Get Directions
+
+                    <i class="fa-solid fa-location-arrow"></i>
+
+                </a>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     SUCCESS TOAST
+========================================================= -->
+
+<div
+    class="contact-toast"
+    id="contactToast"
+>
+
+    <div class="contact-toast-icon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <div>
+
+        <strong>
+            Message Sent
+        </strong>
+
+        <span>
+            Thanks for contacting DOSTEA.
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       CURRENT USER
+    ====================================================== */
+
+    let currentUser = null;
+
+    try {
+
+        currentUser = JSON.parse(
+            localStorage.getItem("dostea_current_user")
+        );
+
+    } catch (error) {
+
+        currentUser = null;
+
+    }
+
+
+    const sidebarAvatar =
+        document.getElementById("sidebarAvatar");
+
+    const sidebarUserName =
+        document.getElementById("sidebarUserName");
+
+    const topProfileAvatar =
+        document.getElementById("topProfileAvatar");
+
+    const topProfileName =
+        document.getElementById("topProfileName");
+
+
+    if (currentUser) {
+
+        const userName =
+            currentUser.fullName ||
+            currentUser.name ||
+            currentUser.username ||
+            "DOSTEA User";
+
+
+        const initials =
+            userName
+                .trim()
+                .split(/\s+/)
+                .slice(0, 2)
+                .map(word =>
+                    word.charAt(0).toUpperCase()
+                )
+                .join("") || "D";
+
+
+        if (sidebarUserName) {
+            sidebarUserName.textContent = userName;
+        }
+
+        if (topProfileName) {
+            topProfileName.textContent = userName;
+        }
+
+        if (sidebarAvatar) {
+            sidebarAvatar.textContent = initials;
+        }
+
+        if (topProfileAvatar) {
+            topProfileAvatar.textContent = initials;
+        }
+
+    }
+
+
+    /* =====================================================
+       MOBILE SIDEBAR
+    ====================================================== */
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const sidebarOverlay =
+        document.getElementById("sidebarOverlay");
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+
+    function openSidebar() {
+
+        sidebar?.classList.add("open");
+        sidebarOverlay?.classList.add("active");
+        document.body.classList.add("sidebar-open");
+
+    }
+
+
+    function closeSidebar() {
+
+        sidebar?.classList.remove("open");
+        sidebarOverlay?.classList.remove("active");
+        document.body.classList.remove("sidebar-open");
+
+    }
+
+
+    mobileMenuBtn?.addEventListener(
+        "click",
+        openSidebar
+    );
+
+
+    sidebarOverlay?.addEventListener(
+        "click",
+        closeSidebar
+    );
+
+
+    /* =====================================================
+       SIDEBAR ACCORDIONS
+    ====================================================== */
+
+    const accordions =
+        document.querySelectorAll(
+            ".sidebar-accordion"
+        );
+
+
+    accordions.forEach(function (accordion) {
+
+        const button =
+            accordion.querySelector(
+                ".sidebar-parent"
+            );
+
+
+        button?.addEventListener(
+            "click",
+            function () {
+
+                const alreadyOpen =
+                    accordion.classList.contains(
+                        "open"
+                    );
+
+
+                accordions.forEach(
+                    function (item) {
+
+                        item.classList.remove("open");
+
+                        item
+                            .querySelector(
+                                ".sidebar-parent"
+                            )
+                            ?.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                    }
+                );
+
+
+                if (!alreadyOpen) {
+
+                    accordion.classList.add("open");
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       KEEP CONTACT OPEN
+    ====================================================== */
+
+    const contactLink =
+        document.querySelector(
+            '.sidebar-submenu a[href="contact.html"]'
+        );
+
+
+    if (contactLink) {
+
+        const contactAccordion =
+            contactLink.closest(
+                ".sidebar-accordion"
+            );
+
+        contactAccordion?.classList.add("open");
+
+        contactAccordion
+            ?.querySelector(".sidebar-parent")
+            ?.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+    }
+
+
+    /* =====================================================
+       CART COUNT
+    ====================================================== */
+
+    function updateCartCount() {
+
+        let cart = [];
+
+        try {
+
+            cart = JSON.parse(
+                localStorage.getItem("dostea_cart") ||
+                "[]"
+            );
+
+        } catch (error) {
+
+            cart = [];
+
+        }
+
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+
+        const count =
+            cart.reduce(
+                function (total, item) {
+
+                    return total +
+                        Math.max(
+                            1,
+                            Number(
+                                item.quantity || 1
+                            )
+                        );
+
+                },
+                0
+            );
+
+
+        const cartCount =
+            document.getElementById(
+                "topCartCount"
+            );
+
+
+        if (cartCount) {
+            cartCount.textContent = count;
+        }
+
+    }
+
+
+    updateCartCount();
+
+
+    /* =====================================================
+       MESSAGE COUNTER
+    ====================================================== */
+
+    const message =
+        document.getElementById(
+            "contactMessage"
+        );
+
+    const messageCount =
+        document.getElementById(
+            "messageCount"
+        );
+
+
+    message?.addEventListener(
+        "input",
+        function () {
+
+            if (messageCount) {
+
+                messageCount.textContent =
+                    message.value.length;
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       PREFILL USER DETAILS
+    ====================================================== */
+
+    if (currentUser) {
+
+        const nameInput =
+            document.getElementById(
+                "contactName"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "contactEmail"
+            );
+
+
+        if (nameInput) {
+
+            nameInput.value =
+                currentUser.fullName ||
+                currentUser.name ||
+                currentUser.username ||
+                "";
+
+        }
+
+
+        if (emailInput) {
+
+            emailInput.value =
+                currentUser.email || "";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CONTACT FORM
+    ====================================================== */
+
+    const contactForm =
+        document.getElementById(
+            "contactForm"
+        );
+
+    const contactToast =
+        document.getElementById(
+            "contactToast"
+        );
+
+
+    contactForm?.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const enquiry = {
+
+                id: "DOSTEA-" + Date.now(),
+
+                name:
+                    document.getElementById(
+                        "contactName"
+                    ).value.trim(),
+
+                email:
+                    document.getElementById(
+                        "contactEmail"
+                    ).value.trim(),
+
+                phone:
+                    document.getElementById(
+                        "contactPhone"
+                    ).value.trim(),
+
+                subject:
+                    document.getElementById(
+                        "contactSubject"
+                    ).value,
+
+                message:
+                    document.getElementById(
+                        "contactMessage"
+                    ).value.trim(),
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            /* ---------------------------------------------
+               STORE DEMO ENQUIRY
+            --------------------------------------------- */
+
+            let enquiries = [];
+
+            try {
+
+                enquiries = JSON.parse(
+                    localStorage.getItem(
+                        "dostea_contact_enquiries"
+                    ) || "[]"
+                );
+
+            } catch (error) {
+
+                enquiries = [];
+
+            }
+
+
+            if (!Array.isArray(enquiries)) {
+                enquiries = [];
+            }
+
+
+            enquiries.unshift(enquiry);
+
+
+            localStorage.setItem(
+                "dostea_contact_enquiries",
+                JSON.stringify(enquiries)
+            );
+
+
+            /* ---------------------------------------------
+               RESET FORM
+            --------------------------------------------- */
+
+            contactForm.reset();
+
+
+            if (messageCount) {
+                messageCount.textContent = "0";
+            }
+
+
+            /* ---------------------------------------------
+               KEEP USER INFO
+            --------------------------------------------- */
+
+            if (currentUser) {
+
+                const nameInput =
+                    document.getElementById(
+                        "contactName"
+                    );
+
+                const emailInput =
+                    document.getElementById(
+                        "contactEmail"
+                    );
+
+
+                if (nameInput) {
+
+                    nameInput.value =
+                        currentUser.fullName ||
+                        currentUser.name ||
+                        currentUser.username ||
+                        "";
+
+                }
+
+
+                if (emailInput) {
+
+                    emailInput.value =
+                        currentUser.email || "";
+
+                }
+
+            }
+
+
+            /* ---------------------------------------------
+               SUCCESS TOAST
+            --------------------------------------------- */
+
+            contactToast?.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    contactToast?.classList.remove(
+                        "show"
+                    );
+
+                },
+                3500
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       ESCAPE
+    ====================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+                closeSidebar();
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       WINDOW
+    ====================================================== */
+
+    window.addEventListener(
+        "focus",
+        updateCartCount
+    );
+
+
+    window.addEventListener(
+        "storage",
+        updateCartCount
+    );
+
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (window.innerWidth > 900) {
+                closeSidebar();
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>

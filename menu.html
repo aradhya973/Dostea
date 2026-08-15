@@ -1,0 +1,5044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DOSTEA | Restaurant Menu</title>
+
+    <!-- GOOGLE FONTS -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- COMMON CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- MENU CSS -->
+    <link
+        rel="stylesheet"
+        href="menu.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+
+<div class="app-layout">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+
+        <!-- BRAND -->
+
+        <div class="sidebar-brand">
+
+            <a href="index.html">
+
+                <div class="brand-mark">
+                    D
+                </div>
+
+                <div class="brand-copy">
+
+                    <h1>DOSTEA</h1>
+
+                    <span>
+                        CAFÉ EXPERIENCE
+                    </span>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="sidebar-navigation">
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    <i class="fa-solid fa-house"></i>
+                </span>
+
+                <span>Home</span>
+
+            </a>
+
+
+
+            <!-- CAFÉ -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="true"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </span>
+
+                        <span>Café</span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="menu.html"
+                        class="nav-link active"
+                    >
+                        Menu
+                    </a>
+
+                    <a
+                        href="reservations.html"
+                        class="nav-link"
+                    >
+                        Reserve Table
+                    </a>
+
+                    <a
+                        href="about.html"
+                        class="nav-link"
+                    >
+                        About DOSTEA
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ORDERS -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
+
+                        <span>Orders</span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="orders.html"
+                        class="nav-link"
+                    >
+                        My Orders
+                    </a>
+
+                    <a
+                        href="cart.html"
+                        class="nav-link"
+                    >
+                        My Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ROOMS -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            Restaurant
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="restaurant.html"
+                        class="nav-link"
+                    >
+                        Restaurant
+                    </a>
+
+                    <a
+                        href="amenities.html"
+                        class="nav-link"
+                    >
+                        Amenities
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+
+                        <span>Contact</span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="contact.html"
+                        class="nav-link"
+                    >
+                        Contact Us
+                    </a>
+
+                    <a
+                        href="reach-us.html"
+                        class="nav-link"
+                    >
+                        Reach Us
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="profile.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    <i class="fa-regular fa-user"></i>
+                </span>
+
+                <span>Profile</span>
+
+            </a>
+
+        </nav>
+
+
+
+        <!-- =================================================
+             SIDEBAR USER
+        ================================================== -->
+
+        <div
+            class="sidebar-bottom"
+            id="sidebarUserArea"
+        >
+
+
+            <!-- LOGGED USER -->
+
+            <div
+                class="sidebar-user-content"
+                id="loggedInSidebar"
+                style="display:none;"
+            >
+
+                <div class="sidebar-user">
+
+                    <div
+                        class="sidebar-avatar"
+                        id="sidebarAvatar"
+                    >
+                        D
+                    </div>
+
+
+                    <div class="sidebar-user-info">
+
+                        <strong id="sidebarUserName">
+                            DOSTEA User
+                        </strong>
+
+                        <span id="sidebarUserEmail">
+                            customer@dostea.com
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="profile.html"
+                    class="sidebar-profile-btn"
+                    title="Profile"
+                >
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+            </div>
+
+
+
+            <!-- GUEST -->
+
+            <div
+                class="sidebar-auth"
+                id="guestSidebar"
+            >
+
+                <a
+                    href="login.html"
+                    class="sidebar-login-btn"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="sign-up.html"
+                    class="sidebar-signup-btn"
+                >
+                    Sign Up
+                </a>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open menu"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div>
+
+                    <span class="topbar-eyebrow">
+                        DOSTEA RESTAURANT
+                    </span>
+
+                    <h2>Menu</h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOP SEARCH -->
+
+            <div class="topbar-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="globalMenuSearch"
+                    placeholder="Search dishes..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- TOP ACTIONS -->
+
+            <div class="topbar-actions">
+
+
+                <!-- CART -->
+
+                <a
+                    href="cart.html"
+                    class="topbar-icon-btn menu-cart-button"
+                    aria-label="Cart"
+                >
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span
+                        class="cart-count"
+                        id="topCartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+
+                <!-- GUEST -->
+
+                <div
+                    class="topbar-auth"
+                    id="topbarGuest"
+                >
+
+                    <a
+                        href="login.html"
+                        class="topbar-login"
+                    >
+                        Login
+                    </a>
+
+                    <a
+                        href="sign-up.html"
+                        class="topbar-signup"
+                    >
+                        Sign Up
+                    </a>
+
+                </div>
+
+
+
+                <!-- USER -->
+
+                <a
+                    href="profile.html"
+                    class="topbar-user"
+                    id="topbarUser"
+                    style="display:none;"
+                >
+
+                    <div
+                        class="topbar-avatar"
+                        id="topbarAvatar"
+                    >
+                        D
+                    </div>
+
+                    <div>
+
+                        <strong id="topbarUserName">
+                            DOSTEA User
+                        </strong>
+
+                        <span>
+                            My Profile
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             MENU PAGE
+        ================================================== -->
+
+        <div class="menu-page-content">
+
+
+            <!-- =================================================
+                 CINEMATIC HERO
+            ================================================== -->
+
+            <section class="menu-restaurant-hero">
+
+
+                <!-- BACKGROUND -->
+
+                <img
+                    src="dostea-menu-hero.jpg"
+                    alt="DOSTEA Restaurant Menu"
+                    class="menu-hero-background"
+                >
+
+
+                <div class="menu-hero-overlay"></div>
+
+                <div class="menu-hero-bottom-gradient"></div>
+
+                <div class="menu-hero-glow glow-left"></div>
+
+                <div class="menu-hero-glow glow-right"></div>
+
+
+
+                <!-- HERO CONTENT -->
+
+                <div class="menu-hero-content">
+
+
+                    <div class="menu-hero-status">
+
+                        <span></span>
+
+                        KITCHEN OPEN
+
+                    </div>
+
+
+                    <span class="menu-section-label">
+                        THE DOSTEA MENU
+                    </span>
+
+
+                    <h1>
+                        Crafted for
+                        <em>the table.</em>
+                    </h1>
+
+
+                    <p>
+                        From handcrafted pizzas and comforting
+                        pastas to café favourites, signature
+                        plates and desserts — discover food
+                        made for every DOSTEA moment.
+                    </p>
+
+
+
+                    <div class="menu-hero-actions">
+
+                        <a
+                            href="#dosteaMenu"
+                            class="menu-primary-btn"
+                        >
+                            Explore Menu
+
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+
+
+                        <a
+                            href="reservations.html"
+                            class="menu-secondary-btn"
+                        >
+                            Reserve a Table
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FLOATING CHEF CARD -->
+
+                <div class="menu-hero-chef-card">
+
+                    <span>
+                        TONIGHT'S RECOMMENDATION
+                    </span>
+
+                    <strong>
+                        Farmhouse Cheese Pizza
+                    </strong>
+
+                    <p>
+                        Garden vegetables, melted cheese
+                        and our signature house seasoning.
+                    </p>
+
+
+                    <div>
+
+                        <span class="chef-price">
+                            ₹299
+                        </span>
+
+                        <button
+                            type="button"
+                            class="hero-add-btn"
+                            data-name="Farmhouse Cheese Pizza"
+                            data-price="299"
+                            data-image="farmhouse-cheese-pizza.png"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOTTOM DETAILS -->
+
+                <div class="menu-hero-details">
+
+
+                    <div>
+
+                        <span>01</span>
+
+                        <div>
+                            <strong>Fresh Kitchen</strong>
+                            <small>Prepared to order</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="menu-detail-line"></div>
+
+
+                    <div>
+
+                        <span>02</span>
+
+                        <div>
+                            <strong>Restaurant Dining</strong>
+                            <small>Dine-in experience</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="menu-detail-line"></div>
+
+
+                    <div>
+
+                        <span>03</span>
+
+                        <div>
+                            <strong>Order Online</strong>
+                            <small>Simple & quick</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CHEF'S SELECTION
+            ================================================== -->
+
+            <section class="chef-selection-section">
+
+
+                <div class="menu-section-heading">
+
+                    <div>
+
+                        <span class="menu-section-label">
+                            CHEF'S SELECTION
+                        </span>
+
+                        <h2>
+                            Start with our
+                            <em>signatures.</em>
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        A small selection of DOSTEA favourites
+                        chosen from our restaurant kitchen.
+                    </p>
+
+                </div>
+
+
+
+                <div class="chef-selection-grid">
+
+
+                    <!-- =================================================
+                         FARMHOUSE PIZZA
+                    ================================================== -->
+
+                    <article
+                        class="chef-menu-card"
+                        data-category="pizza"
+                        data-name="Farmhouse Cheese Pizza"
+                        data-price="299"
+                        data-image="farmhouse-cheese-pizza.png"
+                    >
+
+
+                        <div class="chef-card-image">
+
+                            <img
+                                src="farmhouse-cheese-pizza.png"
+                                alt="Farmhouse Cheese Pizza"
+                            >
+
+                            <span class="chef-card-number">
+                                01
+                            </span>
+
+                            <span class="chef-card-badge">
+                                CHEF'S PICK
+                            </span>
+
+                        </div>
+
+
+                        <div class="chef-card-content">
+
+
+                            <span class="dish-category">
+                                SIGNATURE PIZZA
+                            </span>
+
+
+                            <h3>
+                                Farmhouse Cheese Pizza
+                            </h3>
+
+
+                            <p>
+                                Loaded with fresh garden vegetables,
+                                rich cheese and our signature
+                                DOSTEA seasoning.
+                            </p>
+
+
+                            <div class="dish-meta">
+
+                                <span>Vegetarian</span>
+
+                                <span>House Special</span>
+
+                            </div>
+
+
+                            <div class="chef-card-footer">
+
+                                <div class="dish-price">
+
+                                    <small>₹</small>
+
+                                    <strong>299</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add to Cart
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         GARLIC BREAD
+                    ================================================== -->
+
+                    <article
+                        class="chef-menu-card"
+                        data-category="starters"
+                        data-name="Cheesy Garlic Bread"
+                        data-price="199"
+                        data-image="cheesy-garlic-bread.png"
+                    >
+
+
+                        <div class="chef-card-image">
+
+                            <img
+                                src="cheesy-garlic-bread.png"
+                                alt="Cheesy Garlic Bread"
+                            >
+
+                            <span class="chef-card-number">
+                                02
+                            </span>
+
+                            <span class="chef-card-badge subtle">
+                                TABLE FAVOURITE
+                            </span>
+
+                        </div>
+
+
+                        <div class="chef-card-content">
+
+
+                            <span class="dish-category">
+                                STARTER
+                            </span>
+
+
+                            <h3>
+                                Cheesy Garlic Bread
+                            </h3>
+
+
+                            <p>
+                                Oven toasted bread layered with
+                                garlic butter, herbs and generous
+                                melted cheese.
+                            </p>
+
+
+                            <div class="dish-meta">
+
+                                <span>Vegetarian</span>
+
+                                <span>Shareable</span>
+
+                            </div>
+
+
+                            <div class="chef-card-footer">
+
+                                <div class="dish-price">
+
+                                    <small>₹</small>
+
+                                    <strong>199</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add to Cart
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         PERI PERI FRIES
+                    ================================================== -->
+
+                    <article
+                        class="chef-menu-card"
+                        data-category="starters"
+                        data-name="Loaded Peri Peri Fries"
+                        data-price="229"
+                        data-image="loaded-peri-peri-fries.png"
+                    >
+
+
+                        <div class="chef-card-image">
+
+                            <img
+                                src="loaded-peri-peri-fries.png"
+                                alt="Loaded Peri Peri Fries"
+                            >
+
+                            <span class="chef-card-number">
+                                03
+                            </span>
+
+                            <span class="chef-card-badge subtle">
+                                BESTSELLER
+                            </span>
+
+                        </div>
+
+
+                        <div class="chef-card-content">
+
+
+                            <span class="dish-category">
+                                STARTER
+                            </span>
+
+
+                            <h3>
+                                Loaded Peri Peri Fries
+                            </h3>
+
+
+                            <p>
+                                Crispy golden fries finished with
+                                peri peri seasoning, cheese and
+                                our house sauces.
+                            </p>
+
+
+                            <div class="dish-meta">
+
+                                <span>Spicy</span>
+
+                                <span>Popular</span>
+
+                            </div>
+
+
+                            <div class="chef-card-footer">
+
+                                <div class="dish-price">
+
+                                    <small>₹</small>
+
+                                    <strong>229</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add to Cart
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MENU INTRO
+            ================================================== -->
+
+            <section
+                class="restaurant-menu-main"
+                id="dosteaMenu"
+            >
+
+
+                <div class="menu-main-heading">
+
+
+                    <div>
+
+                        <span class="menu-section-label">
+                            EXPLORE THE MENU
+                        </span>
+
+                        <h2>
+                            Find your
+                            <em>favourite.</em>
+                        </h2>
+
+                    </div>
+
+
+                    <div class="menu-main-heading-right">
+
+                        <p>
+                            Search the kitchen or choose a
+                            category to discover your next order.
+                        </p>
+
+                        <span id="menuResultCount">
+                            18 dishes available
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SEARCH + CATEGORIES
+                ================================================== -->
+
+                <div class="restaurant-menu-controls">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="restaurant-menu-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="menuSearch"
+                            placeholder="Search pizza, pasta, coffee..."
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            id="clearMenuSearch"
+                            aria-label="Clear search"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- CATEGORY BUTTONS -->
+
+                    <div class="restaurant-menu-categories">
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category active"
+                            data-filter="all"
+                        >
+                            All
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="starters"
+                        >
+                            Starters
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="pizza"
+                        >
+                            Pizza
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="burger"
+                        >
+                            Burgers
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="pasta"
+                        >
+                            Pasta
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="main"
+                        >
+                            Main Course
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="indian"
+                        >
+                            Indian
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="coffee"
+                        >
+                            Coffee
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="cold"
+                        >
+                            Cold Drinks
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="dessert"
+                        >
+                            Desserts
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FOOD GRID
+                ================================================== -->
+
+                <div
+                    class="restaurant-food-grid"
+                    id="restaurantFoodGrid"
+                >
+
+
+
+                    <!-- =================================================
+                         01 — MARGHERITA PIZZA
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="pizza"
+                        data-name="Classic Margherita Pizza"
+                        data-price="249"
+                        data-image="margherita-pizza.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="margherita-pizza.png"
+                                alt="Classic Margherita Pizza"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                01
+                            </span>
+
+                            <span class="food-badge">
+                                CLASSIC
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                PIZZA
+                            </span>
+
+
+                            <h3>
+                                Classic Margherita Pizza
+                            </h3>
+
+
+                            <p>
+                                Tomato sauce, mozzarella,
+                                herbs and a perfectly baked crust.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>249</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         02 — FARMHOUSE PIZZA
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="pizza"
+                        data-name="Farmhouse Cheese Pizza"
+                        data-price="299"
+                        data-image="farmhouse-pizza.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="farmhouse-cheese-pizza.png"
+                                alt="Farmhouse Cheese Pizza"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                02
+                            </span>
+
+                            <span class="food-badge gold">
+                                SIGNATURE
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                PIZZA
+                            </span>
+
+
+                            <h3>
+                                Farmhouse Cheese Pizza
+                            </h3>
+
+
+                            <p>
+                                Fresh vegetables, rich cheese
+                                and DOSTEA house seasoning.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>299</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         03 — PANEER PIZZA
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="pizza"
+                        data-name="Tandoori Paneer Pizza"
+                        data-price="329"
+                        data-image="tandoori-paneer-pizza.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="tandoori-paneer-pizza.png"
+                                alt="Tandoori Paneer Pizza"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                03
+                            </span>
+
+                            <span class="food-badge">
+                                INDIAN TWIST
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                PIZZA
+                            </span>
+
+
+                            <h3>
+                                Tandoori Paneer Pizza
+                            </h3>
+
+
+                            <p>
+                                Tandoori paneer, peppers,
+                                onions, cheese and smoky sauce.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>329</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         04 — GARLIC BREAD
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="starters"
+                        data-name="Cheesy Garlic Bread"
+                        data-price="199"
+                        data-image="cheesy-garlic-bread.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="cheesy-garlic-bread.png"
+                                alt="Cheesy Garlic Bread"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                04
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                STARTER
+                            </span>
+
+
+                            <h3>
+                                Cheesy Garlic Bread
+                            </h3>
+
+
+                            <p>
+                                Toasted bread, garlic butter,
+                                herbs and melted cheese.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>199</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         05 — PERI PERI FRIES
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="starters"
+                        data-name="Loaded Peri Peri Fries"
+                        data-price="229"
+                        data-image="loaded-peri-peri-fries.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="loaded-peri-peri-fries.png"
+                                alt="Loaded Peri Peri Fries"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                05
+                            </span>
+
+                            <span class="food-badge gold">
+                                BESTSELLER
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                STARTER
+                            </span>
+
+
+                            <h3>
+                                Loaded Peri Peri Fries
+                            </h3>
+
+
+                            <p>
+                                Crispy fries, peri peri spice,
+                                cheese and signature sauces.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>229</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         06 — PANEER STARTER
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="starters"
+                        data-name="Crispy Paneer Bites"
+                        data-price="259"
+                        data-image="crispy-paneer-bites.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="crispy-paneer-bites.png"
+                                alt="Crispy Paneer Bites"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                06
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                STARTER
+                            </span>
+
+
+                            <h3>
+                                Crispy Paneer Bites
+                            </h3>
+
+
+                            <p>
+                                Golden paneer bites served
+                                with our creamy house dip.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>259</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         07 — BURGER
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="burger"
+                        data-name="DOSTEA Special Burger"
+                        data-price="280"
+                        data-image="dostea-special-burger.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="dostea-special-burger.png"
+                                alt="DOSTEA Special Burger"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                07
+                            </span>
+
+                            <span class="food-badge gold">
+                                CHEF'S PICK
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                BURGER
+                            </span>
+
+
+                            <h3>
+                                DOSTEA Special Burger
+                            </h3>
+
+
+                            <p>
+                                Loaded burger with cheese,
+                                vegetables and signature café sauce.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>280</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         08 — BURGER
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="burger"
+                        data-name="Smoky Paneer Burger"
+                        data-price="249"
+                        data-image="smoky-paneer-burger.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="smoky-paneer-burger.png"
+                                alt="Smoky Paneer Burger"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                08
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                BURGER
+                            </span>
+
+
+                            <h3>
+                                Smoky Paneer Burger
+                            </h3>
+
+
+                            <p>
+                                Grilled paneer, crisp vegetables,
+                                cheese and smoky sauce.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>249</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         09 — ALFREDO
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="pasta"
+                        data-name="Creamy Alfredo Pasta"
+                        data-price="299"
+                        data-image="creamy-alfredo-pasta.png"
+                    >
+
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="creamy-alfredo-pasta.png"
+                                alt="Creamy Alfredo Pasta"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">
+                                09
+                            </span>
+
+                            <span class="food-badge">
+                                CREAMY
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+
+                            <span class="food-category">
+                                PASTA
+                            </span>
+
+
+                            <h3>
+                                Creamy Alfredo Pasta
+                            </h3>
+
+
+                            <p>
+                                Pasta tossed in a smooth
+                                creamy cheese and herb sauce.
+                            </p>
+
+
+                            <div class="food-card-bottom">
+
+
+                                <div class="food-price">
+
+                                    <span>₹</span>
+
+                                    <strong>299</strong>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                                        <!-- =================================================
+                         10 — ARRABBIATA PASTA
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="pasta"
+                        data-name="Spicy Arrabbiata Pasta"
+                        data-price="279"
+                        data-image="arrabbiata-pasta.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="arrabbiata-pasta.png"
+                                alt="Spicy Arrabbiata Pasta"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">10</span>
+
+                            <span class="food-badge">
+                                SPICY
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                PASTA
+                            </span>
+
+                            <h3>
+                                Spicy Arrabbiata Pasta
+                            </h3>
+
+                            <p>
+                                Pasta tossed in a bold tomato,
+                                garlic, chilli and herb sauce.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>279</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         11 — PANEER MAIN COURSE
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="main"
+                        data-name="Paneer Tikka Bowl"
+                        data-price="349"
+                        data-image="paneer-tikka-bowl.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="paneer-tikka-bowl.png"
+                                alt="Paneer Tikka Bowl"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">11</span>
+
+                            <span class="food-badge gold">
+                                HOUSE SPECIAL
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                MAIN COURSE
+                            </span>
+
+                            <h3>
+                                Paneer Tikka Bowl
+                            </h3>
+
+                            <p>
+                                Smoky paneer tikka served with
+                                seasoned rice, vegetables and dip.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>349</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         12 — INDIAN MAIN COURSE
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="main"
+                        data-name="DOSTEA Royal Thali"
+                        data-price="399"
+                        data-image="dostea-royal-thali.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="dostea-royal-thali.png"
+                                alt="DOSTEA Royal Thali"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">12</span>
+
+                            <span class="food-badge gold">
+                                SIGNATURE
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                MAIN COURSE
+                            </span>
+
+                            <h3>
+                                DOSTEA Royal Thali
+                            </h3>
+
+                            <p>
+                                A complete vegetarian meal with
+                                curry, dal, rice, breads and sides.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>399</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         13 — CAPPUCCINO
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="coffee"
+                        data-name="Classic Cappuccino"
+                        data-price="149"
+                        data-image="classic-cappuccino.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="classic-cappuccino.png"
+                                alt="Classic Cappuccino"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">13</span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                COFFEE
+                            </span>
+
+                            <h3>
+                                Classic Cappuccino
+                            </h3>
+
+                            <p>
+                                Rich espresso finished with
+                                steamed milk and smooth foam.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>149</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         14 — HAZELNUT COFFEE
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="coffee"
+                        data-name="Hazelnut Latte"
+                        data-price="189"
+                        data-image="hazelnut-latte.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="hazelnut-latte.png"
+                                alt="Hazelnut Latte"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">14</span>
+
+                            <span class="food-badge gold">
+                                DOSTEA FAVOURITE
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                COFFEE
+                            </span>
+
+                            <h3>
+                                Hazelnut Latte
+                            </h3>
+
+                            <p>
+                                Espresso, silky steamed milk and
+                                warm hazelnut flavour.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>189</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         15 — ICED COFFEE
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="cold"
+                        data-name="DOSTEA Cold Coffee"
+                        data-price="199"
+                        data-image="dostea-cold-coffee.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="dostea-cold-coffee.png"
+                                alt="DOSTEA Cold Coffee"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">15</span>
+
+                            <span class="food-badge">
+                                CHILLED
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                COLD DRINK
+                            </span>
+
+                            <h3>
+                                DOSTEA Cold Coffee
+                            </h3>
+
+                            <p>
+                                Creamy chilled coffee blended
+                                smooth and served ice cold.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>199</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         16 — MOJITO
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="cold"
+                        data-name="Fresh Mint Mojito"
+                        data-price="169"
+                        data-image="fresh-mint-mojito.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="fresh-mint-mojito.png"
+                                alt="Fresh Mint Mojito"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">16</span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                COLD DRINK
+                            </span>
+
+                            <h3>
+                                Fresh Mint Mojito
+                            </h3>
+
+                            <p>
+                                Fresh mint, lime and sparkling
+                                refreshment served over ice.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>169</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         17 — BROWNIE
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="dessert"
+                        data-name="Sizzling Brownie"
+                        data-price="249"
+                        data-image="sizzling-brownie.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="sizzling-brownie.png"
+                                alt="Sizzling Brownie"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">17</span>
+
+                            <span class="food-badge gold">
+                                BESTSELLER
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                DESSERT
+                            </span>
+
+                            <h3>
+                                Sizzling Brownie
+                            </h3>
+
+                            <p>
+                                Warm chocolate brownie served
+                                with vanilla ice cream and sauce.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>249</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         18 — CHEESECAKE
+                    ================================================== -->
+
+                    <article
+                        class="restaurant-food-card"
+                        data-category="dessert"
+                        data-name="Lotus Biscoff Cheesecake"
+                        data-price="279"
+                        data-image="biscoff-cheesecake.png"
+                    >
+
+                        <div class="food-card-image">
+
+                            <img
+                                src="biscoff-cheesecake.png"
+                                alt="Lotus Biscoff Cheesecake"
+                                loading="lazy"
+                            >
+
+                            <span class="food-number">18</span>
+
+                            <span class="food-badge">
+                                PREMIUM
+                            </span>
+
+                        </div>
+
+
+                        <div class="food-card-content">
+
+                            <span class="food-category">
+                                DESSERT
+                            </span>
+
+                            <h3>
+                                Lotus Biscoff Cheesecake
+                            </h3>
+
+                            <p>
+                                Creamy cheesecake with a
+                                caramelised Biscoff biscuit finish.
+                            </p>
+
+                            <div class="food-card-bottom">
+
+                                <div class="food-price">
+                                    <span>₹</span>
+                                    <strong>279</strong>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="menu-add-btn"
+                                >
+                                    Add
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- =================================================
+     19 — PANEER BUTTER MASALA
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Paneer Butter Masala"
+    data-price="329"
+    data-image="paneer-butter-masala.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="paneer-butter-masala.png"
+            alt="Paneer Butter Masala"
+            loading="lazy"
+        >
+
+        <span class="food-number">19</span>
+
+        <span class="food-badge gold">
+            INDIAN CLASSIC
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Paneer Butter Masala</h3>
+
+        <p>
+            Soft paneer simmered in a rich,
+            creamy tomato and butter gravy.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>329</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     20 — DAL TADKA
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Dal Tadka"
+    data-price="249"
+    data-image="dal-tadka.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="dal-tadka.png"
+            alt="Dal Tadka"
+            loading="lazy"
+        >
+
+        <span class="food-number">20</span>
+
+        <span class="food-badge">
+            COMFORT FOOD
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Dal Tadka</h3>
+
+        <p>
+            Yellow lentils finished with a
+            fragrant garlic, chilli and cumin tadka.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>249</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     21 — VEG BIRYANI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Dum Veg Biryani"
+    data-price="299"
+    data-image="veg-biryani.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="veg-biryani.png"
+            alt="Dum Veg Biryani"
+            loading="lazy"
+        >
+
+        <span class="food-number">21</span>
+
+        <span class="food-badge gold">
+            DUM COOKED
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Dum Veg Biryani</h3>
+
+        <p>
+            Fragrant basmati rice layered with
+            vegetables, herbs and aromatic spices.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>299</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     22 — CHICKEN BIRYANI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Hyderabadi Chicken Biryani"
+    data-price="389"
+    data-image="chicken-biryani.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="chicken-biryani.png"
+            alt="Hyderabadi Chicken Biryani"
+            loading="lazy"
+        >
+
+        <span class="food-number">22</span>
+
+        <span class="food-badge gold">
+            BESTSELLER
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Hyderabadi Chicken Biryani</h3>
+
+        <p>
+            Aromatic basmati rice layered with
+            spiced chicken and traditional masala.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>389</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     23 — BUTTER CHICKEN
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Butter Chicken"
+    data-price="399"
+    data-image="butter-chicken.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="butter-chicken.png"
+            alt="Butter Chicken"
+            loading="lazy"
+        >
+
+        <span class="food-number">23</span>
+
+        <span class="food-badge gold">
+            CHEF'S PICK
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Butter Chicken</h3>
+
+        <p>
+            Tender chicken cooked in a smooth
+            buttery tomato gravy with Indian spices.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>399</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     24 — KADAI PANEER
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Kadai Paneer"
+    data-price="319"
+    data-image="kadai-paneer.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="kadai-paneer.png"
+            alt="Kadai Paneer"
+            loading="lazy"
+        >
+
+        <span class="food-number">24</span>
+
+        <span class="food-badge">
+            SPICY
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Kadai Paneer</h3>
+
+        <p>
+            Paneer tossed with peppers, onions,
+            tomatoes and freshly ground kadai masala.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>319</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     25 — CHICKEN TIKKA
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Tandoori Chicken Tikka"
+    data-price="349"
+    data-image="chicken-tikka.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="chicken-tikka.png"
+            alt="Tandoori Chicken Tikka"
+            loading="lazy"
+        >
+
+        <span class="food-number">25</span>
+
+        <span class="food-badge gold">
+            TANDOOR
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Tandoori Chicken Tikka</h3>
+
+        <p>
+            Marinated chicken cooked with smoky
+            tandoori spices and served with chutney.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>349</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     26 — PANEER TIKKA
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Tandoori Paneer Tikka"
+    data-price="299"
+    data-image="paneer-tikka.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="paneer-tikka.png"
+            alt="Tandoori Paneer Tikka"
+            loading="lazy"
+        >
+
+        <span class="food-number">26</span>
+
+        <span class="food-badge">
+            VEGETARIAN
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Tandoori Paneer Tikka</h3>
+
+        <p>
+            Marinated paneer and vegetables
+            grilled with smoky tandoori spices.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>299</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     27 — CHOLE BHATURE
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Chole Bhature"
+    data-price="229"
+    data-image="chole-bhature.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="chole-bhature.png"
+            alt="Chole Bhature"
+            loading="lazy"
+        >
+
+        <span class="food-number">27</span>
+
+        <span class="food-badge">
+            NORTH INDIAN
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Chole Bhature</h3>
+
+        <p>
+            Spiced chickpea curry served with
+            fluffy bhature and traditional sides.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>229</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     28 — PAV BHAJI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Mumbai Pav Bhaji"
+    data-price="199"
+    data-image="pav-bhaji.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="pav-bhaji.png"
+            alt="Mumbai Pav Bhaji"
+            loading="lazy"
+        >
+
+        <span class="food-number">28</span>
+
+        <span class="food-badge gold">
+            MUMBAI FAVOURITE
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Mumbai Pav Bhaji</h3>
+
+        <p>
+            Buttery spiced vegetable bhaji served
+            with toasted pav, onion and lemon.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>199</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     29 — MASALA DOSA
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Masala Dosa"
+    data-price="189"
+    data-image="masala-dosa.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="masala-dosa.png"
+            alt="Masala Dosa"
+            loading="lazy"
+        >
+
+        <span class="food-number">29</span>
+
+        <span class="food-badge">
+            SOUTH INDIAN
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN
+        </span>
+
+        <h3>Masala Dosa</h3>
+
+        <p>
+            Crisp dosa filled with seasoned potato
+            masala and served with sambar and chutney.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>189</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     30 — GULAB JAMUN
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-category="indian"
+    data-name="Royal Gulab Jamun"
+    data-price="149"
+    data-image="gulab-jamun.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="gulab-jamun.png"
+            alt="Royal Gulab Jamun"
+            loading="lazy"
+        >
+
+        <span class="food-number">30</span>
+
+        <span class="food-badge gold">
+            INDIAN DESSERT
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN DESSERT
+        </span>
+
+        <h3>Royal Gulab Jamun</h3>
+
+        <p>
+            Warm, soft gulab jamun served in
+            aromatic syrup with a premium finish.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>149</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+                </div>
+                <!-- FOOD GRID END -->
+
+
+
+                <!-- =================================================
+                     NO RESULTS
+                ================================================== -->
+
+                <div
+                    class="menu-no-results"
+                    id="menuNoResults"
+                    style="display:none;"
+                >
+
+                    <span>D</span>
+
+                    <h3>
+                        No dishes found
+                    </h3>
+
+                    <p>
+                        Try another search or explore
+                        a different menu category.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="resetMenuFilters"
+                    >
+                        View Full Menu
+                    </button>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RESTAURANT EXPERIENCE BANNER
+            ================================================== -->
+
+            <section class="menu-dining-banner">
+
+                <img
+                    src="dostea-menu-dining.jpg"
+                    alt="Dining at DOSTEA"
+                    class="menu-dining-image"
+                >
+
+                <div class="menu-dining-overlay"></div>
+
+                <div class="menu-dining-glow"></div>
+
+
+                <div class="menu-dining-content">
+
+                    <span class="menu-section-label">
+                        MORE THAN A MENU
+                    </span>
+
+                    <h2>
+                        Food tastes better
+                        <em>at the table.</em>
+                    </h2>
+
+                    <p>
+                        Step into DOSTEA for warm lighting,
+                        fresh plates and a restaurant experience
+                        made for slow conversations.
+                    </p>
+
+                    <div class="menu-dining-actions">
+
+                        <a
+                            href="reservations.html"
+                            class="menu-primary-btn"
+                        >
+                            Reserve Your Table
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <a
+                            href="restaurant.html"
+                            class="menu-secondary-btn"
+                        >
+                            Explore Restaurant
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="menu-dining-detail">
+
+                    <span>
+                        DOSTEA
+                    </span>
+
+                    <strong>
+                        BADLAPUR
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SMALL SERVICE STRIP
+            ================================================== -->
+
+            <section class="menu-service-strip">
+
+
+                <div class="menu-service-item">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+                        <strong>
+                            Freshly Prepared
+                        </strong>
+
+                        <p>
+                            Made after you order.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="menu-service-divider"></div>
+
+
+                <div class="menu-service-item">
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+                        <strong>
+                            Dine at DOSTEA
+                        </strong>
+
+                        <p>
+                            Reserve your preferred table.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="menu-service-divider"></div>
+
+
+                <div class="menu-service-item">
+
+                    <span>
+                        03
+                    </span>
+
+                    <div>
+                        <strong>
+                            Order Online
+                        </strong>
+
+                        <p>
+                            Add dishes directly to cart.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="menu-service-divider"></div>
+
+
+                <div class="menu-service-item">
+
+                    <span>
+                        04
+                    </span>
+
+                    <div>
+                        <strong>
+                            Track Orders
+                        </strong>
+
+                        <p>
+                            View completed food orders.
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FINAL CTA
+            ================================================== -->
+
+            <section class="menu-final-section">
+
+
+                <div class="menu-final-copy">
+
+                    <span class="menu-section-label">
+                        YOUR DOSTEA MOMENT
+                    </span>
+
+                    <h2>
+                        Pick a plate.
+                        <em>Make it yours.</em>
+                    </h2>
+
+                    <p>
+                        Order online or reserve a table and
+                        experience the full DOSTEA restaurant.
+                    </p>
+
+                </div>
+
+
+                <div class="menu-final-actions">
+
+                    <a
+                        href="cart.html"
+                        class="menu-primary-btn"
+                    >
+                        View My Cart
+
+                        <span
+                            class="final-cart-count"
+                            id="finalCartCount"
+                        >
+                            0
+                        </span>
+                    </a>
+
+                    <a
+                        href="reservations.html"
+                        class="menu-secondary-btn"
+                    >
+                        Reserve Table
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+        <!-- MENU PAGE CONTENT END -->
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     FLOATING CART
+========================================================= -->
+
+<a
+    href="cart.html"
+    class="menu-floating-cart"
+    id="menuFloatingCart"
+>
+
+    <div class="floating-cart-copy">
+
+        <span>
+            YOUR ORDER
+        </span>
+
+        <strong id="floatingCartText">
+            Your cart is empty
+        </strong>
+
+    </div>
+
+
+    <div class="floating-cart-right">
+
+        <span
+            class="floating-cart-total"
+            id="floatingCartTotal"
+        >
+            ₹0
+        </span>
+
+        <div class="floating-cart-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+    </div>
+
+</a>
+
+
+
+<!-- =========================================================
+     ADD TO CART TOAST
+========================================================= -->
+
+<div
+    class="menu-toast"
+    id="menuToast"
+>
+
+    <div class="menu-toast-mark">
+        D
+    </div>
+
+    <div>
+
+        <strong id="menuToastTitle">
+            Added to cart
+        </strong>
+
+        <span id="menuToastText">
+            Your dish is ready in the cart.
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       USER AUTH UI
+    ====================================================== */
+
+    let currentUser = null;
+
+
+    try {
+
+        currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "dostea_current_user"
+                )
+            );
+
+    } catch (error) {
+
+        currentUser = null;
+
+    }
+
+
+    const loggedInSidebar =
+        document.getElementById(
+            "loggedInSidebar"
+        );
+
+    const guestSidebar =
+        document.getElementById(
+            "guestSidebar"
+        );
+
+    const topbarGuest =
+        document.getElementById(
+            "topbarGuest"
+        );
+
+    const topbarUser =
+        document.getElementById(
+            "topbarUser"
+        );
+
+
+    const sidebarAvatar =
+        document.getElementById(
+            "sidebarAvatar"
+        );
+
+    const sidebarUserName =
+        document.getElementById(
+            "sidebarUserName"
+        );
+
+    const sidebarUserEmail =
+        document.getElementById(
+            "sidebarUserEmail"
+        );
+
+
+    const topbarAvatar =
+        document.getElementById(
+            "topbarAvatar"
+        );
+
+    const topbarUserName =
+        document.getElementById(
+            "topbarUserName"
+        );
+
+
+
+    if (currentUser) {
+
+
+        if (loggedInSidebar) {
+            loggedInSidebar.style.display = "flex";
+        }
+
+
+        if (guestSidebar) {
+            guestSidebar.style.display = "none";
+        }
+
+
+        if (topbarGuest) {
+            topbarGuest.style.display = "none";
+        }
+
+
+        if (topbarUser) {
+            topbarUser.style.display = "flex";
+        }
+
+
+
+        const name =
+            currentUser.fullName ||
+            currentUser.name ||
+            currentUser.username ||
+            "DOSTEA User";
+
+
+        const email =
+            currentUser.email ||
+            "customer@dostea.com";
+
+
+        const initials =
+            name
+                .trim()
+                .split(/\s+/)
+                .slice(0, 2)
+                .map(function (word) {
+
+                    return word
+                        .charAt(0)
+                        .toUpperCase();
+
+                })
+                .join("") || "D";
+
+
+        if (sidebarAvatar) {
+            sidebarAvatar.textContent = initials;
+        }
+
+
+        if (sidebarUserName) {
+            sidebarUserName.textContent = name;
+        }
+
+
+        if (sidebarUserEmail) {
+            sidebarUserEmail.textContent = email;
+        }
+
+
+        if (topbarAvatar) {
+            topbarAvatar.textContent = initials;
+        }
+
+
+        if (topbarUserName) {
+            topbarUserName.textContent = name;
+        }
+
+
+    } else {
+
+
+        if (loggedInSidebar) {
+            loggedInSidebar.style.display = "none";
+        }
+
+
+        if (guestSidebar) {
+            guestSidebar.style.display = "flex";
+        }
+
+
+        if (topbarGuest) {
+            topbarGuest.style.display = "flex";
+        }
+
+
+        if (topbarUser) {
+            topbarUser.style.display = "none";
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    const sidebarOverlay =
+        document.getElementById(
+            "sidebarOverlay"
+        );
+
+
+    const mobileMenuBtn =
+        document.getElementById(
+            "mobileMenuBtn"
+        );
+
+
+    mobileMenuBtn?.addEventListener(
+        "click",
+        function () {
+
+            sidebar?.classList.add("open");
+
+            sidebarOverlay?.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    sidebarOverlay?.addEventListener(
+        "click",
+        closeSidebar
+    );
+
+
+    function closeSidebar() {
+
+        sidebar?.classList.remove(
+            "open"
+        );
+
+        sidebarOverlay?.classList.remove(
+            "active"
+        );
+
+    }
+
+
+
+    /* =====================================================
+       SIDEBAR ACCORDION
+    ====================================================== */
+
+    const accordions =
+        document.querySelectorAll(
+            ".sidebar-accordion"
+        );
+
+
+    accordions.forEach(
+        function (accordion) {
+
+
+            const button =
+                accordion.querySelector(
+                    ".sidebar-parent"
+                );
+
+
+            button?.addEventListener(
+                "click",
+                function () {
+
+
+                    const alreadyOpen =
+                        accordion.classList.contains(
+                            "open"
+                        );
+
+
+                    accordions.forEach(
+                        function (item) {
+
+
+                            item.classList.remove(
+                                "open"
+                            );
+
+
+                            item
+                                .querySelector(
+                                    ".sidebar-parent"
+                                )
+                                ?.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                        }
+                    );
+
+
+                    if (!alreadyOpen) {
+
+
+                        accordion.classList.add(
+                            "open"
+                        );
+
+
+                        button.setAttribute(
+                            "aria-expanded",
+                            "true"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* OPEN CAFE ACCORDION FOR MENU */
+
+    const activeMenuLink =
+        document.querySelector(
+            '.sidebar-submenu a[href="menu.html"]'
+        );
+
+
+    if (activeMenuLink) {
+
+
+        const cafeAccordion =
+            activeMenuLink.closest(
+                ".sidebar-accordion"
+            );
+
+
+        cafeAccordion?.classList.add(
+            "open"
+        );
+
+
+        cafeAccordion
+            ?.querySelector(
+                ".sidebar-parent"
+            )
+            ?.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+    }
+
+
+
+    /* =====================================================
+       CART
+    ====================================================== */
+
+    function getCart() {
+
+
+        try {
+
+
+            const stored =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_cart"
+                    ) || "[]"
+                );
+
+
+            return Array.isArray(stored)
+                ? stored
+                : [];
+
+
+        } catch (error) {
+
+
+            return [];
+
+        }
+
+    }
+
+
+
+    function saveCart(cart) {
+
+
+        localStorage.setItem(
+            "dostea_cart",
+            JSON.stringify(cart)
+        );
+
+
+        updateCartUI();
+
+    }
+
+
+
+    /* =====================================================
+       ADD ITEM
+    ====================================================== */
+
+    function addItemToCart(
+        name,
+        price,
+        image
+    ) {
+
+
+        const cart =
+            getCart();
+
+
+        const existing =
+            cart.find(
+                function (item) {
+
+                    return (
+                        String(item.name)
+                            .toLowerCase() ===
+                        String(name)
+                            .toLowerCase()
+                    );
+
+                }
+            );
+
+
+        if (existing) {
+
+
+            existing.quantity =
+                Number(
+                    existing.quantity || 1
+                ) + 1;
+
+
+        } else {
+
+
+            cart.push({
+
+                id:
+                    "dostea_" +
+                    Date.now() +
+                    "_" +
+                    Math.random()
+                        .toString(36)
+                        .slice(2, 8),
+
+                name: name,
+
+                price: Number(price),
+
+                image: image,
+
+                quantity: 1
+
+            });
+
+        }
+
+
+        saveCart(cart);
+
+
+        showMenuToast(name);
+
+    }
+
+
+
+    /* =====================================================
+       NORMAL MENU ADD BUTTONS
+    ====================================================== */
+
+    document
+        .querySelectorAll(
+            ".menu-add-btn"
+        )
+        .forEach(
+            function (button) {
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const card =
+                            button.closest(
+                                "[data-name][data-price]"
+                            );
+
+
+                        if (!card) {
+                            return;
+                        }
+
+
+                        const name =
+                            card.dataset.name;
+
+
+                        const price =
+                            Number(
+                                card.dataset.price
+                            );
+
+
+                        const image =
+                            card.dataset.image || "";
+
+
+                        addItemToCart(
+                            name,
+                            price,
+                            image
+                        );
+
+
+                        const originalHTML =
+                            button.innerHTML;
+
+
+                        button.classList.add(
+                            "added"
+                        );
+
+
+                        button.innerHTML =
+                            'Added <i class="fa-solid fa-check"></i>';
+
+
+                        setTimeout(
+                            function () {
+
+
+                                button.classList.remove(
+                                    "added"
+                                );
+
+
+                                button.innerHTML =
+                                    originalHTML;
+
+                            },
+                            1100
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =====================================================
+       HERO ADD BUTTON
+    ====================================================== */
+
+    document
+        .querySelectorAll(
+            ".hero-add-btn"
+        )
+        .forEach(
+            function (button) {
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+
+                        addItemToCart(
+
+                            button.dataset.name,
+
+                            Number(
+                                button.dataset.price
+                            ),
+
+                            button.dataset.image || ""
+
+                        );
+
+
+                        const originalText =
+                            button.textContent;
+
+
+                        button.textContent =
+                            "Added";
+
+
+                        button.classList.add(
+                            "added"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+
+                                button.textContent =
+                                    originalText;
+
+
+                                button.classList.remove(
+                                    "added"
+                                );
+
+                            },
+                            1000
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =====================================================
+       CART UI
+    ====================================================== */
+
+    function updateCartUI() {
+
+
+        const cart =
+            getCart();
+
+
+        let quantity = 0;
+
+        let total = 0;
+
+
+        cart.forEach(
+            function (item) {
+
+
+                const itemQuantity =
+                    Math.max(
+                        1,
+                        Number(
+                            item.quantity || 1
+                        )
+                    );
+
+
+                quantity +=
+                    itemQuantity;
+
+
+                total +=
+                    Number(
+                        item.price || 0
+                    ) *
+                    itemQuantity;
+
+            }
+        );
+
+
+
+        const topCartCount =
+            document.getElementById(
+                "topCartCount"
+            );
+
+
+        const finalCartCount =
+            document.getElementById(
+                "finalCartCount"
+            );
+
+
+        const floatingCartText =
+            document.getElementById(
+                "floatingCartText"
+            );
+
+
+        const floatingCartTotal =
+            document.getElementById(
+                "floatingCartTotal"
+            );
+
+
+        const floatingCart =
+            document.getElementById(
+                "menuFloatingCart"
+            );
+
+
+        if (topCartCount) {
+            topCartCount.textContent =
+                quantity;
+        }
+
+
+        if (finalCartCount) {
+            finalCartCount.textContent =
+                quantity;
+        }
+
+
+        if (floatingCartTotal) {
+
+            floatingCartTotal.textContent =
+                "₹" + total;
+
+        }
+
+
+        if (floatingCartText) {
+
+
+            floatingCartText.textContent =
+                quantity === 0
+                    ? "Your cart is empty"
+                    : quantity +
+                      (quantity === 1
+                          ? " item in cart"
+                          : " items in cart");
+
+        }
+
+
+        if (floatingCart) {
+
+
+            floatingCart.classList.toggle(
+                "visible",
+                quantity > 0
+            );
+
+        }
+
+    }
+
+
+    updateCartUI();
+
+
+
+    /* =====================================================
+       TOAST
+    ====================================================== */
+
+    let toastTimer;
+
+
+    function showMenuToast(name) {
+
+
+        const toast =
+            document.getElementById(
+                "menuToast"
+            );
+
+
+        const toastTitle =
+            document.getElementById(
+                "menuToastTitle"
+            );
+
+
+        const toastText =
+            document.getElementById(
+                "menuToastText"
+            );
+
+
+        if (!toast) {
+            return;
+        }
+
+
+        if (toastTitle) {
+
+            toastTitle.textContent =
+                "Added to cart";
+
+        }
+
+
+        if (toastText) {
+
+            toastText.textContent =
+                name +
+                " has been added.";
+
+        }
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        toastTimer =
+            setTimeout(
+                function () {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2400
+            );
+
+    }
+
+
+
+    /* =====================================================
+       MENU FILTER
+    ====================================================== */
+
+    const menuCards =
+        Array.from(
+            document.querySelectorAll(
+                ".restaurant-food-card"
+            )
+        );
+
+
+    const categoryButtons =
+        document.querySelectorAll(
+            ".restaurant-category"
+        );
+
+
+    const menuSearch =
+        document.getElementById(
+            "menuSearch"
+        );
+
+
+    const globalMenuSearch =
+        document.getElementById(
+            "globalMenuSearch"
+        );
+
+
+    const clearMenuSearch =
+        document.getElementById(
+            "clearMenuSearch"
+        );
+
+
+    const menuResultCount =
+        document.getElementById(
+            "menuResultCount"
+        );
+
+
+    const noResults =
+        document.getElementById(
+            "menuNoResults"
+        );
+
+
+    const resetFilters =
+        document.getElementById(
+            "resetMenuFilters"
+        );
+
+
+    let activeCategory =
+        "all";
+
+
+    let currentSearch =
+        "";
+
+
+
+    function filterMenu() {
+
+
+        let visibleCount = 0;
+
+
+        menuCards.forEach(
+            function (card) {
+
+
+                const category =
+                    (
+                        card.dataset.category ||
+                        ""
+                    ).toLowerCase();
+
+
+                const name =
+                    (
+                        card.dataset.name ||
+                        ""
+                    ).toLowerCase();
+
+
+                const description =
+                    (
+                        card.textContent ||
+                        ""
+                    ).toLowerCase();
+
+
+                const matchesCategory =
+                    activeCategory === "all" ||
+                    category === activeCategory;
+
+
+                const matchesSearch =
+                    !currentSearch ||
+                    name.includes(
+                        currentSearch
+                    ) ||
+                    description.includes(
+                        currentSearch
+                    );
+
+
+                const shouldShow =
+                    matchesCategory &&
+                    matchesSearch;
+
+
+                card.classList.toggle(
+                    "menu-hidden",
+                    !shouldShow
+                );
+
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+
+            }
+        );
+
+
+        if (menuResultCount) {
+
+
+            menuResultCount.textContent =
+                visibleCount +
+                (
+                    visibleCount === 1
+                        ? " dish available"
+                        : " dishes available"
+                );
+
+        }
+
+
+        if (noResults) {
+
+
+            noResults.style.display =
+                visibleCount === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       CATEGORY BUTTON
+    ====================================================== */
+
+    categoryButtons.forEach(
+        function (button) {
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+
+                    activeCategory =
+                        button.dataset.filter ||
+                        "all";
+
+
+                    categoryButtons.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    filterMenu();
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       MAIN SEARCH
+    ====================================================== */
+
+    menuSearch?.addEventListener(
+        "input",
+        function () {
+
+
+            currentSearch =
+                menuSearch
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (globalMenuSearch) {
+
+                globalMenuSearch.value =
+                    menuSearch.value;
+
+            }
+
+
+            filterMenu();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       TOPBAR SEARCH
+    ====================================================== */
+
+    globalMenuSearch?.addEventListener(
+        "input",
+        function () {
+
+
+            currentSearch =
+                globalMenuSearch
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (menuSearch) {
+
+                menuSearch.value =
+                    globalMenuSearch.value;
+
+            }
+
+
+            filterMenu();
+
+        }
+    );
+
+
+    globalMenuSearch?.addEventListener(
+        "keydown",
+        function (event) {
+
+
+            if (
+                event.key === "Enter"
+            ) {
+
+
+                document
+                    .getElementById(
+                        "dosteaMenu"
+                    )
+                    ?.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        block: "start"
+
+                    });
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       CLEAR SEARCH
+    ====================================================== */
+
+    clearMenuSearch?.addEventListener(
+        "click",
+        function () {
+
+
+            currentSearch = "";
+
+
+            if (menuSearch) {
+
+                menuSearch.value = "";
+
+            }
+
+
+            if (globalMenuSearch) {
+
+                globalMenuSearch.value = "";
+
+            }
+
+
+            filterMenu();
+
+
+            menuSearch?.focus();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       RESET FILTERS
+    ====================================================== */
+
+    resetFilters?.addEventListener(
+        "click",
+        function () {
+
+
+            activeCategory = "all";
+
+            currentSearch = "";
+
+
+            if (menuSearch) {
+
+                menuSearch.value = "";
+
+            }
+
+
+            if (globalMenuSearch) {
+
+                globalMenuSearch.value = "";
+
+            }
+
+
+            categoryButtons.forEach(
+                function (button) {
+
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.filter ===
+                        "all"
+                    );
+
+                }
+            );
+
+
+            filterMenu();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       SEARCH FROM RESTAURANT.HTML
+    ====================================================== */
+
+    const incomingSearch =
+        localStorage.getItem(
+            "dostea_menu_search"
+        );
+
+
+    if (incomingSearch) {
+
+
+        currentSearch =
+            incomingSearch
+                .trim()
+                .toLowerCase();
+
+
+        if (menuSearch) {
+
+            menuSearch.value =
+                incomingSearch;
+
+        }
+
+
+        if (globalMenuSearch) {
+
+            globalMenuSearch.value =
+                incomingSearch;
+
+        }
+
+
+        localStorage.removeItem(
+            "dostea_menu_search"
+        );
+
+
+        filterMenu();
+
+
+        setTimeout(
+            function () {
+
+
+                document
+                    .getElementById(
+                        "dosteaMenu"
+                    )
+                    ?.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        block: "start"
+
+                    });
+
+            },
+            250
+        );
+
+    }
+
+
+
+    /* =====================================================
+       PROTECTED LINKS
+    ====================================================== */
+
+    const protectedPages = [
+
+        "orders.html",
+        "profile.html",
+        "booking.html"
+
+    ];
+
+
+    document
+        .querySelectorAll("a")
+        .forEach(
+            function (link) {
+
+
+                const href =
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    protectedPages.includes(
+                        href
+                    )
+                ) {
+
+
+                    link.addEventListener(
+                        "click",
+                        function (event) {
+
+
+                            if (!currentUser) {
+
+
+                                event.preventDefault();
+
+
+                                localStorage.setItem(
+                                    "dostea_redirect_after_login",
+                                    href
+                                );
+
+
+                                window.location.href =
+                                    "login.html";
+
+                            }
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ====================================================== */
+
+    const revealItems =
+        document.querySelectorAll(
+            [
+                ".chef-menu-card",
+                ".restaurant-food-card",
+                ".menu-service-item"
+            ].join(",")
+        );
+
+
+    if (
+        "IntersectionObserver"
+        in window
+    ) {
+
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+
+                    entries.forEach(
+                        function (entry) {
+
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+
+                                entry.target
+                                    .classList
+                                    .add(
+                                        "menu-visible"
+                                    );
+
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.08
+                }
+            );
+
+
+        revealItems.forEach(
+            function (item) {
+
+                observer.observe(item);
+
+            }
+        );
+
+
+    } else {
+
+
+        revealItems.forEach(
+            function (item) {
+
+                item.classList.add(
+                    "menu-visible"
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       WINDOW
+    ====================================================== */
+
+    window.addEventListener(
+        "focus",
+        updateCartUI
+    );
+
+
+    window.addEventListener(
+        "storage",
+        updateCartUI
+    );
+
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+
+            if (
+                window.innerWidth > 900
+            ) {
+
+                closeSidebar();
+
+            }
+
+        }
+    );
+
+
+    /* INITIAL FILTER */
+
+    filterMenu();
+
+
+});
+
+</script>
+
+
+</body>
+</html>

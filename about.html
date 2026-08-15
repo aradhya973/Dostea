@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSTEA | About Us</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<!-- Page CSS -->
+<link href="about.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- =========================================================
+     MOBILE SIDEBAR OVERLAY
+========================================================= -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+<!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+<aside class="sidebar" id="sidebar">
+<!-- BRAND -->
+<div class="sidebar-brand">
+<a href="index.html">
+<div class="brand-mark">
+                    D
+                </div>
+<div class="brand-copy">
+<h1>DOSTEA</h1>
+<span>HOTEL • CAFÉ • LIFESTYLE</span>
+</div>
+</a>
+</div>
+<!-- NAVIGATION -->
+<nav class="sidebar-navigation">
+<!-- HOME -->
+<a class="nav-link" href="index.html">
+<span class="nav-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+<span>Home</span>
+</a>
+<!-- CAFE -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-mug-hot"></i>
+</span>
+<span>Café</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
+<a class="nav-link" href="reservations.html">
+                        Reserve Table
+                    </a>
+<a class="nav-link active" href="about.html">
+                        About DOSTEA
+                    </a>
+</div>
+</div>
+<!-- ORDERS -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</span>
+<span>Orders</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="orders.html">
+                        My Orders
+                    </a>
+<a class="nav-link" href="cart.html">
+                        My Cart
+                    </a>
+</div>
+</div>
+<!-- Restaurant -->
+<div class="sidebar-accordion open">
+<button aria-expanded="true" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+ <i class="fa-solid fa-utensils"></i>
+</span>
+<span>Restaurant </span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="Restaurant.html">
+                        Restaurant
+                    </a>
+<a class="nav-link" href="amenities.html">
+                        Amenities
+                    </a>
+<a class="nav-link" href="booking.html">
+                        Book a Room
+                    </a>
+</div>
+</div>
+<!-- CONTACT -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-phone"></i>
+</span>
+<span>Contact</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="contact.html">
+                        Contact Us
+                    </a>
+<a class="nav-link" href="reach-us.html">
+                        Reach Us
+                    </a>
+</div>
+</div>
+<!-- PROFILE -->
+<a class="nav-link" href="profile.html">
+<span class="nav-icon">
+<i class="fa-regular fa-user"></i>
+</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- SIDEBAR USER -->
+<div class="sidebar-bottom">
+<div class="sidebar-user">
+<div class="sidebar-avatar" id="sidebarAvatar">
+                    D
+                </div>
+<div class="sidebar-user-info">
+<strong id="sidebarUserName">
+                        DOSTEA User
+                    </strong>
+<span id="sidebarUserEmail">
+                        customer@dostea.com
+                    </span>
+</div>
+</div>
+<a class="sidebar-profile-btn" href="profile.html" title="Profile">
+<i class="fa-solid fa-chevron-right"></i>
+</a>
+</div>
+</aside>
+<!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+<main class="main-content">
+<!-- =================================================
+             TOPBAR
+        ================================================== -->
+<header class="topbar">
+<div class="topbar-left">
+<button aria-label="Open menu" class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+<div>
+<span class="topbar-eyebrow">
+                        DISCOVER DOSTEA
+                    </span>
+<h2>
+                        About Us
+                    </h2>
+</div>
+</div>
+<div class="topbar-actions">
+<!-- CART -->
+<a aria-label="Cart" class="topbar-icon-btn" href="cart.html">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count" id="cartCount">
+                        0
+                    </span>
+</a>
+<!-- USER -->
+<a class="topbar-user" href="profile.html">
+<div class="topbar-avatar" id="topbarAvatar">
+                        D
+                    </div>
+<div>
+<strong id="topbarUserName">
+                            DOSTEA User
+                        </strong>
+<span>
+                            Customer
+                        </span>
+</div>
+</a>
+</div>
+</header>
+<!-- =================================================
+             ABOUT PAGE
+        ================================================== -->
+<div class="about-page">
+<!-- =================================================
+                 HERO / INTRO
+            ================================================== -->
+<section class="about-hero">
+<div class="about-hero-content">
+<span class="section-label">
+                        OUR STORY
+                    </span>
+<h1>
+                        Coffee, conversations
+                        <span>&amp; moments worth keeping.</span>
+</h1>
+<p>
+                        DOSTEA was created as more than a café.
+                        It's a place to slow down, meet your people,
+                        enjoy good food and turn ordinary evenings
+                        into memorable ones.
+                    </p>
+<div class="hero-actions">
+<a class="primary-btn" href="reservations.html">
+<span>
+                                Reserve a Table
+                            </span>
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+<a class="secondary-btn" href="menu.html">
+<i class="fa-solid fa-book-open"></i>
+<span>
+                                Explore Menu
+                            </span>
+</a>
+</div>
+</div>
+<!-- HERO VISUAL -->
+<div class="about-hero-visual">
+<div class="visual-glow"></div>
+<div class="visual-card">
+<span class="visual-number">
+                            01
+                        </span>
+<div class="visual-icon">
+<i class="fa-solid fa-mug-hot"></i>
+</div>
+<span class="visual-label">
+                            THE DOSTEA WAY
+                        </span>
+<h3>
+                            Made for conversations.
+                        </h3>
+<p>
+                            Warm drinks, thoughtful food and
+                            an atmosphere designed to make you
+                            stay a little longer.
+                        </p>
+</div>
+</div>
+</section>
+<!-- =================================================
+                 PHILOSOPHY
+            ================================================== -->
+<section class="philosophy-section">
+<div class="section-heading">
+<div>
+<span class="section-label">
+                            WHAT DEFINES US
+                        </span>
+<h2>
+                            The DOSTEA philosophy.
+                        </h2>
+</div>
+<p>
+                        Every detail is built around one simple idea:
+                        a café should feel as good as the things it serves.
+                    </p>
+</div>
+<div class="philosophy-grid">
+<!-- ITEM 01 -->
+<article class="philosophy-card">
+<div class="philosophy-top">
+<span class="philosophy-number">
+                                01
+                            </span>
+<div class="philosophy-icon">
+<i class="fa-solid fa-seedling"></i>
+</div>
+</div>
+<h3>
+                            Fresh by choice
+                        </h3>
+<p>
+                            Carefully selected ingredients and
+                            freshly prepared dishes made to taste
+                            as good as they look.
+                        </p>
+</article>
+<!-- ITEM 02 -->
+<article class="philosophy-card">
+<div class="philosophy-top">
+<span class="philosophy-number">
+                                02
+                            </span>
+<div class="philosophy-icon">
+<i class="fa-solid fa-heart"></i>
+</div>
+</div>
+<h3>
+                            Served with care
+                        </h3>
+<p>
+                            From your first order to the last sip,
+                            we focus on making every visit feel
+                            comfortable and personal.
+                        </p>
+</article>
+<!-- ITEM 03 -->
+<article class="philosophy-card">
+<div class="philosophy-top">
+<span class="philosophy-number">
+                                03
+                            </span>
+<div class="philosophy-icon">
+<i class="fa-solid fa-users"></i>
+</div>
+</div>
+<h3>
+                            Built for people
+                        </h3>
+<p>
+                            Friends, families, solo coffee breaks
+                            or long conversations — there's always
+                            space for your kind of moment.
+                        </p>
+</article>
+</div>
+</section>
+<!-- =================================================
+                 STORY SECTION
+            ================================================== -->
+<section class="story-section">
+<div class="story-panel">
+<div class="story-copy">
+<span class="section-label">
+                            HOW IT STARTED
+                        </span>
+<h2>
+                            A simple idea became
+                            a place called DOSTEA.
+                        </h2>
+<p>
+                            The idea behind DOSTEA began with something
+                            simple — the best conversations usually happen
+                            around a table.
+                        </p>
+<p>
+                            We wanted to create a café where the atmosphere
+                            feels relaxed, the menu feels familiar yet
+                            exciting, and nobody feels rushed to leave.
+                        </p>
+<p>
+                            That's what DOSTEA continues to be:
+                            good food, good drinks and better company.
+                        </p>
+</div>
+<div class="story-quote">
+<i class="fa-solid fa-quote-left"></i>
+<blockquote>
+                            Come for the coffee.
+                            Stay for the company.
+                        </blockquote>
+<span>
+                            — DOSTEA
+                        </span>
+</div>
+</div>
+</section>
+<!-- =================================================
+                 EXPERIENCE STATS
+            ================================================== -->
+<section class="stats-section">
+<div class="stat-item">
+<strong>
+                        10+
+                    </strong>
+<span>
+                        Signature Drinks
+                    </span>
+</div>
+<div class="stat-divider"></div>
+<div class="stat-item">
+<strong>
+                        30+
+                    </strong>
+<span>
+                        Café Favourites
+                    </span>
+</div>
+<div class="stat-divider"></div>
+<div class="stat-item">
+<strong>
+                        7
+                    </strong>
+<span>
+                        Days a Week
+                    </span>
+</div>
+<div class="stat-divider"></div>
+<div class="stat-item">
+<strong>
+                        100%
+                    </strong>
+<span>
+                        DOSTEA Experience
+                    </span>
+</div>
+</section>
+<!-- =================================================
+                 VISIT SECTION
+            ================================================== -->
+<section class="visit-section">
+<!-- LEFT -->
+<div class="visit-content">
+<span class="section-label">
+                        VISIT DOSTEA
+                    </span>
+<h2>
+                        Your next café stop
+                        starts here.
+                    </h2>
+<p>
+                        Drop in for a quick coffee, meet your friends
+                        for an evening snack or reserve a table and
+                        make it a longer one.
+                    </p>
+<!-- INFO -->
+<div class="visit-info">
+<!-- LOCATION -->
+<div class="visit-info-item">
+<div class="visit-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+<div>
+<span>
+                                    LOCATION
+                                </span>
+<strong>
+                                    DOSTEA Café
+                                </strong>
+<p>
+                                    Badlapur, Maharashtra
+                                </p>
+</div>
+</div>
+<!-- PHONE -->
+<div class="visit-info-item">
+<div class="visit-icon">
+<i class="fa-solid fa-phone"></i>
+</div>
+<div>
+<span>
+                                    CONTACT
+                                </span>
+<strong>
+                                    +91 98765 43210
+                                </strong>
+<p>
+                                    Call us for enquiries
+                                </p>
+</div>
+</div>
+<!-- EMAIL -->
+<div class="visit-info-item">
+<div class="visit-icon">
+<i class="fa-regular fa-envelope"></i>
+</div>
+<div>
+<span>
+                                    EMAIL
+                                </span>
+<strong>
+                                    hello@dostea.com
+                                </strong>
+<p>
+                                    We'd love to hear from you
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- OPENING HOURS -->
+<div class="hours-card">
+<div class="hours-heading">
+<div>
+<span>
+                                OPENING HOURS
+                            </span>
+<h3>
+                                We're open all week.
+                            </h3>
+</div>
+<div class="open-badge">
+<span class="open-dot"></span>
+
+                            OPEN
+
+                        </div>
+</div>
+<div class="hours-list">
+<div class="hours-row">
+<span>
+                                Monday
+                            </span>
+<strong>
+                                10:00 AM — 10:30 PM
+                            </strong>
+</div>
+<div class="hours-row">
+<span>
+                                Tuesday
+                            </span>
+<strong>
+                                10:00 AM — 10:30 PM
+                            </strong>
+</div>
+<div class="hours-row">
+<span>
+                                Wednesday
+                            </span>
+<strong>
+                                10:00 AM — 10:30 PM
+                            </strong>
+</div>
+<div class="hours-row">
+<span>
+                                Thursday
+                            </span>
+<strong>
+                                10:00 AM — 10:30 PM
+                            </strong>
+</div>
+<div class="hours-row">
+<span>
+                                Friday
+                            </span>
+<strong>
+                                10:00 AM — 11:00 PM
+                            </strong>
+</div>
+<div class="hours-row weekend">
+<span>
+                                Saturday
+                            </span>
+<strong>
+                                09:30 AM — 11:00 PM
+                            </strong>
+</div>
+<div class="hours-row weekend">
+<span>
+                                Sunday
+                            </span>
+<strong>
+                                09:30 AM — 11:00 PM
+                            </strong>
+</div>
+</div>
+<a class="hours-reserve-btn" href="reservations.html">
+<span>
+                            Reserve Your Table
+                        </span>
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+</section>
+<!-- =================================================
+                 FINAL CTA
+            ================================================== -->
+<section class="about-cta">
+<div class="cta-decoration cta-decoration-one">
+                    D
+                </div>
+<div class="cta-decoration cta-decoration-two">
+                    DOSTEA
+                </div>
+<div class="cta-content">
+<span class="section-label">
+                        SEE YOU AT DOSTEA
+                    </span>
+<h2>
+                        Good coffee is better
+                        with good company.
+                    </h2>
+<p>
+                        Pick your favourites, reserve your table
+                        and let DOSTEA take care of the rest.
+                    </p>
+<div class="cta-actions">
+<a class="primary-btn" href="reservations.html">
+
+                            Reserve a Table
+
+                            <i class="fa-solid fa-arrow-right"></i>
+</a>
+<a class="cta-menu-link" href="menu.html">
+
+                            View our menu
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       CURRENT USER
+    ====================================================== */
+
+    let currentUser = null;
+
+
+    try {
+
+        currentUser = JSON.parse(
+            localStorage.getItem("dostea_current_user")
+        );
+
+    } catch (error) {
+
+        currentUser = null;
+
+    }
+
+
+    /*
+       About page can be viewed without login.
+       If logged in, user details are shown.
+    */
+
+    if (currentUser) {
+
+        const userName =
+            currentUser.fullName ||
+            currentUser.name ||
+            "DOSTEA User";
+
+
+        const userEmail =
+            currentUser.email ||
+            "";
+
+
+        const initial =
+            userName
+                .trim()
+                .charAt(0)
+                .toUpperCase() || "D";
+
+
+        document.getElementById(
+            "sidebarAvatar"
+        ).textContent =
+            initial;
+
+
+        document.getElementById(
+            "topbarAvatar"
+        ).textContent =
+            initial;
+
+
+        document.getElementById(
+            "sidebarUserName"
+        ).textContent =
+            userName;
+
+
+        document.getElementById(
+            "topbarUserName"
+        ).textContent =
+            userName;
+
+
+        document.getElementById(
+            "sidebarUserEmail"
+        ).textContent =
+            userEmail;
+
+    }
+
+
+    /* =====================================================
+       CART COUNT
+    ====================================================== */
+
+    function updateCartCount() {
+
+        let cart = [];
+
+
+        try {
+
+            cart = JSON.parse(
+                localStorage.getItem(
+                    "dostea_cart"
+                ) || "[]"
+            );
+
+        } catch (error) {
+
+            cart = [];
+
+        }
+
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+
+        const totalItems =
+            cart.reduce(
+                function (total, item) {
+
+                    const quantity =
+                        Number(
+                            item.quantity || 1
+                        );
+
+                    return total +
+                        Math.max(
+                            1,
+                            quantity
+                        );
+
+                },
+                0
+            );
+
+
+        document.getElementById(
+            "cartCount"
+        ).textContent =
+            totalItems;
+
+    }
+
+
+    updateCartCount();
+
+
+    /* =====================================================
+       MOBILE SIDEBAR
+    ====================================================== */
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    const mobileMenuBtn =
+        document.getElementById(
+            "mobileMenuBtn"
+        );
+
+
+    const sidebarOverlay =
+        document.getElementById(
+            "sidebarOverlay"
+        );
+
+
+    if (
+        sidebar &&
+        mobileMenuBtn &&
+        sidebarOverlay
+    ) {
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.add(
+                    "open"
+                );
+
+
+                sidebarOverlay.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+
+        sidebarOverlay.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.remove(
+                    "open"
+                );
+
+
+                sidebarOverlay.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       SIDEBAR ACCORDION
+    ====================================================== */
+
+    const accordions =
+        document.querySelectorAll(
+            ".sidebar-accordion"
+        );
+
+
+    accordions.forEach(
+        function (accordion) {
+
+            const button =
+                accordion.querySelector(
+                    ".sidebar-parent"
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const isOpen =
+                        accordion.classList.contains(
+                            "open"
+                        );
+
+
+                    /*
+                       Close every accordion first.
+                    */
+
+                    accordions.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "open"
+                            );
+
+
+                            const itemButton =
+                                item.querySelector(
+                                    ".sidebar-parent"
+                                );
+
+
+                            if (itemButton) {
+
+                                itemButton.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                    /*
+                       Open selected accordion only
+                       when it was previously closed.
+                    */
+
+                    if (!isOpen) {
+
+                        accordion.classList.add(
+                            "open"
+                        );
+
+
+                        button.setAttribute(
+                            "aria-expanded",
+                            "true"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       AUTOMATIC ACTIVE PAGE
+    ====================================================== */
+
+    let currentPage =
+        window.location.pathname
+            .split("/")
+            .pop();
+
+
+    if (!currentPage) {
+        currentPage = "index.html";
+    }
+
+
+    document
+        .querySelectorAll(
+            ".sidebar-navigation a.nav-link"
+        )
+        .forEach(
+            function (link) {
+
+                const href =
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (href === currentPage) {
+
+                    link.classList.add(
+                        "active"
+                    );
+
+
+                    const accordion =
+                        link.closest(
+                            ".sidebar-accordion"
+                        );
+
+
+                    if (accordion) {
+
+                        accordion.classList.add(
+                            "open"
+                        );
+
+
+                        const parentButton =
+                            accordion.querySelector(
+                                ".sidebar-parent"
+                            );
+
+
+                        if (parentButton) {
+
+                            parentButton.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+
+    /* =====================================================
+       CLOSE MOBILE SIDEBAR AFTER NAVIGATION
+    ====================================================== */
+
+    document
+        .querySelectorAll(
+            ".sidebar-navigation a"
+        )
+        .forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        if (
+                            window.innerWidth <= 900
+                        ) {
+
+                            sidebar?.classList.remove(
+                                "open"
+                            );
+
+
+                            sidebarOverlay?.classList.remove(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =====================================================
+       RESPONSIVE RESET
+    ====================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (
+                window.innerWidth > 900
+            ) {
+
+                sidebar?.classList.remove(
+                    "open"
+                );
+
+
+                sidebarOverlay?.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+<script>
+/* DOSTEA GLOBAL AUTH UI SYNC */
+document.addEventListener("DOMContentLoaded", function () {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem("dostea_current_user")); } catch(e) { user = null; }
+
+    const name = user ? (user.fullName || user.name || "DOSTEA User") : "";
+    const email = user ? (user.email || "") : "";
+    const initial = name ? name.trim().charAt(0).toUpperCase() : "D";
+
+    /* Existing guest/logged blocks */
+    document.querySelectorAll("#guestSidebar, #topbarGuest").forEach(el => {
+        el.style.display = user ? "none" : "flex";
+    });
+    document.querySelectorAll("#loggedInSidebar, #topbarUser").forEach(el => {
+        el.style.display = user ? "flex" : "none";
+    });
+
+    /* Update standard user fields */
+    document.querySelectorAll("#sidebarAvatar, #topbarAvatar, .user-avatar, .top-profile-avatar").forEach(el => {
+        if (user) el.textContent = initial;
+    });
+    document.querySelectorAll("#sidebarUserName, #topbarUserName, .user-details h4, .top-profile-info strong").forEach(el => {
+        if (user) el.textContent = name;
+    });
+    document.querySelectorAll("#sidebarUserEmail").forEach(el => {
+        if (user) el.textContent = email;
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in sidebar user */
+    document.querySelectorAll(".sidebar > .sidebar-user").forEach(oldUser => {
+        if (oldUser.closest("#loggedInSidebar")) return;
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".user-details h4");
+            const av = oldUser.querySelector(".user-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            if (!oldUser.parentElement.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                oldUser.insertAdjacentElement("afterend", auth);
+            }
+        }
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in top profile */
+    document.querySelectorAll(".topbar-actions .top-profile, .topbar-actions > .topbar-user:not(#topbarUser)").forEach(oldUser => {
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".top-profile-info strong, strong");
+            const av = oldUser.querySelector(".top-profile-avatar, .topbar-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            const actions = oldUser.parentElement;
+            if (actions && !actions.querySelector(".dostea-auto-topbar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-topbar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                actions.appendChild(auth);
+            }
+        }
+    });
+
+    /* Pages with sidebar-bottom but no guest/logged wrappers */
+    document.querySelectorAll(".sidebar-bottom").forEach(bottom => {
+        if (bottom.querySelector("#guestSidebar, #loggedInSidebar")) return;
+        const existingUser = bottom.querySelector(".sidebar-user, .sidebar-user-content");
+        if (user) {
+            if (existingUser) existingUser.style.display = "flex";
+        } else {
+            if (existingUser) existingUser.style.display = "none";
+            if (!bottom.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                bottom.appendChild(auth);
+            }
+        }
+    });
+
+    /* Shared styling for auto-created auth controls */
+    if (!document.getElementById("dosteaAuthSyncStyle")) {
+        const style = document.createElement("style");
+        style.id = "dosteaAuthSyncStyle";
+        style.textContent = `
+            .dostea-auto-sidebar-auth{display:flex;gap:8px;padding:14px 16px;width:100%;box-sizing:border-box}
+            .dostea-auto-sidebar-auth a,.dostea-auto-topbar-auth a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 12px/1 'DM Sans',sans-serif;border-radius:9px;transition:.25s ease}
+            .dostea-auto-sidebar-auth a{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-sidebar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+            .dostea-auto-topbar-auth{display:flex;align-items:center;gap:8px}
+            .dostea-auto-topbar-auth a{padding:10px 14px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-topbar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+        `;
+        document.head.appendChild(style);
+    }
+});
+</script>
+
+</body>
+</html>

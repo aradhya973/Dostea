@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSTEA | My Orders</title>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<!-- CSS -->
+<link href="common.css" rel="stylesheet"/>
+<link href="dashboard.css" rel="stylesheet"/>
+<link href="orders.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app">
+<!-- =====================================================
+         SIDEBAR OVERLAY
+    ====================================================== -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+<aside class="sidebar" id="sidebar">
+<!-- BRAND -->
+<a class="sidebar-brand" href="index.html">
+<div class="brand-mark">
+                D
+            </div>
+<div class="brand-info">
+<h1>DOSTEA</h1>
+<p>
+                   HOTEL • CAFÉ • LIFESTYLE
+                </p>
+</div>
+</a>
+<!-- NAVIGATION -->
+<nav class="sidebar-navigation">
+<!-- HOME -->
+<a class="nav-link" href="index.html">
+<span class="nav-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+<span>Home</span>
+</a>
+<!-- CAFE -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-mug-hot"></i>
+</span>
+<span>Café</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
+<a class="nav-link" href="reservations.html">
+                        Reserve Table
+                    </a>
+<a class="nav-link" href="about.html">
+                        About DOSTEA
+                    </a>
+</div>
+</div>
+<!-- ORDERS -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</span>
+<span>Orders</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link active" href="orders.html">
+                        My Orders
+                    </a>
+<a class="nav-link" href="cart.html">
+                        My Cart
+                    </a>
+</div>
+</div>
+<!-- Restaurant -->
+<div class="sidebar-accordion open">
+<button aria-expanded="true" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+ <i class="fa-solid fa-utensils"></i>
+</span>
+<span>Restaurant </span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="Restaurant.html">
+                        Restaurant
+                    </a>
+<a class="nav-link" href="amenities.html">
+                        Amenities
+                    </a>
+<a class="nav-link" href="booking.html">
+                        Book a Room
+                    </a>
+</div>
+</div>
+<!-- CONTACT -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-phone"></i>
+</span>
+<span>Contact</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="contact.html">
+                        Contact Us
+                    </a>
+<a class="nav-link" href="reach-us.html">
+                        Reach Us
+                    </a>
+</div>
+</div>
+<!-- PROFILE -->
+<a class="nav-link" href="profile.html">
+<span class="nav-icon">
+<i class="fa-regular fa-user"></i>
+</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- SIDEBAR USER -->
+<div class="sidebar-user">
+<a class="user-avatar" href="profile.html">
+                AD
+            </a>
+<div class="user-details">
+<h4>
+                    Aradhya
+                </h4>
+<p>
+                    Customer
+                </p>
+</div>
+<a aria-label="Profile" class="user-menu-btn" href="profile.html">
+<i class="fa-solid fa-ellipsis"></i>
+</a>
+</div>
+</aside>
+<!-- =====================================================
+         MAIN
+    ====================================================== -->
+<main class="main-content">
+<!-- =================================================
+             TOPBAR
+        ================================================== -->
+<header class="topbar">
+<div class="topbar-left">
+<button aria-label="Open navigation" class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+<div class="page-location">
+
+                    DOSTEA /
+
+                    <span>
+                        My Orders
+                    </span>
+</div>
+</div>
+<!-- SEARCH -->
+<div class="topbar-search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="globalOrderSearch" placeholder="Search your orders..." type="search"/>
+</div>
+<!-- ACTIONS -->
+<div class="topbar-actions">
+<a aria-label="Cart" class="icon-button cart-top-button" href="cart.html">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-top-count" id="topCartCount">
+                        0
+                    </span>
+</a>
+<button aria-label="Notifications" class="icon-button" type="button">
+<i class="fa-regular fa-bell"></i>
+<span class="notification-dot"></span>
+</button>
+<a class="top-profile" href="profile.html">
+<div class="top-profile-avatar">
+                        AD
+                    </div>
+<div class="top-profile-info">
+<strong>
+                            Aradhya
+                        </strong>
+<span>
+                            Customer
+                        </span>
+</div>
+<i class="fa-solid fa-chevron-down"></i>
+</a>
+</div>
+</header>
+<!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+<div class="page-content">
+<!-- =================================================
+                 HEADER
+            ================================================== -->
+<section class="orders-page-header">
+<div>
+<span class="orders-eyebrow">
+                        ORDER HISTORY
+                    </span>
+<h1>
+                        My Orders
+                    </h1>
+<p>
+                        View and track your recent DOSTEA orders.
+                    </p>
+</div>
+<a class="btn btn-primary" href="menu.html">
+<i class="fa-solid fa-plus"></i>
+
+                    Order Something
+
+                </a>
+</section>
+<!-- =================================================
+                 STATS
+            ================================================== -->
+<section class="order-stats">
+<article class="order-stat-card">
+<div class="order-stat-icon">
+<i class="fa-solid fa-receipt"></i>
+</div>
+<div>
+<span>
+                            TOTAL ORDERS
+                        </span>
+<strong id="totalOrders">
+                            0
+                        </strong>
+</div>
+</article>
+<article class="order-stat-card">
+<div class="order-stat-icon">
+<i class="fa-solid fa-fire-burner"></i>
+</div>
+<div>
+<span>
+                            PREPARING
+                        </span>
+<strong id="preparingOrders">
+                            0
+                        </strong>
+</div>
+</article>
+<article class="order-stat-card">
+<div class="order-stat-icon">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+<div>
+<span>
+                            COMPLETED
+                        </span>
+<strong id="completedOrders">
+                            0
+                        </strong>
+</div>
+</article>
+<article class="order-stat-card">
+<div class="order-stat-icon">
+<i class="fa-solid fa-indian-rupee-sign"></i>
+</div>
+<div>
+<span>
+                            TOTAL SPENT
+                        </span>
+<strong id="totalSpent">
+                            ₹0
+                        </strong>
+</div>
+</article>
+</section>
+<!-- =================================================
+                 FILTER BAR
+            ================================================== -->
+<section class="orders-toolbar">
+<div class="order-search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="orderSearch" placeholder="Search order ID or item..." type="search"/>
+</div>
+<div class="order-tabs">
+<button class="order-tab active" data-filter="all" type="button">
+                        All
+                    </button>
+<button class="order-tab" data-filter="preparing" type="button">
+                        Preparing
+                    </button>
+<button class="order-tab" data-filter="ready" type="button">
+                        Ready
+                    </button>
+<button class="order-tab" data-filter="completed" type="button">
+                        Completed
+                    </button>
+</div>
+<button aria-label="Refresh orders" class="refresh-orders" id="refreshOrders" type="button">
+<i class="fa-solid fa-rotate"></i>
+</button>
+</section>
+<!-- =================================================
+                 ORDER COUNT
+            ================================================== -->
+<div class="orders-result-info">
+<span>
+                    Showing
+                    <strong id="visibleOrders">
+                        0
+                    </strong>
+                    orders
+                </span>
+</div>
+<!-- =================================================
+                 ORDERS CONTAINER
+            ================================================== -->
+<section class="customer-orders-list" id="ordersContainer"></section>
+<!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+<section class="orders-empty-state" id="ordersEmptyState">
+<div class="orders-empty-icon">
+<i class="fa-solid fa-receipt"></i>
+</div>
+<span>
+                    NOTHING HERE YET
+                </span>
+<h2>
+                    No orders found
+                </h2>
+<p id="emptyOrdersMessage">
+                    Your DOSTEA orders will appear here
+                    after you place them.
+                </p>
+<a class="btn btn-primary" href="menu.html">
+<i class="fa-solid fa-mug-hot"></i>
+
+                    Explore Menu
+
+                </a>
+</section>
+<!-- FOOTER -->
+<div class="dashboard-footer">
+<p>
+                    © 2026 DOSTEA Café
+                </p>
+<span>
+                    Brew. Bite. Repeat.
+                </span>
+</div>
+</div>
+</main>
+</div>
+<!-- =========================================================
+     ORDER DETAILS MODAL
+========================================================= -->
+<div class="order-details-modal" id="orderDetailsModal">
+<div class="order-details-card">
+<div class="order-modal-header">
+<div>
+<span>
+                    ORDER DETAILS
+                </span>
+<h2 id="modalOrderID">
+                    #DST-0000
+                </h2>
+</div>
+<button aria-label="Close" id="closeOrderModal" type="button">
+<i class="fa-solid fa-xmark"></i>
+</button>
+</div>
+<div class="order-modal-meta">
+<div>
+<span>
+                    ORDER TYPE
+                </span>
+<strong id="modalOrderType">
+                    —
+                </strong>
+</div>
+<div>
+<span>
+                    TABLE
+                </span>
+<strong id="modalOrderTable">
+                    —
+                </strong>
+</div>
+<div>
+<span>
+                    PAYMENT
+                </span>
+<strong id="modalPayment">
+                    —
+                </strong>
+</div>
+<div>
+<span>
+                    STATUS
+                </span>
+<strong id="modalStatus">
+                    —
+                </strong>
+</div>
+</div>
+<div class="modal-items-heading">
+<span>
+                ITEMS
+            </span>
+</div>
+<div class="modal-order-items" id="modalOrderItems"></div>
+<div class="modal-order-total">
+<span>
+                Order Total
+            </span>
+<strong id="modalTotal">
+                ₹0.00
+            </strong>
+</div>
+</div>
+</div>
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const sidebarOverlay =
+        document.getElementById("sidebarOverlay");
+
+
+    const ordersContainer =
+        document.getElementById("ordersContainer");
+
+    const ordersEmptyState =
+        document.getElementById("ordersEmptyState");
+
+    const emptyOrdersMessage =
+        document.getElementById("emptyOrdersMessage");
+
+
+    const totalOrdersElement =
+        document.getElementById("totalOrders");
+
+    const preparingOrdersElement =
+        document.getElementById("preparingOrders");
+
+    const completedOrdersElement =
+        document.getElementById("completedOrders");
+
+    const totalSpentElement =
+        document.getElementById("totalSpent");
+
+    const visibleOrdersElement =
+        document.getElementById("visibleOrders");
+
+
+    const orderSearch =
+        document.getElementById("orderSearch");
+
+    const globalOrderSearch =
+        document.getElementById("globalOrderSearch");
+
+    const orderTabs =
+        document.querySelectorAll(".order-tab");
+
+    const refreshOrders =
+        document.getElementById("refreshOrders");
+
+
+    const sidebarCartCount =
+        document.getElementById("sidebarCartCount");
+
+    const topCartCount =
+        document.getElementById("topCartCount");
+
+
+    const orderDetailsModal =
+        document.getElementById("orderDetailsModal");
+
+    const closeOrderModal =
+        document.getElementById("closeOrderModal");
+
+
+    let orders = [];
+
+    let activeFilter = "all";
+
+    let searchValue = "";
+
+
+    /* =====================================================
+       SAFE HTML
+    ====================================================== */
+
+    function escapeHTML(value) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            String(value ?? "");
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =====================================================
+       MONEY
+    ====================================================== */
+
+    function money(value) {
+
+        return new Intl.NumberFormat(
+            "en-IN",
+            {
+                style: "currency",
+                currency: "INR",
+                minimumFractionDigits: 2
+            }
+        ).format(value);
+
+    }
+
+
+    /* =====================================================
+       CONVERT SAVED TOTAL TO NUMBER
+    ====================================================== */
+
+    function totalToNumber(value) {
+
+        if (typeof value === "number") {
+            return value;
+        }
+
+
+        return Number(
+            String(value || "")
+                .replace(/[₹,\s]/g, "")
+        ) || 0;
+
+    }
+
+
+    /* =====================================================
+       FORMAT DATE
+    ====================================================== */
+
+    function formatDate(dateValue) {
+
+        if (!dateValue) {
+            return "Recently";
+        }
+
+
+        const date =
+            new Date(dateValue);
+
+
+        if (Number.isNaN(date.getTime())) {
+            return "Recently";
+        }
+
+
+        return new Intl.DateTimeFormat(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        ).format(date);
+
+    }
+
+
+    /* =====================================================
+       LOAD ORDERS
+    ====================================================== */
+
+    function loadOrders() {
+
+        try {
+
+            const savedOrders =
+                localStorage.getItem(
+                    "dostea_orders"
+                );
+
+
+            if (!savedOrders) {
+
+                orders = [];
+
+            } else {
+
+                const parsed =
+                    JSON.parse(savedOrders);
+
+
+                orders =
+                    Array.isArray(parsed)
+                        ? parsed
+                        : [];
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load orders:",
+                error
+            );
+
+            orders = [];
+
+        }
+
+
+        updateStats();
+
+        renderOrders();
+
+    }
+
+
+    /* =====================================================
+       STATS
+    ====================================================== */
+
+    function updateStats() {
+
+        const preparing =
+            orders.filter(function (order) {
+
+                return (
+                    order.status || ""
+                ).toLowerCase() === "preparing";
+
+            }).length;
+
+
+        const completed =
+            orders.filter(function (order) {
+
+                return (
+                    order.status || ""
+                ).toLowerCase() === "completed";
+
+            }).length;
+
+
+        const spent =
+            orders.reduce(
+                function (total, order) {
+
+                    return (
+                        total +
+                        totalToNumber(order.total)
+                    );
+
+                },
+                0
+            );
+
+
+        totalOrdersElement.textContent =
+            orders.length;
+
+
+        preparingOrdersElement.textContent =
+            preparing;
+
+
+        completedOrdersElement.textContent =
+            completed;
+
+
+        totalSpentElement.textContent =
+            money(spent);
+
+    }
+
+
+    /* =====================================================
+       FILTERED ORDERS
+    ====================================================== */
+
+    function getFilteredOrders() {
+
+        return orders.filter(function (order) {
+
+
+            const status =
+                String(
+                    order.status || "Preparing"
+                ).toLowerCase();
+
+
+            const itemsText =
+                Array.isArray(order.items)
+                    ? order.items
+                        .map(function (item) {
+                            return item.name || "";
+                        })
+                        .join(" ")
+                    : "";
+
+
+            const searchableText = `
+
+                ${order.id || ""}
+
+                ${order.orderType || ""}
+
+                ${order.payment || ""}
+
+                ${order.table || ""}
+
+                ${itemsText}
+
+            `.toLowerCase();
+
+
+            const statusMatch =
+                activeFilter === "all" ||
+                status === activeFilter;
+
+
+            const searchMatch =
+                searchValue === "" ||
+                searchableText.includes(
+                    searchValue
+                );
+
+
+            return (
+                statusMatch &&
+                searchMatch
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       RENDER ORDERS
+    ====================================================== */
+
+    function renderOrders() {
+
+        const filteredOrders =
+            getFilteredOrders();
+
+
+        ordersContainer.innerHTML = "";
+
+
+        visibleOrdersElement.textContent =
+            filteredOrders.length;
+
+
+        if (filteredOrders.length === 0) {
+
+            ordersContainer.style.display =
+                "none";
+
+
+            ordersEmptyState.classList.add(
+                "show"
+            );
+
+
+            if (
+                orders.length > 0 &&
+                (
+                    activeFilter !== "all" ||
+                    searchValue !== ""
+                )
+            ) {
+
+                emptyOrdersMessage.textContent =
+                    "No orders match your current search or filter.";
+
+            } else {
+
+                emptyOrdersMessage.textContent =
+                    "Your DOSTEA orders will appear here after you place them.";
+
+            }
+
+
+            return;
+
+        }
+
+
+        ordersContainer.style.display = "";
+
+        ordersEmptyState.classList.remove(
+            "show"
+        );
+
+
+        filteredOrders.forEach(
+            function (order) {
+
+                const card =
+                    createOrderCard(order);
+
+
+                ordersContainer.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CREATE ORDER CARD
+    ====================================================== */
+
+    function createOrderCard(order) {
+
+        const card =
+            document.createElement("article");
+
+
+        card.className =
+            "customer-order-card";
+
+
+        const status =
+            String(
+                order.status || "Preparing"
+            );
+
+
+        const statusClass =
+            status
+                .toLowerCase()
+                .replace(/\s+/g, "-");
+
+
+        const items =
+            Array.isArray(order.items)
+                ? order.items
+                : [];
+
+
+        const totalQuantity =
+            items.reduce(
+                function (total, item) {
+
+                    return (
+                        total +
+                        Number(
+                            item.quantity || 1
+                        )
+                    );
+
+                },
+                0
+            );
+
+
+        const previewItems =
+            items
+                .slice(0, 3)
+                .map(function (item) {
+
+                    return `
+
+                        <div class="order-preview-item">
+
+                            <span>
+                                ${Number(item.quantity || 1)}×
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(item.name)}
+                            </strong>
+
+                        </div>
+
+                    `;
+
+                })
+                .join("");
+
+
+        const extraItems =
+            items.length > 3
+                ? `
+                    <span class="more-items">
+                        +${items.length - 3} more
+                    </span>
+                `
+                : "";
+
+
+        card.innerHTML = `
+
+            <div class="order-card-top">
+
+
+                <div class="order-number-area">
+
+                    <div class="order-number-icon">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ORDER
+                        </span>
+
+                        <h3>
+                            ${escapeHTML(order.id || "#DST")}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <span
+                    class="order-status status-${statusClass}"
+                >
+
+                    <i class="fa-solid fa-circle"></i>
+
+                    ${escapeHTML(status)}
+
+                </span>
+
+
+            </div>
+
+
+            <div class="order-card-meta">
+
+
+                <div>
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    <span>
+                        ${escapeHTML(
+                            formatDate(order.date)
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-utensils"></i>
+
+                    <span>
+                        ${escapeHTML(
+                            order.orderType ||
+                            "Dine In"
+                        )}
+                    </span>
+
+                </div>
+
+
+                ${
+                    order.table
+                        ? `
+
+                            <div>
+
+                                <i class="fa-solid fa-chair"></i>
+
+                                <span>
+                                    ${escapeHTML(order.table)}
+                                </span>
+
+                            </div>
+
+                        `
+                        : ""
+                }
+
+
+                <div>
+
+                    <i class="fa-regular fa-credit-card"></i>
+
+                    <span>
+                        ${escapeHTML(
+                            order.payment || "UPI"
+                        )}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="order-items-preview">
+
+                <span class="order-items-label">
+                    ${totalQuantity}
+                    ${totalQuantity === 1 ? "ITEM" : "ITEMS"}
+                </span>
+
+                ${previewItems}
+
+                ${extraItems}
+
+            </div>
+
+
+            <div class="order-card-bottom">
+
+
+                <div class="order-total-area">
+
+                    <span>
+                        TOTAL
+                    </span>
+
+                    <strong>
+                        ${
+                            escapeHTML(
+                                order.total || "₹0.00"
+                            )
+                        }
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="view-order-btn"
+                >
+
+                    View Details
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+
+            </div>
+
+        `;
+
+
+        const detailsButton =
+            card.querySelector(
+                ".view-order-btn"
+            );
+
+
+        detailsButton.addEventListener(
+            "click",
+            function () {
+
+                openOrderDetails(order);
+
+            }
+        );
+
+
+        return card;
+
+    }
+
+
+    /* =====================================================
+       ORDER DETAILS MODAL
+    ====================================================== */
+
+    function openOrderDetails(order) {
+
+        document.getElementById(
+            "modalOrderID"
+        ).textContent =
+            order.id || "#DST";
+
+
+        document.getElementById(
+            "modalOrderType"
+        ).textContent =
+            order.orderType || "Dine In";
+
+
+        document.getElementById(
+            "modalOrderTable"
+        ).textContent =
+            order.table || "—";
+
+
+        document.getElementById(
+            "modalPayment"
+        ).textContent =
+            order.payment || "UPI";
+
+
+        document.getElementById(
+            "modalStatus"
+        ).textContent =
+            order.status || "Preparing";
+
+
+        document.getElementById(
+            "modalTotal"
+        ).textContent =
+            order.total || "₹0.00";
+
+
+        const modalItems =
+            document.getElementById(
+                "modalOrderItems"
+            );
+
+
+        modalItems.innerHTML = "";
+
+
+        const items =
+            Array.isArray(order.items)
+                ? order.items
+                : [];
+
+
+        items.forEach(function (item) {
+
+            const row =
+                document.createElement("div");
+
+
+            row.className =
+                "modal-order-item";
+
+
+            const quantity =
+                Number(
+                    item.quantity || 1
+                );
+
+
+            const price =
+                Number(
+                    item.price || 0
+                );
+
+
+            row.innerHTML = `
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(item.name)}
+                    </strong>
+
+                    <span>
+                        ${quantity} × ${money(price)}
+                    </span>
+
+                </div>
+
+
+                <strong>
+                    ${money(price * quantity)}
+                </strong>
+
+            `;
+
+
+            modalItems.appendChild(row);
+
+        });
+
+
+        orderDetailsModal.classList.add(
+            "show"
+        );
+
+
+        document.body.classList.add(
+            "modal-open"
+        );
+
+    }
+
+
+    function closeDetailsModal() {
+
+        orderDetailsModal.classList.remove(
+            "show"
+        );
+
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+
+    }
+
+
+    closeOrderModal.addEventListener(
+        "click",
+        closeDetailsModal
+    );
+
+
+    orderDetailsModal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                orderDetailsModal
+            ) {
+
+                closeDetailsModal();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       FILTER TABS
+    ====================================================== */
+
+    orderTabs.forEach(function (tab) {
+
+        tab.addEventListener(
+            "click",
+            function () {
+
+                orderTabs.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                tab.classList.add("active");
+
+
+                activeFilter =
+                    (
+                        tab.dataset.filter ||
+                        "all"
+                    ).toLowerCase();
+
+
+                renderOrders();
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       SEARCH
+    ====================================================== */
+
+    function handleSearch(value) {
+
+        searchValue =
+            value
+                .toLowerCase()
+                .trim();
+
+
+        if (orderSearch) {
+            orderSearch.value = value;
+        }
+
+
+        if (globalOrderSearch) {
+            globalOrderSearch.value = value;
+        }
+
+
+        renderOrders();
+
+    }
+
+
+    orderSearch?.addEventListener(
+        "input",
+        function () {
+
+            handleSearch(
+                orderSearch.value
+            );
+
+        }
+    );
+
+
+    globalOrderSearch?.addEventListener(
+        "input",
+        function () {
+
+            handleSearch(
+                globalOrderSearch.value
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       REFRESH
+    ====================================================== */
+
+    refreshOrders?.addEventListener(
+        "click",
+        function () {
+
+            const icon =
+                refreshOrders.querySelector(
+                    "i"
+                );
+
+
+            icon?.classList.add("fa-spin");
+
+
+            loadOrders();
+
+
+            setTimeout(function () {
+
+                icon?.classList.remove(
+                    "fa-spin"
+                );
+
+            }, 650);
+
+        }
+    );
+
+
+    /* =====================================================
+       CART COUNT
+    ====================================================== */
+
+    function updateCartCount() {
+
+        let cart = [];
+
+
+        try {
+
+            const saved =
+                localStorage.getItem(
+                    "dostea_cart"
+                );
+
+
+            if (saved) {
+
+                const parsed =
+                    JSON.parse(saved);
+
+
+                if (Array.isArray(parsed)) {
+                    cart = parsed;
+                }
+
+            }
+
+        } catch (error) {
+
+            cart = [];
+
+        }
+
+
+        const count =
+            cart.reduce(
+                function (total, item) {
+
+                    return (
+                        total +
+                        Number(
+                            item.quantity || 1
+                        )
+                    );
+
+                },
+                0
+            );
+
+
+        if (sidebarCartCount) {
+            sidebarCartCount.textContent =
+                count;
+        }
+
+
+        if (topCartCount) {
+            topCartCount.textContent =
+                count;
+        }
+
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
+
+    mobileMenuBtn?.addEventListener(
+        "click",
+        function () {
+
+            sidebar?.classList.add("open");
+
+            sidebarOverlay?.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    sidebarOverlay?.addEventListener(
+        "click",
+        function () {
+
+            sidebar?.classList.remove(
+                "open"
+            );
+
+            sidebarOverlay?.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       ACCORDION
+    ====================================================== */
+
+    const accordions =
+        document.querySelectorAll(
+            ".sidebar-accordion"
+        );
+
+
+    accordions.forEach(function (accordion) {
+
+        const button =
+            accordion.querySelector(
+                ".sidebar-parent"
+            );
+
+
+        button?.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    accordion.classList.contains(
+                        "open"
+                    );
+
+
+                accordions.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "open"
+                        );
+
+
+                        item
+                            .querySelector(
+                                ".sidebar-parent"
+                            )
+                            ?.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                    }
+                );
+
+
+                if (!isOpen) {
+
+                    accordion.classList.add(
+                        "open"
+                    );
+
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       ESCAPE
+    ====================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                closeDetailsModal();
+
+
+                sidebar?.classList.remove(
+                    "open"
+                );
+
+
+                sidebarOverlay?.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (window.innerWidth > 900) {
+
+                sidebar?.classList.remove(
+                    "open"
+                );
+
+
+                sidebarOverlay?.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL
+    ====================================================== */
+
+    updateCartCount();
+
+    loadOrders();
+
+
+});
+
+</script>
+
+<script>
+/* DOSTEA GLOBAL AUTH UI SYNC */
+document.addEventListener("DOMContentLoaded", function () {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem("dostea_current_user")); } catch(e) { user = null; }
+
+    const name = user ? (user.fullName || user.name || "DOSTEA User") : "";
+    const email = user ? (user.email || "") : "";
+    const initial = name ? name.trim().charAt(0).toUpperCase() : "D";
+
+    /* Existing guest/logged blocks */
+    document.querySelectorAll("#guestSidebar, #topbarGuest").forEach(el => {
+        el.style.display = user ? "none" : "flex";
+    });
+    document.querySelectorAll("#loggedInSidebar, #topbarUser").forEach(el => {
+        el.style.display = user ? "flex" : "none";
+    });
+
+    /* Update standard user fields */
+    document.querySelectorAll("#sidebarAvatar, #topbarAvatar, .user-avatar, .top-profile-avatar").forEach(el => {
+        if (user) el.textContent = initial;
+    });
+    document.querySelectorAll("#sidebarUserName, #topbarUserName, .user-details h4, .top-profile-info strong").forEach(el => {
+        if (user) el.textContent = name;
+    });
+    document.querySelectorAll("#sidebarUserEmail").forEach(el => {
+        if (user) el.textContent = email;
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in sidebar user */
+    document.querySelectorAll(".sidebar > .sidebar-user").forEach(oldUser => {
+        if (oldUser.closest("#loggedInSidebar")) return;
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".user-details h4");
+            const av = oldUser.querySelector(".user-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            if (!oldUser.parentElement.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                oldUser.insertAdjacentElement("afterend", auth);
+            }
+        }
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in top profile */
+    document.querySelectorAll(".topbar-actions .top-profile, .topbar-actions > .topbar-user:not(#topbarUser)").forEach(oldUser => {
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".top-profile-info strong, strong");
+            const av = oldUser.querySelector(".top-profile-avatar, .topbar-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            const actions = oldUser.parentElement;
+            if (actions && !actions.querySelector(".dostea-auto-topbar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-topbar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                actions.appendChild(auth);
+            }
+        }
+    });
+
+    /* Pages with sidebar-bottom but no guest/logged wrappers */
+    document.querySelectorAll(".sidebar-bottom").forEach(bottom => {
+        if (bottom.querySelector("#guestSidebar, #loggedInSidebar")) return;
+        const existingUser = bottom.querySelector(".sidebar-user, .sidebar-user-content");
+        if (user) {
+            if (existingUser) existingUser.style.display = "flex";
+        } else {
+            if (existingUser) existingUser.style.display = "none";
+            if (!bottom.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                bottom.appendChild(auth);
+            }
+        }
+    });
+
+    /* Shared styling for auto-created auth controls */
+    if (!document.getElementById("dosteaAuthSyncStyle")) {
+        const style = document.createElement("style");
+        style.id = "dosteaAuthSyncStyle";
+        style.textContent = `
+            .dostea-auto-sidebar-auth{display:flex;gap:8px;padding:14px 16px;width:100%;box-sizing:border-box}
+            .dostea-auto-sidebar-auth a,.dostea-auto-topbar-auth a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 12px/1 'DM Sans',sans-serif;border-radius:9px;transition:.25s ease}
+            .dostea-auto-sidebar-auth a{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-sidebar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+            .dostea-auto-topbar-auth{display:flex;align-items:center;gap:8px}
+            .dostea-auto-topbar-auth a{padding:10px 14px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-topbar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+        `;
+        document.head.appendChild(style);
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2861 @@
+/* =========================================================
+   DOSTEA — AMENITIES PAGE
+   amenities.css
+========================================================= */
+
+:root {
+    --am-bg: #080806;
+    --am-bg-soft: #0d0c09;
+    --am-card: #11100c;
+    --am-card-soft: #16140f;
+
+    --am-gold: #d8ad5c;
+    --am-gold-light: #f2d28f;
+    --am-gold-dark: #9b7434;
+
+    --am-white: #f7f3ea;
+    --am-muted: #9f9a8e;
+    --am-muted-dark: #706c63;
+
+    --am-border: rgba(216, 173, 92, 0.16);
+    --am-border-light: rgba(255, 255, 255, 0.075);
+
+    --am-radius-xl: 34px;
+    --am-radius-lg: 25px;
+    --am-radius-md: 17px;
+
+    --am-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.42);
+}
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--am-bg);
+    color: var(--am-white);
+}
+
+.main-content {
+    overflow-x: hidden;
+}
+
+.amenities-page-content {
+    width: 100%;
+    padding: 24px 28px 75px;
+}
+
+
+/* =========================================================
+   TOPBAR SEARCH
+========================================================= */
+
+.topbar-search {
+    width: min(370px, 34vw);
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0 17px;
+
+    border: 1px solid rgba(216, 173, 92, 0.14);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+.topbar-search:focus-within {
+    border-color: rgba(216, 173, 92, 0.45);
+    background: rgba(216, 173, 92, 0.035);
+
+    box-shadow:
+        0 0 0 3px rgba(216, 173, 92, 0.045),
+        0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.topbar-search i {
+    color: var(--am-gold);
+    font-size: 13px;
+}
+
+.topbar-search input {
+    width: 100%;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: var(--am-white);
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+}
+
+.topbar-search input::placeholder {
+    color: #68645c;
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+.amenities-cart-button {
+    position: relative;
+}
+
+.amenities-cart-count {
+    position: absolute;
+
+    top: -4px;
+    right: -4px;
+
+    min-width: 17px;
+    height: 17px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0 4px;
+
+    border: 2px solid #080806;
+    border-radius: 50px;
+
+    background: var(--am-gold);
+    color: #130e06;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   COMMON SECTION LABEL
+========================================================= */
+
+.amenities-section-label,
+.amenities-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--am-gold);
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.amenities-section-label::before {
+    content: "";
+
+    width: 28px;
+    height: 1px;
+
+    background: var(--am-gold);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.amenities-hero {
+    position: relative;
+
+    min-height: 690px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid var(--am-border);
+    border-radius: var(--am-radius-xl);
+
+    background: #080806;
+
+    box-shadow: var(--am-shadow);
+}
+
+.amenities-hero-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform: scale(1.001);
+
+    filter:
+        brightness(0.8)
+        contrast(1.03);
+}
+
+.amenities-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 5, 4, 0.97) 0%,
+            rgba(5, 5, 4, 0.89) 31%,
+            rgba(5, 5, 4, 0.57) 58%,
+            rgba(5, 5, 4, 0.25) 100%
+        );
+}
+
+.amenities-hero-gradient {
+    position: absolute;
+    inset: auto 0 0;
+
+    height: 260px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(5, 5, 4, 0.98),
+            transparent
+        );
+}
+
+.amenities-hero-glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    pointer-events: none;
+}
+
+.amenities-glow-one {
+    width: 400px;
+    height: 400px;
+
+    left: -180px;
+    bottom: -180px;
+
+    background: rgba(216, 173, 92, 0.09);
+}
+
+.amenities-glow-two {
+    width: 350px;
+    height: 350px;
+
+    right: -160px;
+    top: -170px;
+
+    background: rgba(216, 173, 92, 0.07);
+}
+
+
+/* =========================================================
+   HERO DECORATIVE DEPTH LINES
+========================================================= */
+
+.amenities-depth-line {
+    position: absolute;
+    z-index: 2;
+
+    border: 1px solid rgba(216, 173, 92, 0.08);
+
+    pointer-events: none;
+}
+
+.amenities-line-one {
+    width: 360px;
+    height: 360px;
+
+    right: -120px;
+    top: -130px;
+
+    transform: rotate(28deg);
+}
+
+.amenities-line-two {
+    width: 220px;
+    height: 220px;
+
+    right: 80px;
+    top: -110px;
+
+    transform: rotate(28deg);
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.amenities-hero-content {
+    position: relative;
+    z-index: 5;
+
+    width: min(720px, 61%);
+
+    padding: 70px 0 145px 70px;
+}
+
+.amenities-status {
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 26px;
+    padding: 8px 13px;
+
+    border: 1px solid rgba(216, 173, 92, 0.2);
+    border-radius: 100px;
+
+    background: rgba(8, 8, 6, 0.58);
+
+    color: #c3bdb1;
+
+    backdrop-filter: blur(10px);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.amenities-status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #76b86a;
+
+    box-shadow:
+        0 0 13px rgba(118, 184, 106, 0.72);
+}
+
+.amenities-hero-content h1 {
+    max-width: 720px;
+
+    margin: 18px 0 21px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(58px, 6vw, 91px);
+    font-weight: 500;
+
+    line-height: 0.96;
+    letter-spacing: -3px;
+}
+
+.amenities-hero-content h1 em {
+    display: block;
+
+    color: var(--am-gold-light);
+
+    font-weight: 500;
+}
+
+.amenities-hero-content > p {
+    max-width: 585px;
+
+    margin: 0;
+
+    color: #b5afa4;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.amenities-primary-btn,
+.amenities-secondary-btn {
+    min-height: 49px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+
+    padding: 0 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.amenities-primary-btn {
+    border: 1px solid var(--am-gold);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--am-gold-light),
+            var(--am-gold)
+        );
+
+    color: #171107;
+
+    box-shadow:
+        0 13px 32px rgba(216, 173, 92, 0.13);
+}
+
+.amenities-primary-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 40px rgba(216, 173, 92, 0.22);
+}
+
+.amenities-secondary-btn {
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    background: rgba(255, 255, 255, 0.035);
+    color: #e9e3d8;
+}
+
+.amenities-secondary-btn:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(216, 173, 92, 0.32);
+
+    background: rgba(216, 173, 92, 0.055);
+}
+
+.amenities-dark-btn {
+    margin-top: 26px;
+}
+
+.amenities-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 32px;
+}
+
+
+/* =========================================================
+   HERO FEATURE CARD
+========================================================= */
+
+.amenities-hero-card {
+    position: absolute;
+    z-index: 6;
+
+    right: 44px;
+    bottom: 118px;
+
+    width: 335px;
+
+    padding: 24px;
+
+    border: 1px solid rgba(216, 173, 92, 0.23);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 16, 11, 0.94),
+            rgba(8, 8, 6, 0.88)
+        );
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.4);
+}
+
+.amenities-hero-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.amenities-hero-card-top > span:first-child {
+    color: var(--am-gold);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.amenities-live-badge {
+    padding: 6px 9px;
+
+    border: 1px solid rgba(118, 184, 106, 0.25);
+    border-radius: 100px;
+
+    background: rgba(118, 184, 106, 0.06);
+    color: #8ac67e;
+
+    font-size: 7px !important;
+    letter-spacing: 1px !important;
+}
+
+.amenities-hero-card-content {
+    padding: 19px 0;
+}
+
+.amenities-card-label {
+    color: #777269;
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.amenities-hero-card-content strong {
+    display: block;
+
+    margin: 8px 0 8px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.amenities-hero-card-content p {
+    margin: 0;
+
+    color: #8e897f;
+
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.amenities-hero-card > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 16px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.065);
+
+    color: var(--am-gold-light);
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.amenities-hero-card > a i {
+    transition: transform 0.3s ease;
+}
+
+.amenities-hero-card > a:hover i {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.amenities-hero-stats {
+    position: absolute;
+    z-index: 6;
+
+    left: 70px;
+    right: 70px;
+    bottom: 31px;
+
+    display: flex;
+    align-items: center;
+
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.amenities-stat strong,
+.amenities-stat span {
+    display: block;
+}
+
+.amenities-stat strong {
+    color: var(--am-gold-light);
+
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.amenities-stat span {
+    margin-top: 3px;
+
+    color: #777269;
+
+    font-size: 9px;
+}
+
+.amenities-stat-divider {
+    width: 1px;
+    height: 32px;
+
+    margin: 0 30px;
+
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* =========================================================
+   QUICK AMENITIES BAR
+========================================================= */
+
+.amenities-quick-bar {
+    display: grid;
+    grid-template-columns:
+        1fr auto
+        1fr auto
+        1fr auto
+        1fr;
+
+    align-items: center;
+
+    margin-top: 24px;
+    padding: 25px 28px;
+
+    border: 1px solid rgba(216, 173, 92, 0.11);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0f0e0a,
+            #090806
+        );
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.18);
+}
+
+.amenities-quick-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.amenities-quick-item.amenity-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.amenities-quick-icon {
+    width: 43px;
+    height: 43px;
+
+    flex: 0 0 43px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(216, 173, 92, 0.18);
+    border-radius: 12px;
+
+    background: rgba(216, 173, 92, 0.035);
+    color: var(--am-gold);
+
+    font-size: 14px;
+}
+
+.amenities-quick-item span,
+.amenities-quick-item strong {
+    display: block;
+}
+
+.amenities-quick-item span {
+    margin-bottom: 4px;
+
+    color: #706c63;
+
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.amenities-quick-item strong {
+    color: #d9d3c7;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.amenities-quick-divider {
+    width: 1px;
+    height: 35px;
+
+    margin: 0 22px;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================================
+   INTRO SECTION
+========================================================= */
+
+.amenities-intro {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 80px;
+
+    padding: 110px 15px;
+}
+
+
+/* =========================================================
+   INTRO VISUAL
+========================================================= */
+
+.amenities-intro-visual {
+    position: relative;
+
+    min-height: 570px;
+}
+
+.amenities-intro-main-image {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 82%;
+    height: 500px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(216, 173, 92, 0.15);
+    border-radius: 28px;
+
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.34);
+}
+
+.amenities-intro-main-image img,
+.amenities-intro-small-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        filter 1s ease;
+}
+
+.amenities-intro-main-image img {
+    filter:
+        brightness(0.85)
+        contrast(1.03);
+}
+
+.amenities-intro-main-image:hover img {
+    filter:
+        brightness(0.98)
+        contrast(1.03);
+}
+
+.amenities-intro-small-image {
+    position: absolute;
+    z-index: 3;
+
+    right: 0;
+    bottom: 0;
+
+    width: 43%;
+    height: 250px;
+
+    overflow: hidden;
+
+    border: 7px solid var(--am-bg);
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.42);
+}
+
+.amenities-intro-small-image img {
+    filter: brightness(0.9);
+}
+
+.amenities-intro-floating-card {
+    position: absolute;
+    z-index: 5;
+
+    left: 28px;
+    bottom: 37px;
+
+    max-width: 310px;
+
+    padding: 17px 20px;
+
+    border: 1px solid rgba(216, 173, 92, 0.24);
+    border-radius: 14px;
+
+    background: rgba(10, 9, 7, 0.91);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.amenities-intro-floating-card span,
+.amenities-intro-floating-card strong {
+    display: block;
+}
+
+.amenities-intro-floating-card span {
+    color: var(--am-gold);
+
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.amenities-intro-floating-card strong {
+    margin-top: 6px;
+
+    color: #ded8cd;
+
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   INTRO CONTENT
+========================================================= */
+
+.amenities-intro-content {
+    max-width: 620px;
+}
+
+.amenities-intro-content h2 {
+    margin: 16px 0 22px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(45px, 4.8vw, 67px);
+    font-weight: 500;
+
+    line-height: 1.03;
+    letter-spacing: -2px;
+}
+
+.amenities-intro-content h2 em {
+    display: block;
+
+    color: var(--am-gold-light);
+
+    font-weight: 500;
+}
+
+.amenities-intro-content > p {
+    margin: 0 0 15px;
+
+    color: var(--am-muted);
+
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.amenities-intro-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+
+    margin: 30px 0;
+}
+
+.amenities-intro-features > div {
+    padding: 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 13px;
+
+    background: rgba(255, 255, 255, 0.018);
+}
+
+.amenities-intro-features span {
+    color: var(--am-gold);
+
+    font-family: "Playfair Display", serif;
+    font-size: 15px;
+}
+
+.amenities-intro-features strong {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #ddd7cb;
+
+    font-size: 10px;
+}
+
+.amenities-intro-features p {
+    margin: 4px 0 0;
+
+    color: #706c64;
+
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+.amenities-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--am-gold-light);
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.amenities-text-link i {
+    transition: transform 0.3s ease;
+}
+
+.amenities-text-link:hover i {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.amenities-section-heading {
+    scroll-margin-top: 100px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+
+    padding: 90px 0 42px;
+
+    border-top: 1px solid rgba(216, 173, 92, 0.12);
+}
+
+.amenities-section-heading h2,
+.amenities-care-heading h2 {
+    margin: 14px 0 0;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(45px, 4.7vw, 67px);
+    font-weight: 500;
+
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.amenities-section-heading h2 em,
+.amenities-care-heading h2 em {
+    display: block;
+
+    color: var(--am-gold-light);
+
+    font-weight: 500;
+}
+
+.amenities-heading-right {
+    max-width: 390px;
+}
+
+.amenities-heading-right p {
+    margin: 0;
+
+    color: var(--am-muted);
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   MAIN AMENITIES GRID
+========================================================= */
+
+.amenities-main-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+}
+
+.amenities-main-grid-continued {
+    margin-top: 19px;
+}
+
+.amenity-card {
+    position: relative;
+
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 26px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 22px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(216, 173, 92, 0.035),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #11100c,
+            #0a0907
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.19);
+
+    opacity: 0;
+    transform: translateY(24px);
+
+    transition:
+        opacity 0.65s ease,
+        transform 0.65s ease,
+        border-color 0.55s ease,
+        box-shadow 0.55s ease;
+}
+
+.amenity-card.amenity-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.amenity-card:hover {
+    border-color: rgba(216, 173, 92, 0.27);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(216, 173, 92, 0.045);
+}
+
+.amenity-card-featured {
+    border-color: rgba(216, 173, 92, 0.19);
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(216, 173, 92, 0.09),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #15120c,
+            #0a0907
+        );
+}
+
+.amenity-card-number {
+    position: absolute;
+
+    top: 21px;
+    right: 22px;
+
+    color: rgba(216, 173, 92, 0.18);
+
+    font-family: "Playfair Display", serif;
+    font-size: 37px;
+    font-weight: 500;
+}
+
+.amenity-icon {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 27px;
+
+    border: 1px solid rgba(216, 173, 92, 0.18);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(216, 173, 92, 0.07),
+            rgba(216, 173, 92, 0.015)
+        );
+
+    color: var(--am-gold);
+
+    font-size: 17px;
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.amenity-card:hover .amenity-icon {
+    background: rgba(216, 173, 92, 0.1);
+
+    box-shadow:
+        0 0 25px rgba(216, 173, 92, 0.07);
+}
+
+.amenity-label {
+    color: var(--am-gold);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.amenity-card h3 {
+    margin: 8px 0 10px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.amenity-card > p {
+    margin: 0;
+
+    color: #858077;
+
+    font-size: 11px;
+    line-height: 1.75;
+}
+
+.amenity-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: auto;
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.amenity-card-footer span {
+    color: #6e6a62;
+
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.amenity-card-footer i {
+    color: var(--am-gold);
+
+    font-size: 12px;
+}
+
+.amenity-card.amenity-hidden {
+    display: none;
+}
+
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.amenities-no-results {
+    margin-top: 25px;
+    padding: 65px 25px;
+
+    text-align: center;
+
+    border: 1px dashed rgba(216, 173, 92, 0.2);
+    border-radius: 22px;
+
+    background: rgba(216, 173, 92, 0.018);
+}
+
+.amenities-no-results-icon {
+    width: 55px;
+    height: 55px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 0 auto 17px;
+
+    border: 1px solid rgba(216, 173, 92, 0.25);
+    border-radius: 50%;
+
+    color: var(--am-gold);
+}
+
+.amenities-no-results > span {
+    color: var(--am-gold);
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.amenities-no-results h3 {
+    margin: 9px 0;
+
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.amenities-no-results p {
+    margin: 0 auto 18px;
+
+    color: var(--am-muted);
+
+    font-size: 11px;
+}
+
+.amenities-no-results button {
+    padding: 11px 17px;
+
+    border: 1px solid var(--am-gold);
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--am-gold-light);
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CONNECT & WORK
+========================================================= */
+
+.amenities-connect-section {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: stretch;
+    gap: 65px;
+
+    margin-top: 115px;
+    padding: 65px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(216, 173, 92, 0.13);
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(216, 173, 92, 0.07),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #11100c,
+            #090806
+        );
+}
+
+.amenities-connect-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.amenities-connect-content h2,
+.amenities-groups-content h2 {
+    margin: 15px 0 18px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(43px, 4.3vw, 62px);
+    font-weight: 500;
+
+    line-height: 1.03;
+    letter-spacing: -2px;
+}
+
+.amenities-connect-content h2 em,
+.amenities-groups-content h2 em {
+    display: block;
+
+    color: var(--am-gold-light);
+
+    font-weight: 500;
+}
+
+.amenities-connect-content > p,
+.amenities-groups-content > p {
+    margin: 0;
+
+    color: var(--am-muted);
+
+    font-size: 12px;
+    line-height: 1.85;
+}
+
+.amenities-connect-list {
+    display: grid;
+    gap: 9px;
+
+    margin: 27px 0;
+}
+
+.amenities-connect-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.018);
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        border-color 0.3s ease;
+}
+
+.amenities-connect-item.amenity-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.amenities-connect-item:hover {
+    border-color: rgba(216, 173, 92, 0.18);
+}
+
+.amenities-connect-item > span {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: rgba(216, 173, 92, 0.06);
+    color: var(--am-gold);
+
+    font-size: 12px;
+}
+
+.amenities-connect-item strong {
+    display: block;
+
+    color: #dcd6cb;
+
+    font-size: 10px;
+}
+
+.amenities-connect-item p {
+    margin: 3px 0 0;
+
+    color: #706c63;
+
+    font-size: 8px;
+}
+
+.amenities-connect-content .amenities-primary-btn {
+    width: fit-content;
+}
+
+
+/* =========================================================
+   CONNECT VISUAL
+========================================================= */
+
+.amenities-connect-visual {
+    position: relative;
+
+    min-height: 550px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(216, 173, 92, 0.14);
+    border-radius: 24px;
+}
+
+.amenities-connect-visual > img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        brightness(0.82)
+        contrast(1.03);
+
+    transition: filter 1s ease;
+}
+
+.amenities-connect-visual:hover > img {
+    filter:
+        brightness(0.96)
+        contrast(1.03);
+}
+
+.amenities-connect-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(5, 5, 4, 0.8),
+            transparent 58%
+        );
+}
+
+.amenities-connect-floating {
+    position: absolute;
+    z-index: 3;
+
+    top: 22px;
+    right: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 14px 16px;
+
+    border: 1px solid rgba(216, 173, 92, 0.22);
+    border-radius: 13px;
+
+    background: rgba(8, 8, 6, 0.82);
+
+    backdrop-filter: blur(14px);
+}
+
+.amenities-connect-floating span,
+.amenities-connect-floating strong {
+    display: block;
+}
+
+.amenities-connect-floating span {
+    color: #777269;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+}
+
+.amenities-connect-floating strong {
+    margin-top: 4px;
+
+    font-size: 10px;
+}
+
+.amenities-connect-floating > i {
+    color: var(--am-gold);
+
+    font-size: 16px;
+}
+
+.amenities-connect-caption {
+    position: absolute;
+    z-index: 3;
+
+    left: 28px;
+    bottom: 27px;
+}
+
+.amenities-connect-caption span {
+    display: block;
+
+    color: var(--am-gold);
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.amenities-connect-caption strong {
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   GROUP / FAMILY SECTION
+========================================================= */
+
+.amenities-groups-section {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: center;
+    gap: 75px;
+
+    padding: 120px 15px;
+}
+
+.amenities-groups-visual {
+    position: relative;
+
+    min-height: 560px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(216, 173, 92, 0.14);
+    border-radius: 29px;
+
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.3);
+}
+
+.amenities-groups-visual > img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        brightness(0.84)
+        contrast(1.03);
+
+    transition: filter 1s ease;
+}
+
+.amenities-groups-visual:hover > img {
+    filter:
+        brightness(0.98)
+        contrast(1.03);
+}
+
+.amenities-groups-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(5, 5, 4, 0.78),
+            transparent 58%
+        );
+}
+
+.amenities-groups-number {
+    position: absolute;
+    z-index: 3;
+
+    top: 28px;
+    left: 30px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-family: "Playfair Display", serif;
+    font-size: 23px;
+}
+
+.amenities-groups-badge {
+    position: absolute;
+    z-index: 3;
+
+    left: 28px;
+    right: 28px;
+    bottom: 27px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 17px;
+
+    border: 1px solid rgba(216, 173, 92, 0.2);
+    border-radius: 14px;
+
+    background: rgba(8, 8, 6, 0.82);
+
+    backdrop-filter: blur(14px);
+}
+
+.amenities-groups-badge > i {
+    width: 41px;
+    height: 41px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: rgba(216, 173, 92, 0.08);
+    color: var(--am-gold);
+}
+
+.amenities-groups-badge span,
+.amenities-groups-badge strong {
+    display: block;
+}
+
+.amenities-groups-badge span {
+    color: var(--am-gold);
+
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.amenities-groups-badge strong {
+    margin-top: 5px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   GROUP FEATURES
+========================================================= */
+
+.amenities-group-features {
+    display: grid;
+    gap: 0;
+
+    margin-top: 30px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.amenities-group-features > div {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.amenities-group-features > div > span {
+    color: var(--am-gold);
+
+    font-family: "Playfair Display", serif;
+    font-size: 15px;
+}
+
+.amenities-group-features strong {
+    display: block;
+
+    color: #ddd7cc;
+
+    font-size: 10px;
+}
+
+.amenities-group-features p {
+    margin: 3px 0 0;
+
+    color: #716d64;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   CARE / HYGIENE
+========================================================= */
+
+.amenities-care-section {
+    padding: 90px 0 110px;
+
+    border-top: 1px solid rgba(216, 173, 92, 0.11);
+}
+
+.amenities-care-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 50px;
+
+    margin-bottom: 40px;
+}
+
+.amenities-care-heading > p {
+    max-width: 360px;
+
+    margin: 0;
+
+    color: var(--am-muted);
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.amenities-care-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.amenities-care-card {
+    position: relative;
+
+    min-height: 295px;
+
+    padding: 24px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #11100c,
+            #0a0907
+        );
+
+    opacity: 0;
+    transform: translateY(18px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.amenities-care-card.amenity-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.amenities-care-card:hover {
+    border-color: rgba(216, 173, 92, 0.24);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25),
+        0 0 25px rgba(216, 173, 92, 0.04);
+}
+
+.care-card-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    color: rgba(216, 173, 92, 0.16);
+
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+}
+
+.care-icon {
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(216, 173, 92, 0.16);
+    border-radius: 12px;
+
+    background: rgba(216, 173, 92, 0.04);
+    color: var(--am-gold);
+
+    font-size: 14px;
+}
+
+.amenities-care-card h3 {
+    margin: 0 0 10px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.amenities-care-card p {
+    margin: 0;
+
+    color: #817d74;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.care-card-tag {
+    position: absolute;
+
+    left: 24px;
+    bottom: 22px;
+
+    color: var(--am-gold);
+
+    font-size: 7px;
+    font-weight: 700;
+
+    letter-spacing: 1.6px;
+}
+
+
+/* =========================================================
+   EXPERIENCE BANNER
+========================================================= */
+
+.amenities-experience-banner {
+    position: relative;
+
+    min-height: 570px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid var(--am-border);
+    border-radius: var(--am-radius-xl);
+
+    background: #080806;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.32);
+}
+
+.amenities-experience-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        brightness(0.8)
+        contrast(1.03);
+}
+
+.amenities-experience-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 5, 4, 0.97),
+            rgba(5, 5, 4, 0.78) 48%,
+            rgba(5, 5, 4, 0.27)
+        );
+}
+
+.amenities-experience-glow {
+    position: absolute;
+
+    left: 100px;
+    bottom: -180px;
+
+    width: 450px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: rgba(216, 173, 92, 0.09);
+
+    filter: blur(110px);
+}
+
+.amenities-experience-content {
+    position: relative;
+    z-index: 4;
+
+    max-width: 690px;
+
+    padding: 70px;
+}
+
+.amenities-experience-content h2 {
+    margin: 15px 0 18px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(48px, 5vw, 74px);
+    font-weight: 500;
+
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.amenities-experience-content h2 em {
+    display: block;
+
+    color: var(--am-gold-light);
+
+    font-weight: 500;
+}
+
+.amenities-experience-content > p {
+    max-width: 540px;
+
+    margin: 0;
+
+    color: #aaa499;
+
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.amenities-experience-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+
+    margin-top: 28px;
+}
+
+.amenities-experience-signature {
+    position: absolute;
+    z-index: 4;
+
+    right: 40px;
+    bottom: 34px;
+
+    text-align: right;
+}
+
+.amenities-experience-signature span,
+.amenities-experience-signature strong {
+    display: block;
+}
+
+.amenities-experience-signature span {
+    color: var(--am-gold);
+
+    font-family: "Playfair Display", serif;
+    font-size: 29px;
+}
+
+.amenities-experience-signature strong {
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 8px;
+    letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   SUMMARY STRIP
+========================================================= */
+
+.amenities-summary-strip {
+    display: grid;
+    grid-template-columns:
+        1fr auto
+        1fr auto
+        1fr auto
+        1fr;
+
+    align-items: center;
+
+    margin: 24px 0;
+    padding: 26px 30px;
+
+    border: 1px solid rgba(216, 173, 92, 0.1);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0f0e0a,
+            #090806
+        );
+}
+
+.amenities-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    opacity: 0;
+    transform: translateY(14px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.amenities-summary-item.amenity-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.amenities-summary-item > span {
+    color: var(--am-gold);
+
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+}
+
+.amenities-summary-item strong {
+    display: block;
+
+    color: #dad4c9;
+
+    font-size: 10px;
+}
+
+.amenities-summary-item p {
+    margin: 3px 0 0;
+
+    color: #6d6961;
+
+    font-size: 8px;
+}
+
+.amenities-summary-divider {
+    width: 1px;
+    height: 34px;
+
+    margin: 0 22px;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.amenities-final-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+
+    padding: 65px 55px;
+
+    border: 1px solid rgba(216, 173, 92, 0.13);
+    border-radius: 27px;
+
+    background:
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(216, 173, 92, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #12100b,
+            #090806
+        );
+}
+
+.amenities-final-copy {
+    max-width: 680px;
+}
+
+.amenities-final-copy h2 {
+    margin: 12px 0;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 4.3vw, 62px);
+    font-weight: 500;
+
+    line-height: 1;
+    letter-spacing: -1.5px;
+}
+
+.amenities-final-copy h2 em {
+    display: block;
+
+    color: var(--am-gold-light);
+
+    font-weight: 500;
+}
+
+.amenities-final-copy p {
+    max-width: 520px;
+
+    margin: 0;
+
+    color: #8e897f;
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.amenities-final-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.amenities-toast {
+    position: fixed;
+    z-index: 1200;
+
+    top: 95px;
+    right: 27px;
+
+    min-width: 300px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 14px;
+
+    border: 1px solid rgba(216, 173, 92, 0.25);
+    border-radius: 14px;
+
+    background: rgba(13, 12, 9, 0.96);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.42);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateX(25px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.amenities-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.amenities-toast-icon {
+    width: 39px;
+    height: 39px;
+
+    flex: 0 0 39px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--am-gold-light),
+            var(--am-gold)
+        );
+
+    color: #151006;
+}
+
+.amenities-toast strong,
+.amenities-toast span {
+    display: block;
+}
+
+.amenities-toast strong {
+    color: #e9e3d8;
+
+    font-size: 10px;
+}
+
+.amenities-toast span {
+    margin-top: 3px;
+
+    color: #817c73;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1250px
+========================================================= */
+
+@media (max-width: 1250px) {
+
+    .amenities-hero-content {
+        width: 64%;
+        padding-left: 50px;
+    }
+
+    .amenities-hero-card {
+        right: 30px;
+        width: 300px;
+    }
+
+    .amenities-hero-stats {
+        left: 50px;
+        right: 50px;
+    }
+
+    .amenities-main-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .amenities-care-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .amenities-quick-bar,
+    .amenities-summary-strip {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 24px;
+    }
+
+    .amenities-quick-divider,
+    .amenities-summary-divider {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1050px
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .topbar-search {
+        display: none;
+    }
+
+    .amenities-hero {
+        min-height: 740px;
+        align-items: flex-start;
+    }
+
+    .amenities-hero-content {
+        width: 100%;
+
+        padding:
+            62px
+            45px
+            250px;
+    }
+
+    .amenities-hero-card {
+        left: 45px;
+        right: auto;
+        bottom: 105px;
+
+        width: 345px;
+    }
+
+    .amenities-hero-stats {
+        left: 45px;
+        right: 45px;
+        bottom: 25px;
+    }
+
+    .amenities-intro {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .amenities-intro-visual {
+        width: 100%;
+        max-width: 760px;
+    }
+
+    .amenities-intro-content {
+        max-width: 760px;
+    }
+
+    .amenities-connect-section {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .amenities-connect-visual {
+        min-height: 480px;
+    }
+
+    .amenities-groups-section {
+        grid-template-columns: 1fr;
+        gap: 55px;
+    }
+
+    .amenities-groups-visual {
+        min-height: 500px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .amenities-page-content {
+        padding: 15px 15px 65px;
+    }
+
+    .amenities-section-heading,
+    .amenities-care-heading {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .amenities-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .amenity-card {
+        min-height: 290px;
+    }
+
+    .amenities-intro {
+        padding: 85px 0;
+    }
+
+    .amenities-intro-visual {
+        min-height: 500px;
+    }
+
+    .amenities-intro-main-image {
+        height: 430px;
+    }
+
+    .amenities-connect-section {
+        margin-top: 85px;
+        padding: 40px 30px;
+    }
+
+    .amenities-groups-section {
+        padding: 90px 0;
+    }
+
+    .amenities-care-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .amenities-experience-content {
+        padding: 50px 35px;
+    }
+
+    .amenities-final-cta {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 45px 35px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .amenities-page-content {
+        padding:
+            10px
+            10px
+            75px;
+    }
+
+
+    /* HERO */
+
+    .amenities-hero {
+        min-height: 780px;
+
+        border-radius: 22px;
+    }
+
+    .amenities-hero-overlay {
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(5, 5, 4, 0.52),
+                rgba(5, 5, 4, 0.9) 48%,
+                rgba(5, 5, 4, 0.99)
+            );
+    }
+
+    .amenities-hero-content {
+        padding:
+            45px
+            24px
+            280px;
+    }
+
+    .amenities-hero-content h1 {
+        font-size: 51px;
+        letter-spacing: -1.8px;
+    }
+
+    .amenities-hero-content > p {
+        font-size: 11px;
+        line-height: 1.75;
+    }
+
+    .amenities-hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .amenities-primary-btn,
+    .amenities-secondary-btn {
+        width: 100%;
+    }
+
+    .amenities-hero-card {
+        left: 20px;
+        right: 20px;
+        bottom: 105px;
+
+        width: auto;
+
+        padding: 18px;
+    }
+
+    .amenities-hero-stats {
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+
+        justify-content: space-between;
+    }
+
+    .amenities-hero-stats
+    .amenities-stat:nth-of-type(2),
+    .amenities-hero-stats
+    .amenities-stat:nth-of-type(3),
+    .amenities-stat-divider {
+        display: none;
+    }
+
+
+    /* QUICK BAR */
+
+    .amenities-quick-bar {
+        grid-template-columns: 1fr;
+
+        padding: 21px;
+    }
+
+    .amenities-quick-item {
+        padding-bottom: 17px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.055);
+    }
+
+    .amenities-quick-item:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+
+    /* INTRO */
+
+    .amenities-intro {
+        gap: 45px;
+
+        padding: 70px 0;
+    }
+
+    .amenities-intro-visual {
+        min-height: 410px;
+    }
+
+    .amenities-intro-main-image {
+        width: 94%;
+        height: 350px;
+
+        border-radius: 21px;
+    }
+
+    .amenities-intro-small-image {
+        width: 43%;
+        height: 170px;
+
+        border-width: 5px;
+    }
+
+    .amenities-intro-floating-card {
+        left: 15px;
+        bottom: 15px;
+
+        max-width: 235px;
+
+        padding: 13px 15px;
+    }
+
+    .amenities-intro-floating-card strong {
+        font-size: 13px;
+    }
+
+    .amenities-intro-content h2 {
+        font-size: 43px;
+        letter-spacing: -1.5px;
+    }
+
+    .amenities-intro-features {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* HEADING */
+
+    .amenities-section-heading {
+        padding:
+            70px
+            0
+            32px;
+    }
+
+    .amenities-section-heading h2,
+    .amenities-care-heading h2 {
+        font-size: 42px;
+    }
+
+
+    /* AMENITY CARDS */
+
+    .amenity-card {
+        min-height: 300px;
+
+        padding: 23px;
+    }
+
+    .amenity-card h3 {
+        font-size: 24px;
+    }
+
+
+    /* CONNECT */
+
+    .amenities-connect-section {
+        margin-top: 75px;
+
+        padding:
+            35px
+            23px;
+
+        border-radius: 22px;
+    }
+
+    .amenities-connect-content h2,
+    .amenities-groups-content h2 {
+        font-size: 43px;
+    }
+
+    .amenities-connect-visual {
+        min-height: 400px;
+
+        border-radius: 18px;
+    }
+
+    .amenities-connect-floating {
+        top: 15px;
+        right: 15px;
+    }
+
+    .amenities-connect-caption {
+        left: 20px;
+        bottom: 20px;
+    }
+
+
+    /* GROUP */
+
+    .amenities-groups-section {
+        padding: 75px 0;
+    }
+
+    .amenities-groups-visual {
+        min-height: 430px;
+
+        border-radius: 22px;
+    }
+
+    .amenities-groups-badge {
+        left: 17px;
+        right: 17px;
+        bottom: 17px;
+    }
+
+
+    /* CARE */
+
+    .amenities-care-section {
+        padding:
+            70px
+            0
+            80px;
+    }
+
+    .amenities-care-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .amenities-care-card {
+        min-height: 270px;
+    }
+
+
+    /* EXPERIENCE */
+
+    .amenities-experience-banner {
+        min-height: 600px;
+
+        align-items: flex-end;
+
+        border-radius: 22px;
+    }
+
+    .amenities-experience-overlay {
+        background:
+            linear-gradient(
+                to top,
+                rgba(5, 5, 4, 0.98),
+                rgba(5, 5, 4, 0.76) 62%,
+                rgba(5, 5, 4, 0.25)
+            );
+    }
+
+    .amenities-experience-content {
+        padding:
+            45px
+            25px
+            85px;
+    }
+
+    .amenities-experience-content h2 {
+        font-size: 46px;
+    }
+
+    .amenities-experience-actions {
+        flex-direction: column;
+    }
+
+    .amenities-experience-signature {
+        right: 24px;
+        bottom: 22px;
+    }
+
+
+    /* SUMMARY */
+
+    .amenities-summary-strip {
+        grid-template-columns: 1fr;
+
+        padding: 22px;
+    }
+
+    .amenities-summary-item {
+        padding-bottom: 16px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.055);
+    }
+
+    .amenities-summary-item:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+
+    /* FINAL CTA */
+
+    .amenities-final-cta {
+        padding:
+            38px
+            25px;
+    }
+
+    .amenities-final-copy h2 {
+        font-size: 41px;
+    }
+
+    .amenities-final-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+
+    /* TOAST */
+
+    .amenities-toast {
+        top: 80px;
+        right: 12px;
+        left: 12px;
+
+        min-width: 0;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .amenities-hero-content h1 {
+        font-size: 44px;
+    }
+
+    .amenities-section-heading h2,
+    .amenities-care-heading h2,
+    .amenities-connect-content h2,
+    .amenities-groups-content h2 {
+        font-size: 38px;
+    }
+
+    .amenities-experience-content h2 {
+        font-size: 40px;
+    }
+
+    .amenities-intro-content h2 {
+        font-size: 39px;
+    }
+
+    .amenities-intro-main-image {
+        height: 320px;
+    }
+
+    .amenities-intro-visual {
+        min-height: 380px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+/* Remove unwanted sidebar submenu dots */
+.sidebar-submenu,
+.sidebar-submenu a {
+    list-style: none !important;
+}
+
+.sidebar-submenu::before,
+.sidebar-submenu::after,
+.sidebar-submenu a::before,
+.sidebar-submenu a::after {
+    content: none !important;
+    display: none !important;
+}

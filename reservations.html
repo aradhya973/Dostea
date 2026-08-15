@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSTEA | Reserve a Table</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="reservations.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+<!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+<aside class="sidebar" id="sidebar">
+<!-- BRAND -->
+<div class="sidebar-brand">
+<a href="index.html">
+<div class="brand-mark">
+                    D
+                </div>
+<div class="brand-copy">
+<h1>DOSTEA</h1>
+<span>HOTEL • CAFÉ • LIFESTYLE</span>
+</div>
+</a>
+</div>
+<!-- NAVIGATION -->
+<nav class="sidebar-navigation">
+<!-- HOME -->
+<a class="nav-link" href="index.html">
+<span class="nav-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+<span>Home</span>
+</a>
+<!-- CAFE -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-mug-hot"></i>
+</span>
+<span>Café</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
+<a class="nav-link active" href="reservations.html">
+                        Reserve Table
+                    </a>
+<a class="nav-link" href="about.html">
+                        About DOSTEA
+                    </a>
+</div>
+</div>
+<!-- ORDERS -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</span>
+<span>Orders</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="orders.html">
+                        My Orders
+                    </a>
+<a class="nav-link" href="cart.html">
+                        My Cart
+                    </a>
+</div>
+</div>
+<!-- Restaurant -->
+<div class="sidebar-accordion open">
+<button aria-expanded="true" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+ <i class="fa-solid fa-utensils"></i>
+</span>
+<span>Restaurant</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="Restaurant.html">
+                        Restaurant
+                    </a>
+<a class="nav-link" href="amenities.html">
+                        Amenities
+                    </a>
+<a class="nav-link" href="booking.html">
+                        Book a Room
+                    </a>
+</div>
+</div>
+<!-- CONTACT -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-phone"></i>
+</span>
+<span>Contact</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="contact.html">
+                        Contact Us
+                    </a>
+<a class="nav-link" href="reach-us.html">
+                        Reach Us
+                    </a>
+</div>
+</div>
+<!-- PROFILE -->
+<a class="nav-link" href="profile.html">
+<span class="nav-icon">
+<i class="fa-regular fa-user"></i>
+</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- USER -->
+<div class="sidebar-bottom">
+<div class="sidebar-user">
+<div class="sidebar-avatar" id="sidebarAvatar">
+                    D
+                </div>
+<div class="sidebar-user-info">
+<strong id="sidebarUserName">
+                        DOSTEA User
+                    </strong>
+<span id="sidebarUserEmail">
+                        customer@dostea.com
+                    </span>
+</div>
+</div>
+<a class="sidebar-profile-btn" href="profile.html" title="Profile">
+<i class="fa-solid fa-chevron-right"></i>
+</a>
+</div>
+</aside>
+<!-- =====================================================
+         MAIN
+    ====================================================== -->
+<main class="main-content">
+<!-- =================================================
+             TOPBAR
+        ================================================== -->
+<header class="topbar">
+<div class="topbar-left">
+<button aria-label="Open menu" class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+<div>
+<span class="topbar-eyebrow">
+                        DOSTEA CAFÉ
+                    </span>
+<h2>
+                        Reserve a Table
+                    </h2>
+</div>
+</div>
+<div class="topbar-actions">
+<a class="topbar-icon-btn" href="cart.html">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count" id="cartCount">
+                        0
+                    </span>
+</a>
+<a class="topbar-user" href="profile.html">
+<div class="topbar-avatar" id="topbarAvatar">
+                        D
+                    </div>
+<div>
+<strong id="topbarUserName">
+                            DOSTEA User
+                        </strong>
+<span>Customer</span>
+</div>
+</a>
+</div>
+</header>
+<!-- =================================================
+             reservations PAGE
+        ================================================== -->
+<div class="reservations-page">
+<!-- PAGE HEADER -->
+<section class="reservations-header">
+<div>
+<span class="section-label">
+                        YOUR TABLE AWAITS
+                    </span>
+<h1>
+                        Reserve your DOSTEA moment.
+                    </h1>
+<p>
+                        Choose your date, time and preferred seating.
+                        We'll prepare the table before you arrive.
+                    </p>
+</div>
+<div class="reservations-status">
+<span class="status-dot"></span>
+<div>
+<strong>reservations Open</strong>
+<span>10:00 AM — 10:30 PM</span>
+</div>
+</div>
+</section>
+<!-- =================================================
+                 GRID
+            ================================================== -->
+<div class="reservations-layout">
+<!-- =============================================
+                     FORM
+                ============================================== -->
+<section class="reservations-card">
+<div class="card-heading">
+<div>
+<span>reservations DETAILS</span>
+<h2>
+                                Find your table
+                            </h2>
+</div>
+<div class="heading-icon">
+<i class="fa-regular fa-calendar"></i>
+</div>
+</div>
+<form id="reservationsForm">
+<!-- NAME + PHONE -->
+<div class="form-grid">
+<div class="form-group">
+<label for="guestName">
+                                    FULL NAME
+                                </label>
+<div class="input-wrap">
+<i class="fa-regular fa-user"></i>
+<input autocomplete="name" id="guestName" placeholder="Your name" required="" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label for="guestPhone">
+                                    PHONE NUMBER
+                                </label>
+<div class="input-wrap">
+<i class="fa-solid fa-phone"></i>
+<input autocomplete="tel" id="guestPhone" maxlength="15" placeholder="+91 98765 43210" required="" type="tel"/>
+</div>
+</div>
+</div>
+<!-- DATE -->
+<div class="form-group">
+<label for="reservationsDate">
+                                reservations DATE
+                            </label>
+<div class="input-wrap">
+<i class="fa-regular fa-calendar"></i>
+<input id="reservationsDate" required="" type="date"/>
+</div>
+</div>
+<!-- GUESTS -->
+<div class="form-group">
+<label>
+                                NUMBER OF GUESTS
+                            </label>
+<div class="guest-selector">
+<button aria-label="Decrease guests" class="guest-btn" id="decreaseGuests" type="button">
+<i class="fa-solid fa-minus"></i>
+</button>
+<div class="guest-value">
+<strong id="guestCount">
+                                        2
+                                    </strong>
+<span>
+                                        Guests
+                                    </span>
+</div>
+<button aria-label="Increase guests" class="guest-btn" id="increaseGuests" type="button">
+<i class="fa-solid fa-plus"></i>
+</button>
+</div>
+</div>
+<!-- TIME -->
+<div class="form-group">
+<label>
+                                SELECT TIME
+                            </label>
+<div class="time-slots" id="timeSlots">
+<button class="time-slot" data-time="10:00 AM" type="button">
+                                    10:00 AM
+                                </button>
+<button class="time-slot" data-time="11:30 AM" type="button">
+                                    11:30 AM
+                                </button>
+<button class="time-slot" data-time="01:00 PM" type="button">
+                                    01:00 PM
+                                </button>
+<button class="time-slot" data-time="02:30 PM" type="button">
+                                    02:30 PM
+                                </button>
+<button class="time-slot" data-time="04:00 PM" type="button">
+                                    04:00 PM
+                                </button>
+<button class="time-slot" data-time="05:30 PM" type="button">
+                                    05:30 PM
+                                </button>
+<button class="time-slot" data-time="07:00 PM" type="button">
+                                    07:00 PM
+                                </button>
+<button class="time-slot" data-time="08:30 PM" type="button">
+                                    08:30 PM
+                                </button>
+<button class="time-slot" data-time="10:00 PM" type="button">
+                                    10:00 PM
+                                </button>
+</div>
+<p class="form-error" id="timeError">
+                                Please select a reservations time.
+                            </p>
+</div>
+<!-- SEATING -->
+<div class="form-group">
+<label>
+                                SEATING PREFERENCE
+                            </label>
+<div class="seating-options">
+<button class="seating-option active" data-seating="Indoor" type="button">
+<span class="seating-icon">
+<i class="fa-solid fa-couch"></i>
+</span>
+<span class="seating-copy">
+<strong>
+                                            Indoor
+                                        </strong>
+<small>
+                                            Café ambience
+                                        </small>
+</span>
+<span class="selection-circle">
+<i class="fa-solid fa-check"></i>
+</span>
+</button>
+<button class="seating-option" data-seating="Window" type="button">
+<span class="seating-icon">
+<i class="fa-regular fa-window-maximize"></i>
+</span>
+<span class="seating-copy">
+<strong>
+                                            Window
+                                        </strong>
+<small>
+                                            Natural view
+                                        </small>
+</span>
+<span class="selection-circle">
+<i class="fa-solid fa-check"></i>
+</span>
+</button>
+<button class="seating-option" data-seating="Outdoor" type="button">
+<span class="seating-icon">
+<i class="fa-solid fa-leaf"></i>
+</span>
+<span class="seating-copy">
+<strong>
+                                            Outdoor
+                                        </strong>
+<small>
+                                            Open-air seating
+                                        </small>
+</span>
+<span class="selection-circle">
+<i class="fa-solid fa-check"></i>
+</span>
+</button>
+</div>
+</div>
+<!-- REQUEST -->
+<div class="form-group">
+<label for="specialRequest">
+                                SPECIAL REQUEST
+                                <span>OPTIONAL</span>
+</label>
+<div class="textarea-wrap">
+<textarea id="specialRequest" maxlength="250" placeholder="Birthday setup, preferred table, accessibility requirement..."></textarea>
+<div class="character-count">
+<span id="characterCount">0</span>/250
+                                </div>
+</div>
+</div>
+<!-- SUBMIT -->
+<button class="reserve-btn" type="submit">
+<span>
+                                Confirm reservations
+                            </span>
+<i class="fa-solid fa-arrow-right"></i>
+</button>
+</form>
+</section>
+<!-- =============================================
+                     RIGHT SIDE
+                ============================================== -->
+<aside class="reservations-side">
+<!-- SUMMARY -->
+<div class="summary-card">
+<div class="summary-header">
+<span>
+                                YOUR reservations
+                            </span>
+<h3>
+                                Table Summary
+                            </h3>
+</div>
+<div class="summary-list">
+<div class="summary-item">
+<div class="summary-icon">
+<i class="fa-regular fa-calendar"></i>
+</div>
+<div>
+<span>Date</span>
+<strong id="summaryDate">
+                                        Not selected
+                                    </strong>
+</div>
+</div>
+<div class="summary-item">
+<div class="summary-icon">
+<i class="fa-regular fa-clock"></i>
+</div>
+<div>
+<span>Time</span>
+<strong id="summaryTime">
+                                        Not selected
+                                    </strong>
+</div>
+</div>
+<div class="summary-item">
+<div class="summary-icon">
+<i class="fa-solid fa-user-group"></i>
+</div>
+<div>
+<span>Guests</span>
+<strong id="summaryGuests">
+                                        2 Guests
+                                    </strong>
+</div>
+</div>
+<div class="summary-item">
+<div class="summary-icon">
+<i class="fa-solid fa-chair"></i>
+</div>
+<div>
+<span>Seating</span>
+<strong id="summarySeating">
+                                        Indoor
+                                    </strong>
+</div>
+</div>
+</div>
+<div class="summary-note">
+<i class="fa-solid fa-circle-info"></i>
+<p>
+                                Your table will be held for
+                                <strong>15 minutes</strong>
+                                after the reservations time.
+                            </p>
+</div>
+</div>
+<!-- WHY RESERVE -->
+<div class="experience-card">
+<span class="experience-label">
+                            DOSTEA EXPERIENCE
+                        </span>
+<h3>
+                            More than just a table.
+                        </h3>
+<p>
+                            Reserve ahead and arrive to a space
+                            prepared for your moment.
+                        </p>
+<div class="experience-points">
+<div>
+<i class="fa-solid fa-check"></i>
+<span>
+                                    Priority seating
+                                </span>
+</div>
+<div>
+<i class="fa-solid fa-check"></i>
+<span>
+                                    No waiting queue
+                                </span>
+</div>
+<div>
+<i class="fa-solid fa-check"></i>
+<span>
+                                    Seating preference
+                                </span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+</div>
+<!-- =========================================================
+     SUCCESS MODAL
+========================================================= -->
+<div class="reservations-modal" id="reservationsModal">
+<div class="reservations-modal-card">
+<div class="modal-success-icon">
+<i class="fa-solid fa-check"></i>
+</div>
+<span class="modal-label">
+            reservations CONFIRMED
+        </span>
+<h2>
+            Your table is reserved.
+        </h2>
+<p>
+            We'll have everything ready when you arrive at DOSTEA.
+        </p>
+<div class="reservations-number">
+<span>
+                reservations ID
+            </span>
+<strong id="reservationsId">
+                #DST000000
+            </strong>
+</div>
+<div class="modal-reservations-info">
+<div>
+<span>Date</span>
+<strong id="modalDate">
+                    —
+                </strong>
+</div>
+<div>
+<span>Time</span>
+<strong id="modalTime">
+                    —
+                </strong>
+</div>
+<div>
+<span>Guests</span>
+<strong id="modalGuests">
+                    —
+                </strong>
+</div>
+</div>
+<button class="modal-done-btn" id="modalDoneBtn" type="button">
+
+            Done
+
+            <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =====================================================
+       CURRENT USER
+    ====================================================== */
+
+    let currentUser = null;
+
+    try {
+
+        currentUser = JSON.parse(
+            localStorage.getItem("dostea_current_user")
+        );
+
+    } catch (error) {
+
+        currentUser = null;
+
+    }
+
+
+    if (!currentUser) {
+
+        window.location.replace("login.html");
+        return;
+
+    }
+
+
+    /* =====================================================
+       USER DATA
+    ====================================================== */
+
+    const userName =
+        currentUser.fullName ||
+        currentUser.name ||
+        "DOSTEA User";
+
+    const userEmail =
+        currentUser.email || "";
+
+    const initial =
+        userName.trim().charAt(0).toUpperCase() || "D";
+
+
+    document.getElementById("sidebarAvatar").textContent =
+        initial;
+
+    document.getElementById("topbarAvatar").textContent =
+        initial;
+
+    document.getElementById("sidebarUserName").textContent =
+        userName;
+
+    document.getElementById("topbarUserName").textContent =
+        userName;
+
+    document.getElementById("sidebarUserEmail").textContent =
+        userEmail;
+
+    document.getElementById("guestName").value =
+        userName;
+
+    if (currentUser.phone) {
+
+        document.getElementById("guestPhone").value =
+            currentUser.phone;
+
+    }
+
+
+    /* =====================================================
+       CART COUNT
+    ====================================================== */
+
+    function updateCartCount() {
+
+        let cart = [];
+
+        try {
+
+            cart = JSON.parse(
+                localStorage.getItem("dostea_cart") || "[]"
+            );
+
+        } catch (error) {
+
+            cart = [];
+
+        }
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+        const count = cart.reduce(
+            function (total, item) {
+
+                return total +
+                    Math.max(
+                        1,
+                        Number(item.quantity || 1)
+                    );
+
+            },
+            0
+        );
+
+        document.getElementById("cartCount").textContent =
+            count;
+
+    }
+
+    updateCartCount();
+
+
+    /* =====================================================
+       MINIMUM DATE
+    ====================================================== */
+
+    const dateInput =
+        document.getElementById("reservationsDate");
+
+    const today = new Date();
+
+    const localToday =
+        today.getFullYear() +
+        "-" +
+        String(today.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(today.getDate()).padStart(2, "0");
+
+    dateInput.min = localToday;
+
+
+    /* =====================================================
+       reservations STATE
+    ====================================================== */
+
+    let guestCount = 2;
+    let selectedTime = "";
+    let selectedSeating = "Indoor";
+
+
+    /* =====================================================
+       GUESTS
+    ====================================================== */
+
+    const guestCountElement =
+        document.getElementById("guestCount");
+
+    const summaryGuests =
+        document.getElementById("summaryGuests");
+
+
+    function updateGuests() {
+
+        guestCountElement.textContent =
+            guestCount;
+
+        summaryGuests.textContent =
+            guestCount +
+            (guestCount === 1 ? " Guest" : " Guests");
+
+    }
+
+
+    document.getElementById("decreaseGuests")
+        .addEventListener("click", function () {
+
+            if (guestCount > 1) {
+
+                guestCount--;
+                updateGuests();
+
+            }
+
+        });
+
+
+    document.getElementById("increaseGuests")
+        .addEventListener("click", function () {
+
+            if (guestCount < 12) {
+
+                guestCount++;
+                updateGuests();
+
+            }
+
+        });
+
+
+    /* =====================================================
+       DATE
+    ====================================================== */
+
+    dateInput.addEventListener("change", function () {
+
+        if (!dateInput.value) {
+
+            document.getElementById("summaryDate").textContent =
+                "Not selected";
+
+            return;
+
+        }
+
+        const date =
+            new Date(dateInput.value + "T00:00:00");
+
+        document.getElementById("summaryDate").textContent =
+            date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+    });
+
+
+    /* =====================================================
+       TIME
+    ====================================================== */
+
+    const timeSlots =
+        document.querySelectorAll(".time-slot");
+
+    const timeError =
+        document.getElementById("timeError");
+
+
+    timeSlots.forEach(function (slot) {
+
+        slot.addEventListener("click", function () {
+
+            timeSlots.forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+            slot.classList.add("active");
+
+            selectedTime =
+                slot.dataset.time;
+
+            document.getElementById("summaryTime").textContent =
+                selectedTime;
+
+            timeError.classList.remove("show");
+
+        });
+
+    });
+
+
+    /* =====================================================
+       SEATING
+    ====================================================== */
+
+    const seatingOptions =
+        document.querySelectorAll(".seating-option");
+
+
+    seatingOptions.forEach(function (option) {
+
+        option.addEventListener("click", function () {
+
+            seatingOptions.forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+            option.classList.add("active");
+
+            selectedSeating =
+                option.dataset.seating;
+
+            document.getElementById(
+                "summarySeating"
+            ).textContent =
+                selectedSeating;
+
+        });
+
+    });
+
+
+    /* =====================================================
+       CHARACTER COUNT
+    ====================================================== */
+
+    const specialRequest =
+        document.getElementById("specialRequest");
+
+    const characterCount =
+        document.getElementById("characterCount");
+
+
+    specialRequest.addEventListener("input", function () {
+
+        characterCount.textContent =
+            specialRequest.value.length;
+
+    });
+
+
+    /* =====================================================
+       STORAGE
+    ====================================================== */
+
+    function getreservationss() {
+
+        try {
+
+            const reservationss =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_reservationss"
+                    ) || "[]"
+                );
+
+            return Array.isArray(reservationss)
+                ? reservationss
+                : [];
+
+        } catch (error) {
+
+            return [];
+
+        }
+
+    }
+
+
+    function savereservationss(reservationss) {
+
+        localStorage.setItem(
+            "dostea_reservationss",
+            JSON.stringify(reservationss)
+        );
+
+    }
+
+
+    /* =====================================================
+       SUBMIT reservations
+    ====================================================== */
+
+    const reservationsForm =
+        document.getElementById("reservationsForm");
+
+    const reservationsModal =
+        document.getElementById("reservationsModal");
+
+
+    reservationsForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /* TIME REQUIRED */
+
+            if (!selectedTime) {
+
+                timeError.classList.add("show");
+
+                document.getElementById("timeSlots")
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                return;
+
+            }
+
+
+            /* DATE VALIDATION */
+
+            if (!dateInput.value) {
+                return;
+            }
+
+
+            const selectedDate =
+                new Date(
+                    dateInput.value +
+                    "T00:00:00"
+                );
+
+            const todayDate =
+                new Date();
+
+            todayDate.setHours(0, 0, 0, 0);
+
+
+            if (selectedDate < todayDate) {
+
+                alert(
+                    "Please select a valid reservations date."
+                );
+
+                return;
+
+            }
+
+
+            /* GENERATE ID */
+
+            const reservationsCode =
+                "DST" +
+                Date.now()
+                    .toString()
+                    .slice(-7);
+
+
+            const reservations = {
+
+                id: reservationsCode,
+
+                userEmail: userEmail,
+
+                customerName:
+                    document
+                        .getElementById("guestName")
+                        .value
+                        .trim(),
+
+                phone:
+                    document
+                        .getElementById("guestPhone")
+                        .value
+                        .trim(),
+
+                date:
+                    dateInput.value,
+
+                time:
+                    selectedTime,
+
+                guests:
+                    guestCount,
+
+                seating:
+                    selectedSeating,
+
+                specialRequest:
+                    specialRequest.value.trim(),
+
+                status:
+                    "confirmed",
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            const reservationss =
+                getreservationss();
+
+            reservationss.unshift(
+                reservations
+            );
+
+            savereservationss(
+                reservationss
+            );
+
+
+            /* MODAL INFO */
+
+            document.getElementById(
+                "reservationsId"
+            ).textContent =
+                "#" + reservationsCode;
+
+
+            document.getElementById(
+                "modalDate"
+            ).textContent =
+                selectedDate.toLocaleDateString(
+                    "en-IN",
+                    {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "modalTime"
+            ).textContent =
+                selectedTime;
+
+
+            document.getElementById(
+                "modalGuests"
+            ).textContent =
+                guestCount;
+
+
+            reservationsModal.classList.add(
+                "show"
+            );
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       DONE
+    ====================================================== */
+
+    document.getElementById("modalDoneBtn")
+        .addEventListener("click", function () {
+
+            reservationsModal.classList.remove(
+                "show"
+            );
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+            window.location.href =
+                "profile.html";
+
+        });
+
+
+    /* =====================================================
+       MOBILE SIDEBAR
+    ====================================================== */
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const sidebarOverlay =
+        document.getElementById("sidebarOverlay");
+
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        function () {
+
+            sidebar.classList.add("open");
+
+            sidebarOverlay.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    sidebarOverlay.addEventListener(
+        "click",
+        function () {
+
+            sidebar.classList.remove("open");
+
+            sidebarOverlay.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       ACCORDION
+    ====================================================== */
+
+    const accordions =
+        document.querySelectorAll(
+            ".sidebar-accordion"
+        );
+
+
+    accordions.forEach(function (accordion) {
+
+        const button =
+            accordion.querySelector(
+                ".sidebar-parent"
+            );
+
+        if (!button) return;
+
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    accordion.classList.contains(
+                        "open"
+                    );
+
+
+                accordions.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "open"
+                        );
+
+                        const itemButton =
+                            item.querySelector(
+                                ".sidebar-parent"
+                            );
+
+                        itemButton?.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+
+                if (!isOpen) {
+
+                    accordion.classList.add(
+                        "open"
+                    );
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       RESPONSIVE RESET
+    ====================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (window.innerWidth > 900) {
+
+                sidebar.classList.remove(
+                    "open"
+                );
+
+                sidebarOverlay.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+<script>
+/* DOSTEA GLOBAL AUTH UI SYNC */
+document.addEventListener("DOMContentLoaded", function () {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem("dostea_current_user")); } catch(e) { user = null; }
+
+    const name = user ? (user.fullName || user.name || "DOSTEA User") : "";
+    const email = user ? (user.email || "") : "";
+    const initial = name ? name.trim().charAt(0).toUpperCase() : "D";
+
+    /* Existing guest/logged blocks */
+    document.querySelectorAll("#guestSidebar, #topbarGuest").forEach(el => {
+        el.style.display = user ? "none" : "flex";
+    });
+    document.querySelectorAll("#loggedInSidebar, #topbarUser").forEach(el => {
+        el.style.display = user ? "flex" : "none";
+    });
+
+    /* Update standard user fields */
+    document.querySelectorAll("#sidebarAvatar, #topbarAvatar, .user-avatar, .top-profile-avatar").forEach(el => {
+        if (user) el.textContent = initial;
+    });
+    document.querySelectorAll("#sidebarUserName, #topbarUserName, .user-details h4, .top-profile-info strong").forEach(el => {
+        if (user) el.textContent = name;
+    });
+    document.querySelectorAll("#sidebarUserEmail").forEach(el => {
+        if (user) el.textContent = email;
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in sidebar user */
+    document.querySelectorAll(".sidebar > .sidebar-user").forEach(oldUser => {
+        if (oldUser.closest("#loggedInSidebar")) return;
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".user-details h4");
+            const av = oldUser.querySelector(".user-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            if (!oldUser.parentElement.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                oldUser.insertAdjacentElement("afterend", auth);
+            }
+        }
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in top profile */
+    document.querySelectorAll(".topbar-actions .top-profile, .topbar-actions > .topbar-user:not(#topbarUser)").forEach(oldUser => {
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".top-profile-info strong, strong");
+            const av = oldUser.querySelector(".top-profile-avatar, .topbar-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            const actions = oldUser.parentElement;
+            if (actions && !actions.querySelector(".dostea-auto-topbar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-topbar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                actions.appendChild(auth);
+            }
+        }
+    });
+
+    /* Pages with sidebar-bottom but no guest/logged wrappers */
+    document.querySelectorAll(".sidebar-bottom").forEach(bottom => {
+        if (bottom.querySelector("#guestSidebar, #loggedInSidebar")) return;
+        const existingUser = bottom.querySelector(".sidebar-user, .sidebar-user-content");
+        if (user) {
+            if (existingUser) existingUser.style.display = "flex";
+        } else {
+            if (existingUser) existingUser.style.display = "none";
+            if (!bottom.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                bottom.appendChild(auth);
+            }
+        }
+    });
+
+    /* Shared styling for auto-created auth controls */
+    if (!document.getElementById("dosteaAuthSyncStyle")) {
+        const style = document.createElement("style");
+        style.id = "dosteaAuthSyncStyle";
+        style.textContent = `
+            .dostea-auto-sidebar-auth{display:flex;gap:8px;padding:14px 16px;width:100%;box-sizing:border-box}
+            .dostea-auto-sidebar-auth a,.dostea-auto-topbar-auth a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 12px/1 'DM Sans',sans-serif;border-radius:9px;transition:.25s ease}
+            .dostea-auto-sidebar-auth a{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-sidebar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+            .dostea-auto-topbar-auth{display:flex;align-items:center;gap:8px}
+            .dostea-auto-topbar-auth a{padding:10px 14px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-topbar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+        `;
+        document.head.appendChild(style);
+    }
+});
+</script>
+
+</body>
+</html>

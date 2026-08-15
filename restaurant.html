@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOSTEA | Restaurant</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Existing Common CSS -->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Restaurant CSS -->
+    <link rel="stylesheet" href="restaurant.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         MOBILE SIDEBAR OVERLAY
+    ====================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <!-- BRAND -->
+
+        <a
+            href="index.html"
+            class="sidebar-brand"
+        >
+
+            <div class="brand-mark">
+                D
+            </div>
+
+            <div class="brand-info">
+
+                <h1>DOSTEA</h1>
+
+                <p>
+                    HOTEL • CAFÉ • LIFESTYLE
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="sidebar-navigation">
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    <i class="fa-solid fa-house"></i>
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 CAFÉ
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </span>
+
+                        <span>
+                            Café
+                        </span>
+
+                    </span>
+
+                    <i
+                        class="fa-solid fa-chevron-down accordion-arrow"
+                    ></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="menu.html"
+                        class="nav-link"
+                    >
+                        Menu
+                    </a>
+
+                    <a
+                        href="reservations.html"
+                        class="nav-link"
+                    >
+                        Reserve Table
+                    </a>
+
+                    <a
+                        href="about.html"
+                        class="nav-link"
+                    >
+                        About DOSTEA
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ORDERS
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
+
+                        <span>
+                            Orders
+                        </span>
+
+                    </span>
+
+                    <i
+                        class="fa-solid fa-chevron-down accordion-arrow"
+                    ></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="orders.html"
+                        class="nav-link"
+                    >
+                        My Orders
+                    </a>
+
+                    <a
+                        href="cart.html"
+                        class="nav-link"
+                    >
+                        My Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RESTAURANT
+            ================================================== -->
+
+            <div class="sidebar-accordion open">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="true"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            Restaurant
+                        </span>
+
+                    </span>
+
+                    <i
+                        class="fa-solid fa-chevron-down accordion-arrow"
+                    ></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <!-- NEW PAGE -->
+
+                    <a
+                        href="restaurant.html"
+                        class="nav-link active"
+                    >
+                        Restaurant
+                    </a>
+
+
+                    <!-- EXISTING HOTEL PAGES -->
+
+                    <a
+                        href="amenities.html"
+                        class="nav-link"
+                    >
+                        Amenities
+                    </a>
+
+                    <a
+                        href="menu.html"
+                        class="nav-link"
+                    >
+                        Menu
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+
+                        <span>
+                            Contact
+                        </span>
+
+                    </span>
+
+                    <i
+                        class="fa-solid fa-chevron-down accordion-arrow"
+                    ></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="contact.html"
+                        class="nav-link"
+                    >
+                        Contact Us
+                    </a>
+
+                    <a
+                        href="reach-us.html"
+                        class="nav-link"
+                    >
+                        Reach Us
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="profile.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    <i class="fa-regular fa-user"></i>
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+        </nav>
+
+
+
+        <!-- =================================================
+             SIDEBAR USER
+        ================================================== -->
+
+        <div class="sidebar-user">
+
+            <a
+                href="profile.html"
+                class="user-avatar"
+                id="sidebarAvatar"
+            >
+                AD
+            </a>
+
+
+            <div class="user-details">
+
+                <h4 id="sidebarUserName">
+                    Aradhya
+                </h4>
+
+                <p>
+                    Customer
+                </p>
+
+            </div>
+
+
+            <a
+                href="profile.html"
+                class="user-menu-btn"
+                aria-label="Profile"
+            >
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open navigation"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="page-location">
+
+                    DOSTEA /
+
+                    <span>
+                        Restaurant
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="topbar-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="restaurantSearch"
+                    placeholder="Search DOSTEA..."
+                >
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="topbar-actions">
+
+
+                <!-- CART -->
+
+                <a
+                    href="cart.html"
+                    class="icon-button restaurant-cart-button"
+                    aria-label="Cart"
+                >
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span
+                        class="restaurant-cart-count"
+                        id="topCartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+
+                <!-- NOTIFICATION -->
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    aria-label="Notifications"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+
+                <!-- PROFILE -->
+
+                <a
+                    href="profile.html"
+                    class="top-profile"
+                >
+
+                    <div
+                        class="top-profile-avatar"
+                        id="topProfileAvatar"
+                    >
+                        AD
+                    </div>
+
+
+                    <div class="top-profile-info">
+
+                        <strong id="topProfileName">
+                            Aradhya
+                        </strong>
+
+                        <span>
+                            Customer
+                        </span>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             RESTAURANT PAGE
+        ====================================================== -->
+
+        <div class="page-content restaurant-page-content">
+
+
+            <!-- =================================================
+                 HERO SECTION
+            ================================================== -->
+
+            <section class="restaurant-hero">
+
+
+                <!-- BACKGROUND IMAGE -->
+
+                <img
+                    src="dostea-restaurant-hero.jpg"
+                    alt="DOSTEA Restaurant"
+                    class="restaurant-hero-image"
+                >
+
+
+                <!-- OVERLAYS -->
+
+                <div class="restaurant-hero-overlay"></div>
+
+                <div class="restaurant-hero-gradient"></div>
+
+                <div class="restaurant-hero-glow glow-one"></div>
+
+                <div class="restaurant-hero-glow glow-two"></div>
+
+
+
+                <!-- DECORATIVE DEPTH -->
+
+                <div class="hero-depth-line hero-line-one"></div>
+
+                <div class="hero-depth-line hero-line-two"></div>
+
+
+
+                <!-- HERO CONTENT -->
+
+                <div class="restaurant-hero-content">
+
+
+                    <div class="restaurant-status">
+
+                        <span class="restaurant-status-dot"></span>
+
+                        <span>
+                            OPEN TODAY • 10:00 AM — 10:30 PM
+                        </span>
+
+                    </div>
+
+
+                    <span class="restaurant-eyebrow">
+
+                        DOSTEA RESTAURANT EXPERIENCE
+
+                    </span>
+
+
+                    <h1>
+
+                        More than dining.
+
+                        <em>
+                            It's a DOSTEA moment.
+                        </em>
+
+                    </h1>
+
+
+                    <p>
+
+                        Thoughtfully prepared food, warm hospitality
+                        and an atmosphere designed for conversations
+                        worth remembering.
+
+                    </p>
+
+
+
+                    <!-- HERO BUTTONS -->
+
+                    <div class="restaurant-hero-actions">
+
+
+                        <a
+                            href="menu.html"
+                            class="restaurant-primary-btn"
+                        >
+
+                            <span>
+                                Explore Menu
+                            </span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                        <a
+                            href="reservations.html"
+                            class="restaurant-secondary-btn"
+                        >
+
+                            <span>
+                                Reserve a Table
+                            </span>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     HERO FLOATING EXPERIENCE CARD
+                ================================================== -->
+
+                <div class="restaurant-hero-card">
+
+
+                    <div class="hero-card-top">
+
+                        <span>
+                            TONIGHT AT DOSTEA
+                        </span>
+
+                        <span class="hero-card-live">
+                            LIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-card-content">
+
+                        <span class="hero-card-label">
+                            DINNER EXPERIENCE
+                        </span>
+
+                        <strong>
+                            Tables available tonight
+                        </strong>
+
+                        <p>
+                            Reserve your preferred seating before arrival.
+                        </p>
+
+                    </div>
+
+
+                    <a href="reservations.html">
+
+                        Check Availability
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- HERO BOTTOM STATS -->
+
+                <div class="restaurant-hero-stats">
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            50+
+                        </strong>
+
+                        <span>
+                            Crafted Dishes
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-stat-divider"></div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            4
+                        </strong>
+
+                        <span>
+                            Dining Spaces
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-stat-divider"></div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            12H
+                        </strong>
+
+                        <span>
+                            Daily Service
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 QUICK EXPERIENCE BAR
+            ================================================== -->
+
+            <section class="restaurant-quick-bar">
+
+
+                <div class="restaurant-quick-item">
+
+                    <div class="quick-image">
+
+                        <img
+                            src="restaurant-fresh-food.jpg"
+                            alt="Fresh food at DOSTEA"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            FRESHLY PREPARED
+                        </span>
+
+                        <strong>
+                            Made for every order
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="quick-divider"></div>
+
+
+
+                <div class="restaurant-quick-item">
+
+                    <div class="quick-image">
+
+                        <img
+                            src="restaurant-dining.jpg"
+                            alt="DOSTEA dining"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            PREMIUM DINING
+                        </span>
+
+                        <strong>
+                            Comfortable spaces
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="quick-divider"></div>
+
+
+
+                <div class="restaurant-quick-item">
+
+                    <div class="quick-image">
+
+                        <img
+                            src="restaurant-reservation.jpg"
+                            alt="DOSTEA table reservation"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            EASY RESERVATION
+                        </span>
+
+                        <strong>
+                            Your table, your time
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="quick-divider"></div>
+
+
+
+                <div class="restaurant-quick-item">
+
+                    <div class="quick-image">
+
+                        <img
+                            src="restaurant-service.jpg"
+                            alt="DOSTEA restaurant service"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            DOSTEA SERVICE
+                        </span>
+
+                        <strong>
+                            Hospitality first
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 INTRO / EXPERIENCE
+            ================================================== -->
+
+            <section class="restaurant-intro">
+
+
+                <!-- IMAGE SIDE -->
+
+                <div class="restaurant-intro-visual">
+
+
+                    <div class="intro-main-image">
+
+                        <img
+                            src="dostea-dining-experience.png"
+                            alt="DOSTEA dining experience"
+                        >
+
+                    </div>
+
+
+
+                    <div class="intro-small-image">
+
+                        <img
+                            src="dostea-table-setting.png"
+                            alt="DOSTEA restaurant table"
+                        >
+
+                    </div>
+
+
+
+                    <div class="intro-floating-card">
+
+                        <span>
+                            THE DOSTEA WAY
+                        </span>
+
+                        <strong>
+                            Food • Space • People
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CONTENT SIDE -->
+
+                <div class="restaurant-intro-content">
+
+
+                    <span class="restaurant-section-label">
+
+                        THE RESTAURANT
+
+                    </span>
+
+
+                    <h2>
+
+                        A dining space built around
+
+                        <em>
+                            good moments.
+                        </em>
+
+                    </h2>
+
+
+                    <p>
+
+                        At DOSTEA, the restaurant is designed to feel
+                        relaxed without losing its premium character.
+                        From quick lunches to long evening conversations,
+                        every table is part of the experience.
+
+                    </p>
+
+
+                    <p>
+
+                        Our menu brings together café favourites,
+                        comfort food and restaurant classics — prepared
+                        fresh and served in the unmistakable DOSTEA style.
+
+                    </p>
+
+
+
+                    <div class="restaurant-intro-features">
+
+
+                        <div>
+
+                            <span>
+                                01
+                            </span>
+
+                            <strong>
+                                Fresh Kitchen
+                            </strong>
+
+                            <p>
+                                Prepared after you order.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                02
+                            </span>
+
+                            <strong>
+                                Curated Menu
+                            </strong>
+
+                            <p>
+                                Something for every mood.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                03
+                            </span>
+
+                            <strong>
+                                Relaxed Dining
+                            </strong>
+
+                            <p>
+                                Stay as long as the conversation does.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <a
+                        href="menu.html"
+                        class="restaurant-text-link"
+                    >
+
+                        Discover the full menu
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION HEADING
+            ================================================== -->
+
+            <section class="restaurant-section-heading">
+
+
+                <div>
+
+                    <span class="restaurant-section-label">
+
+                        SIGNATURE SELECTION
+
+                    </span>
+
+
+                    <h2>
+
+                        Crafted for the
+
+                        <em>
+                            DOSTEA table.
+                        </em>
+
+                    </h2>
+
+                </div>
+
+
+                <div class="section-heading-right">
+
+                    <p>
+
+                        A few favourites from our kitchen.
+                        Explore the complete collection from the menu.
+
+                    </p>
+
+
+                    <a href="menu.html">
+
+                        View Full Menu
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SIGNATURE DISHES
+            ================================================== -->
+
+            <section class="restaurant-signature-grid">
+
+
+                <!-- DISH 01 -->
+
+                <article class="signature-dish-card">
+
+
+                    <div class="signature-image">
+
+                        <img
+                            src="farmhouse-cheese-pizza.png"
+                            alt="DOSTEA Farmhouse Pizza"
+                        >
+
+
+                        <span class="signature-number">
+                            01
+                        </span>
+
+
+                        <span class="signature-badge">
+                            BESTSELLER
+                        </span>
+
+                    </div>
+
+
+                    <div class="signature-content">
+
+
+                        <span>
+                            DOSTEA CLASSIC
+                        </span>
+
+
+                        <h3>
+                            Farmhouse Cheese Pizza
+                        </h3>
+
+
+                        <p>
+
+                            Loaded with vegetables, rich cheese
+                            and our signature pizza sauce.
+
+                        </p>
+
+
+                        <div class="signature-footer">
+
+
+                            <strong>
+                                ₹299
+                            </strong>
+
+
+                            <a href="menu.html">
+
+                                Order
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- DISH 02 -->
+
+                <article class="signature-dish-card signature-featured">
+
+
+                    <div class="signature-image">
+
+                        <img
+                            src="cheesy-garlic-bread.png"
+                            alt="DOSTEA Cheesy Garlic Bread"
+                        >
+
+
+                        <span class="signature-number">
+                            02
+                        </span>
+
+
+                        <span class="signature-badge">
+                            SIGNATURE
+                        </span>
+
+                    </div>
+
+
+                    <div class="signature-content">
+
+
+                        <span>
+                            CAFÉ FAVOURITE
+                        </span>
+
+
+                        <h3>
+                            Cheesy Garlic Bread
+                        </h3>
+
+
+                        <p>
+
+                            Golden toasted bread finished with
+                            garlic butter and melted cheese.
+
+                        </p>
+
+
+                        <div class="signature-footer">
+
+
+                            <strong>
+                                ₹199
+                            </strong>
+
+
+                            <a href="menu.html">
+
+                                Order
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- DISH 03 -->
+
+                <article class="signature-dish-card">
+
+
+                    <div class="signature-image">
+
+                        <img
+                            src="loaded-peri-peri-fries.png"
+                            alt="DOSTEA Loaded Peri Peri Fries"
+                        >
+
+
+                        <span class="signature-number">
+                            03
+                        </span>
+
+
+                        <span class="signature-badge">
+                            MUST TRY
+                        </span>
+
+                    </div>
+
+
+                    <div class="signature-content">
+
+
+                        <span>
+                            LOADED FAVOURITE
+                        </span>
+
+
+                        <h3>
+                            Loaded Peri Peri Fries
+                        </h3>
+
+
+                        <p>
+
+                            Crispy fries loaded with creamy sauce,
+                            cheese and peri peri seasoning.
+
+                        </p>
+
+
+                        <div class="signature-footer">
+
+
+                            <strong>
+                                ₹229
+                            </strong>
+
+
+                            <a href="menu.html">
+
+                                Order
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+            </section>
+                        <!-- =================================================
+                 DINING EXPERIENCES
+            ================================================== -->
+
+            <section class="dining-experience-section">
+
+                <div class="restaurant-section-heading">
+
+                    <div>
+
+                        <span class="restaurant-section-label">
+                            CHOOSE YOUR MOMENT
+                        </span>
+
+                        <h2>
+                            From morning coffee to
+                            <em>late dinners.</em>
+                        </h2>
+
+                    </div>
+
+                    <div class="section-heading-right">
+
+                        <p>
+                            Different hours, different moods —
+                            the same DOSTEA experience throughout the day.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dining-experience-grid">
+
+
+                    <!-- BREAKFAST -->
+
+                    <article class="dining-experience-card">
+
+                        <img
+                            src="dostea-breakfast.jpg"
+                            alt="Breakfast at DOSTEA"
+                        >
+
+                        <div class="dining-card-overlay"></div>
+
+                        <div class="dining-card-number">
+                            01
+                        </div>
+
+                        <div class="dining-card-content">
+
+                            <span>
+                                10:00 AM — 12:30 PM
+                            </span>
+
+                            <h3>
+                                Slow Mornings
+                            </h3>
+
+                            <p>
+                                Coffee, breakfast favourites and
+                                a relaxed start to your day.
+                            </p>
+
+                            <a href="menu.html">
+                                Explore Breakfast
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- LUNCH -->
+
+                    <article class="dining-experience-card dining-large">
+
+                        <img
+                            src="dostea-lunch.jpg"
+                            alt="Lunch at DOSTEA"
+                        >
+
+                        <div class="dining-card-overlay"></div>
+
+                        <div class="dining-card-number">
+                            02
+                        </div>
+
+                        <div class="dining-card-content">
+
+                            <span>
+                                12:30 PM — 4:00 PM
+                            </span>
+
+                            <h3>
+                                Afternoon Tables
+                            </h3>
+
+                            <p>
+                                Comfort food, fresh plates and
+                                conversations that don't need to rush.
+                            </p>
+
+                            <a href="menu.html">
+                                Explore Lunch
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- DINNER -->
+
+                    <article class="dining-experience-card">
+
+                        <img
+                            src="dostea-dinner.jpg"
+                            alt="Dinner at DOSTEA"
+                        >
+
+                        <div class="dining-card-overlay"></div>
+
+                        <div class="dining-card-number">
+                            03
+                        </div>
+
+                        <div class="dining-card-content">
+
+                            <span>
+                                7:00 PM — 10:30 PM
+                            </span>
+
+                            <h3>
+                                Dinner After Dark
+                            </h3>
+
+                            <p>
+                                Warm lights, signature dishes
+                                and an evening made to stay longer.
+                            </p>
+
+                            <a href="reservations.html">
+                                Reserve Dinner
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DINING SPACES
+            ================================================== -->
+
+            <section class="dining-spaces-section">
+
+                <div class="dining-spaces-intro">
+
+                    <span class="restaurant-section-label">
+                        FIND YOUR SPACE
+                    </span>
+
+                    <h2>
+                        Every table has
+                        <em>its own mood.</em>
+                    </h2>
+
+                    <p>
+                        Whether you're meeting friends, planning
+                        a quiet dinner or celebrating something
+                        special, choose the DOSTEA space that
+                        fits your moment.
+                    </p>
+
+                    <a
+                        href="reservations.html"
+                        class="restaurant-primary-btn"
+                    >
+                        <span>Reserve Your Table</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="dining-spaces-grid">
+
+
+                    <!-- SPACE 1 -->
+
+                    <article class="dining-space-card">
+
+                        <div class="dining-space-image">
+
+                            <img
+                                src="dostea-indoor-dining.jpg"
+                                alt="DOSTEA Indoor Dining"
+                            >
+
+                            <span>
+                                01
+                            </span>
+
+                        </div>
+
+                        <div class="dining-space-content">
+
+                            <small>
+                                CLASSIC DOSTEA
+                            </small>
+
+                            <h3>
+                                Indoor Dining
+                            </h3>
+
+                            <p>
+                                Comfortable seating, warm lighting
+                                and the signature DOSTEA atmosphere.
+                            </p>
+
+                            <div>
+                                <span>COZY</span>
+                                <span>CASUAL</span>
+                                <span>ALL DAY</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- SPACE 2 -->
+
+                    <article class="dining-space-card">
+
+                        <div class="dining-space-image">
+
+                            <img
+                                src="dostea-window-seating.jpg"
+                                alt="DOSTEA Window Seating"
+                            >
+
+                            <span>
+                                02
+                            </span>
+
+                        </div>
+
+                        <div class="dining-space-content">
+
+                            <small>
+                                NATURAL LIGHT
+                            </small>
+
+                            <h3>
+                                Window Tables
+                            </h3>
+
+                            <p>
+                                A brighter corner for coffee,
+                                relaxed lunches and quieter moments.
+                            </p>
+
+                            <div>
+                                <span>BRIGHT</span>
+                                <span>RELAXED</span>
+                                <span>2–4 GUESTS</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- SPACE 3 -->
+
+                    <article class="dining-space-card">
+
+                        <div class="dining-space-image">
+
+                            <img
+                                src="dostea-group-dining.jpg"
+                                alt="DOSTEA Group Dining"
+                            >
+
+                            <span>
+                                03
+                            </span>
+
+                        </div>
+
+                        <div class="dining-space-content">
+
+                            <small>
+                                TOGETHER
+                            </small>
+
+                            <h3>
+                                Group Tables
+                            </h3>
+
+                            <p>
+                                Larger tables created for friends,
+                                families and celebrations together.
+                            </p>
+
+                            <div>
+                                <span>GROUPS</span>
+                                <span>FAMILY</span>
+                                <span>CELEBRATIONS</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- SPACE 4 -->
+
+                    <article class="dining-space-card">
+
+                        <div class="dining-space-image">
+
+                            <img
+                                src="dostea-private-dining.jpg"
+                                alt="DOSTEA Private Dining"
+                            >
+
+                            <span>
+                                04
+                            </span>
+
+                        </div>
+
+                        <div class="dining-space-content">
+
+                            <small>
+                                MORE PERSONAL
+                            </small>
+
+                            <h3>
+                                Private Corner
+                            </h3>
+
+                            <p>
+                                A more intimate setting for
+                                special dinners and conversations.
+                            </p>
+
+                            <div>
+                                <span>PRIVATE</span>
+                                <span>PREMIUM</span>
+                                <span>RESERVATION</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CHEF / KITCHEN EXPERIENCE
+            ================================================== -->
+
+            <section class="restaurant-kitchen-section">
+
+
+                <!-- LARGE IMAGE -->
+
+                <div class="kitchen-main-visual">
+
+                    <img
+                        src="dostea-kitchen.jpg"
+                        alt="DOSTEA Restaurant Kitchen"
+                    >
+
+                    <div class="kitchen-image-overlay"></div>
+
+                    <span class="kitchen-vertical-text">
+                        DOSTEA KITCHEN
+                    </span>
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="kitchen-content">
+
+                    <span class="restaurant-section-label">
+                        FROM OUR KITCHEN
+                    </span>
+
+                    <h2>
+                        Made fresh.
+                        <em>Served with intention.</em>
+                    </h2>
+
+                    <p>
+                        Behind every DOSTEA plate is a simple idea:
+                        familiar food should still feel special.
+                        Our kitchen focuses on fresh preparation,
+                        balanced flavours and presentation that
+                        belongs on the table.
+                    </p>
+
+
+                    <div class="kitchen-values">
+
+                        <div>
+
+                            <strong>01</strong>
+
+                            <div>
+                                <span>FRESH PREPARATION</span>
+                                <p>
+                                    Food prepared close to the moment
+                                    it reaches your table.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>02</strong>
+
+                            <div>
+                                <span>QUALITY INGREDIENTS</span>
+                                <p>
+                                    Simple ingredients treated
+                                    with attention and care.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>03</strong>
+
+                            <div>
+                                <span>DOSTEA FINISH</span>
+                                <p>
+                                    Every plate finished with our
+                                    signature restaurant character.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="menu.html"
+                        class="restaurant-text-link"
+                    >
+                        See what's cooking
+
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- SMALL IMAGE -->
+
+                <div class="kitchen-secondary-visual">
+
+                    <img
+                        src="dostea-chef-plating.jpg"
+                        alt="Food preparation at DOSTEA"
+                    >
+
+                    <div class="kitchen-small-label">
+
+                        <span>
+                            PREPARED
+                        </span>
+
+                        <strong>
+                            Fresh every day.
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ORDER ONLINE BANNER
+            ================================================== -->
+
+            <section class="restaurant-order-banner">
+
+                <div class="order-banner-background">
+
+                    <img
+                        src="dostea-food-table.jpg"
+                        alt="DOSTEA Food Collection"
+                    >
+
+                </div>
+
+                <div class="order-banner-overlay"></div>
+
+
+                <div class="order-banner-content">
+
+                    <span class="restaurant-section-label">
+                        DOSTEA, WHEREVER YOU ARE
+                    </span>
+
+                    <h2>
+                        Not dining in?
+                        <em>Order your favourites.</em>
+                    </h2>
+
+                    <p>
+                        Browse the DOSTEA menu, add your favourites
+                        to cart and place your order online.
+                    </p>
+
+
+                    <div class="order-banner-actions">
+
+                        <a
+                            href="menu.html"
+                            class="restaurant-primary-btn"
+                        >
+                            <span>Order from Menu</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+
+                        <a
+                            href="orders.html"
+                            class="restaurant-secondary-btn"
+                        >
+                            <span>Track My Orders</span>
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="order-banner-number">
+                    D
+                </div>
+
+            </section>
+
+        </div>
+        <!-- restaurant-page-content END -->
+
+
+    </main>
+
+</div>
+<!-- app END -->
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           USER
+        ====================================================== */
+
+        let currentUser = null;
+
+
+        try {
+
+            currentUser =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_current_user"
+                    )
+                );
+
+        }
+
+        catch (error) {
+
+            currentUser = null;
+
+        }
+
+
+
+        /* =====================================================
+           PROFILE UI
+        ====================================================== */
+
+        const sidebarAvatar =
+            document.getElementById(
+                "sidebarAvatar"
+            );
+
+        const sidebarUserName =
+            document.getElementById(
+                "sidebarUserName"
+            );
+
+        const topProfileAvatar =
+            document.getElementById(
+                "topProfileAvatar"
+            );
+
+        const topProfileName =
+            document.getElementById(
+                "topProfileName"
+            );
+
+
+        if (currentUser) {
+
+
+            const name =
+                currentUser.fullName ||
+                currentUser.name ||
+                "DOSTEA User";
+
+
+            const initials =
+                name
+                    .trim()
+                    .split(/\s+/)
+                    .slice(0, 2)
+                    .map(
+                        function (word) {
+
+                            return word
+                                .charAt(0)
+                                .toUpperCase();
+
+                        }
+                    )
+                    .join("") || "D";
+
+
+            if (sidebarAvatar) {
+
+                sidebarAvatar.textContent =
+                    initials;
+
+            }
+
+
+            if (sidebarUserName) {
+
+                sidebarUserName.textContent =
+                    name;
+
+            }
+
+
+            if (topProfileAvatar) {
+
+                topProfileAvatar.textContent =
+                    initials;
+
+            }
+
+
+            if (topProfileName) {
+
+                topProfileName.textContent =
+                    name;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CART COUNT
+        ====================================================== */
+
+        function updateRestaurantCartCount() {
+
+
+            let cart = [];
+
+
+            try {
+
+                cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_cart"
+                        ) || "[]"
+                    );
+
+            }
+
+            catch (error) {
+
+                cart = [];
+
+            }
+
+
+            if (!Array.isArray(cart)) {
+
+                cart = [];
+
+            }
+
+
+            const total =
+                cart.reduce(
+                    function (sum, item) {
+
+
+                        const quantity =
+                            Math.max(
+                                1,
+                                Number(
+                                    item.quantity || 1
+                                )
+                            );
+
+
+                        return sum + quantity;
+
+                    },
+                    0
+                );
+
+
+            const cartCount =
+                document.getElementById(
+                    "topCartCount"
+                );
+
+
+            if (cartCount) {
+
+                cartCount.textContent =
+                    total;
+
+            }
+
+        }
+
+
+        updateRestaurantCartCount();
+
+
+
+        /* =====================================================
+           MOBILE SIDEBAR
+        ====================================================== */
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const mobileMenuBtn =
+            document.getElementById(
+                "mobileMenuBtn"
+            );
+
+
+        const sidebarOverlay =
+            document.getElementById(
+                "sidebarOverlay"
+            );
+
+
+        mobileMenuBtn?.addEventListener(
+            "click",
+            function () {
+
+
+                sidebar?.classList.add(
+                    "open"
+                );
+
+
+                sidebarOverlay?.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+
+        sidebarOverlay?.addEventListener(
+            "click",
+            function () {
+
+
+                sidebar?.classList.remove(
+                    "open"
+                );
+
+
+                sidebarOverlay?.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SIDEBAR ACCORDION
+        ====================================================== */
+
+        const accordions =
+            document.querySelectorAll(
+                ".sidebar-accordion"
+            );
+
+
+        accordions.forEach(
+            function (accordion) {
+
+
+                const button =
+                    accordion.querySelector(
+                        ".sidebar-parent"
+                    );
+
+
+                if (!button) {
+
+                    return;
+
+                }
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const isOpen =
+                            accordion
+                                .classList
+                                .contains(
+                                    "open"
+                                );
+
+
+                        accordions.forEach(
+                            function (item) {
+
+
+                                item
+                                    .classList
+                                    .remove(
+                                        "open"
+                                    );
+
+
+                                item
+                                    .querySelector(
+                                        ".sidebar-parent"
+                                    )
+                                    ?.setAttribute(
+                                        "aria-expanded",
+                                        "false"
+                                    );
+
+                            }
+                        );
+
+
+                        if (!isOpen) {
+
+
+                            accordion
+                                .classList
+                                .add(
+                                    "open"
+                                );
+
+
+                            button
+                                .setAttribute(
+                                    "aria-expanded",
+                                    "true"
+                                );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           ACTIVE PAGE
+        ====================================================== */
+
+        let currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+
+        if (!currentPage) {
+
+            currentPage =
+                "index.html";
+
+        }
+
+
+        document
+            .querySelectorAll(
+                ".sidebar-navigation a.nav-link"
+            )
+            .forEach(
+                function (link) {
+
+
+                    link.classList.remove(
+                        "active"
+                    );
+
+
+                    if (
+                        link.getAttribute(
+                            "href"
+                        ) === currentPage
+                    ) {
+
+
+                        link.classList.add(
+                            "active"
+                        );
+
+
+                        const parentAccordion =
+                            link.closest(
+                                ".sidebar-accordion"
+                            );
+
+
+                        if (parentAccordion) {
+
+
+                            parentAccordion
+                                .classList
+                                .add(
+                                    "open"
+                                );
+
+
+                            parentAccordion
+                                .querySelector(
+                                    ".sidebar-parent"
+                                )
+                                ?.setAttribute(
+                                    "aria-expanded",
+                                    "true"
+                                );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           PROTECTED LINKS
+        ====================================================== */
+
+        const protectedPages = [
+
+            "orders.html",
+            "profile.html",
+            "booking.html"
+
+        ];
+
+
+        document
+            .querySelectorAll("a")
+            .forEach(
+                function (link) {
+
+
+                    const href =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        protectedPages.includes(
+                            href
+                        )
+                    ) {
+
+
+                        link.addEventListener(
+                            "click",
+                            function (event) {
+
+
+                                if (!currentUser) {
+
+
+                                    event.preventDefault();
+
+
+                                    localStorage.setItem(
+                                        "dostea_redirect_after_login",
+                                        href
+                                    );
+
+
+                                    window.location.href =
+                                        "login.html";
+
+                                }
+
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SEARCH
+        ====================================================== */
+
+        const restaurantSearch =
+            document.getElementById(
+                "restaurantSearch"
+            );
+
+
+        restaurantSearch?.addEventListener(
+            "keydown",
+            function (event) {
+
+
+                if (
+                    event.key !==
+                    "Enter"
+                ) {
+
+                    return;
+
+                }
+
+
+                const query =
+                    restaurantSearch
+                        .value
+                        .trim();
+
+
+                if (!query) {
+
+                    return;
+
+                }
+
+
+                /*
+                    Restaurant page search sends
+                    the query to menu.html.
+                */
+
+                localStorage.setItem(
+                    "dostea_menu_search",
+                    query
+                );
+
+
+                window.location.href =
+                    "menu.html";
+
+            }
+        );
+
+
+
+        /* =====================================================
+           IMAGE REVEAL
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                [
+                    ".signature-dish-card",
+                    ".dining-experience-card",
+                    ".dining-space-card",
+                    ".gallery-item",
+                    ".restaurant-location-card",
+                    ".restaurant-hours-card"
+                ].join(",")
+            );
+
+
+        if (
+            "IntersectionObserver"
+            in window
+        ) {
+
+
+            const observer =
+                new IntersectionObserver(
+                    function (entries) {
+
+
+                        entries.forEach(
+                            function (entry) {
+
+
+                                if (
+                                    entry.isIntersecting
+                                ) {
+
+
+                                    entry.target
+                                        .classList
+                                        .add(
+                                            "restaurant-visible"
+                                        );
+
+
+                                    observer.unobserve(
+                                        entry.target
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    },
+                    {
+                        threshold: 0.12
+                    }
+                );
+
+
+            revealElements.forEach(
+                function (element) {
+
+                    observer.observe(
+                        element
+                    );
+
+                }
+            );
+
+        }
+
+        else {
+
+
+            revealElements.forEach(
+                function (element) {
+
+
+                    element.classList.add(
+                        "restaurant-visible"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RESIZE
+        ====================================================== */
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+
+                if (
+                    window.innerWidth >
+                    900
+                ) {
+
+
+                    sidebar?.classList.remove(
+                        "open"
+                    );
+
+
+                    sidebarOverlay?.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* Update count when returning to page */
+
+        window.addEventListener(
+            "focus",
+            updateRestaurantCartCount
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

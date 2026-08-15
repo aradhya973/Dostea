@@ -1,0 +1,3100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOSTEA | Amenities</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Existing Common CSS -->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Amenities CSS -->
+    <link rel="stylesheet" href="amenities.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         MOBILE SIDEBAR OVERLAY
+    ====================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <!-- BRAND -->
+
+        <a
+            href="index.html"
+            class="sidebar-brand"
+        >
+
+            <div class="brand-mark">
+                D
+            </div>
+
+            <div class="brand-info">
+
+                <h1>DOSTEA</h1>
+
+                <p>
+                    HOTEL • CAFÉ • LIFESTYLE
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="sidebar-navigation">
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    <i class="fa-solid fa-house"></i>
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <!-- =================================================
+                 CAFÉ
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </span>
+
+                        <span>
+                            Café
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="menu.html"
+                        class="nav-link"
+                    >
+                        Menu
+                    </a>
+
+                    <a
+                        href="reservations.html"
+                        class="nav-link"
+                    >
+                        Reserve Table
+                    </a>
+
+                    <a
+                        href="about.html"
+                        class="nav-link"
+                    >
+                        About DOSTEA
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ORDERS
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </span>
+
+                        <span>
+                            Orders
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="orders.html"
+                        class="nav-link"
+                    >
+                        My Orders
+                    </a>
+
+                    <a
+                        href="cart.html"
+                        class="nav-link"
+                    >
+                        My Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESTAURANT
+            ================================================== -->
+
+            <div class="sidebar-accordion open">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="true"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            Restaurant
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="restaurant.html"
+                        class="nav-link"
+                    >
+                        Restaurant
+                    </a>
+
+                    <a
+                        href="amenities.html"
+                        class="nav-link active"
+                    >
+                        Amenities
+                    </a>
+
+                    <a
+                        href="menu.html"
+                        class="nav-link"
+                    >
+                        Menu
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <div class="sidebar-accordion">
+
+                <button
+                    type="button"
+                    class="sidebar-parent"
+                    aria-expanded="false"
+                >
+
+                    <span class="parent-left">
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+
+                        <span>
+                            Contact
+                        </span>
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+
+                </button>
+
+
+                <div class="sidebar-submenu">
+
+                    <a
+                        href="contact.html"
+                        class="nav-link"
+                    >
+                        Contact Us
+                    </a>
+
+                    <a
+                        href="reach-us.html"
+                        class="nav-link"
+                    >
+                        Reach Us
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="profile.html"
+                class="nav-link"
+            >
+
+                <span class="nav-icon">
+                    <i class="fa-regular fa-user"></i>
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             SIDEBAR USER
+        ================================================== -->
+
+        <div class="sidebar-user">
+
+            <a
+                href="profile.html"
+                class="user-avatar"
+                id="sidebarAvatar"
+            >
+                AD
+            </a>
+
+
+            <div class="user-details">
+
+                <h4 id="sidebarUserName">
+                    Aradhya
+                </h4>
+
+                <p>
+                    Customer
+                </p>
+
+            </div>
+
+
+            <a
+                href="profile.html"
+                class="user-menu-btn"
+                aria-label="Profile"
+            >
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open navigation"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="page-location">
+
+                    DOSTEA /
+
+                    <span>
+                        Amenities
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="topbar-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="amenitiesSearch"
+                    placeholder="Search amenities..."
+                >
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="topbar-actions">
+
+
+                <!-- CART -->
+
+                <a
+                    href="cart.html"
+                    class="icon-button amenities-cart-button"
+                    aria-label="Cart"
+                >
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span
+                        class="amenities-cart-count"
+                        id="topCartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <!-- NOTIFICATION -->
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    aria-label="Notifications"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- PROFILE -->
+
+                <a
+                    href="profile.html"
+                    class="top-profile"
+                >
+
+                    <div
+                        class="top-profile-avatar"
+                        id="topProfileAvatar"
+                    >
+                        AD
+                    </div>
+
+
+                    <div class="top-profile-info">
+
+                        <strong id="topProfileName">
+                            Aradhya
+                        </strong>
+
+                        <span>
+                            Customer
+                        </span>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             AMENITIES PAGE
+        ====================================================== -->
+
+        <div class="page-content amenities-page-content">
+
+
+            <!-- =================================================
+                 HERO SECTION
+            ================================================== -->
+
+            <section class="amenities-hero">
+
+
+                <!-- HERO IMAGE -->
+
+                <img
+                    src="dostea-amenities-hero.jpg"
+                    alt="DOSTEA Restaurant Amenities"
+                    class="amenities-hero-image"
+                >
+
+
+                <!-- OVERLAYS -->
+
+                <div class="amenities-hero-overlay"></div>
+
+                <div class="amenities-hero-gradient"></div>
+
+                <div class="amenities-hero-glow amenities-glow-one"></div>
+
+                <div class="amenities-hero-glow amenities-glow-two"></div>
+
+
+                <!-- DECORATION -->
+
+                <div class="amenities-depth-line amenities-line-one"></div>
+
+                <div class="amenities-depth-line amenities-line-two"></div>
+
+
+                <!-- HERO CONTENT -->
+
+                <div class="amenities-hero-content">
+
+
+                    <div class="amenities-status">
+
+                        <span class="amenities-status-dot"></span>
+
+                        <span>
+                            DESIGNED AROUND YOUR COMFORT
+                        </span>
+
+                    </div>
+
+
+                    <span class="amenities-eyebrow">
+                        THE DOSTEA EXPERIENCE
+                    </span>
+
+
+                    <h1>
+
+                        Everything you need.
+
+                        <em>
+                            Thoughtfully included.
+                        </em>
+
+                    </h1>
+
+
+                    <p>
+
+                        From comfortable dining and seamless connectivity
+                        to convenient parking and attentive service,
+                        every DOSTEA amenity is designed to make your
+                        time with us feel effortless.
+
+                    </p>
+
+
+                    <!-- HERO BUTTONS -->
+
+                    <div class="amenities-hero-actions">
+
+                        <a
+                            href="#allAmenities"
+                            class="amenities-primary-btn"
+                        >
+
+                            <span>
+                                Explore Amenities
+                            </span>
+
+                            <i class="fa-solid fa-arrow-down"></i>
+
+                        </a>
+
+
+                        <a
+                            href="reservations.html"
+                            class="amenities-secondary-btn"
+                        >
+
+                            <span>
+                                Reserve a Table
+                            </span>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     HERO FEATURE CARD
+                ================================================== -->
+
+                <div class="amenities-hero-card">
+
+
+                    <div class="amenities-hero-card-top">
+
+                        <span>
+                            DOSTEA ESSENTIALS
+                        </span>
+
+                        <span class="amenities-live-badge">
+                            AVAILABLE
+                        </span>
+
+                    </div>
+
+
+                    <div class="amenities-hero-card-content">
+
+                        <span class="amenities-card-label">
+                            EVERY VISIT
+                        </span>
+
+                        <strong>
+                            Comfort comes standard.
+                        </strong>
+
+                        <p>
+                            Wi-Fi, air conditioning, convenient seating
+                            and thoughtful restaurant service.
+                        </p>
+
+                    </div>
+
+
+                    <a href="#allAmenities">
+
+                        View all amenities
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- HERO STATS -->
+
+                <div class="amenities-hero-stats">
+
+
+                    <div class="amenities-stat">
+
+                        <strong>
+                            12+
+                        </strong>
+
+                        <span>
+                            Guest Amenities
+                        </span>
+
+                    </div>
+
+
+                    <div class="amenities-stat-divider"></div>
+
+
+                    <div class="amenities-stat">
+
+                        <strong>
+                            FREE
+                        </strong>
+
+                        <span>
+                            High-Speed Wi-Fi
+                        </span>
+
+                    </div>
+
+
+                    <div class="amenities-stat-divider"></div>
+
+
+                    <div class="amenities-stat">
+
+                        <strong>
+                            100%
+                        </strong>
+
+                        <span>
+                            Comfort Focused
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 QUICK AMENITIES BAR
+            ================================================== -->
+
+            <section class="amenities-quick-bar">
+
+
+                <!-- WIFI -->
+
+                <div class="amenities-quick-item">
+
+                    <div class="amenities-quick-icon">
+
+                        <i class="fa-solid fa-wifi"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            CONNECTED
+                        </span>
+
+                        <strong>
+                            Free High-Speed Wi-Fi
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-quick-divider"></div>
+
+
+                <!-- PARKING -->
+
+                <div class="amenities-quick-item">
+
+                    <div class="amenities-quick-icon">
+
+                        <i class="fa-solid fa-square-parking"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            EASY ARRIVAL
+                        </span>
+
+                        <strong>
+                            Guest Parking
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-quick-divider"></div>
+
+
+                <!-- AC -->
+
+                <div class="amenities-quick-item">
+
+                    <div class="amenities-quick-icon">
+
+                        <i class="fa-solid fa-snowflake"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            ALL DAY COMFORT
+                        </span>
+
+                        <strong>
+                            Air Conditioned
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-quick-divider"></div>
+
+
+                <!-- FAMILY -->
+
+                <div class="amenities-quick-item">
+
+                    <div class="amenities-quick-icon">
+
+                        <i class="fa-solid fa-people-group"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            EVERYONE'S WELCOME
+                        </span>
+
+                        <strong>
+                            Family Friendly
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AMENITIES INTRO
+            ================================================== -->
+
+            <section class="amenities-intro">
+
+
+                <!-- VISUAL -->
+
+                <div class="amenities-intro-visual">
+
+
+                    <div class="amenities-intro-main-image">
+
+                        <img
+                            src="premium_photo-1670984940156-c7f833fe8397.avif"
+                            alt="Comfortable DOSTEA restaurant interior"
+                        >
+
+                    </div>
+
+
+                    <div class="amenities-intro-small-image">
+
+                        <img
+                            src="dostea-premium-seating.jpg"
+                            alt="Premium seating at DOSTEA"
+                        >
+
+                    </div>
+
+
+                    <div class="amenities-intro-floating-card">
+
+                        <span>
+                            MADE FOR YOUR TIME
+                        </span>
+
+                        <strong>
+                            Comfort • Convenience • Care
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="amenities-intro-content">
+
+
+                    <span class="amenities-section-label">
+                        BEYOND THE TABLE
+                    </span>
+
+
+                    <h2>
+
+                        Good dining starts with
+
+                        <em>
+                            how the space feels.
+                        </em>
+
+                    </h2>
+
+
+                    <p>
+
+                        DOSTEA is designed around more than what arrives
+                        on your plate. Every detail around your table
+                        matters — the lighting, seating, temperature,
+                        connectivity and the way you're looked after.
+
+                    </p>
+
+
+                    <p>
+
+                        Whether you're stopping by for coffee, meeting
+                        friends over lunch or settling in for dinner,
+                        our amenities make the experience comfortable
+                        from arrival to the last conversation.
+
+                    </p>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="amenities-intro-features">
+
+
+                        <div>
+
+                            <span>
+                                01
+                            </span>
+
+                            <strong>
+                                Guest First
+                            </strong>
+
+                            <p>
+                                Designed around comfort.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                02
+                            </span>
+
+                            <strong>
+                                Always Connected
+                            </strong>
+
+                            <p>
+                                Wi-Fi throughout DOSTEA.
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                03
+                            </span>
+
+                            <strong>
+                                Easy Access
+                            </strong>
+
+                            <p>
+                                Convenient from arrival.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="#allAmenities"
+                        class="amenities-text-link"
+                    >
+
+                        Discover everything included
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AMENITIES SECTION HEADING
+            ================================================== -->
+
+            <section
+                class="amenities-section-heading"
+                id="allAmenities"
+            >
+
+                <div>
+
+                    <span class="amenities-section-label">
+                        EVERYTHING AT DOSTEA
+                    </span>
+
+
+                    <h2>
+
+                        Small details.
+
+                        <em>
+                            Better experiences.
+                        </em>
+
+                    </h2>
+
+                </div>
+
+
+                <div class="amenities-heading-right">
+
+                    <p>
+
+                        Essential comforts and thoughtful extras,
+                        available to make every visit smoother,
+                        easier and more enjoyable.
+
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MAIN AMENITIES GRID
+            ================================================== -->
+
+            <section class="amenities-main-grid">
+
+
+                <!-- 01 -->
+
+                <article
+                    class="amenity-card amenity-card-featured"
+                    data-amenity="wifi internet connectivity work"
+                >
+
+                    <div class="amenity-card-number">
+                        01
+                    </div>
+
+                    <div class="amenity-icon">
+
+                        <i class="fa-solid fa-wifi"></i>
+
+                    </div>
+
+
+                    <span class="amenity-label">
+                        CONNECTIVITY
+                    </span>
+
+
+                    <h3>
+                        High-Speed Wi-Fi
+                    </h3>
+
+
+                    <p>
+
+                        Stay connected throughout your visit with
+                        complimentary Wi-Fi across the DOSTEA dining space.
+
+                    </p>
+
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            COMPLIMENTARY
+                        </span>
+
+                        <i class="fa-solid fa-signal"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 02 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="parking car vehicle arrival"
+                >
+
+                    <div class="amenity-card-number">
+                        02
+                    </div>
+
+                    <div class="amenity-icon">
+
+                        <i class="fa-solid fa-square-parking"></i>
+
+                    </div>
+
+
+                    <span class="amenity-label">
+                        ARRIVAL
+                    </span>
+
+
+                    <h3>
+                        Guest Parking
+                    </h3>
+
+
+                    <p>
+
+                        Convenient parking access designed to make
+                        arriving at and leaving DOSTEA effortless.
+
+                    </p>
+
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            GUEST ACCESS
+                        </span>
+
+                        <i class="fa-solid fa-car-side"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 03 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="air conditioning ac comfort cooling"
+                >
+
+                    <div class="amenity-card-number">
+                        03
+                    </div>
+
+                    <div class="amenity-icon">
+
+                        <i class="fa-regular fa-snowflake"></i>
+
+                    </div>
+
+
+                    <span class="amenity-label">
+                        COMFORT
+                    </span>
+
+
+                    <h3>
+                        Climate Controlled
+                    </h3>
+
+
+                    <p>
+
+                        Fully air-conditioned dining areas maintain
+                        a comfortable atmosphere throughout your visit.
+
+                    </p>
+
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            ALL DAY
+                        </span>
+
+                        <i class="fa-solid fa-temperature-half"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 04 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="family group seating friends"
+                >
+
+                    <div class="amenity-card-number">
+                        04
+                    </div>
+
+                    <div class="amenity-icon">
+
+                        <i class="fa-solid fa-people-roof"></i>
+
+                    </div>
+
+
+                    <span class="amenity-label">
+                        TOGETHER
+                    </span>
+
+
+                    <h3>
+                        Family Seating
+                    </h3>
+
+
+                    <p>
+
+                        Flexible table arrangements for families,
+                        groups and longer conversations together.
+
+                    </p>
+
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            GROUP FRIENDLY
+                        </span>
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 05 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="charging phone laptop power socket"
+                >
+
+                    <div class="amenity-card-number">
+                        05
+                    </div>
+
+                    <div class="amenity-icon">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+
+                    <span class="amenity-label">
+                        POWER
+                    </span>
+
+
+                    <h3>
+                        Charging Access
+                    </h3>
+
+
+                    <p>
+
+                        Convenient power access around selected seating
+                        areas for phones, laptops and everyday devices.
+
+                    </p>
+
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            SELECTED TABLES
+                        </span>
+
+                        <i class="fa-solid fa-plug"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 06 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="contactless payment upi card cash payment"
+                >
+
+                    <div class="amenity-card-number">
+                        06
+                    </div>
+
+                    <div class="amenity-icon">
+
+                        <i class="fa-solid fa-credit-card"></i>
+
+                    </div>
+
+
+                    <span class="amenity-label">
+                        EASY PAYMENT
+                    </span>
+
+
+                    <h3>
+                        Flexible Payments
+                    </h3>
+
+
+                    <p>
+
+                        Pay conveniently using supported digital,
+                        card and standard payment options at DOSTEA.
+
+                    </p>
+
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            QUICK CHECKOUT
+                        </span>
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                    </div>
+
+                </article>
+
+            </section>
+                        <!-- =================================================
+                 07 — OUTDOOR / RELAXED SEATING
+            ================================================== -->
+
+            <section class="amenities-main-grid amenities-main-grid-continued">
+
+                <article
+                    class="amenity-card"
+                    data-amenity="outdoor seating open air relaxed seating"
+                >
+
+                    <div class="amenity-card-number">
+                        07
+                    </div>
+
+                    <div class="amenity-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <span class="amenity-label">
+                        OPEN AIR
+                    </span>
+
+                    <h3>
+                        Relaxed Seating
+                    </h3>
+
+                    <p>
+                        Comfortable seating options designed for
+                        casual coffee breaks, conversations and
+                        unhurried dining.
+                    </p>
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            RELAX & DINE
+                        </span>
+
+                        <i class="fa-solid fa-chair"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 08 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="takeaway food pickup order parcel"
+                >
+
+                    <div class="amenity-card-number">
+                        08
+                    </div>
+
+                    <div class="amenity-icon">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+
+                    <span class="amenity-label">
+                        ON THE GO
+                    </span>
+
+                    <h3>
+                        Takeaway Service
+                    </h3>
+
+                    <p>
+                        Enjoy your DOSTEA favourites beyond the
+                        restaurant with convenient takeaway
+                        ordering and pickup.
+                    </p>
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            EASY PICKUP
+                        </span>
+
+                        <i class="fa-solid fa-box"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 09 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="hygiene clean sanitized restaurant cleanliness"
+                >
+
+                    <div class="amenity-card-number">
+                        09
+                    </div>
+
+                    <div class="amenity-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+
+                    <span class="amenity-label">
+                        CARE
+                    </span>
+
+                    <h3>
+                        Hygiene Focused
+                    </h3>
+
+                    <p>
+                        Dining areas and frequently used surfaces
+                        are maintained with guest comfort and
+                        cleanliness in mind.
+                    </p>
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            CLEAN SPACES
+                        </span>
+
+                        <i class="fa-solid fa-sparkles"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 10 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="accessible accessibility entrance comfortable access"
+                >
+
+                    <div class="amenity-card-number">
+                        10
+                    </div>
+
+                    <div class="amenity-icon">
+                        <i class="fa-solid fa-universal-access"></i>
+                    </div>
+
+                    <span class="amenity-label">
+                        ACCESS
+                    </span>
+
+                    <h3>
+                        Easy Access
+                    </h3>
+
+                    <p>
+                        A guest-friendly restaurant layout designed
+                        to make movement through the dining space
+                        simple and convenient.
+                    </p>
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            GUEST FRIENDLY
+                        </span>
+
+                        <i class="fa-solid fa-person-walking"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 11 -->
+
+                <article
+                    class="amenity-card"
+                    data-amenity="reservation table booking priority seating"
+                >
+
+                    <div class="amenity-card-number">
+                        11
+                    </div>
+
+                    <div class="amenity-icon">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+
+                    <span class="amenity-label">
+                        PLAN AHEAD
+                    </span>
+
+                    <h3>
+                        Table Reservations
+                    </h3>
+
+                    <p>
+                        Reserve your preferred dining time in
+                        advance and arrive knowing your DOSTEA
+                        experience is planned.
+                    </p>
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            RESERVE ONLINE
+                        </span>
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 12 -->
+
+                <article
+                    class="amenity-card amenity-card-featured"
+                    data-amenity="service staff assistance hospitality guest care"
+                >
+
+                    <div class="amenity-card-number">
+                        12
+                    </div>
+
+                    <div class="amenity-icon">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                    </div>
+
+                    <span class="amenity-label">
+                        HOSPITALITY
+                    </span>
+
+                    <h3>
+                        Attentive Service
+                    </h3>
+
+                    <p>
+                        Thoughtful restaurant service from arrival
+                        to your final course, built around a smooth
+                        guest experience.
+                    </p>
+
+                    <div class="amenity-card-footer">
+
+                        <span>
+                            DOSTEA CARE
+                        </span>
+
+                        <i class="fa-solid fa-heart"></i>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 SEARCH EMPTY STATE
+            ================================================== -->
+
+            <div
+                class="amenities-no-results"
+                id="amenitiesNoResults"
+                style="display: none;"
+            >
+
+                <div class="amenities-no-results-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <span>
+                    NOTHING MATCHED
+                </span>
+
+                <h3>
+                    Couldn't find that amenity.
+                </h3>
+
+                <p>
+                    Try searching for Wi-Fi, parking,
+                    family seating, payment or takeaway.
+                </p>
+
+                <button
+                    type="button"
+                    id="clearAmenitiesSearch"
+                >
+                    View All Amenities
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONNECT & WORK
+            ================================================== -->
+
+            <section class="amenities-connect-section">
+
+
+                <!-- LEFT CONTENT -->
+
+                <div class="amenities-connect-content">
+
+                    <span class="amenities-section-label">
+                        STAY CONNECTED
+                    </span>
+
+                    <h2>
+                        Coffee, conversations
+                        <em>& a little work.</em>
+                    </h2>
+
+                    <p>
+                        Need to reply to an email, finish a quick
+                        task or simply stay connected while you
+                        dine? DOSTEA gives you a comfortable space
+                        to do both.
+                    </p>
+
+
+                    <div class="amenities-connect-list">
+
+
+                        <div class="amenities-connect-item">
+
+                            <span>
+                                <i class="fa-solid fa-wifi"></i>
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Complimentary Wi-Fi
+                                </strong>
+
+                                <p>
+                                    Stay online throughout your visit.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="amenities-connect-item">
+
+                            <span>
+                                <i class="fa-solid fa-plug-circle-bolt"></i>
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Power Access
+                                </strong>
+
+                                <p>
+                                    Charging access at selected seating.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="amenities-connect-item">
+
+                            <span>
+                                <i class="fa-solid fa-mug-hot"></i>
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Café Comfort
+                                </strong>
+
+                                <p>
+                                    Coffee and food without leaving your table.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="menu.html"
+                        class="amenities-primary-btn"
+                    >
+                        Explore Café Menu
+
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- RIGHT VISUAL -->
+
+                <div class="amenities-connect-visual">
+
+                    <img
+                        src="dostea-work-friendly.jpg"
+                        alt="Work friendly seating at DOSTEA"
+                    >
+
+                    <div class="amenities-connect-overlay"></div>
+
+
+                    <div class="amenities-connect-floating">
+
+                        <div>
+                            <span>
+                                CONNECTIVITY
+                            </span>
+
+                            <strong>
+                                Wi-Fi Included
+                            </strong>
+                        </div>
+
+                        <i class="fa-solid fa-wifi"></i>
+
+                    </div>
+
+
+                    <div class="amenities-connect-caption">
+
+                        <span>
+                            YOUR TABLE
+                        </span>
+
+                        <strong>
+                            Stay a little longer.
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FAMILY / GROUP EXPERIENCE
+            ================================================== -->
+
+            <section class="amenities-groups-section">
+
+
+                <div class="amenities-groups-visual">
+
+                    <img
+                        src="dostea-family-dining.jpg"
+                        alt="Family dining at DOSTEA"
+                    >
+
+                    <div class="amenities-groups-image-overlay"></div>
+
+
+                    <div class="amenities-groups-number">
+                        04
+                    </div>
+
+
+                    <div class="amenities-groups-badge">
+
+                        <i class="fa-solid fa-people-group"></i>
+
+                        <div>
+                            <span>
+                                TOGETHER AT DOSTEA
+                            </span>
+
+                            <strong>
+                                Family & Group Friendly
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-groups-content">
+
+                    <span class="amenities-section-label">
+                        MADE FOR TOGETHER
+                    </span>
+
+                    <h2>
+                        More people.
+                        <em>More memories.</em>
+                    </h2>
+
+                    <p>
+                        From casual meetups to family dinners,
+                        DOSTEA offers flexible seating and a relaxed
+                        restaurant environment designed for sharing
+                        food and time together.
+                    </p>
+
+
+                    <div class="amenities-group-features">
+
+
+                        <div>
+
+                            <span>01</span>
+
+                            <div>
+                                <strong>
+                                    Flexible Tables
+                                </strong>
+
+                                <p>
+                                    Seating options for different group sizes.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>02</span>
+
+                            <div>
+                                <strong>
+                                    Family Friendly
+                                </strong>
+
+                                <p>
+                                    A comfortable environment for everyone.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>03</span>
+
+                            <div>
+                                <strong>
+                                    Easy Reservations
+                                </strong>
+
+                                <p>
+                                    Plan your table before you arrive.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="reservations.html"
+                        class="amenities-secondary-btn amenities-dark-btn"
+                    >
+                        Reserve for Your Group
+
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SERVICE & HYGIENE
+            ================================================== -->
+
+            <section class="amenities-care-section">
+
+
+                <div class="amenities-care-heading">
+
+                    <div>
+
+                        <span class="amenities-section-label">
+                            BEHIND EVERY VISIT
+                        </span>
+
+                        <h2>
+                            Service you notice.
+                            <em>Care you feel.</em>
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Good hospitality is often found in the
+                        details you don't have to think about.
+                    </p>
+
+                </div>
+
+
+                <div class="amenities-care-grid">
+
+
+                    <!-- CLEAN -->
+
+                    <article class="amenities-care-card">
+
+                        <span class="care-card-number">
+                            01
+                        </span>
+
+                        <div class="care-icon">
+                            <i class="fa-solid fa-spray-can-sparkles"></i>
+                        </div>
+
+                        <h3>
+                            Clean Dining Spaces
+                        </h3>
+
+                        <p>
+                            Tables and common dining areas are
+                            maintained to keep the restaurant
+                            comfortable and welcoming.
+                        </p>
+
+                        <span class="care-card-tag">
+                            CLEANLINESS
+                        </span>
+
+                    </article>
+
+
+                    <!-- SERVICE -->
+
+                    <article class="amenities-care-card">
+
+                        <span class="care-card-number">
+                            02
+                        </span>
+
+                        <div class="care-icon">
+                            <i class="fa-solid fa-bell-concierge"></i>
+                        </div>
+
+                        <h3>
+                            Thoughtful Service
+                        </h3>
+
+                        <p>
+                            Our restaurant experience is designed
+                            around attentive, uncomplicated guest
+                            service.
+                        </p>
+
+                        <span class="care-card-tag">
+                            HOSPITALITY
+                        </span>
+
+                    </article>
+
+
+                    <!-- FOOD -->
+
+                    <article class="amenities-care-card">
+
+                        <span class="care-card-number">
+                            03
+                        </span>
+
+                        <div class="care-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+
+                        <h3>
+                            Freshly Prepared
+                        </h3>
+
+                        <p>
+                            DOSTEA dishes are prepared for your
+                            order so the experience reaches the
+                            table fresh.
+                        </p>
+
+                        <span class="care-card-tag">
+                            FRESH FOOD
+                        </span>
+
+                    </article>
+
+
+                    <!-- PAYMENT -->
+
+                    <article class="amenities-care-card">
+
+                        <span class="care-card-number">
+                            04
+                        </span>
+
+                        <div class="care-icon">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+
+                        <h3>
+                            Easy Checkout
+                        </h3>
+
+                        <p>
+                            Multiple supported payment methods
+                            make settling your bill simple and
+                            convenient.
+                        </p>
+
+                        <span class="care-card-tag">
+                            CONVENIENCE
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AMENITIES EXPERIENCE BANNER
+            ================================================== -->
+
+            <section class="amenities-experience-banner">
+
+
+                <img
+                    src="dostea-amenities-experience.jpg"
+                    alt="DOSTEA restaurant experience"
+                    class="amenities-experience-image"
+                >
+
+
+                <div class="amenities-experience-overlay"></div>
+
+                <div class="amenities-experience-glow"></div>
+
+
+                <div class="amenities-experience-content">
+
+                    <span class="amenities-section-label">
+                        THE COMPLETE EXPERIENCE
+                    </span>
+
+                    <h2>
+                        Everything around the meal
+                        <em>matters too.</em>
+                    </h2>
+
+                    <p>
+                        Comfortable seating, easy connectivity,
+                        convenient arrival and thoughtful service
+                        come together to create the full DOSTEA
+                        restaurant experience.
+                    </p>
+
+
+                    <div class="amenities-experience-actions">
+
+                        <a
+                            href="restaurant.html"
+                            class="amenities-primary-btn"
+                        >
+                            Explore Restaurant
+
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <a
+                            href="menu.html"
+                            class="amenities-secondary-btn"
+                        >
+                            View Menu
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-experience-signature">
+
+                    <span>
+                        DOSTEA
+                    </span>
+
+                    <strong>
+                        BADLAPUR
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AMENITIES SUMMARY STRIP
+            ================================================== -->
+
+            <section class="amenities-summary-strip">
+
+
+                <div class="amenities-summary-item">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div>
+                        <strong>
+                            Stay Connected
+                        </strong>
+
+                        <p>
+                            Complimentary Wi-Fi.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-summary-divider"></div>
+
+
+                <div class="amenities-summary-item">
+
+                    <span>
+                        02
+                    </span>
+
+                    <div>
+                        <strong>
+                            Arrive Easily
+                        </strong>
+
+                        <p>
+                            Convenient guest access.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-summary-divider"></div>
+
+
+                <div class="amenities-summary-item">
+
+                    <span>
+                        03
+                    </span>
+
+                    <div>
+                        <strong>
+                            Dine Comfortably
+                        </strong>
+
+                        <p>
+                            Relaxed restaurant seating.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="amenities-summary-divider"></div>
+
+
+                <div class="amenities-summary-item">
+
+                    <span>
+                        04
+                    </span>
+
+                    <div>
+                        <strong>
+                            Enjoy Together
+                        </strong>
+
+                        <p>
+                            Family & group friendly.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FINAL CTA
+            ================================================== -->
+
+            <section class="amenities-final-cta">
+
+
+                <div class="amenities-final-copy">
+
+                    <span class="amenities-section-label">
+                        YOUR TABLE IS WAITING
+                    </span>
+
+                    <h2>
+                        Come for the food.
+                        <em>Stay for the experience.</em>
+                    </h2>
+
+                    <p>
+                        Discover DOSTEA's restaurant, explore the
+                        menu or reserve your table for your next visit.
+                    </p>
+
+                </div>
+
+
+                <div class="amenities-final-actions">
+
+                    <a
+                        href="reservations.html"
+                        class="amenities-primary-btn"
+                    >
+                        Reserve Table
+
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </a>
+
+                    <a
+                        href="menu.html"
+                        class="amenities-secondary-btn"
+                    >
+                        Explore Menu
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+        <!-- PAGE CONTENT END -->
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     AMENITIES TOAST
+========================================================= -->
+
+<div
+    class="amenities-toast"
+    id="amenitiesToast"
+>
+
+    <div class="amenities-toast-icon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <div>
+
+        <strong>
+            DOSTEA Amenities
+        </strong>
+
+        <span>
+            Everything designed around your comfort.
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           USER / PROFILE
+        ====================================================== */
+
+        let currentUser = null;
+
+
+        try {
+
+            currentUser =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_current_user"
+                    )
+                );
+
+        } catch (error) {
+
+            currentUser = null;
+
+        }
+
+
+        const sidebarAvatar =
+            document.getElementById(
+                "sidebarAvatar"
+            );
+
+
+        const sidebarUserName =
+            document.getElementById(
+                "sidebarUserName"
+            );
+
+
+        const topProfileAvatar =
+            document.getElementById(
+                "topProfileAvatar"
+            );
+
+
+        const topProfileName =
+            document.getElementById(
+                "topProfileName"
+            );
+
+
+        if (currentUser) {
+
+
+            const userName =
+                currentUser.fullName ||
+                currentUser.name ||
+                currentUser.username ||
+                "DOSTEA User";
+
+
+            const initials =
+                userName
+                    .trim()
+                    .split(/\s+/)
+                    .slice(0, 2)
+                    .map(
+                        function (word) {
+
+                            return word
+                                .charAt(0)
+                                .toUpperCase();
+
+                        }
+                    )
+                    .join("") || "D";
+
+
+            if (sidebarUserName) {
+
+                sidebarUserName.textContent =
+                    userName;
+
+            }
+
+
+            if (topProfileName) {
+
+                topProfileName.textContent =
+                    userName;
+
+            }
+
+
+            if (sidebarAvatar) {
+
+                sidebarAvatar.textContent =
+                    initials;
+
+            }
+
+
+            if (topProfileAvatar) {
+
+                topProfileAvatar.textContent =
+                    initials;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE SIDEBAR
+        ====================================================== */
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const sidebarOverlay =
+            document.getElementById(
+                "sidebarOverlay"
+            );
+
+
+        const mobileMenuBtn =
+            document.getElementById(
+                "mobileMenuBtn"
+            );
+
+
+        function openSidebar() {
+
+            sidebar?.classList.add(
+                "open"
+            );
+
+            sidebarOverlay?.classList.add(
+                "active"
+            );
+
+            document.body.classList.add(
+                "sidebar-open"
+            );
+
+        }
+
+
+        function closeSidebar() {
+
+            sidebar?.classList.remove(
+                "open"
+            );
+
+            sidebarOverlay?.classList.remove(
+                "active"
+            );
+
+            document.body.classList.remove(
+                "sidebar-open"
+            );
+
+        }
+
+
+        mobileMenuBtn?.addEventListener(
+            "click",
+            openSidebar
+        );
+
+
+        sidebarOverlay?.addEventListener(
+            "click",
+            closeSidebar
+        );
+
+
+
+        /* =====================================================
+           SIDEBAR ACCORDION
+        ====================================================== */
+
+        const accordions =
+            document.querySelectorAll(
+                ".sidebar-accordion"
+            );
+
+
+        accordions.forEach(
+            function (accordion) {
+
+
+                const parentButton =
+                    accordion.querySelector(
+                        ".sidebar-parent"
+                    );
+
+
+                parentButton?.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const isOpen =
+                            accordion.classList.contains(
+                                "open"
+                            );
+
+
+                        accordions.forEach(
+                            function (item) {
+
+
+                                item.classList.remove(
+                                    "open"
+                                );
+
+
+                                item
+                                    .querySelector(
+                                        ".sidebar-parent"
+                                    )
+                                    ?.setAttribute(
+                                        "aria-expanded",
+                                        "false"
+                                    );
+
+                            }
+                        );
+
+
+                        if (!isOpen) {
+
+
+                            accordion.classList.add(
+                                "open"
+                            );
+
+
+                            parentButton.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           AUTO OPEN RESTAURANT ACCORDION
+        ====================================================== */
+
+        const activeAmenitiesLink =
+            document.querySelector(
+                '.sidebar-submenu a[href="amenities.html"]'
+            );
+
+
+        if (activeAmenitiesLink) {
+
+
+            const restaurantAccordion =
+                activeAmenitiesLink.closest(
+                    ".sidebar-accordion"
+                );
+
+
+            restaurantAccordion?.classList.add(
+                "open"
+            );
+
+
+            restaurantAccordion
+                ?.querySelector(
+                    ".sidebar-parent"
+                )
+                ?.setAttribute(
+                    "aria-expanded",
+                    "true"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           CART COUNT
+        ====================================================== */
+
+        function getCart() {
+
+
+            try {
+
+
+                const cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_cart"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(cart)
+                    ? cart
+                    : [];
+
+
+            } catch (error) {
+
+
+                return [];
+
+            }
+
+        }
+
+
+
+        function updateCartCount() {
+
+
+            const cart =
+                getCart();
+
+
+            const count =
+                cart.reduce(
+                    function (
+                        total,
+                        item
+                    ) {
+
+
+                        return (
+                            total +
+                            Math.max(
+                                1,
+                                Number(
+                                    item.quantity || 1
+                                )
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+
+            const topCartCount =
+                document.getElementById(
+                    "topCartCount"
+                );
+
+
+            if (topCartCount) {
+
+                topCartCount.textContent =
+                    count;
+
+            }
+
+        }
+
+
+        updateCartCount();
+
+
+
+        /* =====================================================
+           AMENITIES SEARCH
+        ====================================================== */
+
+        const amenitiesSearch =
+            document.getElementById(
+                "amenitiesSearch"
+            );
+
+
+        const amenityCards =
+            Array.from(
+                document.querySelectorAll(
+                    ".amenity-card"
+                )
+            );
+
+
+        const noResults =
+            document.getElementById(
+                "amenitiesNoResults"
+            );
+
+
+        const clearSearch =
+            document.getElementById(
+                "clearAmenitiesSearch"
+            );
+
+
+
+        function filterAmenities() {
+
+
+            const searchTerm =
+                (
+                    amenitiesSearch?.value ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            let visibleCount = 0;
+
+
+            amenityCards.forEach(
+                function (card) {
+
+
+                    const searchableText =
+                        (
+                            (
+                                card.dataset.amenity ||
+                                ""
+                            ) +
+                            " " +
+                            (
+                                card.textContent ||
+                                ""
+                            )
+                        )
+                            .toLowerCase();
+
+
+                    const matches =
+                        !searchTerm ||
+                        searchableText.includes(
+                            searchTerm
+                        );
+
+
+                    card.classList.toggle(
+                        "amenity-hidden",
+                        !matches
+                    );
+
+
+                    if (matches) {
+
+                        visibleCount++;
+
+                    }
+
+                }
+            );
+
+
+            if (noResults) {
+
+
+                noResults.style.display =
+                    visibleCount === 0
+                        ? "block"
+                        : "none";
+
+            }
+
+        }
+
+
+        amenitiesSearch?.addEventListener(
+            "input",
+            filterAmenities
+        );
+
+
+        amenitiesSearch?.addEventListener(
+            "keydown",
+            function (event) {
+
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+
+                    document
+                        .getElementById(
+                            "allAmenities"
+                        )
+                        ?.scrollIntoView({
+
+                            behavior: "smooth",
+
+                            block: "start"
+
+                        });
+
+                }
+
+            }
+        );
+
+
+        clearSearch?.addEventListener(
+            "click",
+            function () {
+
+
+                if (amenitiesSearch) {
+
+                    amenitiesSearch.value =
+                        "";
+
+                }
+
+
+                filterAmenities();
+
+
+                amenitiesSearch?.focus();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           REVEAL ANIMATION
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                [
+                    ".amenity-card",
+                    ".amenities-quick-item",
+                    ".amenities-connect-item",
+                    ".amenities-care-card",
+                    ".amenities-summary-item"
+                ].join(",")
+            );
+
+
+        if (
+            "IntersectionObserver"
+            in window
+        ) {
+
+
+            const observer =
+                new IntersectionObserver(
+                    function (entries) {
+
+
+                        entries.forEach(
+                            function (entry) {
+
+
+                                if (
+                                    entry.isIntersecting
+                                ) {
+
+
+                                    entry.target
+                                        .classList
+                                        .add(
+                                            "amenity-visible"
+                                        );
+
+
+                                    observer.unobserve(
+                                        entry.target
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    },
+                    {
+                        threshold: 0.08
+                    }
+                );
+
+
+            revealElements.forEach(
+                function (element) {
+
+                    observer.observe(
+                        element
+                    );
+
+                }
+            );
+
+
+        } else {
+
+
+            revealElements.forEach(
+                function (element) {
+
+                    element.classList.add(
+                        "amenity-visible"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           PROTECTED USER PAGES
+        ====================================================== */
+
+        const protectedPages = [
+            "orders.html",
+            "profile.html"
+        ];
+
+
+        document
+            .querySelectorAll("a")
+            .forEach(
+                function (link) {
+
+
+                    const href =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        protectedPages.includes(
+                            href
+                        )
+                    ) {
+
+
+                        link.addEventListener(
+                            "click",
+                            function (event) {
+
+
+                                if (!currentUser) {
+
+
+                                    event.preventDefault();
+
+
+                                    localStorage.setItem(
+                                        "dostea_redirect_after_login",
+                                        href
+                                    );
+
+
+                                    window.location.href =
+                                        "login.html";
+
+                                }
+
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           ESC CLOSE SIDEBAR
+        ====================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeSidebar();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           WINDOW EVENTS
+        ====================================================== */
+
+        window.addEventListener(
+            "focus",
+            updateCartCount
+        );
+
+
+        window.addEventListener(
+            "storage",
+            updateCartCount
+        );
+
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+
+                if (
+                    window.innerWidth > 900
+                ) {
+
+                    closeSidebar();
+
+                }
+
+            }
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSTEA | My Profile</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="profile.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="app-layout">
+<!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+<aside class="sidebar" id="sidebar">
+<!-- BRAND -->
+<div class="sidebar-brand">
+<a href="index.html">
+<div class="brand-mark">
+                    D
+                </div>
+<div class="brand-copy">
+<h1>
+                        DOSTEA
+                    </h1>
+<span>
+                       HOTEL • CAFÉ • LIFESTYLE
+                    </span>
+</div>
+</a>
+</div>
+<!-- NAVIGATION -->
+<nav class="sidebar-navigation">
+<!-- HOME -->
+<a class="nav-link" href="index.html">
+<span class="nav-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+<span>Home</span>
+</a>
+<!-- CAFE -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-mug-hot"></i>
+</span>
+<span>Café</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
+<a class="nav-link" href="reservations.html">
+                        Reserve Table
+                    </a>
+<a class="nav-link" href="about.html">
+                        About DOSTEA
+                    </a>
+</div>
+</div>
+<!-- ORDERS -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</span>
+<span>Orders</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="orders.html">
+                        My Orders
+                    </a>
+<a class="nav-link" href="cart.html">
+                        My Cart
+                    </a>
+</div>
+</div>
+<!-- Restaurant -->
+<div class="sidebar-accordion open">
+<button aria-expanded="true" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+ <i class="fa-solid fa-utensils"></i>
+</span>
+<span>Restaurant </span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="Restaurant.html">
+                        Restaurant
+                    </a>
+<a class="nav-link" href="amenities.html">
+                        Amenities
+                    </a>
+<a class="nav-link" href="booking.html">
+                        Book a Room
+                    </a>
+</div>
+</div>
+<!-- CONTACT -->
+<div class="sidebar-accordion">
+<button aria-expanded="false" class="sidebar-parent" type="button">
+<span class="parent-left">
+<span class="nav-icon">
+<i class="fa-solid fa-phone"></i>
+</span>
+<span>Contact</span>
+</span>
+<i class="fa-solid fa-chevron-down accordion-arrow"></i>
+</button>
+<div class="sidebar-submenu">
+<a class="nav-link" href="contact.html">
+                        Contact Us
+                    </a>
+<a class="nav-link" href="reach-us.html">
+                        Reach Us
+                    </a>
+</div>
+</div>
+<!-- PROFILE -->
+<a class="nav-link active" href="profile.html">
+<span class="nav-icon">
+<i class="fa-regular fa-user"></i>
+</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- SIDEBAR BOTTOM -->
+<div class="sidebar-bottom">
+<div class="sidebar-user">
+<div class="sidebar-avatar" id="sidebarAvatar">
+                    D
+                </div>
+<div class="sidebar-user-info">
+<strong id="sidebarUserName">
+                        DOSTEA User
+                    </strong>
+<span id="sidebarUserEmail">
+                        customer@dostea.com
+                    </span>
+</div>
+</div>
+<button class="sidebar-logout" id="sidebarLogout" title="Logout" type="button">
+<i class="fa-solid fa-arrow-right-from-bracket"></i>
+</button>
+</div>
+</aside>
+<!-- =====================================================
+         MAIN
+    ====================================================== -->
+<main class="main-content">
+<!-- =================================================
+             TOPBAR
+        ================================================== -->
+<header class="topbar">
+<div class="topbar-left">
+<button aria-label="Open menu" class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+<i class="fa-solid fa-bars"></i>
+</button>
+<div>
+<span class="topbar-eyebrow">
+                        MY ACCOUNT
+                    </span>
+<h2>
+                        Profile
+                    </h2>
+</div>
+</div>
+<div class="topbar-actions">
+<!-- CART -->
+<a aria-label="Cart" class="topbar-icon-btn" href="cart.html">
+<i class="fa-solid fa-bag-shopping"></i>
+<span class="cart-count" id="cartCount">
+                        0
+                    </span>
+</a>
+<!-- USER -->
+<div class="topbar-user">
+<div class="topbar-avatar" id="topbarAvatar">
+                        D
+                    </div>
+<div>
+<strong id="topbarUserName">
+                            DOSTEA User
+                        </strong>
+<span>
+                            Customer
+                        </span>
+</div>
+</div>
+</div>
+</header>
+<!-- =================================================
+             PROFILE CONTENT
+        ================================================== -->
+<div class="profile-page">
+<!-- =================================================
+                 PAGE HEADER
+            ================================================== -->
+<section class="profile-page-header">
+<div>
+<span class="section-label">
+                        CUSTOMER PROFILE
+                    </span>
+<h1>
+                        Your DOSTEA space.
+                    </h1>
+<p>
+                        Manage your personal information,
+                        account preferences and café activity.
+                    </p>
+</div>
+<button class="edit-profile-btn" id="editProfileBtn" type="button">
+<i class="fa-regular fa-pen-to-square"></i>
+
+                    Edit Profile
+
+                </button>
+</section>
+<!-- =================================================
+                 PROFILE HERO
+            ================================================== -->
+<section class="profile-hero">
+<div class="profile-avatar-wrap">
+<div class="profile-avatar" id="profileAvatar">
+                        D
+                    </div>
+<span class="avatar-status"></span>
+</div>
+<div class="profile-identity">
+<div class="identity-title">
+<h2 id="profileName">
+                            DOSTEA User
+                        </h2>
+<span class="member-badge">
+<i class="fa-solid fa-crown"></i>
+
+                            DOSTEA MEMBER
+
+                        </span>
+</div>
+<p id="profileEmail">
+                        customer@dostea.com
+                    </p>
+<div class="profile-meta">
+<span>
+<i class="fa-regular fa-calendar"></i>
+
+                            Member since
+
+                            <strong id="memberSince">
+                                —
+                            </strong>
+</span>
+<span>
+<i class="fa-solid fa-location-dot"></i>
+<strong id="profileCity">
+                                Location not added
+                            </strong>
+</span>
+</div>
+</div>
+</section>
+<!-- =================================================
+                 STATS
+            ================================================== -->
+<section class="profile-stats">
+<a class="stat-card" href="orders.html">
+<div class="stat-icon">
+<i class="fa-solid fa-bag-shopping"></i>
+</div>
+<div>
+<span>
+                            TOTAL ORDERS
+                        </span>
+<strong id="totalOrders">
+                            0
+                        </strong>
+</div>
+<i class="fa-solid fa-arrow-right stat-arrow"></i>
+</a>
+<a class="stat-card" href="reservations.html">
+<div class="stat-icon">
+<i class="fa-regular fa-calendar-check"></i>
+</div>
+<div>
+<span>
+                            RESERVATIONS
+                        </span>
+<strong id="totalReservations">
+                            0
+                        </strong>
+</div>
+<i class="fa-solid fa-arrow-right stat-arrow"></i>
+</a>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fa-solid fa-indian-rupee-sign"></i>
+</div>
+<div>
+<span>
+                            TOTAL SPENT
+                        </span>
+<strong id="totalSpent">
+                            ₹0
+                        </strong>
+</div>
+</div>
+</section>
+<!-- =================================================
+                 GRID
+            ================================================== -->
+<div class="profile-grid">
+<!-- =============================================
+                     PERSONAL INFORMATION
+                ============================================== -->
+<section class="profile-card personal-card">
+<div class="card-header">
+<div>
+<span>
+                                ACCOUNT
+                            </span>
+<h3>
+                                Personal Information
+                            </h3>
+</div>
+<button id="smallEditBtn" type="button">
+<i class="fa-regular fa-pen-to-square"></i>
+
+                            Edit
+
+                        </button>
+</div>
+<div class="info-list">
+<div class="info-row">
+<div class="info-icon">
+<i class="fa-regular fa-user"></i>
+</div>
+<div>
+<span>
+                                    FULL NAME
+                                </span>
+<strong id="infoName">
+                                    —
+                                </strong>
+</div>
+</div>
+<div class="info-row">
+<div class="info-icon">
+<i class="fa-regular fa-envelope"></i>
+</div>
+<div>
+<span>
+                                    EMAIL ADDRESS
+                                </span>
+<strong id="infoEmail">
+                                    —
+                                </strong>
+</div>
+</div>
+<div class="info-row">
+<div class="info-icon">
+<i class="fa-solid fa-phone"></i>
+</div>
+<div>
+<span>
+                                    PHONE NUMBER
+                                </span>
+<strong id="infoPhone">
+                                    Not added
+                                </strong>
+</div>
+</div>
+<div class="info-row">
+<div class="info-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+<div>
+<span>
+                                    CITY
+                                </span>
+<strong id="infoCity">
+                                    Not added
+                                </strong>
+</div>
+</div>
+</div>
+</section>
+<!-- =============================================
+                     QUICK ACTIONS
+                ============================================== -->
+<section class="profile-card quick-card">
+<div class="card-header">
+<div>
+<span>
+                                DOSTEA
+                            </span>
+<h3>
+                                Quick Actions
+                            </h3>
+</div>
+</div>
+<div class="quick-actions">
+<a href="menu.html">
+<div>
+<i class="fa-solid fa-mug-hot"></i>
+</div>
+<span>
+<strong>
+                                    Order Something
+                                </strong>
+<small>
+                                    Explore the café menu
+                                </small>
+</span>
+<i class="fa-solid fa-chevron-right"></i>
+</a>
+<a href="reservations.html">
+<div>
+<i class="fa-regular fa-calendar-check"></i>
+</div>
+<span>
+<strong>
+                                    Reserve a Table
+                                </strong>
+<small>
+                                    Plan your next visit
+                                </small>
+</span>
+<i class="fa-solid fa-chevron-right"></i>
+</a>
+<a href="orders.html">
+<div>
+<i class="fa-solid fa-receipt"></i>
+</div>
+<span>
+<strong>
+                                    Order History
+                                </strong>
+<small>
+                                    View your previous orders
+                                </small>
+</span>
+<i class="fa-solid fa-chevron-right"></i>
+</a>
+</div>
+</section>
+<!-- =============================================
+                     SECURITY
+                ============================================== -->
+<section class="profile-card security-card">
+<div class="card-header">
+<div>
+<span>
+                                SECURITY
+                            </span>
+<h3>
+                                Password &amp; Account
+                            </h3>
+</div>
+</div>
+<div class="security-content">
+<div class="security-item">
+<div class="security-item-icon">
+<i class="fa-solid fa-lock"></i>
+</div>
+<div>
+<strong>
+                                    Account Password
+                                </strong>
+<p>
+                                    Update your password if you
+                                    think someone else may know it.
+                                </p>
+</div>
+<a href="forgot-password.html">
+                                Change
+                            </a>
+</div>
+<div class="security-divider"></div>
+<div class="security-item">
+<div class="security-item-icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<div>
+<strong>
+                                    Account Status
+                                </strong>
+<p>
+                                    Your DOSTEA customer account
+                                    is currently active.
+                                </p>
+</div>
+<span class="active-status">
+                                ACTIVE
+                            </span>
+</div>
+</div>
+</section>
+<!-- =============================================
+                     LOGOUT CARD
+                ============================================== -->
+<section class="profile-card logout-card">
+<div>
+<span>
+                            SESSION
+                        </span>
+<h3>
+                            Finished for now?
+                        </h3>
+<p>
+                            Sign out securely from your
+                            DOSTEA customer account.
+                        </p>
+</div>
+<button id="logoutBtn" type="button">
+<i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+                        Sign Out
+
+                    </button>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- =========================================================
+     EDIT PROFILE MODAL
+========================================================= -->
+<div class="profile-modal" id="profileModal">
+<div class="profile-modal-card">
+<div class="modal-header">
+<div>
+<span>
+                    ACCOUNT DETAILS
+                </span>
+<h2>
+                    Edit Profile
+                </h2>
+</div>
+<button aria-label="Close" id="closeProfileModal" type="button">
+<i class="fa-solid fa-xmark"></i>
+</button>
+</div>
+<form id="profileEditForm">
+<!-- NAME -->
+<div class="modal-form-group">
+<label for="editName">
+                    Full Name
+                </label>
+<div class="modal-input">
+<i class="fa-regular fa-user"></i>
+<input id="editName" required="" type="text"/>
+</div>
+</div>
+<!-- EMAIL -->
+<div class="modal-form-group">
+<label for="editEmail">
+                    Email
+                </label>
+<div class="modal-input disabled">
+<i class="fa-regular fa-envelope"></i>
+<input disabled="" id="editEmail" type="email"/>
+</div>
+</div>
+<!-- PHONE -->
+<div class="modal-form-group">
+<label for="editPhone">
+                    Phone Number
+                </label>
+<div class="modal-input">
+<i class="fa-solid fa-phone"></i>
+<input id="editPhone" placeholder="Enter phone number" type="tel"/>
+</div>
+</div>
+<!-- CITY -->
+<div class="modal-form-group">
+<label for="editCity">
+                    City
+                </label>
+<div class="modal-input">
+<i class="fa-solid fa-location-dot"></i>
+<input id="editCity" placeholder="Enter your city" type="text"/>
+</div>
+</div>
+<!-- BUTTONS -->
+<div class="modal-actions">
+<button class="cancel-btn" id="cancelProfileEdit" type="button">
+                    Cancel
+                </button>
+<button class="save-btn" type="submit">
+
+                    Save Changes
+
+                    <i class="fa-solid fa-check"></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- =========================================================
+     LOGOUT MODAL
+========================================================= -->
+<div class="logout-modal" id="logoutModal">
+<div class="logout-modal-card">
+<div class="logout-modal-icon">
+<i class="fa-solid fa-arrow-right-from-bracket"></i>
+</div>
+<span>
+            SIGN OUT
+        </span>
+<h2>
+            Leaving DOSTEA?
+        </h2>
+<p>
+            You'll need to sign in again
+            to access your customer account.
+        </p>
+<div class="logout-modal-actions">
+<button class="logout-cancel" id="cancelLogout" type="button">
+                Stay Here
+            </button>
+<button class="logout-confirm" id="confirmLogout" type="button">
+                Sign Out
+            </button>
+</div>
+</div>
+</div>
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           AUTH
+        ====================================================== */
+
+        let currentUser = null;
+
+
+        try {
+
+            currentUser =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_current_user"
+                    )
+                );
+
+        }
+        catch (error) {
+
+            currentUser = null;
+
+        }
+
+
+        /*
+           Customer must be logged in.
+        */
+
+        if (!currentUser) {
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
+
+        }
+
+
+
+        /* =====================================================
+           GET USERS
+        ====================================================== */
+
+        function getUsers() {
+
+            try {
+
+                const users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_users"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(users)
+                    ? users
+                    : [];
+
+            }
+            catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           FIND FULL USER
+        ====================================================== */
+
+        const users =
+            getUsers();
+
+
+        const fullUser =
+            users.find(
+                function (user) {
+
+                    return (
+                        String(
+                            user.email || ""
+                        ).toLowerCase() ===
+                        String(
+                            currentUser.email || ""
+                        ).toLowerCase()
+                    );
+
+                }
+            );
+
+
+        if (fullUser) {
+
+            currentUser = {
+                ...fullUser,
+                ...currentUser
+            };
+
+        }
+
+
+
+        /* =====================================================
+           PROFILE DATA
+        ====================================================== */
+
+        let profileData = {};
+
+
+        try {
+
+            profileData =
+                JSON.parse(
+                    localStorage.getItem(
+                        "dostea_profile"
+                    ) || "{}"
+                );
+
+        }
+        catch (error) {
+
+            profileData = {};
+
+        }
+
+
+
+        /* =====================================================
+           HELPER
+        ====================================================== */
+
+        function getName() {
+
+            return (
+                profileData.fullName ||
+                currentUser.fullName ||
+                currentUser.name ||
+                "DOSTEA User"
+            );
+
+        }
+
+
+        function getEmail() {
+
+            return (
+                currentUser.email ||
+                profileData.email ||
+                ""
+            );
+
+        }
+
+
+        function getInitial() {
+
+            const name =
+                getName().trim();
+
+
+            return (
+                name.charAt(0) || "D"
+            ).toUpperCase();
+
+        }
+
+
+
+        /* =====================================================
+           MEMBER DATE
+        ====================================================== */
+
+        function memberDate() {
+
+            const rawDate =
+                currentUser.createdAt ||
+                profileData.joinedAt;
+
+
+            if (!rawDate) {
+                return "DOSTEA Member";
+            }
+
+
+            const date =
+                new Date(rawDate);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "DOSTEA Member";
+
+            }
+
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RENDER PROFILE
+        ====================================================== */
+
+        function renderProfile() {
+
+            const name =
+                getName();
+
+
+            const email =
+                getEmail();
+
+
+            const initial =
+                getInitial();
+
+
+            const phone =
+                profileData.phone ||
+                "Not added";
+
+
+            const city =
+                profileData.city ||
+                "Not added";
+
+
+            /* AVATARS */
+
+            [
+                "sidebarAvatar",
+                "topbarAvatar",
+                "profileAvatar"
+
+            ].forEach(
+                function (id) {
+
+                    const element =
+                        document.getElementById(
+                            id
+                        );
+
+
+                    if (element) {
+
+                        element.textContent =
+                            initial;
+
+                    }
+
+                }
+            );
+
+
+            /* NAMES */
+
+            [
+                "sidebarUserName",
+                "topbarUserName",
+                "profileName",
+                "infoName"
+
+            ].forEach(
+                function (id) {
+
+                    const element =
+                        document.getElementById(
+                            id
+                        );
+
+
+                    if (element) {
+
+                        element.textContent =
+                            name;
+
+                    }
+
+                }
+            );
+
+
+            /* EMAIL */
+
+            [
+                "sidebarUserEmail",
+                "profileEmail",
+                "infoEmail"
+
+            ].forEach(
+                function (id) {
+
+                    const element =
+                        document.getElementById(
+                            id
+                        );
+
+
+                    if (element) {
+
+                        element.textContent =
+                            email;
+
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "infoPhone"
+            ).textContent =
+                phone;
+
+
+            document.getElementById(
+                "infoCity"
+            ).textContent =
+                city;
+
+
+            document.getElementById(
+                "profileCity"
+            ).textContent =
+                profileData.city ||
+                "Location not added";
+
+
+            document.getElementById(
+                "memberSince"
+            ).textContent =
+                memberDate();
+
+        }
+
+
+
+        /* =====================================================
+           ORDERS
+        ====================================================== */
+
+        function getOrders() {
+
+            try {
+
+                const orders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_orders"
+                        ) || "[]"
+                    );
+
+
+                if (
+                    !Array.isArray(
+                        orders
+                    )
+                ) {
+
+                    return [];
+
+                }
+
+
+                /*
+                   If orders contain userEmail,
+                   only show this customer's orders.
+                */
+
+                return orders.filter(
+                    function (order) {
+
+                        if (!order.userEmail) {
+                            return true;
+                        }
+
+
+                        return (
+                            String(
+                                order.userEmail
+                            ).toLowerCase() ===
+                            getEmail()
+                                .toLowerCase()
+                        );
+
+                    }
+                );
+
+            }
+            catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           RESERVATIONS
+        ====================================================== */
+
+        function getReservations() {
+
+            try {
+
+                const reservations =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_reservations"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(
+                    reservations
+                )
+                    ? reservations
+                    : [];
+
+            }
+            catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           STATS
+        ====================================================== */
+
+        function renderStats() {
+
+            const orders =
+                getOrders();
+
+
+            const reservations =
+                getReservations();
+
+
+            let totalSpent = 0;
+
+
+            orders.forEach(
+                function (order) {
+
+                    totalSpent +=
+                        Number(
+                            order.total ||
+                            order.amount ||
+                            0
+                        );
+
+                }
+            );
+
+
+            document.getElementById(
+                "totalOrders"
+            ).textContent =
+                orders.length;
+
+
+            document.getElementById(
+                "totalReservations"
+            ).textContent =
+                reservations.length;
+
+
+            document.getElementById(
+                "totalSpent"
+            ).textContent =
+                "₹" +
+                totalSpent.toLocaleString(
+                    "en-IN"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           CART COUNT
+        ====================================================== */
+
+        function renderCart() {
+
+            try {
+
+                const cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_cart"
+                        ) || "[]"
+                    );
+
+
+                const count =
+                    Array.isArray(cart)
+                        ? cart.reduce(
+                            function (
+                                total,
+                                item
+                            ) {
+
+                                return (
+                                    total +
+                                    Number(
+                                        item.quantity ||
+                                        1
+                                    )
+                                );
+
+                            },
+                            0
+                        )
+                        : 0;
+
+
+                document.getElementById(
+                    "cartCount"
+                ).textContent =
+                    count;
+
+            }
+            catch (error) {
+
+                document.getElementById(
+                    "cartCount"
+                ).textContent =
+                    "0";
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           EDIT PROFILE MODAL
+        ====================================================== */
+
+        const profileModal =
+            document.getElementById(
+                "profileModal"
+            );
+
+
+        function openProfileModal() {
+
+            document.getElementById(
+                "editName"
+            ).value =
+                getName();
+
+
+            document.getElementById(
+                "editEmail"
+            ).value =
+                getEmail();
+
+
+            document.getElementById(
+                "editPhone"
+            ).value =
+                profileData.phone ||
+                "";
+
+
+            document.getElementById(
+                "editCity"
+            ).value =
+                profileData.city ||
+                "";
+
+
+            profileModal.classList.add(
+                "show"
+            );
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+        }
+
+
+        function closeProfileModal() {
+
+            profileModal.classList.remove(
+                "show"
+            );
+
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+
+        document.getElementById(
+            "editProfileBtn"
+        ).addEventListener(
+            "click",
+            openProfileModal
+        );
+
+
+        document.getElementById(
+            "smallEditBtn"
+        ).addEventListener(
+            "click",
+            openProfileModal
+        );
+
+
+        document.getElementById(
+            "closeProfileModal"
+        ).addEventListener(
+            "click",
+            closeProfileModal
+        );
+
+
+        document.getElementById(
+            "cancelProfileEdit"
+        ).addEventListener(
+            "click",
+            closeProfileModal
+        );
+
+
+
+        /* =====================================================
+           SAVE PROFILE
+        ====================================================== */
+
+        document.getElementById(
+            "profileEditForm"
+        ).addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const newName =
+                    document.getElementById(
+                        "editName"
+                    )
+                    .value
+                    .trim();
+
+
+                const phone =
+                    document.getElementById(
+                        "editPhone"
+                    )
+                    .value
+                    .trim();
+
+
+                const city =
+                    document.getElementById(
+                        "editCity"
+                    )
+                    .value
+                    .trim();
+
+
+                if (!newName) {
+                    return;
+                }
+
+
+                profileData = {
+
+                    ...profileData,
+
+                    userId:
+                        currentUser.id ||
+                        profileData.userId,
+
+                    fullName:
+                        newName,
+
+                    email:
+                        getEmail(),
+
+                    phone:
+                        phone,
+
+                    city:
+                        city,
+
+                    joinedAt:
+                        profileData.joinedAt ||
+                        currentUser.createdAt
+
+                };
+
+
+                localStorage.setItem(
+                    "dostea_profile",
+                    JSON.stringify(
+                        profileData
+                    )
+                );
+
+
+
+                /* UPDATE CURRENT USER */
+
+                currentUser.fullName =
+                    newName;
+
+
+                localStorage.setItem(
+                    "dostea_current_user",
+                    JSON.stringify(
+                        currentUser
+                    )
+                );
+
+
+
+                /* UPDATE USERS ARRAY */
+
+                const savedUsers =
+                    getUsers();
+
+
+                const index =
+                    savedUsers.findIndex(
+                        function (user) {
+
+                            return (
+                                String(
+                                    user.email || ""
+                                ).toLowerCase() ===
+                                getEmail()
+                                    .toLowerCase()
+                            );
+
+                        }
+                    );
+
+
+                if (index !== -1) {
+
+                    savedUsers[index].fullName =
+                        newName;
+
+
+                    localStorage.setItem(
+                        "dostea_users",
+                        JSON.stringify(
+                            savedUsers
+                        )
+                    );
+
+                }
+
+
+                renderProfile();
+
+                closeProfileModal();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           LOGOUT
+        ====================================================== */
+
+        const logoutModal =
+            document.getElementById(
+                "logoutModal"
+            );
+
+
+        function openLogoutModal() {
+
+            logoutModal.classList.add(
+                "show"
+            );
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+        }
+
+
+        function closeLogoutModal() {
+
+            logoutModal.classList.remove(
+                "show"
+            );
+
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+        }
+
+
+        document.getElementById(
+            "logoutBtn"
+        ).addEventListener(
+            "click",
+            openLogoutModal
+        );
+
+
+        document.getElementById(
+            "sidebarLogout"
+        ).addEventListener(
+            "click",
+            openLogoutModal
+        );
+
+
+        document.getElementById(
+            "cancelLogout"
+        ).addEventListener(
+            "click",
+            closeLogoutModal
+        );
+
+
+        document.getElementById(
+            "confirmLogout"
+        ).addEventListener(
+            "click",
+            function () {
+
+                localStorage.removeItem(
+                    "dostea_current_user"
+                );
+
+
+                window.location.replace(
+                    "login.html"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
+
+
+        const overlay =
+            document.getElementById(
+                "sidebarOverlay"
+            );
+
+
+        document.getElementById(
+            "mobileMenuBtn"
+        ).addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.add(
+                    "open"
+                );
+
+
+                overlay.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+
+        overlay.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.remove(
+                    "open"
+                );
+
+
+                overlay.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SIDEBAR ACCORDION
+        ====================================================== */
+
+        const accordions =
+            document.querySelectorAll(
+                ".sidebar-accordion"
+            );
+
+
+        accordions.forEach(
+            function (accordion) {
+
+                const button =
+                    accordion.querySelector(
+                        ".sidebar-parent"
+                    );
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const isOpen =
+                            accordion.classList.contains(
+                                "open"
+                            );
+
+
+                        accordions.forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "open"
+                                );
+
+
+                                item
+                                    .querySelector(
+                                        ".sidebar-parent"
+                                    )
+                                    ?.setAttribute(
+                                        "aria-expanded",
+                                        "false"
+                                    );
+
+                            }
+                        );
+
+
+                        if (!isOpen) {
+
+                            accordion.classList.add(
+                                "open"
+                            );
+
+
+                            button.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CLICK OUTSIDE MODALS
+        ====================================================== */
+
+        profileModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    profileModal
+                ) {
+
+                    closeProfileModal();
+
+                }
+
+            }
+        );
+
+
+        logoutModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    logoutModal
+                ) {
+
+                    closeLogoutModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           INITIAL RENDER
+        ====================================================== */
+
+        renderProfile();
+
+        renderStats();
+
+        renderCart();
+
+    }
+);
+
+</script>
+
+<script>
+/* DOSTEA GLOBAL AUTH UI SYNC */
+document.addEventListener("DOMContentLoaded", function () {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem("dostea_current_user")); } catch(e) { user = null; }
+
+    const name = user ? (user.fullName || user.name || "DOSTEA User") : "";
+    const email = user ? (user.email || "") : "";
+    const initial = name ? name.trim().charAt(0).toUpperCase() : "D";
+
+    /* Existing guest/logged blocks */
+    document.querySelectorAll("#guestSidebar, #topbarGuest").forEach(el => {
+        el.style.display = user ? "none" : "flex";
+    });
+    document.querySelectorAll("#loggedInSidebar, #topbarUser").forEach(el => {
+        el.style.display = user ? "flex" : "none";
+    });
+
+    /* Update standard user fields */
+    document.querySelectorAll("#sidebarAvatar, #topbarAvatar, .user-avatar, .top-profile-avatar").forEach(el => {
+        if (user) el.textContent = initial;
+    });
+    document.querySelectorAll("#sidebarUserName, #topbarUserName, .user-details h4, .top-profile-info strong").forEach(el => {
+        if (user) el.textContent = name;
+    });
+    document.querySelectorAll("#sidebarUserEmail").forEach(el => {
+        if (user) el.textContent = email;
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in sidebar user */
+    document.querySelectorAll(".sidebar > .sidebar-user").forEach(oldUser => {
+        if (oldUser.closest("#loggedInSidebar")) return;
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".user-details h4");
+            const av = oldUser.querySelector(".user-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            if (!oldUser.parentElement.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                oldUser.insertAdjacentElement("afterend", auth);
+            }
+        }
+    });
+
+    /* Pages that originally contain only a hard-coded logged-in top profile */
+    document.querySelectorAll(".topbar-actions .top-profile, .topbar-actions > .topbar-user:not(#topbarUser)").forEach(oldUser => {
+        if (user) {
+            oldUser.style.display = "flex";
+            const n = oldUser.querySelector(".top-profile-info strong, strong");
+            const av = oldUser.querySelector(".top-profile-avatar, .topbar-avatar");
+            if (n) n.textContent = name;
+            if (av) av.textContent = initial;
+        } else {
+            oldUser.style.display = "none";
+            const actions = oldUser.parentElement;
+            if (actions && !actions.querySelector(".dostea-auto-topbar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-topbar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                actions.appendChild(auth);
+            }
+        }
+    });
+
+    /* Pages with sidebar-bottom but no guest/logged wrappers */
+    document.querySelectorAll(".sidebar-bottom").forEach(bottom => {
+        if (bottom.querySelector("#guestSidebar, #loggedInSidebar")) return;
+        const existingUser = bottom.querySelector(".sidebar-user, .sidebar-user-content");
+        if (user) {
+            if (existingUser) existingUser.style.display = "flex";
+        } else {
+            if (existingUser) existingUser.style.display = "none";
+            if (!bottom.querySelector(".dostea-auto-sidebar-auth")) {
+                const auth = document.createElement("div");
+                auth.className = "dostea-auto-sidebar-auth";
+                auth.innerHTML = '<a href="login.html">Login</a><a href="sign-up.html">Sign Up</a>';
+                bottom.appendChild(auth);
+            }
+        }
+    });
+
+    /* Shared styling for auto-created auth controls */
+    if (!document.getElementById("dosteaAuthSyncStyle")) {
+        const style = document.createElement("style");
+        style.id = "dosteaAuthSyncStyle";
+        style.textContent = `
+            .dostea-auto-sidebar-auth{display:flex;gap:8px;padding:14px 16px;width:100%;box-sizing:border-box}
+            .dostea-auto-sidebar-auth a,.dostea-auto-topbar-auth a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 12px/1 'DM Sans',sans-serif;border-radius:9px;transition:.25s ease}
+            .dostea-auto-sidebar-auth a{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-sidebar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+            .dostea-auto-topbar-auth{display:flex;align-items:center;gap:8px}
+            .dostea-auto-topbar-auth a{padding:10px 14px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
+            .dostea-auto-topbar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
+        `;
+        document.head.appendChild(style);
+    }
+});
+</script>
+
+</body>
+</html>
