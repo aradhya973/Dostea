@@ -650,154 +650,288 @@
 <script src="auth.js"></script>
 
 <script>
-
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
-
+    async function () {
 
         /* =====================================================
-           AUTH
+           CHECK SUPABASE
         ====================================================== */
 
-        let currentUser = null;
+        if (!window.supabaseClient) {
 
-
-        try {
-
-            currentUser =
-                JSON.parse(
-                    localStorage.getItem(
-                        "dostea_current_user"
-                    )
-                );
-
-        }
-        catch (error) {
-
-            currentUser = null;
-
-        }
-
-
-        /*
-           Customer must be logged in.
-        */
-
-        if (!currentUser) {
+            console.error(
+                "DOSTEA: Supabase client not available."
+            );
 
             window.location.replace(
                 "login.html"
             );
 
             return;
-
         }
 
 
-
         /* =====================================================
-           GET USERS
+           ELEMENTS
         ====================================================== */
 
-        function getUsers() {
+        const profileModal =
+            document.getElementById(
+                "profileModal"
+            );
 
-            try {
+        const logoutModal =
+            document.getElementById(
+                "logoutModal"
+            );
 
-                const users =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "dostea_users"
-                        ) || "[]"
-                    );
+        const sidebar =
+            document.getElementById(
+                "sidebar"
+            );
 
-
-                return Array.isArray(users)
-                    ? users
-                    : [];
-
-            }
-            catch (error) {
-
-                return [];
-
-            }
-
-        }
-
-
-
-        /* =====================================================
-           FIND FULL USER
-        ====================================================== */
-
-        const users =
-            getUsers();
-
-
-        const fullUser =
-            users.find(
-                function (user) {
-
-                    return (
-                        String(
-                            user.email || ""
-                        ).toLowerCase() ===
-                        String(
-                            currentUser.email || ""
-                        ).toLowerCase()
-                    );
-
-                }
+        const overlay =
+            document.getElementById(
+                "sidebarOverlay"
             );
 
 
-        if (fullUser) {
-
-            currentUser = {
-                ...fullUser,
-                ...currentUser
-            };
-
-        }
-
-
-
-        /* =====================================================
-           PROFILE DATA
-        ====================================================== */
+        let authUser = null;
 
         let profileData = {};
 
 
+        /* =====================================================
+           GET AUTHENTICATED USER
+        ====================================================== */
+
         try {
 
-            profileData =
-                JSON.parse(
-                    localStorage.getItem(
-                        "dostea_profile"
-                    ) || "{}"
+            const {
+                data,
+                error
+            } =
+                await window
+                    .supabaseClient
+                    .auth
+                    .getUser();
+
+
+            if (
+                error ||
+                !data?.user
+            ) {
+
+                console.error(
+                    "DOSTEA user error:",
+                    error
                 );
+
+                localStorage.removeItem(
+                    "dostea_current_user"
+                );
+
+                window.location.replace(
+                    "login.html"
+                );
+
+                return;
+            }
+
+
+            authUser =
+                data.user;
 
         }
         catch (error) {
 
-            profileData = {};
+            console.error(
+                "DOSTEA auth check failed:",
+                error
+            );
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
+        }
+
+
+        /* =====================================================
+           AUTH METADATA
+        ====================================================== */
+
+        const metadata =
+            authUser.user_metadata || {};
+
+
+        const authName =
+            metadata.full_name ||
+            metadata.name ||
+            authUser.email
+                ?.split("@")[0] ||
+            "DOSTEA User";
+
+
+        const authAvatar =
+            metadata.avatar_url ||
+            metadata.picture ||
+            "";
+
+
+        /* =====================================================
+           LOAD SUPABASE PROFILE
+        ====================================================== */
+
+        async function loadProfile() {
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await window
+                        .supabaseClient
+                        .from("profiles")
+                        .select(
+                            "id, full_name, phone, city, avatar_url, created_at, updated_at"
+                        )
+                        .eq(
+                            "id",
+                            authUser.id
+                        )
+                        .maybeSingle();
+
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                /*
+                   First profile visit:
+                   create profile automatically.
+                */
+
+                if (!data) {
+
+                    const newProfile = {
+
+                        id:
+                            authUser.id,
+
+                        full_name:
+                            authName,
+
+                        phone:
+                            "",
+
+                        city:
+                            "",
+
+                        avatar_url:
+                            authAvatar,
+
+                        updated_at:
+                            new Date()
+                                .toISOString()
+
+                    };
+
+
+                    const {
+                        data: createdProfile,
+                        error: createError
+                    } =
+                        await window
+                            .supabaseClient
+                            .from("profiles")
+                            .upsert(
+                                newProfile,
+                                {
+                                    onConflict: "id"
+                                }
+                            )
+                            .select()
+                            .single();
+
+
+                    if (createError) {
+
+                        throw createError;
+
+                    }
+
+
+                    profileData =
+                        createdProfile || newProfile;
+
+                }
+                else {
+
+                    profileData =
+                        data;
+
+                }
+
+            }
+            catch (error) {
+
+                console.error(
+                    "DOSTEA profile load error:",
+                    error
+                );
+
+
+                /*
+                   Fallback only for display.
+                   Supabase remains source of truth.
+                */
+
+                profileData = {
+
+                    id:
+                        authUser.id,
+
+                    full_name:
+                        authName,
+
+                    phone:
+                        "",
+
+                    city:
+                        "",
+
+                    avatar_url:
+                        authAvatar,
+
+                    created_at:
+                        authUser.created_at
+
+                };
+
+            }
 
         }
 
 
+        await loadProfile();
+
 
         /* =====================================================
-           HELPER
+           PROFILE HELPERS
         ====================================================== */
 
         function getName() {
 
             return (
-                profileData.fullName ||
-                currentUser.fullName ||
-                currentUser.name ||
+                profileData.full_name ||
+                authName ||
                 "DOSTEA User"
             );
 
@@ -807,8 +941,18 @@ document.addEventListener(
         function getEmail() {
 
             return (
-                currentUser.email ||
-                profileData.email ||
+                authUser.email ||
+                ""
+            );
+
+        }
+
+
+        function getAvatar() {
+
+            return (
+                profileData.avatar_url ||
+                authAvatar ||
                 ""
             );
 
@@ -822,31 +966,31 @@ document.addEventListener(
 
 
             return (
-                name.charAt(0) || "D"
+                name.charAt(0) ||
+                "D"
             ).toUpperCase();
 
         }
 
 
-
-        /* =====================================================
-           MEMBER DATE
-        ====================================================== */
-
         function memberDate() {
 
             const rawDate =
-                currentUser.createdAt ||
-                profileData.joinedAt;
+                authUser.created_at ||
+                profileData.created_at;
 
 
             if (!rawDate) {
+
                 return "DOSTEA Member";
+
             }
 
 
             const date =
-                new Date(rawDate);
+                new Date(
+                    rawDate
+                );
 
 
             if (
@@ -863,13 +1007,60 @@ document.addEventListener(
             return date.toLocaleDateString(
                 "en-IN",
                 {
-                    month: "short",
-                    year: "numeric"
+                    month:
+                        "short",
+
+                    year:
+                        "numeric"
                 }
             );
 
         }
 
+
+        /* =====================================================
+           AVATAR RENDERER
+        ====================================================== */
+
+        function renderAvatar(
+            element,
+            avatarUrl,
+            initial
+        ) {
+
+            if (!element) {
+                return;
+            }
+
+
+            if (avatarUrl) {
+
+                element.textContent = "";
+
+                element.style.backgroundImage =
+                    `url("${avatarUrl}")`;
+
+                element.style.backgroundSize =
+                    "cover";
+
+                element.style.backgroundPosition =
+                    "center";
+
+                element.style.backgroundRepeat =
+                    "no-repeat";
+
+            }
+            else {
+
+                element.style.backgroundImage =
+                    "none";
+
+                element.textContent =
+                    initial;
+
+            }
+
+        }
 
 
         /* =====================================================
@@ -881,19 +1072,18 @@ document.addEventListener(
             const name =
                 getName();
 
-
             const email =
                 getEmail();
-
 
             const initial =
                 getInitial();
 
+            const avatar =
+                getAvatar();
 
             const phone =
                 profileData.phone ||
                 "Not added";
-
 
             const city =
                 profileData.city ||
@@ -910,18 +1100,13 @@ document.addEventListener(
             ].forEach(
                 function (id) {
 
-                    const element =
+                    renderAvatar(
                         document.getElementById(
                             id
-                        );
-
-
-                    if (element) {
-
-                        element.textContent =
-                            initial;
-
-                    }
+                        ),
+                        avatar,
+                        initial
+                    );
 
                 }
             );
@@ -1006,12 +1191,42 @@ document.addEventListener(
             ).textContent =
                 memberDate();
 
-        }
 
+            /* =================================================
+               COMPATIBILITY CACHE
+
+               Existing DOSTEA pages still use this.
+               Supabase is the actual source.
+            ================================================= */
+
+            localStorage.setItem(
+                "dostea_current_user",
+                JSON.stringify({
+
+                    id:
+                        authUser.id,
+
+                    fullName:
+                        name,
+
+                    name:
+                        name,
+
+                    email:
+                        email,
+
+                    avatar:
+                        avatar
+
+                })
+            );
+
+        }
 
 
         /* =====================================================
            ORDERS
+           TEMPORARILY LOCALSTORAGE
         ====================================================== */
 
         function getOrders() {
@@ -1037,16 +1252,15 @@ document.addEventListener(
                 }
 
 
-                /*
-                   If orders contain userEmail,
-                   only show this customer's orders.
-                */
-
                 return orders.filter(
                     function (order) {
 
-                        if (!order.userEmail) {
+                        if (
+                            !order.userEmail
+                        ) {
+
                             return true;
+
                         }
 
 
@@ -1071,9 +1285,9 @@ document.addEventListener(
         }
 
 
-
         /* =====================================================
            RESERVATIONS
+           TEMPORARILY LOCALSTORAGE
         ====================================================== */
 
         function getReservations() {
@@ -1104,7 +1318,6 @@ document.addEventListener(
         }
 
 
-
         /* =====================================================
            STATS
         ====================================================== */
@@ -1113,7 +1326,6 @@ document.addEventListener(
 
             const orders =
                 getOrders();
-
 
             const reservations =
                 getReservations();
@@ -1159,9 +1371,8 @@ document.addEventListener(
         }
 
 
-
         /* =====================================================
-           CART COUNT
+           CART
         ====================================================== */
 
         function renderCart() {
@@ -1178,6 +1389,7 @@ document.addEventListener(
 
                 const count =
                     Array.isArray(cart)
+
                         ? cart.reduce(
                             function (
                                 total,
@@ -1195,6 +1407,7 @@ document.addEventListener(
                             },
                             0
                         )
+
                         : 0;
 
 
@@ -1216,16 +1429,9 @@ document.addEventListener(
         }
 
 
-
         /* =====================================================
-           EDIT PROFILE MODAL
+           PROFILE MODAL
         ====================================================== */
-
-        const profileModal =
-            document.getElementById(
-                "profileModal"
-            );
-
 
         function openProfileModal() {
 
@@ -1281,7 +1487,6 @@ document.addEventListener(
         }
 
 
-
         document.getElementById(
             "editProfileBtn"
         ).addEventListener(
@@ -1314,18 +1519,27 @@ document.addEventListener(
         );
 
 
-
         /* =====================================================
-           SAVE PROFILE
+           SAVE PROFILE TO SUPABASE
         ====================================================== */
 
         document.getElementById(
             "profileEditForm"
         ).addEventListener(
             "submit",
-            function (event) {
+            async function (event) {
 
                 event.preventDefault();
+
+
+                const form =
+                    event.currentTarget;
+
+
+                const saveButton =
+                    form.querySelector(
+                        ".save-btn"
+                    );
 
 
                 const newName =
@@ -1353,117 +1567,172 @@ document.addEventListener(
 
 
                 if (!newName) {
+
                     return;
-                }
-
-
-                profileData = {
-
-                    ...profileData,
-
-                    userId:
-                        currentUser.id ||
-                        profileData.userId,
-
-                    fullName:
-                        newName,
-
-                    email:
-                        getEmail(),
-
-                    phone:
-                        phone,
-
-                    city:
-                        city,
-
-                    joinedAt:
-                        profileData.joinedAt ||
-                        currentUser.createdAt
-
-                };
-
-
-                localStorage.setItem(
-                    "dostea_profile",
-                    JSON.stringify(
-                        profileData
-                    )
-                );
-
-
-
-                /* UPDATE CURRENT USER */
-
-                currentUser.fullName =
-                    newName;
-
-
-                localStorage.setItem(
-                    "dostea_current_user",
-                    JSON.stringify(
-                        currentUser
-                    )
-                );
-
-
-
-                /* UPDATE USERS ARRAY */
-
-                const savedUsers =
-                    getUsers();
-
-
-                const index =
-                    savedUsers.findIndex(
-                        function (user) {
-
-                            return (
-                                String(
-                                    user.email || ""
-                                ).toLowerCase() ===
-                                getEmail()
-                                    .toLowerCase()
-                            );
-
-                        }
-                    );
-
-
-                if (index !== -1) {
-
-                    savedUsers[index].fullName =
-                        newName;
-
-
-                    localStorage.setItem(
-                        "dostea_users",
-                        JSON.stringify(
-                            savedUsers
-                        )
-                    );
 
                 }
 
 
-                renderProfile();
+                saveButton.disabled =
+                    true;
 
-                closeProfileModal();
+
+                saveButton.innerHTML = `
+                    Saving
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                `;
+
+
+                try {
+
+                    /* =============================================
+                       SAVE PUBLIC PROFILE
+                    ============================================== */
+
+                    const updatedProfile = {
+
+                        id:
+                            authUser.id,
+
+                        full_name:
+                            newName,
+
+                        phone:
+                            phone,
+
+                        city:
+                            city,
+
+                        avatar_url:
+                            getAvatar(),
+
+                        updated_at:
+                            new Date()
+                                .toISOString()
+
+                    };
+
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await window
+                            .supabaseClient
+                            .from(
+                                "profiles"
+                            )
+                            .upsert(
+                                updatedProfile,
+                                {
+                                    onConflict:
+                                        "id"
+                                }
+                            )
+                            .select()
+                            .single();
+
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+
+                    /* =============================================
+                       UPDATE AUTH METADATA
+
+                       Keeps navbar/auth.js name in sync.
+                    ============================================== */
+
+                    const {
+                        data: userData,
+                        error: userError
+                    } =
+                        await window
+                            .supabaseClient
+                            .auth
+                            .updateUser({
+
+                                data: {
+
+                                    ...authUser
+                                        .user_metadata,
+
+                                    full_name:
+                                        newName,
+
+                                    name:
+                                        newName
+
+                                }
+
+                            });
+
+
+                    if (userError) {
+
+                        throw userError;
+
+                    }
+
+
+                    if (
+                        userData?.user
+                    ) {
+
+                        authUser =
+                            userData.user;
+
+                    }
+
+
+                    profileData =
+                        data ||
+                        updatedProfile;
+
+
+                    renderProfile();
+
+
+                    closeProfileModal();
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "DOSTEA profile update error:",
+                        error
+                    );
+
+
+                    alert(
+                        error.message ||
+                        "Unable to update profile."
+                    );
+
+                }
+                finally {
+
+                    saveButton.disabled =
+                        false;
+
+
+                    saveButton.innerHTML = `
+                        Save Changes
+                        <i class="fa-solid fa-check"></i>
+                    `;
+
+                }
 
             }
         );
 
 
-
         /* =====================================================
-           LOGOUT
+           LOGOUT MODAL
         ====================================================== */
-
-        const logoutModal =
-            document.getElementById(
-                "logoutModal"
-            );
-
 
         function openLogoutModal() {
 
@@ -1517,41 +1786,95 @@ document.addEventListener(
         );
 
 
+        /* =====================================================
+           SUPABASE LOGOUT
+        ====================================================== */
+
         document.getElementById(
             "confirmLogout"
         ).addEventListener(
             "click",
-            function () {
+            async function () {
 
-                localStorage.removeItem(
-                    "dostea_current_user"
-                );
+                const button =
+                    this;
 
 
-                window.location.replace(
-                    "login.html"
-                );
+                button.disabled =
+                    true;
+
+
+                button.innerHTML = `
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    Signing Out
+                `;
+
+
+                try {
+
+                    const {
+                        error
+                    } =
+                        await window
+                            .supabaseClient
+                            .auth
+                            .signOut();
+
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+
+                    localStorage.removeItem(
+                        "dostea_current_user"
+                    );
+
+                    localStorage.removeItem(
+                        "dostea_profile"
+                    );
+
+                    localStorage.removeItem(
+                        "dostea_redirect_after_login"
+                    );
+
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "DOSTEA logout error:",
+                        error
+                    );
+
+
+                    button.disabled =
+                        false;
+
+
+                    button.textContent =
+                        "Sign Out";
+
+
+                    alert(
+                        "Unable to sign out."
+                    );
+
+                }
 
             }
         );
 
 
-
         /* =====================================================
            SIDEBAR
         ====================================================== */
-
-        const sidebar =
-            document.getElementById(
-                "sidebar"
-            );
-
-
-        const overlay =
-            document.getElementById(
-                "sidebarOverlay"
-            );
-
 
         document.getElementById(
             "mobileMenuBtn"
@@ -1589,9 +1912,8 @@ document.addEventListener(
         );
 
 
-
         /* =====================================================
-           SIDEBAR ACCORDION
+           ACCORDIONS
         ====================================================== */
 
         const accordions =
@@ -1614,9 +1936,11 @@ document.addEventListener(
                     function () {
 
                         const isOpen =
-                            accordion.classList.contains(
-                                "open"
-                            );
+                            accordion
+                                .classList
+                                .contains(
+                                    "open"
+                                );
 
 
                         accordions.forEach(
@@ -1661,7 +1985,6 @@ document.addEventListener(
         );
 
 
-
         /* =====================================================
            CLICK OUTSIDE MODALS
         ====================================================== */
@@ -1700,7 +2023,6 @@ document.addEventListener(
         );
 
 
-
         /* =====================================================
            INITIAL RENDER
         ====================================================== */
@@ -1713,111 +2035,6 @@ document.addEventListener(
 
     }
 );
-
-</script>
-
-<script>
-/* DOSTEA GLOBAL AUTH UI SYNC */
-document.addEventListener("DOMContentLoaded", function () {
-    let user = null;
-    try { user = JSON.parse(localStorage.getItem("dostea_current_user")); } catch(e) { user = null; }
-
-    const name = user ? (user.fullName || user.name || "DOSTEA User") : "";
-    const email = user ? (user.email || "") : "";
-    const initial = name ? name.trim().charAt(0).toUpperCase() : "D";
-
-    /* Existing guest/logged blocks */
-    document.querySelectorAll("#guestSidebar, #topbarGuest").forEach(el => {
-        el.style.display = user ? "none" : "flex";
-    });
-    document.querySelectorAll("#loggedInSidebar, #topbarUser").forEach(el => {
-        el.style.display = user ? "flex" : "none";
-    });
-
-    /* Update standard user fields */
-    document.querySelectorAll("#sidebarAvatar, #topbarAvatar, .user-avatar, .top-profile-avatar").forEach(el => {
-        if (user) el.textContent = initial;
-    });
-    document.querySelectorAll("#sidebarUserName, #topbarUserName, .user-details h4, .top-profile-info strong").forEach(el => {
-        if (user) el.textContent = name;
-    });
-    document.querySelectorAll("#sidebarUserEmail").forEach(el => {
-        if (user) el.textContent = email;
-    });
-
-    /* Pages that originally contain only a hard-coded logged-in sidebar user */
-    document.querySelectorAll(".sidebar > .sidebar-user").forEach(oldUser => {
-        if (oldUser.closest("#loggedInSidebar")) return;
-        if (user) {
-            oldUser.style.display = "flex";
-            const n = oldUser.querySelector(".user-details h4");
-            const av = oldUser.querySelector(".user-avatar");
-            if (n) n.textContent = name;
-            if (av) av.textContent = initial;
-        } else {
-            oldUser.style.display = "none";
-            if (!oldUser.parentElement.querySelector(".dostea-auto-sidebar-auth")) {
-                const auth = document.createElement("div");
-                auth.className = "dostea-auto-sidebar-auth";
-                auth.innerHTML = '<a href="login.html">Login</a><a href="signup.html">Sign Up</a>';
-                oldUser.insertAdjacentElement("afterend", auth);
-            }
-        }
-    });
-
-    /* Pages that originally contain only a hard-coded logged-in top profile */
-    document.querySelectorAll(".topbar-actions .top-profile, .topbar-actions > .topbar-user:not(#topbarUser)").forEach(oldUser => {
-        if (user) {
-            oldUser.style.display = "flex";
-            const n = oldUser.querySelector(".top-profile-info strong, strong");
-            const av = oldUser.querySelector(".top-profile-avatar, .topbar-avatar");
-            if (n) n.textContent = name;
-            if (av) av.textContent = initial;
-        } else {
-            oldUser.style.display = "none";
-            const actions = oldUser.parentElement;
-            if (actions && !actions.querySelector(".dostea-auto-topbar-auth")) {
-                const auth = document.createElement("div");
-                auth.className = "dostea-auto-topbar-auth";
-                auth.innerHTML = '<a href="login.html">Login</a><a href="signup.html">Sign Up</a>';
-                actions.appendChild(auth);
-            }
-        }
-    });
-
-    /* Pages with sidebar-bottom but no guest/logged wrappers */
-    document.querySelectorAll(".sidebar-bottom").forEach(bottom => {
-        if (bottom.querySelector("#guestSidebar, #loggedInSidebar")) return;
-        const existingUser = bottom.querySelector(".sidebar-user, .sidebar-user-content");
-        if (user) {
-            if (existingUser) existingUser.style.display = "flex";
-        } else {
-            if (existingUser) existingUser.style.display = "none";
-            if (!bottom.querySelector(".dostea-auto-sidebar-auth")) {
-                const auth = document.createElement("div");
-                auth.className = "dostea-auto-sidebar-auth";
-                auth.innerHTML = '<a href="login.html">Login</a><a href="signup.html">Sign Up</a>';
-                bottom.appendChild(auth);
-            }
-        }
-    });
-
-    /* Shared styling for auto-created auth controls */
-    if (!document.getElementById("dosteaAuthSyncStyle")) {
-        const style = document.createElement("style");
-        style.id = "dosteaAuthSyncStyle";
-        style.textContent = `
-            .dostea-auto-sidebar-auth{display:flex;gap:8px;padding:14px 16px;width:100%;box-sizing:border-box}
-            .dostea-auto-sidebar-auth a,.dostea-auto-topbar-auth a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font:600 12px/1 'DM Sans',sans-serif;border-radius:9px;transition:.25s ease}
-            .dostea-auto-sidebar-auth a{flex:1;padding:11px 10px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
-            .dostea-auto-sidebar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
-            .dostea-auto-topbar-auth{display:flex;align-items:center;gap:8px}
-            .dostea-auto-topbar-auth a{padding:10px 14px;border:1px solid rgba(255,255,255,.12);color:#f4f2e9;background:rgba(255,255,255,.04)}
-            .dostea-auto-topbar-auth a:last-child{background:#f4cf45;color:#11130e;border-color:#f4cf45}
-        `;
-        document.head.appendChild(style);
-    }
-});
 </script>
 
 </body>
