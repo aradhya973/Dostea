@@ -586,6 +586,10 @@
      JAVASCRIPT
 ========================================================= -->
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="auth.js"></script>
+
 <script>
 
 document.addEventListener(
@@ -953,268 +957,353 @@ document.addEventListener(
 
 
 
-        /* =====================================================
-           LOAD USERS
-        ====================================================== */
+       /* =====================================================
+   CREATE ACCOUNT — SUPABASE
+====================================================== */
 
-        function getUsers() {
+form.addEventListener(
+    "submit",
+    async function (event) {
 
-            try {
+        event.preventDefault();
 
-                const saved =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "dostea_users"
-                        ) || "[]"
-                    );
+        clearErrors();
 
 
-                return Array.isArray(saved)
-                    ? saved
-                    : [];
+        const fullName =
+            nameInput.value.trim();
 
-            }
-            catch (error) {
+        const email =
+            emailInput
+                .value
+                .trim()
+                .toLowerCase();
 
-                return [];
+        const password =
+            passwordInput.value;
 
-            }
+        const confirmPassword =
+            confirmInput.value;
+
+
+        let valid = true;
+
+
+        /* =================================================
+           NAME
+        ================================================= */
+
+        if (!fullName) {
+
+            showFieldError(
+                nameInput,
+                nameError,
+                "Your name is required."
+            );
+
+            valid = false;
+
+        }
+        else if (fullName.length < 2) {
+
+            showFieldError(
+                nameInput,
+                nameError,
+                "Enter your full name."
+            );
+
+            valid = false;
 
         }
 
 
+        /* =================================================
+           EMAIL
+        ================================================= */
 
-        /* =====================================================
-           CREATE ACCOUNT
-        ====================================================== */
+        if (!email) {
 
-        form.addEventListener(
-            "submit",
-            function (event) {
+            showFieldError(
+                emailInput,
+                emailError,
+                "Email address is required."
+            );
 
-                event.preventDefault();
+            valid = false;
 
-                clearErrors();
+        }
+        else if (!validEmail(email)) {
 
+            showFieldError(
+                emailInput,
+                emailError,
+                "Enter a valid email address."
+            );
 
-                const fullName =
-                    nameInput
-                        .value
-                        .trim();
+            valid = false;
 
+        }
 
-                const email =
-                    emailInput
-                        .value
-                        .trim()
-                        .toLowerCase();
 
+        /* =================================================
+           PASSWORD
+        ================================================= */
 
-                const password =
-                    passwordInput.value;
+        if (!password) {
 
+            showFieldError(
+                passwordInput,
+                passwordError,
+                "Create a password."
+            );
 
-                const confirmPassword =
-                    confirmInput.value;
+            valid = false;
 
+        }
+        else if (password.length < 8) {
 
-                let valid = true;
+            showFieldError(
+                passwordInput,
+                passwordError,
+                "Password must contain at least 8 characters."
+            );
 
+            valid = false;
 
+        }
 
-                /* NAME */
 
-                if (!fullName) {
+        /* =================================================
+           CONFIRM PASSWORD
+        ================================================= */
 
-                    showFieldError(
-                        nameInput,
-                        nameError,
-                        "Your name is required."
-                    );
+        if (!confirmPassword) {
 
-                    valid = false;
+            showFieldError(
+                confirmInput,
+                confirmError,
+                "Confirm your password."
+            );
 
-                }
-                else if (
-                    fullName.length < 2
-                ) {
+            valid = false;
 
-                    showFieldError(
-                        nameInput,
-                        nameError,
-                        "Enter your full name."
-                    );
+        }
+        else if (
+            password !== confirmPassword
+        ) {
 
-                    valid = false;
+            showFieldError(
+                confirmInput,
+                confirmError,
+                "Passwords do not match."
+            );
 
-                }
+            valid = false;
 
+        }
 
 
-                /* EMAIL */
+        /* =================================================
+           TERMS
+        ================================================= */
 
-                if (!email) {
+        if (!termsInput.checked) {
 
-                    showFieldError(
-                        emailInput,
-                        emailError,
-                        "Email address is required."
-                    );
+            termsError.textContent =
+                "Please accept the terms to continue.";
 
-                    valid = false;
+            valid = false;
 
-                }
-                else if (
-                    !validEmail(email)
-                ) {
+        }
 
-                    showFieldError(
-                        emailInput,
-                        emailError,
-                        "Enter a valid email address."
-                    );
 
-                    valid = false;
+        if (!valid) {
+            return;
+        }
 
-                }
 
+        /* =================================================
+           CHECK SUPABASE
+        ================================================= */
 
+        if (
+            typeof supabaseClient ===
+            "undefined"
+        ) {
 
-                /* PASSWORD */
+            showMessage(
+                "Authentication service is unavailable. Please refresh and try again."
+            );
 
-                if (!password) {
+            console.error(
+                "DOSTEA: supabaseClient is not defined."
+            );
 
-                    showFieldError(
-                        passwordInput,
-                        passwordError,
-                        "Create a password."
-                    );
+            return;
 
-                    valid = false;
+        }
 
-                }
-                else if (
-                    password.length < 8
-                ) {
 
-                    showFieldError(
-                        passwordInput,
-                        passwordError,
-                        "Password must contain at least 8 characters."
-                    );
+        /* =================================================
+           LOADING STATE
+        ================================================= */
 
-                    valid = false;
+        submitButton.disabled = true;
 
-                }
+        submitButton.classList.add(
+            "loading"
+        );
 
+        submitButton.innerHTML = `
+            <span>Creating Account</span>
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        `;
 
 
-                /* CONFIRM */
+        try {
 
-                if (!confirmPassword) {
 
-                    showFieldError(
-                        confirmInput,
-                        confirmError,
-                        "Confirm your password."
-                    );
+            /* =================================================
+               CREATE SUPABASE USER
+            ================================================= */
 
-                    valid = false;
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signUp({
 
-                }
-                else if (
-                    password !==
-                    confirmPassword
-                ) {
+                        email: email,
 
-                    showFieldError(
-                        confirmInput,
-                        confirmError,
-                        "Passwords do not match."
-                    );
+                        password: password,
 
-                    valid = false;
+                        options: {
 
-                }
+                            data: {
 
+                                full_name:
+                                    fullName,
 
+                                name:
+                                    fullName
 
-                /* TERMS */
+                            },
 
-                if (
-                    !termsInput.checked
-                ) {
-
-                    termsError.textContent =
-                        "Please accept the terms to continue.";
-
-                    valid = false;
-
-                }
-
-
-                if (!valid) {
-                    return;
-                }
-
-
-
-                /* =================================================
-                   DUPLICATE EMAIL
-                ================================================= */
-
-                const users =
-                    getUsers();
-
-
-                const alreadyExists =
-                    users.some(
-                        function (user) {
-
-                            return (
-                                String(
-                                    user.email || ""
-                                )
-                                    .toLowerCase() ===
-                                email
-                            );
+                            emailRedirectTo:
+                                `${window.location.origin}/login.html`
 
                         }
-                    );
+
+                    });
 
 
-                if (alreadyExists) {
+            /* =================================================
+               SUPABASE ERROR
+            ================================================= */
 
-                    showFieldError(
-                        emailInput,
-                        emailError,
-                        "An account with this email already exists."
-                    );
+            if (error) {
 
+                console.error(
+                    "Signup error:",
+                    error
+                );
+
+
+                let errorMessage =
+                    error.message ||
+                    "Unable to create your account.";
+
+
+                if (
+                    errorMessage
+                        .toLowerCase()
+                        .includes(
+                            "password"
+                        )
+                ) {
+
+                    passwordError.textContent =
+                        errorMessage;
+
+                }
+                else {
 
                     showMessage(
-                        "This email is already registered. Try signing in instead."
+                        errorMessage
                     );
-
-
-                    return;
 
                 }
 
 
+                submitButton.disabled =
+                    false;
 
-                /* =================================================
-                   CREATE USER
+                submitButton.classList.remove(
+                    "loading"
+                );
 
-                   Temporary localStorage authentication.
-                   Replace with Supabase Auth later.
-                ================================================= */
+                submitButton.innerHTML = `
+                    <span>Create Account</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                `;
 
-                const user = {
 
-                    id:
-                        "DST-U-" +
-                        Date.now(),
+                return;
+
+            }
+
+
+            /* =================================================
+               USER CHECK
+            ================================================= */
+
+            if (!data?.user) {
+
+                showMessage(
+                    "Account could not be created. Please try again."
+                );
+
+
+                submitButton.disabled =
+                    false;
+
+                submitButton.classList.remove(
+                    "loading"
+                );
+
+                submitButton.innerHTML = `
+                    <span>Create Account</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                `;
+
+
+                return;
+
+            }
+
+
+            /* =================================================
+               REMEMBER EMAIL
+            ================================================= */
+
+            localStorage.setItem(
+                "dostea_remembered_email",
+                email
+            );
+
+
+            /* =================================================
+               TEMP PROFILE COMPATIBILITY
+            ================================================= */
+
+            localStorage.setItem(
+                "dostea_profile",
+                JSON.stringify({
+
+                    userId:
+                        data.user.id,
 
                     fullName:
                         fullName,
@@ -1222,133 +1311,147 @@ document.addEventListener(
                     email:
                         email,
 
-                    password:
-                        password,
+                    phone:
+                        "",
 
-                    createdAt:
+                    joinedAt:
                         new Date()
                             .toISOString()
 
-                };
+                })
+            );
 
 
-                users.push(user);
+            /* =================================================
+               SUCCESS MODAL CONTENT
+            ================================================= */
+
+            const modalTitle =
+                successModal
+                    ?.querySelector(
+                        "h2"
+                    );
+
+            const modalText =
+                successModal
+                    ?.querySelector(
+                        "p"
+                    );
 
 
-                localStorage.setItem(
-                    "dostea_users",
-                    JSON.stringify(
-                        users
-                    )
+            successModal
+                ?.classList.add(
+                    "show"
                 );
 
 
-
-                /* =================================================
-                   INITIAL PROFILE
-                ================================================= */
-
-                const profile = {
-
-                    userId:
-                        user.id,
-
-                    fullName:
-                        user.fullName,
-
-                    email:
-                        user.email,
-
-                    phone: "",
-
-                    joinedAt:
-                        user.createdAt
-
-                };
-
-
-                localStorage.setItem(
-                    "dostea_profile",
-                    JSON.stringify(
-                        profile
-                    )
+            document.body
+                .classList.add(
+                    "modal-open"
                 );
 
 
+            /*
+               If Confirm Email is enabled:
+               user exists but session is null.
 
-                /* =================================================
-                   REMEMBER EMAIL FOR LOGIN
-                ================================================= */
+               If disabled:
+               user + session are returned.
+            */
 
-                localStorage.setItem(
-                    "dostea_remembered_email",
-                    email
-                );
-
-
-
-                /* =================================================
-                   LOADING STATE
-                ================================================= */
-
-                submitButton.disabled =
-                    true;
+            if (data.session) {
 
 
-                submitButton.classList.add(
-                    "loading"
-                );
+                if (modalTitle) {
+
+                    modalTitle.textContent =
+                        "Account created.";
+
+                }
 
 
-                submitButton.innerHTML = `
+                if (modalText) {
 
-                    <span>
-                        Creating Account
-                    </span>
+                    modalText.textContent =
+                        "Welcome to DOSTEA. Taking you to your account...";
 
-                    <i
-                        class="fa-solid fa-circle-notch fa-spin"
-                    ></i>
+                }
 
-                `;
-
-
-
-                /* =================================================
-                   SUCCESS
-                ================================================= */
 
                 setTimeout(
                     function () {
 
-                        successModal
-                            .classList.add(
-                                "show"
-                            );
-
-
-                        document.body
-                            .classList.add(
-                                "modal-open"
-                            );
-
-
-                        setTimeout(
-                            function () {
-
-                                window.location.href =
-                                    "login.html";
-
-                            },
-                            1500
-                        );
+                        window.location.href =
+                            "index.html";
 
                     },
-                    450
+                    1500
                 );
 
             }
-        );
+            else {
+
+
+                if (modalTitle) {
+
+                    modalTitle.textContent =
+                        "Check your email.";
+
+                }
+
+
+                if (modalText) {
+
+                    modalText.textContent =
+                        "We've sent you a confirmation link. Verify your email before signing in.";
+
+                }
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "login.html";
+
+                    },
+                    2800
+                );
+
+            }
+
+
+        }
+        catch (error) {
+
+
+            console.error(
+                "Unexpected signup error:",
+                error
+            );
+
+
+            showMessage(
+                "Something went wrong. Please try again."
+            );
+
+
+            submitButton.disabled =
+                false;
+
+            submitButton.classList.remove(
+                "loading"
+            );
+
+            submitButton.innerHTML = `
+                <span>Create Account</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            `;
+
+        }
+
+    }
+);
 
 
 
