@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const guestOnlyPages = [
         "login.html",
-        "sign-up.html"
+        "signup.html"
     ];
 
 
