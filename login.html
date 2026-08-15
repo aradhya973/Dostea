@@ -693,313 +693,461 @@ document.addEventListener(
         }
 
 
-
         /* =====================================================
-           LOGIN
-        ====================================================== */
+   LOGIN — SUPABASE AUTH
+====================================================== */
 
-        loginForm.addEventListener(
-            "submit",
-            function (event) {
+loginForm.addEventListener(
+    "submit",
+    async function (event) {
 
-                event.preventDefault();
+        event.preventDefault();
 
-                clearErrors();
-
-
-                const email =
-                    emailInput
-                        .value
-                        .trim()
-                        .toLowerCase();
+        clearErrors();
 
 
-                const password =
-                    passwordInput.value;
+        const email =
+            emailInput
+                .value
+                .trim()
+                .toLowerCase();
 
 
-                let valid = true;
+        const password =
+            passwordInput.value;
 
 
-                if (!email) {
+        let valid = true;
 
-                    showFieldError(
-                        emailInput,
-                        emailError,
-                        "Email address is required."
+
+        /* =================================================
+           EMAIL VALIDATION
+        ================================================= */
+
+        if (!email) {
+
+            showFieldError(
+                emailInput,
+                emailError,
+                "Email address is required."
+            );
+
+            valid = false;
+
+        }
+        else if (!validateEmail(email)) {
+
+            showFieldError(
+                emailInput,
+                emailError,
+                "Enter a valid email address."
+            );
+
+            valid = false;
+
+        }
+
+
+        /* =================================================
+           PASSWORD VALIDATION
+        ================================================= */
+
+        if (!password) {
+
+            showFieldError(
+                passwordInput,
+                passwordError,
+                "Password is required."
+            );
+
+            valid = false;
+
+        }
+
+
+        if (!valid) {
+            return;
+        }
+
+
+        /* =================================================
+           CHECK SUPABASE CLIENT
+        ================================================= */
+
+        if (!window.supabaseClient) {
+
+            console.error(
+                "DOSTEA: Supabase client is not defined."
+            );
+
+            showLoginMessage(
+                "Authentication service is unavailable. Please refresh and try again."
+            );
+
+            return;
+
+        }
+
+
+        /* =================================================
+           REMEMBER EMAIL
+        ================================================= */
+
+        if (rememberMe.checked) {
+
+            localStorage.setItem(
+                "dostea_remembered_email",
+                email
+            );
+
+        }
+        else {
+
+            localStorage.removeItem(
+                "dostea_remembered_email"
+            );
+
+        }
+
+
+        /* =================================================
+           LOADING STATE
+        ================================================= */
+
+        loginButton.disabled = true;
+
+        loginButton.classList.add(
+            "loading"
+        );
+
+
+        loginButton.innerHTML = `
+            <span>Signing In</span>
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        `;
+
+
+        try {
+
+
+            /* =================================================
+               SUPABASE LOGIN
+            ================================================= */
+
+            const {
+                data,
+                error
+            } =
+                await window
+                    .supabaseClient
+                    .auth
+                    .signInWithPassword({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+            /* =================================================
+               LOGIN ERROR
+            ================================================= */
+
+            if (error) {
+
+                console.error(
+                    "DOSTEA login error:",
+                    error
+                );
+
+
+                const errorText =
+                    String(
+                        error.message || ""
+                    ).toLowerCase();
+
+
+                if (
+                    errorText.includes(
+                        "email not confirmed"
+                    )
+                ) {
+
+                    showLoginMessage(
+                        "Please confirm your email before signing in."
                     );
-
-                    valid = false;
 
                 }
                 else if (
-                    !validateEmail(email)
+                    errorText.includes(
+                        "invalid login credentials"
+                    )
                 ) {
-
-                    showFieldError(
-                        emailInput,
-                        emailError,
-                        "Enter a valid email address."
-                    );
-
-                    valid = false;
-
-                }
-
-
-                if (!password) {
-
-                    showFieldError(
-                        passwordInput,
-                        passwordError,
-                        "Password is required."
-                    );
-
-                    valid = false;
-
-                }
-
-
-                if (!valid) {
-                    return;
-                }
-
-
-
-                /* =============================================
-                   FIND CUSTOMER ACCOUNT
-
-                   Temporary frontend auth.
-                   Supabase Auth will replace this later.
-                ============================================== */
-
-                let users = [];
-
-
-                try {
-
-                    const storedUsers =
-                        JSON.parse(
-                            localStorage.getItem(
-                                "dostea_users"
-                            ) || "[]"
-                        );
-
-
-                    if (
-                        Array.isArray(
-                            storedUsers
-                        )
-                    ) {
-
-                        users =
-                            storedUsers;
-
-                    }
-
-                }
-                catch (error) {
-
-                    users = [];
-
-                }
-
-
-                const user =
-                    users.find(
-                        function (account) {
-
-                            return (
-                                String(
-                                    account.email ||
-                                    ""
-                                )
-                                    .toLowerCase() ===
-                                    email
-                                &&
-                                account.password ===
-                                password
-                            );
-
-                        }
-                    );
-
-
-
-                /* =============================================
-                   INVALID LOGIN
-                ============================================== */
-
-                if (!user) {
 
                     showLoginMessage(
                         "Incorrect email or password."
                     );
 
-                    return;
-
-                }
-
-
-
-                /* =============================================
-                   REMEMBER EMAIL
-                ============================================== */
-
-                if (
-                    rememberMe.checked
-                ) {
-
-                    localStorage.setItem(
-                        "dostea_remembered_email",
-                        email
-                    );
-
                 }
                 else {
 
-                    localStorage.removeItem(
-                        "dostea_remembered_email"
+                    showLoginMessage(
+                        error.message ||
+                        "Unable to sign in. Please try again."
                     );
 
                 }
 
 
+                loginButton.disabled = false;
 
-                /* =============================================
-                   CUSTOMER SESSION
-                ============================================== */
-
-                const sessionUser = {
-
-                    id:
-                        user.id,
-
-                    fullName:
-                        user.fullName,
-
-                    email:
-                        user.email,
-
-                    loggedInAt:
-                        new Date()
-                            .toISOString()
-
-                };
-
-
-                localStorage.setItem(
-                    "dostea_current_user",
-                    JSON.stringify(
-                        sessionUser
-                    )
-                );
-
-
-
-                /* =============================================
-                   SYNC PROFILE
-                ============================================== */
-
-                let existingProfile = {};
-
-
-                try {
-
-                    existingProfile =
-                        JSON.parse(
-                            localStorage.getItem(
-                                "dostea_profile"
-                            ) || "{}"
-                        );
-
-                }
-                catch (error) {
-
-                    existingProfile = {};
-
-                }
-
-
-                const profile = {
-
-                    ...existingProfile,
-
-                    fullName:
-                        user.fullName ||
-                        existingProfile.fullName ||
-                        "DOSTEA Customer",
-
-                    email:
-                        user.email
-
-                };
-
-
-                localStorage.setItem(
-                    "dostea_profile",
-                    JSON.stringify(
-                        profile
-                    )
-                );
-
-
-
-                /* =============================================
-                   LOADING STATE
-                ============================================== */
-
-                loginButton.disabled =
-                    true;
-
-
-                loginButton.classList.add(
+                loginButton.classList.remove(
                     "loading"
                 );
 
 
                 loginButton.innerHTML = `
-
-                    <span>
-                        Signing In
-                    </span>
-
-                    <i
-                        class="fa-solid fa-circle-notch fa-spin"
-                    ></i>
-
+                    <span>Sign In</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 `;
 
 
-
-                /* =============================================
-                   SUCCESS
-                ============================================== */
-
-                setTimeout(
-                    function () {
-
-                        toast.classList.add(
-                            "show"
-                        );
-
-
-                        setTimeout(
-                            function () {
-
-                                window.location.href =
-                                    "index.html";
-
-                            },
-                            700
-                        );
-
-                    },
-                    450
-                );
+                return;
 
             }
-        );
+
+
+            /* =================================================
+               USER / SESSION CHECK
+            ================================================= */
+
+            if (
+                !data?.user ||
+                !data?.session
+            ) {
+
+                showLoginMessage(
+                    "Login could not be completed. Please try again."
+                );
+
+
+                loginButton.disabled = false;
+
+                loginButton.classList.remove(
+                    "loading"
+                );
+
+
+                loginButton.innerHTML = `
+                    <span>Sign In</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                `;
+
+
+                return;
+
+            }
+
+
+            /* =================================================
+               USER DATA
+            ================================================= */
+
+            const user =
+                data.user;
+
+
+            const metadata =
+                user.user_metadata || {};
+
+
+            const fullName =
+                metadata.full_name ||
+                metadata.name ||
+                user.email
+                    ?.split("@")[0] ||
+                "DOSTEA User";
+
+
+            /* =================================================
+               LEGACY COMPATIBILITY
+
+               Existing DOSTEA pages currently read:
+               dostea_current_user
+            ================================================= */
+
+            localStorage.setItem(
+                "dostea_current_user",
+                JSON.stringify({
+
+                    id:
+                        user.id,
+
+                    fullName:
+                        fullName,
+
+                    name:
+                        fullName,
+
+                    email:
+                        user.email || "",
+
+                    avatar:
+                        metadata.avatar_url ||
+                        metadata.picture ||
+                        "",
+
+                    loggedInAt:
+                        new Date()
+                            .toISOString()
+
+                })
+            );
+
+
+            /* =================================================
+               PROFILE COMPATIBILITY
+            ================================================= */
+
+            let existingProfile = {};
+
+
+            try {
+
+                existingProfile =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "dostea_profile"
+                        ) || "{}"
+                    );
+
+            }
+            catch (error) {
+
+                existingProfile = {};
+
+            }
+
+
+            const profile = {
+
+                ...existingProfile,
+
+                userId:
+                    user.id,
+
+                fullName:
+                    fullName,
+
+                email:
+                    user.email || "",
+
+                joinedAt:
+                    existingProfile.joinedAt ||
+                    user.created_at ||
+                    new Date()
+                        .toISOString()
+
+            };
+
+
+            localStorage.setItem(
+                "dostea_profile",
+                JSON.stringify(
+                    profile
+                )
+            );
+
+
+            /* =================================================
+               SUCCESS TOAST
+            ================================================= */
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            /* =================================================
+               SAFE REDIRECT AFTER LOGIN
+            ================================================= */
+
+            const storedRedirect =
+                localStorage.getItem(
+                    "dostea_redirect_after_login"
+                );
+
+
+            let redirectPage =
+                "index.html";
+
+
+            if (
+                storedRedirect &&
+                /^[a-zA-Z0-9_-]+\.html(?:[?#].*)?$/
+                    .test(
+                        storedRedirect
+                    )
+            ) {
+
+                redirectPage =
+                    storedRedirect;
+
+            }
+
+
+            localStorage.removeItem(
+                "dostea_redirect_after_login"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        redirectPage;
+
+                },
+                750
+            );
+
+
+        }
+        catch (error) {
+
+
+            console.error(
+                "Unexpected login error:",
+                error
+            );
+
+
+            showLoginMessage(
+                "Something went wrong. Please try again."
+            );
+
+
+            loginButton.disabled =
+                false;
+
+
+            loginButton.classList.remove(
+                "loading"
+            );
+
+
+            loginButton.innerHTML = `
+                <span>Sign In</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            `;
+
+        }
+
+    }
+);
+
+
 
 
 
