@@ -1126,10 +1126,7 @@ form.addEventListener(
            CHECK SUPABASE
         ================================================= */
 
-        if (
-            typeof supabaseClient ===
-            "undefined"
-        ) {
+        if (!window.supabaseClient) {
 
             showMessage(
                 "Authentication service is unavailable. Please refresh and try again."
@@ -1171,7 +1168,7 @@ form.addEventListener(
                 data,
                 error
             } =
-                await supabaseClient
+                await window.supabaseClient
                     .auth
                     .signUp({
 

@@ -5,10 +5,15 @@
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-    if (typeof supabaseClient === "undefined") {
-        console.error("DOSTEA: Supabase client not loaded.");
-        return;
-    }
+    if (!window.supabaseClient) {
+
+    console.error(
+        "DOSTEA: Supabase client not loaded."
+    );
+
+    return;
+
+}
 
     /* =====================================================
        PAGE SETTINGS
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const {
             data,
             error
-        } = await supabaseClient.auth.getSession();
+        } = await window.supabaseClient.auth.getSession();
 
 
         if (error) {
