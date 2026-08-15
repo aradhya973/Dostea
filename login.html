@@ -1196,23 +1196,78 @@ loginForm.addEventListener(
 
 
         /* =====================================================
-           GOOGLE LOGIN PLACEHOLDER
-        ====================================================== */
+   GOOGLE LOGIN
+====================================================== */
 
-        document
-            .getElementById(
-                "googleLoginBtn"
-            )
-            .addEventListener(
-                "click",
-                function () {
+document
+    .getElementById("googleLoginBtn")
+    .addEventListener(
+        "click",
+        async function () {
+
+            if (!window.supabaseClient) {
+
+                showLoginMessage(
+                    "Authentication service is unavailable."
+                );
+
+                return;
+            }
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await window
+                        .supabaseClient
+                        .auth
+                        .signInWithOAuth({
+
+                            provider: "google",
+
+                            options: {
+
+                                redirectTo:
+                                    "https://dostea.netlify.app/"
+
+                            }
+
+                        });
+
+
+                if (error) {
+
+                    console.error(
+                        "Google login error:",
+                        error
+                    );
 
                     showLoginMessage(
-                        "Google login will be available after authentication is connected."
+                        error.message ||
+                        "Unable to continue with Google."
                     );
 
                 }
-            );
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Google OAuth error:",
+                    error
+                );
+
+                showLoginMessage(
+                    "Something went wrong. Please try again."
+                );
+
+            }
+
+        }
+    );
 
     }
 );

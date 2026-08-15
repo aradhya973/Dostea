@@ -1522,23 +1522,78 @@ form.addEventListener(
 
 
         /* =====================================================
-           GOOGLE SIGNUP
-        ====================================================== */
+   GOOGLE SIGNUP / LOGIN
+====================================================== */
 
-        document
-            .getElementById(
-                "googleSignupBtn"
-            )
-            .addEventListener(
-                "click",
-                function () {
+document
+    .getElementById("googleSignupBtn")
+    .addEventListener(
+        "click",
+        async function () {
+
+            if (!window.supabaseClient) {
+
+                showMessage(
+                    "Authentication service is unavailable."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const {
+                    error
+                } =
+                    await window
+                        .supabaseClient
+                        .auth
+                        .signInWithOAuth({
+
+                            provider: "google",
+
+                            options: {
+
+                                redirectTo:
+                                    "https://dostea.netlify.app/"
+
+                            }
+
+                        });
+
+
+                if (error) {
+
+                    console.error(
+                        "Google signup error:",
+                        error
+                    );
 
                     showMessage(
-                        "Google signup will be available after authentication is connected."
+                        error.message ||
+                        "Unable to continue with Google."
                     );
 
                 }
-            );
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Google OAuth error:",
+                    error
+                );
+
+                showMessage(
+                    "Something went wrong. Please try again."
+                );
+
+            }
+
+        }
+    );
 
     }
 );
