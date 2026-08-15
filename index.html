@@ -559,123 +559,297 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+
+    
+
+/* =====================================================
+   USER — SUPABASE
+====================================================== */
+
+let currentUser = null;
 
 
-    /* =====================================================
-       USER
-    ====================================================== */
+const guestSidebar =
+    document.getElementById("guestSidebar");
 
-    let currentUser = null;
+const loggedInSidebar =
+    document.getElementById("loggedInSidebar");
 
-    try {
+const topbarGuest =
+    document.getElementById("topbarGuest");
 
-        currentUser = JSON.parse(
-            localStorage.getItem("dostea_current_user")
-        );
+const topbarUser =
+    document.getElementById("topbarUser");
 
-    } catch (error) {
 
-        currentUser = null;
+try {
+
+    if (window.supabaseClient) {
+
+        const { data, error } =
+            await window.supabaseClient.auth.getSession();
+
+
+        if (error) {
+
+            console.error(
+                "DOSTEA session error:",
+                error
+            );
+
+        }
+
+
+        if (data?.session?.user) {
+
+            const user =
+                data.session.user;
+
+
+            const metadata =
+                user.user_metadata || {};
+
+
+            const name =
+                metadata.full_name ||
+                metadata.name ||
+                user.email?.split("@")[0] ||
+                "DOSTEA User";
+
+
+            currentUser = {
+
+                id:
+                    user.id,
+
+                fullName:
+                    name,
+
+                name:
+                    name,
+
+                email:
+                    user.email || "",
+
+                avatar:
+                    metadata.avatar_url ||
+                    metadata.picture ||
+                    ""
+
+            };
+
+
+            /* =============================================
+               TEMP COMPATIBILITY FOR OLD PAGES
+            ============================================== */
+
+            localStorage.setItem(
+                "dostea_current_user",
+                JSON.stringify(
+                    currentUser
+                )
+            );
+
+
+            /* =============================================
+               CLEAN GOOGLE OAUTH HASH
+            ============================================== */
+
+            if (window.location.hash) {
+
+                history.replaceState(
+                    null,
+                    document.title,
+                    window.location.pathname +
+                    window.location.search
+                );
+
+            }
+
+        }
 
     }
 
+}
+catch (error) {
 
-    const guestSidebar =
-        document.getElementById("guestSidebar");
+    console.error(
+        "DOSTEA auth error:",
+        error
+    );
 
-    const loggedInSidebar =
-        document.getElementById("loggedInSidebar");
-
-    const topbarGuest =
-        document.getElementById("topbarGuest");
-
-    const topbarUser =
-        document.getElementById("topbarUser");
+}
 
 
-    if (currentUser) {
+/* =====================================================
+   USER UI
+====================================================== */
 
-        const name =
-            currentUser.fullName ||
-            currentUser.name ||
-            "DOSTEA User";
+if (currentUser) {
 
-
-        const email =
-            currentUser.email || "";
-
-
-        const initial =
-            name.trim()
-                .charAt(0)
-                .toUpperCase() || "D";
+    const name =
+        currentUser.fullName ||
+        currentUser.name ||
+        "DOSTEA User";
 
 
-        /* SIDEBAR */
+    const email =
+        currentUser.email || "";
+
+
+    const initial =
+        name
+            .trim()
+            .charAt(0)
+            .toUpperCase() || "D";
+
+
+    /* SIDEBAR */
+
+    if (guestSidebar) {
 
         guestSidebar.style.display =
             "none";
 
+    }
+
+
+    if (loggedInSidebar) {
+
         loggedInSidebar.style.display =
             "flex";
 
+    }
 
+
+    const sidebarAvatar =
         document.getElementById(
             "sidebarAvatar"
-        ).textContent =
+        );
+
+
+    if (sidebarAvatar) {
+
+        sidebarAvatar.textContent =
             initial;
 
+    }
 
+
+    const sidebarUserName =
         document.getElementById(
             "sidebarUserName"
-        ).textContent =
-            name;
+        );
 
 
-        document.getElementById(
-            "sidebarUserEmail"
-        ).textContent =
-            email;
+    if (sidebarUserName) {
 
-
-        /* TOPBAR */
-
-        topbarGuest.style.display =
-            "none";
-
-        topbarUser.style.display =
-            "flex";
-
-
-        document.getElementById(
-            "topbarAvatar"
-        ).textContent =
-            initial;
-
-
-        document.getElementById(
-            "topbarUserName"
-        ).textContent =
+        sidebarUserName.textContent =
             name;
 
     }
 
-    else {
+
+    const sidebarUserEmail =
+        document.getElementById(
+            "sidebarUserEmail"
+        );
+
+
+    if (sidebarUserEmail) {
+
+        sidebarUserEmail.textContent =
+            email;
+
+    }
+
+
+    /* TOPBAR */
+
+    if (topbarGuest) {
+
+        topbarGuest.style.display =
+            "none";
+
+    }
+
+
+    if (topbarUser) {
+
+        topbarUser.style.display =
+            "flex";
+
+    }
+
+
+    const topbarAvatar =
+        document.getElementById(
+            "topbarAvatar"
+        );
+
+
+    if (topbarAvatar) {
+
+        topbarAvatar.textContent =
+            initial;
+
+    }
+
+
+    const topbarUserName =
+        document.getElementById(
+            "topbarUserName"
+        );
+
+
+    if (topbarUserName) {
+
+        topbarUserName.textContent =
+            name;
+
+    }
+
+}
+else {
+
+    localStorage.removeItem(
+        "dostea_current_user"
+    );
+
+
+    if (guestSidebar) {
 
         guestSidebar.style.display =
             "flex";
 
+    }
+
+
+    if (loggedInSidebar) {
+
         loggedInSidebar.style.display =
             "none";
 
+    }
+
+
+    if (topbarGuest) {
+
         topbarGuest.style.display =
             "flex";
+
+    }
+
+
+    if (topbarUser) {
 
         topbarUser.style.display =
             "none";
 
     }
+
+}
 
 
     /* =====================================================
