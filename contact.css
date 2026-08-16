@@ -1420,3 +1420,35 @@ body {
 .sidebar-submenu a {
     list-style: none !important;
 }
+
+/* Contact Form Text Size Only */
+
+.contact-form-header > span {
+    font-size: 12px;
+}
+
+.contact-form-header h3 {
+    font-size: 28px;
+}
+
+.contact-form-header p {
+    font-size: 14px;
+}
+
+.contact-field label {
+    font-size: 13px;
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+    font-size: 14px;
+}
+
+.contact-character-count {
+    font-size: 12px;
+}
+
+.contact-submit-btn {
+    font-size: 14px;
+}

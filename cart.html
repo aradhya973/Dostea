@@ -102,11 +102,11 @@
 <a class="nav-link" href="Restaurant.html">
                         Restaurant
                     </a>
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
 <a class="nav-link" href="amenities.html">
                         Amenities
-                    </a>
-<a class="nav-link" href="booking.html">
-                        Book a Room
                     </a>
 </div>
 </div>
@@ -1259,160 +1259,345 @@ document.addEventListener(
 
 
 
-        /* =====================================================
-           ORDERS
-        ====================================================== */
+       /* =====================================================
+   PLACE ORDER — SUPABASE
+====================================================== */
 
-        function getOrders() {
+checkoutButton.addEventListener(
+    "click",
+    async function () {
 
-            try {
-
-                const orders =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "dostea_orders"
-                        ) || "[]"
-                    );
+        const cart =
+            getCart();
 
 
-                return Array.isArray(orders)
-                    ? orders
-                    : [];
-
-            }
-            catch (error) {
-
-                return [];
-
-            }
-
+        if (!cart.length) {
+            return;
         }
 
 
+        if (!window.supabaseClient) {
 
-        /* =====================================================
-           PLACE ORDER
-        ====================================================== */
+            alert(
+                "Order service is unavailable. Please refresh the page."
+            );
 
-        checkoutButton.addEventListener(
-            "click",
-            function () {
-
-                const cart =
-                    getCart();
+            return;
+        }
 
 
-                if (!cart.length) {
-                    return;
-                }
+        /* =================================================
+           LOADING
+        ================================================= */
+
+        checkoutButton.disabled =
+            true;
 
 
-                const totals =
-                    calculateCart(cart);
+        checkoutButton.innerHTML = `
+            <span>Placing Order</span>
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        `;
 
 
-                const orderId =
-                    "DOSTEA" +
-                    Date.now()
-                        .toString()
-                        .slice(-7);
+        try {
+
+            /* =================================================
+               GET VERIFIED USER
+            ================================================= */
+
+            const {
+                data: userData,
+                error: userError
+            } =
+                await window
+                    .supabaseClient
+                    .auth
+                    .getUser();
 
 
-                const order = {
-
-                    id:
-                        orderId,
-
-                    userEmail:
-                        userEmail,
-
-                    customerName:
-                        userName,
-
-                    items:
-                        cart,
-
-                    itemCount:
-                        totals.count,
-
-                    subtotal:
-                        Math.round(
-                            totals.subtotal
-                        ),
-
-                    tax:
-                        Math.round(
-                            totals.tax
-                        ),
-
-                    packaging:
-                        totals.packaging,
-
-                    total:
-                        Math.round(
-                            totals.total
-                        ),
-
-                    type:
-                        selectedOrderType,
-
-                    status:
-                        "preparing",
-
-                    createdAt:
-                        new Date()
-                            .toISOString()
-
-                };
-
-
-                const orders =
-                    getOrders();
-
-
-                /*
-                   Newest order first
-                */
-
-                orders.unshift(
-                    order
-                );
-
+            if (
+                userError ||
+                !userData?.user
+            ) {
 
                 localStorage.setItem(
-                    "dostea_orders",
-                    JSON.stringify(
-                        orders
+                    "dostea_redirect_after_login",
+                    "cart.html"
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+
+                return;
+            }
+
+
+            const user =
+                userData.user;
+
+
+            const metadata =
+                user.user_metadata || {};
+
+
+            const customerName =
+                metadata.full_name ||
+                metadata.name ||
+                currentUser?.fullName ||
+                currentUser?.name ||
+                user.email?.split("@")[0] ||
+                "DOSTEA User";
+
+
+            const customerEmail =
+                user.email || "";
+
+
+            /* =================================================
+               CALCULATE TOTALS
+            ================================================= */
+
+            const totals =
+                calculateCart(
+                    cart
+                );
+
+
+            /* =================================================
+               ORDER NUMBER
+            ================================================= */
+
+            const orderNumber =
+                "DOSTEA" +
+                Date.now()
+                    .toString()
+                    .slice(-8);
+
+
+            /* =================================================
+               CREATE ORDER
+            ================================================= */
+
+            const {
+                data: createdOrder,
+                error: orderError
+            } =
+                await window
+                    .supabaseClient
+                    .from(
+                        "orders"
                     )
-                );
+                    .insert({
+
+                        order_number:
+                            orderNumber,
+
+                        user_id:
+                            user.id,
+
+                        customer_name:
+                            customerName,
+
+                        customer_email:
+                            customerEmail,
+
+                        order_type:
+                            selectedOrderType,
+
+                        status:
+                            "pending",
+
+                        subtotal:
+                            Number(
+                                totals.subtotal.toFixed(
+                                    2
+                                )
+                            ),
+
+                        tax:
+                            Number(
+                                totals.tax.toFixed(
+                                    2
+                                )
+                            ),
+
+                        packaging:
+                            Number(
+                                totals.packaging
+                            ),
+
+                        total:
+                            Number(
+                                totals.total.toFixed(
+                                    2
+                                )
+                            ),
+
+                        payment_method:
+                            "Not selected"
+
+                    })
+                    .select(
+                        "id, order_number"
+                    )
+                    .single();
 
 
-                /*
-                   Empty cart after successful order
-                */
+            if (orderError) {
 
-                saveCart([]);
+                throw orderError;
 
-
-
-                document.getElementById(
-                    "successOrderId"
-                ).textContent =
-                    "#" + orderId;
+            }
 
 
+            if (!createdOrder?.id) {
 
-                successModal.classList.add(
-                    "show"
-                );
-
-
-                document.body.classList.add(
-                    "modal-open"
+                throw new Error(
+                    "Order could not be created."
                 );
 
             }
-        );
+
+
+            /* =================================================
+               CREATE ORDER ITEMS
+            ================================================= */
+
+            const orderItems =
+                cart.map(
+                    function (item) {
+
+                        return {
+
+                            order_id:
+                                createdOrder.id,
+
+                            menu_item_id:
+                                String(
+                                    item.id || ""
+                                ) || null,
+
+                            name:
+                                item.name ||
+                                "DOSTEA Item",
+
+                            category:
+                                item.category ||
+                                null,
+
+                            description:
+                                item.description ||
+                                null,
+
+                            image_url:
+                                item.image ||
+                                null,
+
+                            price:
+                                Number(
+                                    item.price || 0
+                                ),
+
+                            quantity:
+                                Math.max(
+                                    1,
+                                    Number(
+                                        item.quantity ||
+                                        1
+                                    )
+                                )
+
+                        };
+
+                    }
+                );
+
+
+            const {
+                error: itemsError
+            } =
+                await window
+                    .supabaseClient
+                    .from(
+                        "order_items"
+                    )
+                    .insert(
+                        orderItems
+                    );
+
+
+            if (itemsError) {
+
+                throw itemsError;
+
+            }
+
+
+            /* =================================================
+               SUCCESS — CLEAR CART
+            ================================================= */
+
+            saveCart([]);
+
+
+            renderCart();
+
+
+            document.getElementById(
+                "successOrderId"
+            ).textContent =
+                "#" +
+                createdOrder.order_number;
+
+
+            successModal.classList.add(
+                "show"
+            );
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+
+            console.log(
+                "DOSTEA order created:",
+                createdOrder.order_number
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "DOSTEA order error:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Unable to place your order. Please try again."
+            );
+
+        }
+        finally {
+
+            checkoutButton.disabled =
+                false;
+
+
+            checkoutButton.innerHTML = `
+                <span>Place Order</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            `;
+
+        }
+
+    }
+);
 
 
 

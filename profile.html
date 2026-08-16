@@ -104,11 +104,11 @@
 <a class="nav-link" href="Restaurant.html">
                         Restaurant
                     </a>
+<a class="nav-link" href="menu.html">
+                        Menua
+                    </a>
 <a class="nav-link" href="amenities.html">
                         Amenities
-                    </a>
-<a class="nav-link" href="booking.html">
-                        Book a Room
                     </a>
 </div>
 </div>
@@ -1224,151 +1224,160 @@ document.addEventListener(
         }
 
 
-        /* =====================================================
+   /* =====================================================
+   PROFILE STATS — SUPABASE
+====================================================== */
+
+async function loadStats() {
+
+    const totalOrdersElement =
+        document.getElementById(
+            "totalOrders"
+        );
+
+    const totalReservationsElement =
+        document.getElementById(
+            "totalReservations"
+        );
+
+    const totalSpentElement =
+        document.getElementById(
+            "totalSpent"
+        );
+
+
+    try {
+
+        /* =============================================
            ORDERS
-           TEMPORARILY LOCALSTORAGE
-        ====================================================== */
+        ============================================== */
 
-        function getOrders() {
-
-            try {
-
-                const orders =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "dostea_orders"
-                        ) || "[]"
-                    );
-
-
-                if (
-                    !Array.isArray(
-                        orders
-                    )
-                ) {
-
-                    return [];
-
-                }
-
-
-                return orders.filter(
-                    function (order) {
-
-                        if (
-                            !order.userEmail
-                        ) {
-
-                            return true;
-
-                        }
-
-
-                        return (
-                            String(
-                                order.userEmail
-                            ).toLowerCase() ===
-                            getEmail()
-                                .toLowerCase()
-                        );
-
+        const {
+            data: ordersData,
+            count: ordersCount,
+            error: ordersError
+        } =
+            await window
+                .supabaseClient
+                .from("orders")
+                .select(
+                    "total",
+                    {
+                        count: "exact"
                     }
+                )
+                .eq(
+                    "user_id",
+                    authUser.id
                 );
 
-            }
-            catch (error) {
 
-                return [];
+        if (ordersError) {
 
-            }
+            throw ordersError;
 
         }
 
 
-        /* =====================================================
-           RESERVATIONS
-           TEMPORARILY LOCALSTORAGE
-        ====================================================== */
+        /* =============================================
+           TOTAL SPENT
+        ============================================== */
 
-        function getReservations() {
+        const totalSpent =
+            (ordersData || []).reduce(
+                function (
+                    total,
+                    order
+                ) {
 
-            try {
-
-                const reservations =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "dostea_reservations"
-                        ) || "[]"
+                    return (
+                        total +
+                        Number(
+                            order.total || 0
+                        )
                     );
 
-
-                return Array.isArray(
-                    reservations
-                )
-                    ? reservations
-                    : [];
-
-            }
-            catch (error) {
-
-                return [];
-
-            }
-
-        }
-
-
-        /* =====================================================
-           STATS
-        ====================================================== */
-
-        function renderStats() {
-
-            const orders =
-                getOrders();
-
-            const reservations =
-                getReservations();
-
-
-            let totalSpent = 0;
-
-
-            orders.forEach(
-                function (order) {
-
-                    totalSpent +=
-                        Number(
-                            order.total ||
-                            order.amount ||
-                            0
-                        );
-
-                }
+                },
+                0
             );
 
 
-            document.getElementById(
-                "totalOrders"
-            ).textContent =
-                orders.length;
+        /* =============================================
+           RESERVATIONS
+        ============================================== */
 
-
-            document.getElementById(
-                "totalReservations"
-            ).textContent =
-                reservations.length;
-
-
-            document.getElementById(
-                "totalSpent"
-            ).textContent =
-                "₹" +
-                totalSpent.toLocaleString(
-                    "en-IN"
+        const {
+            count: reservationsCount,
+            error: reservationsError
+        } =
+            await window
+                .supabaseClient
+                .from(
+                    "reservations"
+                )
+                .select(
+                    "*",
+                    {
+                        count: "exact",
+                        head: true
+                    }
+                )
+                .eq(
+                    "user_id",
+                    authUser.id
                 );
 
+
+        if (reservationsError) {
+
+            throw reservationsError;
+
         }
+
+
+        /* =============================================
+           RENDER
+        ============================================== */
+
+        totalOrdersElement.textContent =
+            ordersCount || 0;
+
+
+        totalReservationsElement.textContent =
+            reservationsCount || 0;
+
+
+        totalSpentElement.textContent =
+            "₹" +
+            Math.round(
+                totalSpent
+            ).toLocaleString(
+                "en-IN"
+            );
+
+    }
+    catch (error) {
+
+        console.error(
+            "DOSTEA profile stats error:",
+            error
+        );
+
+
+        totalOrdersElement.textContent =
+            "0";
+
+
+        totalReservationsElement.textContent =
+            "0";
+
+
+        totalSpentElement.textContent =
+            "₹0";
+
+    }
+
+}
 
 
         /* =====================================================
@@ -2029,7 +2038,7 @@ document.addEventListener(
 
         renderProfile();
 
-        renderStats();
+        await loadStats();
 
         renderCart();
 

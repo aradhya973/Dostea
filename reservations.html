@@ -100,11 +100,11 @@
 <a class="nav-link" href="Restaurant.html">
                         Restaurant
                     </a>
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
 <a class="nav-link" href="amenities.html">
                         Amenities
-                    </a>
-<a class="nav-link" href="booking.html">
-                        Book a Room
                     </a>
 </div>
 </div>
@@ -528,14 +528,17 @@
 <i class="fa-solid fa-check"></i>
 </div>
 <span class="modal-label">
-            reservations CONFIRMED
-        </span>
+    RESERVATION REQUESTED
+</span>
+
 <h2>
-            Your table is reserved.
-        </h2>
+    Your request is in.
+</h2>
+
 <p>
-            We'll have everything ready when you arrive at DOSTEA.
-        </p>
+    DOSTEA has received your reservation request.
+    Its status will be updated after review.
+</p>
 <div class="reservations-number">
 <span>
                 reservations ID
@@ -579,75 +582,173 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
 
     /* =====================================================
-       CURRENT USER
-    ====================================================== */
+   CURRENT USER — SUPABASE
+====================================================== */
 
-    let currentUser = null;
+if (!window.supabaseClient) {
 
-    try {
+    alert(
+        "Authentication service is unavailable."
+    );
 
-        currentUser = JSON.parse(
-            localStorage.getItem("dostea_current_user")
-        );
+    return;
 
-    } catch (error) {
-
-        currentUser = null;
-
-    }
+}
 
 
-    if (!currentUser) {
-
-        window.location.replace("login.html");
-        return;
-
-    }
-
-
-    /* =====================================================
-       USER DATA
-    ====================================================== */
-
-    const userName =
-        currentUser.fullName ||
-        currentUser.name ||
-        "DOSTEA User";
-
-    const userEmail =
-        currentUser.email || "";
-
-    const initial =
-        userName.trim().charAt(0).toUpperCase() || "D";
+const {
+    data: userData,
+    error: userError
+} =
+    await window.supabaseClient.auth.getUser();
 
 
-    document.getElementById("sidebarAvatar").textContent =
-        initial;
+if (
+    userError ||
+    !userData?.user
+) {
 
-    document.getElementById("topbarAvatar").textContent =
-        initial;
+    localStorage.setItem(
+        "dostea_redirect_after_login",
+        "reservations.html"
+    );
 
-    document.getElementById("sidebarUserName").textContent =
-        userName;
+    window.location.replace(
+        "login.html"
+    );
 
-    document.getElementById("topbarUserName").textContent =
-        userName;
+    return;
 
-    document.getElementById("sidebarUserEmail").textContent =
-        userEmail;
+}
 
-    document.getElementById("guestName").value =
-        userName;
 
-    if (currentUser.phone) {
+const authUser =
+    userData.user;
 
-        document.getElementById("guestPhone").value =
-            currentUser.phone;
 
-    }
+/* =====================================================
+   PROFILE DATA
+====================================================== */
+
+let profileData = {};
+
+
+const {
+    data: profile,
+    error: profileError
+} =
+    await window.supabaseClient
+        .from("profiles")
+        .select(
+            "full_name, phone"
+        )
+        .eq(
+            "id",
+            authUser.id
+        )
+        .maybeSingle();
+
+
+if (profileError) {
+
+    console.error(
+        "Unable to load profile:",
+        profileError
+    );
+
+}
+else {
+
+    profileData =
+        profile || {};
+
+}
+
+
+const metadata =
+    authUser.user_metadata || {};
+
+
+const userName =
+    profileData.full_name ||
+    metadata.full_name ||
+    metadata.name ||
+    authUser.email?.split("@")[0] ||
+    "DOSTEA User";
+
+
+const userEmail =
+    authUser.email || "";
+
+
+const userPhone =
+    profileData.phone || "";
+
+
+const initial =
+    userName
+        .trim()
+        .charAt(0)
+        .toUpperCase() || "D";
+
+
+document.getElementById(
+    "sidebarAvatar"
+).textContent =
+    initial;
+
+
+document.getElementById(
+    "topbarAvatar"
+).textContent =
+    initial;
+
+
+document.getElementById(
+    "sidebarUserName"
+).textContent =
+    userName;
+
+
+document.getElementById(
+    "topbarUserName"
+).textContent =
+    userName;
+
+
+document.getElementById(
+    "sidebarUserEmail"
+).textContent =
+    userEmail;
+
+
+document.getElementById(
+    "guestName"
+).value =
+    userName;
+
+
+document.getElementById(
+    "guestPhone"
+).value =
+    userPhone;
+
+
+/* Compatibility for old UI */
+
+localStorage.setItem(
+    "dostea_current_user",
+    JSON.stringify({
+        id: authUser.id,
+        fullName: userName,
+        name: userName,
+        email: userEmail,
+        phone: userPhone
+    })
+);
 
 
     /* =====================================================
@@ -891,33 +992,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
-       STORAGE
-    ====================================================== */
-
-    function getreservationss() {
-
-        try {
-
-            const reservationss =
-                JSON.parse(
-                    localStorage.getItem(
-                        "dostea_reservationss"
-                    ) || "[]"
-                );
-
-            return Array.isArray(reservationss)
-                ? reservationss
-                : [];
-
-        } catch (error) {
-
-            return [];
-
-        }
-
-    }
-
 
     function savereservationss(reservationss) {
 
@@ -930,152 +1004,327 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       SUBMIT reservations
-    ====================================================== */
+   TIME FORMAT
+====================================================== */
 
-    const reservationsForm =
-        document.getElementById("reservationsForm");
+function convertTo24Hour(timeString) {
 
-    const reservationsModal =
-        document.getElementById("reservationsModal");
-
-
-    reservationsForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
+    const match =
+        String(timeString).match(
+            /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i
+        );
 
 
-            /* TIME REQUIRED */
-
-            if (!selectedTime) {
-
-                timeError.classList.add("show");
-
-                document.getElementById("timeSlots")
-                    .scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                return;
-
-            }
+    if (!match) {
+        return null;
+    }
 
 
-            /* DATE VALIDATION */
-
-            if (!dateInput.value) {
-                return;
-            }
+    let hour =
+        Number(match[1]);
 
 
-            const selectedDate =
-                new Date(
-                    dateInput.value +
-                    "T00:00:00"
-                );
-
-            const todayDate =
-                new Date();
-
-            todayDate.setHours(0, 0, 0, 0);
+    const minute =
+        match[2];
 
 
-            if (selectedDate < todayDate) {
-
-                alert(
-                    "Please select a valid reservations date."
-                );
-
-                return;
-
-            }
+    const period =
+        match[3].toUpperCase();
 
 
-            /* GENERATE ID */
+    if (
+        period === "AM" &&
+        hour === 12
+    ) {
 
-            const reservationsCode =
-                "DST" +
-                Date.now()
-                    .toString()
-                    .slice(-7);
+        hour = 0;
 
-
-            const reservations = {
-
-                id: reservationsCode,
-
-                userEmail: userEmail,
-
-                customerName:
-                    document
-                        .getElementById("guestName")
-                        .value
-                        .trim(),
-
-                phone:
-                    document
-                        .getElementById("guestPhone")
-                        .value
-                        .trim(),
-
-                date:
-                    dateInput.value,
-
-                time:
-                    selectedTime,
-
-                guests:
-                    guestCount,
-
-                seating:
-                    selectedSeating,
-
-                specialRequest:
-                    specialRequest.value.trim(),
-
-                status:
-                    "confirmed",
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
+    }
 
 
-            const reservationss =
-                getreservationss();
+    if (
+        period === "PM" &&
+        hour !== 12
+    ) {
 
-            reservationss.unshift(
-                reservations
-            );
+        hour += 12;
 
-            savereservationss(
-                reservationss
+    }
+
+
+    return (
+        String(hour)
+            .padStart(2, "0") +
+        ":" +
+        minute +
+        ":00"
+    );
+
+}
+
+
+/* =====================================================
+   SUBMIT RESERVATION — SUPABASE
+====================================================== */
+
+const reservationsForm =
+    document.getElementById(
+        "reservationsForm"
+    );
+
+
+const reservationsModal =
+    document.getElementById(
+        "reservationsModal"
+    );
+
+
+const reserveButton =
+    reservationsForm.querySelector(
+        ".reserve-btn"
+    );
+
+
+reservationsForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        /* =============================================
+           TIME REQUIRED
+        ============================================== */
+
+        if (!selectedTime) {
+
+            timeError.classList.add(
+                "show"
             );
 
 
-            /* MODAL INFO */
+            document.getElementById(
+                "timeSlots"
+            ).scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+
+            return;
+
+        }
+
+
+        /* =============================================
+           DATE VALIDATION
+        ============================================== */
+
+        if (!dateInput.value) {
+
+            return;
+
+        }
+
+
+        const selectedDate =
+            new Date(
+                dateInput.value +
+                "T00:00:00"
+            );
+
+
+        const todayDate =
+            new Date();
+
+
+        todayDate.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        if (
+            selectedDate <
+            todayDate
+        ) {
+
+            alert(
+                "Please select a valid reservation date."
+            );
+
+            return;
+
+        }
+
+
+        const customerName =
+            document
+                .getElementById(
+                    "guestName"
+                )
+                .value
+                .trim();
+
+
+        const phone =
+            document
+                .getElementById(
+                    "guestPhone"
+                )
+                .value
+                .trim();
+
+
+        if (
+            !customerName ||
+            !phone
+        ) {
+
+            alert(
+                "Please enter your name and phone number."
+            );
+
+            return;
+
+        }
+
+
+        const databaseTime =
+            convertTo24Hour(
+                selectedTime
+            );
+
+
+        if (!databaseTime) {
+
+            alert(
+                "Please select a valid reservation time."
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+           RESERVATION NUMBER
+        ============================================== */
+
+        const reservationCode =
+            "DST" +
+            Date.now()
+                .toString()
+                .slice(-8);
+
+
+        /* =============================================
+           LOADING
+        ============================================== */
+
+        reserveButton.disabled =
+            true;
+
+
+        reserveButton.innerHTML = `
+            <span>Sending Request</span>
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        `;
+
+
+        try {
+
+            const {
+                data: createdReservation,
+                error
+            } =
+                await window
+                    .supabaseClient
+                    .from(
+                        "reservations"
+                    )
+                    .insert({
+
+                        reservation_number:
+                            reservationCode,
+
+                        user_id:
+                            authUser.id,
+
+                        customer_name:
+                            customerName,
+
+                        customer_email:
+                            userEmail,
+
+                        phone:
+                            phone,
+
+                        reservation_date:
+                            dateInput.value,
+
+                        reservation_time:
+                            databaseTime,
+
+                        guests:
+                            guestCount,
+
+                        seating_preference:
+                            selectedSeating,
+
+                        special_request:
+                            specialRequest.value
+                                .trim() ||
+                            null,
+
+                        status:
+                            "pending"
+
+                    })
+                    .select(
+                        "id, reservation_number"
+                    )
+                    .single();
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            /* =============================================
+               MODAL
+            ============================================== */
 
             document.getElementById(
                 "reservationsId"
             ).textContent =
-                "#" + reservationsCode;
+                "#" +
+                createdReservation
+                    .reservation_number;
 
 
             document.getElementById(
                 "modalDate"
             ).textContent =
-                selectedDate.toLocaleDateString(
-                    "en-IN",
-                    {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric"
-                    }
-                );
+                selectedDate
+                    .toLocaleDateString(
+                        "en-IN",
+                        {
+                            day:
+                                "numeric",
+
+                            month:
+                                "short",
+
+                            year:
+                                "numeric"
+                        }
+                    );
 
 
             document.getElementById(
@@ -1094,12 +1343,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 "show"
             );
 
+
             document.body.classList.add(
                 "modal-open"
             );
 
+
+            console.log(
+                "DOSTEA reservation created:",
+                createdReservation
+                    .reservation_number
+            );
+
         }
-    );
+        catch (error) {
+
+            console.error(
+                "Reservation error:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Unable to submit reservation. Please try again."
+            );
+
+        }
+        finally {
+
+            reserveButton.disabled =
+                false;
+
+
+            reserveButton.innerHTML = `
+                <span>Confirm Reservation</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            `;
+
+        }
+
+    }
+);
 
 
     /* =====================================================

@@ -1324,112 +1324,207 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CONTACT FORM
-    ====================================================== */
+   CONTACT FORM — SUPABASE
+====================================================== */
 
-    const contactForm =
-        document.getElementById(
-            "contactForm"
-        );
-
-    const contactToast =
-        document.getElementById(
-            "contactToast"
-        );
+const contactForm =
+    document.getElementById(
+        "contactForm"
+    );
 
 
-    contactForm?.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-
-            const enquiry = {
-
-                id: "DOSTEA-" + Date.now(),
-
-                name:
-                    document.getElementById(
-                        "contactName"
-                    ).value.trim(),
-
-                email:
-                    document.getElementById(
-                        "contactEmail"
-                    ).value.trim(),
-
-                phone:
-                    document.getElementById(
-                        "contactPhone"
-                    ).value.trim(),
-
-                subject:
-                    document.getElementById(
-                        "contactSubject"
-                    ).value,
-
-                message:
-                    document.getElementById(
-                        "contactMessage"
-                    ).value.trim(),
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
+const contactToast =
+    document.getElementById(
+        "contactToast"
+    );
 
 
-            /* ---------------------------------------------
-               STORE DEMO ENQUIRY
-            --------------------------------------------- */
-
-            let enquiries = [];
-
-            try {
-
-                enquiries = JSON.parse(
-                    localStorage.getItem(
-                        "dostea_contact_enquiries"
-                    ) || "[]"
-                );
-
-            } catch (error) {
-
-                enquiries = [];
-
-            }
+const contactSubmitBtn =
+    document.getElementById(
+        "contactSubmitBtn"
+    );
 
 
-            if (!Array.isArray(enquiries)) {
-                enquiries = [];
-            }
+contactForm?.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
 
 
-            enquiries.unshift(enquiry);
+        if (!window.supabaseClient) {
 
-
-            localStorage.setItem(
-                "dostea_contact_enquiries",
-                JSON.stringify(enquiries)
+            alert(
+                "Message service is unavailable. Please refresh the page."
             );
 
+            return;
 
-            /* ---------------------------------------------
+        }
+
+
+        const name =
+            document.getElementById(
+                "contactName"
+            ).value.trim();
+
+
+        const email =
+            document.getElementById(
+                "contactEmail"
+            ).value.trim();
+
+
+        const phone =
+            document.getElementById(
+                "contactPhone"
+            ).value.trim();
+
+
+        const subject =
+            document.getElementById(
+                "contactSubject"
+            ).value;
+
+
+        const messageText =
+            document.getElementById(
+                "contactMessage"
+            ).value.trim();
+
+
+        if (
+            !name ||
+            !email ||
+            !subject ||
+            !messageText
+        ) {
+
+            return;
+
+        }
+
+
+        contactSubmitBtn.disabled =
+            true;
+
+
+        contactSubmitBtn.innerHTML = `
+            <span>Sending...</span>
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        `;
+
+
+        try {
+
+            /* =============================================
+               CHECK CURRENT SUPABASE SESSION
+            ============================================== */
+
+            const {
+                data: sessionData,
+                error: sessionError
+            } =
+                await window
+                    .supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (sessionError) {
+
+                console.warn(
+                    "Session check:",
+                    sessionError
+                );
+
+            }
+
+
+            const authUser =
+                sessionData?.session?.user ||
+                null;
+
+
+            /* =============================================
+               GENERATE ENQUIRY NUMBER
+            ============================================== */
+
+            const enquiryNumber =
+                "ENQ-" +
+                Date.now()
+                    .toString()
+                    .slice(-9);
+
+
+            /* =============================================
+               SAVE TO SUPABASE
+            ============================================== */
+
+            const {
+                error
+            } =
+                await window
+                    .supabaseClient
+                    .from(
+                        "contact_enquiries"
+                    )
+                    .insert({
+
+                        enquiry_number:
+                            enquiryNumber,
+
+                        user_id:
+                            authUser
+                                ? authUser.id
+                                : null,
+
+                        name:
+                            name,
+
+                        email:
+                            email,
+
+                        phone:
+                            phone || null,
+
+                        subject:
+                            subject,
+
+                        message:
+                            messageText,
+
+                        status:
+                            "new"
+
+                    });
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            /* =============================================
                RESET FORM
-            --------------------------------------------- */
+            ============================================== */
 
             contactForm.reset();
 
 
             if (messageCount) {
-                messageCount.textContent = "0";
+
+                messageCount.textContent =
+                    "0";
+
             }
 
 
-            /* ---------------------------------------------
-               KEEP USER INFO
-            --------------------------------------------- */
+            /* =============================================
+               KEEP LOGGED-IN USER INFO
+            ============================================== */
 
             if (currentUser) {
 
@@ -1437,6 +1532,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById(
                         "contactName"
                     );
+
 
                 const emailInput =
                     document.getElementById(
@@ -1458,16 +1554,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (emailInput) {
 
                     emailInput.value =
-                        currentUser.email || "";
+                        currentUser.email ||
+                        "";
 
                 }
 
             }
 
 
-            /* ---------------------------------------------
+            /* =============================================
                SUCCESS TOAST
-            --------------------------------------------- */
+            ============================================== */
 
             contactToast?.classList.add(
                 "show"
@@ -1477,16 +1574,52 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(
                 function () {
 
-                    contactToast?.classList.remove(
-                        "show"
-                    );
+                    contactToast
+                        ?.classList
+                        .remove(
+                            "show"
+                        );
 
                 },
                 3500
             );
 
+
+            console.log(
+                "DOSTEA enquiry submitted:",
+                enquiryNumber
+            );
+
         }
-    );
+        catch (error) {
+
+            console.error(
+                "DOSTEA contact error:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Unable to send your message. Please try again."
+            );
+
+        }
+        finally {
+
+            contactSubmitBtn.disabled =
+                false;
+
+
+            contactSubmitBtn.innerHTML = `
+                <span>Send Message</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            `;
+
+        }
+
+    }
+);
 
 
     /* =====================================================

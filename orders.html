@@ -101,11 +101,11 @@
 <a class="nav-link" href="Restaurant.html">
                         Restaurant
                     </a>
+<a class="nav-link" href="menu.html">
+                        Menu
+                    </a>
 <a class="nav-link" href="amenities.html">
                         Amenities
-                    </a>
-<a class="nav-link" href="booking.html">
-                        Book a Room
                     </a>
 </div>
 </div>
@@ -301,18 +301,55 @@
 <input id="orderSearch" placeholder="Search order ID or item..." type="search"/>
 </div>
 <div class="order-tabs">
-<button class="order-tab active" data-filter="all" type="button">
-                        All
-                    </button>
-<button class="order-tab" data-filter="preparing" type="button">
-                        Preparing
-                    </button>
-<button class="order-tab" data-filter="ready" type="button">
-                        Ready
-                    </button>
-<button class="order-tab" data-filter="completed" type="button">
-                        Completed
-                    </button>
+
+    <button
+        class="order-tab active"
+        data-filter="all"
+        type="button"
+    >
+        All
+    </button>
+
+    <button
+        class="order-tab"
+        data-filter="pending"
+        type="button"
+    >
+        Pending
+    </button>
+
+    <button
+        class="order-tab"
+        data-filter="accepted"
+        type="button"
+    >
+        Accepted
+    </button>
+
+    <button
+        class="order-tab"
+        data-filter="preparing"
+        type="button"
+    >
+        Preparing
+    </button>
+
+    <button
+        class="order-tab"
+        data-filter="ready"
+        type="button"
+    >
+        Ready
+    </button>
+
+    <button
+        class="order-tab"
+        data-filter="completed"
+        type="button"
+    >
+        Completed
+    </button>
+
 </div>
 <button aria-label="Refresh orders" class="refresh-orders" id="refreshOrders" type="button">
 <i class="fa-solid fa-rotate"></i>
@@ -614,46 +651,226 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       LOAD ORDERS
-    ====================================================== */
+   LOAD ORDERS — SUPABASE
+====================================================== */
 
-    function loadOrders() {
+async function loadOrders() {
 
-        try {
+    try {
 
-            const savedOrders =
-                localStorage.getItem(
-                    "dostea_orders"
+        if (!window.supabaseClient) {
+
+            throw new Error(
+                "Supabase is not available."
+            );
+
+        }
+
+
+        /* =============================================
+           CURRENT USER
+        ============================================== */
+
+        const {
+            data: userData,
+            error: userError
+        } =
+            await window
+                .supabaseClient
+                .auth
+                .getUser();
+
+
+        if (
+            userError ||
+            !userData?.user
+        ) {
+
+            window.location.replace(
+                "login.html"
+            );
+
+            return;
+
+        }
+
+
+        const user =
+            userData.user;
+
+
+        /* =============================================
+           FETCH ORDERS + ITEMS
+        ============================================== */
+
+        const {
+            data,
+            error
+        } =
+            await window
+                .supabaseClient
+                .from("orders")
+                .select(`
+                    id,
+                    order_number,
+                    user_id,
+                    customer_name,
+                    customer_email,
+                    order_type,
+                    status,
+                    subtotal,
+                    tax,
+                    packaging,
+                    total,
+                    payment_method,
+                    table_number,
+                    created_at,
+
+                    order_items (
+                        id,
+                        menu_item_id,
+                        name,
+                        category,
+                        description,
+                        image_url,
+                        price,
+                        quantity
+                    )
+                `)
+                .eq(
+                    "user_id",
+                    user.id
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
                 );
 
 
-            if (!savedOrders) {
+        if (error) {
 
-                orders = [];
-
-            } else {
-
-                const parsed =
-                    JSON.parse(savedOrders);
-
-
-                orders =
-                    Array.isArray(parsed)
-                        ? parsed
-                        : [];
-
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Unable to load orders:",
-                error
-            );
-
-            orders = [];
+            throw error;
 
         }
+
+
+        /* =============================================
+           CONVERT SUPABASE DATA
+           TO EXISTING ORDERS.HTML FORMAT
+        ============================================== */
+
+        orders =
+            (data || []).map(
+                function (order) {
+
+                    return {
+
+                        databaseId:
+                            order.id,
+
+                        id:
+                            order.order_number,
+
+                        customerName:
+                            order.customer_name,
+
+                        userEmail:
+                            order.customer_email,
+
+                        orderType:
+                            order.order_type ===
+                            "dine-in"
+                                ? "Dine In"
+                                : "Takeaway",
+
+                        status:
+                            order.status ||
+                            "pending",
+
+                        subtotal:
+                            Number(
+                                order.subtotal || 0
+                            ),
+
+                        tax:
+                            Number(
+                                order.tax || 0
+                            ),
+
+                        packaging:
+                            Number(
+                                order.packaging || 0
+                            ),
+
+                        total:
+                            money(
+                                Number(
+                                    order.total || 0
+                                )
+                            ),
+
+                        payment:
+                            order.payment_method ||
+                            "Not selected",
+
+                        table:
+                            order.table_number ||
+                            "",
+
+                        date:
+                            order.created_at,
+
+                        createdAt:
+                            order.created_at,
+
+                        items:
+                            Array.isArray(
+                                order.order_items
+                            )
+                                ? order.order_items.map(
+                                    function (item) {
+
+                                        return {
+
+                                            id:
+                                                item.menu_item_id,
+
+                                            name:
+                                                item.name,
+
+                                            category:
+                                                item.category,
+
+                                            description:
+                                                item.description,
+
+                                            image:
+                                                item.image_url,
+
+                                            price:
+                                                Number(
+                                                    item.price ||
+                                                    0
+                                                ),
+
+                                            quantity:
+                                                Number(
+                                                    item.quantity ||
+                                                    1
+                                                )
+
+                                        };
+
+                                    }
+                                )
+                                : []
+
+                    };
+
+                }
+            );
 
 
         updateStats();
@@ -661,6 +878,32 @@ document.addEventListener("DOMContentLoaded", function () {
         renderOrders();
 
     }
+    catch (error) {
+
+        console.error(
+            "Unable to load Supabase orders:",
+            error
+        );
+
+
+        orders = [];
+
+
+        updateStats();
+
+        renderOrders();
+
+
+        if (emptyOrdersMessage) {
+
+            emptyOrdersMessage.textContent =
+                "Unable to load your orders. Please try again.";
+
+        }
+
+    }
+
+}
 
 
     /* =====================================================

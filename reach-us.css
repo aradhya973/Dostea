@@ -1004,3 +1004,47 @@ body {
     }
 
 }
+
+/* REACH US — subtle text increase only */
+
+/* Address Card */
+.reach-address-top > span {
+    font-size: 11px;
+}
+
+.reach-open-badge {
+    font-size: 10px;
+}
+
+.reach-address-main span {
+    font-size: 11px;
+}
+
+.reach-address-main strong {
+    font-size: 15px;
+}
+
+.reach-address-main p {
+    font-size: 13px;
+}
+
+.reach-mini-details span {
+    font-size: 10px;
+}
+
+.reach-mini-details strong {
+    font-size: 13px;
+}
+
+.reach-address-card > a {
+    font-size: 13px;
+}
+
+/* Train / Car / Local Transport */
+.reach-travel-item span {
+    font-size: 11px;
+}
+
+.reach-travel-item strong {
+    font-size: 14px;
+}
