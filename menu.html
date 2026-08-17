@@ -1094,10 +1094,58 @@
                         </p>
 
                         <span id="menuResultCount">
-                            18 dishes available
+                            18 café dishes available
                         </span>
 
                     </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CAFÉ / RESTAURANT MENU SWITCH
+                ================================================== -->
+
+                <div
+                    class="menu-type-switcher"
+                    role="tablist"
+                    aria-label="Choose menu"
+                >
+
+                    <button
+                        type="button"
+                        class="menu-type-button active"
+                        data-menu-type="cafe"
+                        role="tab"
+                        aria-selected="true"
+                    >
+                        <span class="menu-type-icon">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </span>
+
+                        <span>
+                            <strong>Café Menu</strong>
+                            <small>Pizza, snacks, coffee & desserts</small>
+                        </span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="menu-type-button"
+                        data-menu-type="restaurant"
+                        role="tab"
+                        aria-selected="false"
+                    >
+                        <span class="menu-type-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            <strong>Restaurant Menu</strong>
+                            <small>Indian mains, biryani & breads</small>
+                        </span>
+                    </button>
 
                 </div>
 
@@ -1137,7 +1185,10 @@
 
                     <!-- CATEGORY BUTTONS -->
 
-                    <div class="restaurant-menu-categories">
+                    <div
+                        class="restaurant-menu-categories"
+                        data-menu-categories="cafe"
+                    >
 
 
                         <button
@@ -1196,15 +1247,6 @@
                         <button
                             type="button"
                             class="restaurant-category"
-                            data-filter="indian"
-                        >
-                            Indian
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="restaurant-category"
                             data-filter="coffee"
                         >
                             Coffee
@@ -1219,6 +1261,95 @@
                             Cold Drinks
                         </button>
 
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="dessert"
+                        >
+                            Desserts
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="restaurant-menu-categories"
+                        data-menu-categories="restaurant"
+                        hidden
+                    >
+
+                        <button
+                            type="button"
+                            class="restaurant-category active"
+                            data-filter="all"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="veg-main"
+                        >
+                            Veg Main
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="nonveg-main"
+                        >
+                            Non-Veg Main
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="biryani"
+                        >
+                            Biryani
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="tandoor"
+                        >
+                            Tandoor
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="rice"
+                        >
+                            Rice
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="street"
+                        >
+                            Street Food
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="south"
+                        >
+                            South Indian
+                        </button>
+
+                        <button
+                            type="button"
+                            class="restaurant-category"
+                            data-filter="breads"
+                        >
+                            Indian Breads
+                        </button>
 
                         <button
                             type="button"
@@ -2549,7 +2680,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="veg-main"
     data-name="Paneer Butter Masala"
     data-price="329"
     data-image="paneer-butter-masala.png"
@@ -2607,7 +2739,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="veg-main"
     data-name="Dal Tadka"
     data-price="249"
     data-image="dal-tadka.png"
@@ -2665,7 +2798,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="biryani"
     data-name="Dum Veg Biryani"
     data-price="299"
     data-image="veg-biryani.png"
@@ -2723,7 +2857,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="biryani"
     data-name="Hyderabadi Chicken Biryani"
     data-price="389"
     data-image="chicken-biryani.png"
@@ -2781,7 +2916,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="nonveg-main"
     data-name="Butter Chicken"
     data-price="399"
     data-image="butter-chicken.png"
@@ -2839,7 +2975,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="veg-main"
     data-name="Kadai Paneer"
     data-price="319"
     data-image="kadai-paneer.png"
@@ -2897,7 +3034,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="tandoor"
     data-name="Tandoori Chicken Tikka"
     data-price="349"
     data-image="chicken-tikka.png"
@@ -2955,7 +3093,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="tandoor"
     data-name="Tandoori Paneer Tikka"
     data-price="299"
     data-image="paneer-tikka.png"
@@ -3013,7 +3152,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="street"
     data-name="Chole Bhature"
     data-price="229"
     data-image="chole-bhature.png"
@@ -3071,7 +3211,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="street"
     data-name="Mumbai Pav Bhaji"
     data-price="199"
     data-image="pav-bhaji.png"
@@ -3129,7 +3270,8 @@
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="south"
     data-name="Masala Dosa"
     data-price="189"
     data-image="masala-dosa.png"
@@ -3182,12 +3324,411 @@
 
 
 <!-- =================================================
+     VEG KOLHAPURI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="veg-main"
+    data-name="Veg Kolhapuri"
+    data-price="319"
+    data-image="veg-kolhapuri.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="veg-kolhapuri.png"
+            alt="Veg Kolhapuri"
+            loading="lazy"
+        >
+
+        <span class="food-badge gold">
+            SPICY CLASSIC
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            VEG MAIN COURSE
+        </span>
+
+        <h3>Veg Kolhapuri</h3>
+
+        <p>
+            Mixed vegetables cooked in a bold,
+            aromatic Kolhapuri-style gravy.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>319</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     CHICKEN HANDI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="nonveg-main"
+    data-name="Chicken Handi"
+    data-price="389"
+    data-image="chicken-handi.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="chicken-handi.png"
+            alt="Chicken Handi"
+            loading="lazy"
+        >
+
+        <span class="food-badge gold">
+            HOUSE FAVOURITE
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            NON-VEG MAIN COURSE
+        </span>
+
+        <h3>Chicken Handi</h3>
+
+        <p>
+            Tender chicken simmered slowly with
+            roasted spices in a rich handi gravy.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>389</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     JEERA RICE
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="rice"
+    data-name="Jeera Rice"
+    data-price="179"
+    data-image="jeera-rice.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="jeera-rice.png"
+            alt="Jeera Rice"
+            loading="lazy"
+        >
+
+        <span class="food-badge">
+            AROMATIC
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            RICE
+        </span>
+
+        <h3>Jeera Rice</h3>
+
+        <p>
+            Fragrant basmati rice tempered with
+            cumin, ghee and delicate whole spices.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>179</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     VEG PULAO
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="rice"
+    data-name="Veg Pulao"
+    data-price="249"
+    data-image="veg-pulao.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="veg-pulao.png"
+            alt="Veg Pulao"
+            loading="lazy"
+        >
+
+        <span class="food-badge gold">
+            COMFORT PLATE
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            RICE
+        </span>
+
+        <h3>Veg Pulao</h3>
+
+        <p>
+            Basmati rice tossed with garden
+            vegetables, herbs and gentle spices.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>249</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     DAL KHICHDI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="rice"
+    data-name="Dal Khichdi"
+    data-price="239"
+    data-image="dal-khichadi.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="dal-khichadi.png"
+            alt="Dal Khichdi"
+            loading="lazy"
+        >
+
+        <span class="food-badge">
+            SOUL FOOD
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            RICE
+        </span>
+
+        <h3>Dal Khichdi</h3>
+
+        <p>
+            Rice and lentils cooked until creamy,
+            finished with a fragrant ghee tadka.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>239</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     TANDOORI ROTI
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="breads"
+    data-name="Tandoori Roti"
+    data-price="49"
+    data-image="tandoori-roti.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="tandoori-roti.png"
+            alt="Tandoori Roti"
+            loading="lazy"
+        >
+
+        <span class="food-badge">
+            TANDOOR FRESH
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN BREADS
+        </span>
+
+        <h3>Tandoori Roti</h3>
+
+        <p>
+            Whole-wheat roti baked fresh in the
+            tandoor with a lightly crisp finish.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>49</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+
+<!-- =================================================
+     INDIAN BREAD BASKET
+================================================== -->
+
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="breads"
+    data-name="DOSTEA Indian Bread Basket"
+    data-price="229"
+    data-image="indian-bread-basket.png"
+>
+    <div class="food-card-image">
+
+        <img
+            src="indian-bread-basket.png"
+            alt="DOSTEA Indian Bread Basket"
+            loading="lazy"
+        >
+
+        <span class="food-badge gold">
+            SHAREABLE
+        </span>
+
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            INDIAN BREADS
+        </span>
+
+        <h3>DOSTEA Indian Bread Basket</h3>
+
+        <p>
+            Butter naan, tandoori roti, bhakri and
+            soft chapati served together.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>229</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </div>
+
+    </div>
+</article>
+
+<!-- =================================================
      30 — GULAB JAMUN
 ================================================== -->
 
 <article
     class="restaurant-food-card"
-    data-category="indian"
+    data-menu-type="restaurant"
+    data-category="dessert"
     data-name="Royal Gulab Jamun"
     data-price="149"
     data-image="gulab-jamun.png"
@@ -3235,6 +3776,102 @@
 
         </div>
 
+    </div>
+</article>
+
+
+<!-- BASUNDI -->
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="dessert"
+    data-name="Royal Basundi"
+    data-price="179"
+    data-image="basundi.png"
+>
+    <div class="food-card-image">
+        <img
+            src="basundi.png"
+            alt="Royal Basundi"
+            loading="lazy"
+        >
+
+        <span class="food-badge gold">
+            ROYAL DESSERT
+        </span>
+    </div>
+
+    <div class="food-card-content">
+        <span class="food-category">
+            INDIAN DESSERT
+        </span>
+
+        <h3>Royal Basundi</h3>
+
+        <p>
+            Slow-reduced creamy milk flavoured with
+            saffron, cardamom, pistachios and almonds.
+        </p>
+
+        <div class="food-card-bottom">
+            <div class="food-price">
+                <span>₹</span>
+                <strong>179</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</article>
+
+
+<!-- RASMALAI -->
+<article
+    class="restaurant-food-card"
+    data-menu-type="restaurant"
+    data-category="dessert"
+    data-name="Kesar Rasmalai"
+    data-price="199"
+    data-image="rasmalai.png"
+>
+    <div class="food-card-image">
+        <img
+            src="rasmalai.png"
+            alt="Kesar Rasmalai"
+            loading="lazy"
+        >
+
+        <span class="food-badge gold">
+            PREMIUM DESSERT
+        </span>
+    </div>
+
+    <div class="food-card-content">
+        <span class="food-category">
+            INDIAN DESSERT
+        </span>
+
+        <h3>Kesar Rasmalai</h3>
+
+        <p>
+            Soft chenna patties soaked in chilled
+            saffron milk with pistachios and almonds.
+        </p>
+
+        <div class="food-card-bottom">
+            <div class="food-price">
+                <span>₹</span>
+                <strong>199</strong>
+            </div>
+
+            <button type="button" class="menu-add-btn">
+                Add
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
     </div>
 </article>
 
@@ -4430,6 +5067,34 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
+    const menuTypeButtons =
+        document.querySelectorAll(
+            ".menu-type-button"
+        );
+
+
+    const categoryGroups =
+        document.querySelectorAll(
+            "[data-menu-categories]"
+        );
+
+
+    menuCards.forEach(
+        function (card, index) {
+
+            if (!card.dataset.menuType) {
+
+                card.dataset.menuType =
+                    index < 18
+                        ? "cafe"
+                        : "restaurant";
+
+            }
+
+        }
+    );
+
+
     const menuSearch =
         document.getElementById(
             "menuSearch"
@@ -4470,8 +5135,83 @@ document.addEventListener("DOMContentLoaded", function () {
         "all";
 
 
+    let activeMenuType =
+        "cafe";
+
+
     let currentSearch =
         "";
+
+
+
+    function syncMenuControls() {
+
+
+        menuTypeButtons.forEach(
+            function (button) {
+
+                const isActive =
+                    button.dataset.menuType ===
+                    activeMenuType;
+
+                button.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+                button.setAttribute(
+                    "aria-selected",
+                    String(isActive)
+                );
+
+            }
+        );
+
+
+        categoryGroups.forEach(
+            function (group) {
+
+                group.hidden =
+                    group.dataset.menuCategories !==
+                    activeMenuType;
+
+            }
+        );
+
+
+        categoryButtons.forEach(
+            function (button) {
+
+                const group =
+                    button.closest(
+                        "[data-menu-categories]"
+                    );
+
+                const belongsToActiveMenu =
+                    group?.dataset.menuCategories ===
+                    activeMenuType;
+
+                button.classList.toggle(
+                    "active",
+                    belongsToActiveMenu &&
+                    button.dataset.filter ===
+                        activeCategory
+                );
+
+            }
+        );
+
+
+        if (menuSearch) {
+
+            menuSearch.placeholder =
+                activeMenuType === "cafe"
+                    ? "Search pizza, pasta, coffee..."
+                    : "Search curries, biryani, breads...";
+
+        }
+
+    }
 
 
 
@@ -4489,6 +5229,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     (
                         card.dataset.category ||
                         ""
+                    ).toLowerCase();
+
+
+                const menuType =
+                    (
+                        card.dataset.menuType ||
+                        "cafe"
                     ).toLowerCase();
 
 
@@ -4511,6 +5258,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     category === activeCategory;
 
 
+                const matchesMenuType =
+                    menuType === activeMenuType;
+
+
                 const matchesSearch =
                     !currentSearch ||
                     name.includes(
@@ -4522,6 +5273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 const shouldShow =
+                    matchesMenuType &&
                     matchesCategory &&
                     matchesSearch;
 
@@ -4533,6 +5285,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 if (shouldShow) {
+
+                    card.classList.add(
+                        "menu-visible"
+                    );
+
                     visibleCount++;
                 }
 
@@ -4549,6 +5306,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     visibleCount === 1
                         ? " dish available"
                         : " dishes available"
+                ) +
+                (
+                    activeMenuType === "cafe"
+                        ? " in Café Menu"
+                        : " in Restaurant Menu"
                 );
 
         }
@@ -4569,6 +5331,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
+       CAFÉ / RESTAURANT MENU SWITCH
+    ====================================================== */
+
+    menuTypeButtons.forEach(
+        function (button) {
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+
+                    activeMenuType =
+                        button.dataset.menuType ||
+                        "cafe";
+
+
+                    activeCategory = "all";
+
+
+                    syncMenuControls();
+
+
+                    filterMenu();
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
        CATEGORY BUTTON
     ====================================================== */
 
@@ -4581,6 +5377,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 function () {
 
 
+                    const group =
+                        button.closest(
+                            "[data-menu-categories]"
+                        );
+
+
+                    if (
+                        group?.dataset.menuCategories !==
+                        activeMenuType
+                    ) {
+                        return;
+                    }
+
+
                     activeCategory =
                         button.dataset.filter ||
                         "all";
@@ -4589,9 +5399,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     categoryButtons.forEach(
                         function (item) {
 
-                            item.classList.remove(
-                                "active"
-                            );
+                            if (
+                                item.closest(
+                                    "[data-menu-categories]"
+                                ) === group
+                            ) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
 
                         }
                     );
@@ -4766,18 +5584,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            categoryButtons.forEach(
-                function (button) {
-
-
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.filter ===
-                        "all"
-                    );
-
-                }
-            );
+            syncMenuControls();
 
 
             filterMenu();
@@ -4804,6 +5611,53 @@ document.addEventListener("DOMContentLoaded", function () {
             incomingSearch
                 .trim()
                 .toLowerCase();
+
+
+        const cafeHasSearchMatch =
+            menuCards.some(
+                function (card) {
+
+                    return (
+                        card.dataset.menuType === "cafe" &&
+                        (
+                            card.textContent || ""
+                        )
+                            .toLowerCase()
+                            .includes(currentSearch)
+                    );
+
+                }
+            );
+
+
+        const restaurantHasSearchMatch =
+            menuCards.some(
+                function (card) {
+
+                    return (
+                        card.dataset.menuType === "restaurant" &&
+                        (
+                            card.textContent || ""
+                        )
+                            .toLowerCase()
+                            .includes(currentSearch)
+                    );
+
+                }
+            );
+
+
+        if (
+            !cafeHasSearchMatch &&
+            restaurantHasSearchMatch
+        ) {
+
+            activeMenuType = "restaurant";
+
+        }
+
+
+        syncMenuControls();
 
 
         if (menuSearch) {
@@ -5035,6 +5889,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* INITIAL FILTER */
+
+    syncMenuControls();
 
     filterMenu();
 

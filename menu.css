@@ -756,6 +756,10 @@ body {
     font-size: 18px;
 }
 
+.food-number {
+    display: none;
+}
+
 .chef-card-badge,
 .food-badge {
     position: absolute;
@@ -917,6 +921,128 @@ body {
 
 
 /* =========================================================
+   CAFÉ / RESTAURANT MENU SWITCH
+========================================================= */
+
+.menu-type-switcher {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+
+    margin: 34px 0 18px;
+    padding: 8px;
+
+    border: 1px solid rgba(216, 173, 92, 0.14);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(216, 173, 92, 0.045),
+            rgba(255, 255, 255, 0.012)
+        );
+}
+
+.menu-type-button {
+    min-width: 0;
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.018);
+    color: #8f8a80;
+
+    cursor: pointer;
+    text-align: left;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.menu-type-button:hover {
+    border-color: rgba(216, 173, 92, 0.24);
+    color: #e9e1d3;
+}
+
+.menu-type-button.active {
+    border-color: rgba(216, 173, 92, 0.48);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(216, 173, 92, 0.16),
+            rgba(216, 173, 92, 0.045)
+        );
+
+    color: var(--menu-gold-light);
+
+    box-shadow:
+        inset 0 0 25px rgba(216, 173, 92, 0.035),
+        0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.menu-type-icon {
+    flex: 0 0 42px;
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(216, 173, 92, 0.24);
+    border-radius: 12px;
+
+    background: rgba(216, 173, 92, 0.055);
+    color: var(--menu-gold);
+
+    font-size: 14px;
+}
+
+.menu-type-button > span:last-child {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-type-button strong {
+    color: inherit;
+
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.menu-type-button small {
+    overflow: hidden;
+
+    color: #777269;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.menu-type-button.active small {
+    color: #a59c8d;
+}
+
+
+/* =========================================================
    MENU CONTROLS
 ========================================================= */
 
@@ -1022,6 +1148,10 @@ body {
 }
 
 .restaurant-menu-categories::-webkit-scrollbar {
+    display: none;
+}
+
+.restaurant-menu-categories[hidden] {
     display: none;
 }
 
@@ -2114,8 +2244,163 @@ body {
         font-size: 43px;
     }
 
-    .chef-card-image {
-        height: 290px;
+    .menu-type-switcher {
+        grid-template-columns: 1fr;
+
+        margin-top: 27px;
+        padding: 7px;
+
+        border-radius: 16px;
+    }
+
+    .menu-type-button {
+        min-height: 68px;
+
+        padding: 11px 13px;
+    }
+
+    .menu-type-button strong {
+        font-size: 18px;
+    }
+
+    .chef-selection-grid,
+    .restaurant-food-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .chef-menu-card,
+    .restaurant-food-card {
+        display: flex;
+        flex-direction: column;
+
+        border-radius: 15px;
+    }
+
+    .chef-card-image,
+    .food-card-image {
+        height: 150px;
+    }
+
+    .chef-card-number {
+        display: none;
+    }
+
+    .chef-card-badge,
+    .food-badge {
+        top: 8px;
+        right: 8px;
+
+        padding: 5px 7px;
+
+        font-size: 6.5px;
+        letter-spacing: 0.8px;
+    }
+
+    .chef-card-content,
+    .food-card-content {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 12px;
+    }
+
+    .dish-category,
+    .food-category {
+        overflow: hidden;
+
+        font-size: 7px;
+        letter-spacing: 1px;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .chef-card-content h3,
+    .food-card-content h3 {
+        min-height: 38px;
+
+        display: -webkit-box;
+        overflow: hidden;
+
+        margin: 6px 0;
+
+        font-size: 16px;
+        line-height: 1.18;
+
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    .chef-card-content > p,
+    .food-card-content > p {
+        min-height: 39px;
+
+        display: -webkit-box;
+        overflow: hidden;
+
+        font-size: 9px;
+        line-height: 1.45;
+
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+    .dish-meta {
+        display: none;
+    }
+
+    .chef-card-footer,
+    .food-card-bottom {
+        gap: 6px;
+
+        margin-top: auto;
+        padding-top: 10px;
+    }
+
+    .dish-price strong,
+    .food-price strong {
+        font-size: 19px;
+    }
+
+    .dish-price small,
+    .food-price span {
+        margin-top: 2px;
+
+        font-size: 9px;
+    }
+
+    .menu-add-btn {
+        min-width: 0;
+        min-height: 31px;
+
+        gap: 4px;
+
+        padding: 0 7px;
+
+        border-radius: 7px;
+
+        font-size: 8px;
+        white-space: nowrap;
+    }
+
+    .chef-card-footer .menu-add-btn {
+        font-size: 0;
+    }
+
+    .chef-card-footer .menu-add-btn::before {
+        content: "Add";
+
+        font-size: 8px;
+    }
+
+    .chef-card-footer .menu-add-btn i {
+        font-size: 8px;
     }
 
     .restaurant-menu-main {
@@ -2144,14 +2429,6 @@ body {
         min-height: 36px;
 
         padding: 0 12px;
-    }
-
-    .food-card-image {
-        height: 280px;
-    }
-
-    .food-card-content h3 {
-        font-size: 24px;
     }
 
     .menu-dining-banner {
@@ -2261,7 +2538,28 @@ body {
 
     .chef-card-image,
     .food-card-image {
-        height: 245px;
+        height: 128px;
+    }
+
+    .chef-card-content,
+    .food-card-content {
+        padding: 10px;
+    }
+
+    .chef-card-content h3,
+    .food-card-content h3 {
+        min-height: 34px;
+
+        font-size: 14px;
+    }
+
+    .chef-card-content > p,
+    .food-card-content > p {
+        min-height: 27px;
+
+        font-size: 8.5px;
+
+        -webkit-line-clamp: 2;
     }
 
     .menu-section-heading h2,

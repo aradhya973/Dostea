@@ -430,1355 +430,770 @@
 <script src="auth.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", async function () {
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+    const cartItems = document.getElementById("cartItems");
+    const cartLayout = document.getElementById("cartLayout");
+    const emptyCart = document.getElementById("emptyCart");
+    const clearButton = document.getElementById("clearCartBtn");
+    const checkoutButton = document.getElementById("checkoutBtn");
+    const clearModal = document.getElementById("clearModal");
+    const successModal = document.getElementById("successModal");
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+    let selectedOrderType = "dine-in";
+    let authUser = null;
+    let currentUser = null;
+    let cartCache = [];
 
+    /* =====================================================
+       SUPABASE + VERIFIED USER
+    ====================================================== */
+    if (!window.supabaseClient) {
+        alert("Cart service is unavailable. Please refresh the page.");
+        return;
+    }
 
-        /* =====================================================
-           CURRENT USER
-        ====================================================== */
+    try {
+        const { data, error } = await window.supabaseClient.auth.getUser();
 
-        let currentUser = null;
+        if (error || !data?.user) {
+            localStorage.setItem("dostea_redirect_after_login", "cart.html");
+            window.location.replace("login.html");
+            return;
+        }
 
+        authUser = data.user;
+
+        const metadata = authUser.user_metadata || {};
+        currentUser = {
+            id: authUser.id,
+            email: authUser.email || "",
+            fullName:
+                metadata.full_name ||
+                metadata.name ||
+                authUser.email?.split("@")[0] ||
+                "DOSTEA User"
+        };
+
+        /* Keep existing site-wide UI compatibility */
+        localStorage.setItem(
+            "dostea_current_user",
+            JSON.stringify(currentUser)
+        );
+    } catch (error) {
+        console.error("DOSTEA auth error:", error);
+        window.location.replace("login.html");
+        return;
+    }
+
+    /* =====================================================
+       USER UI
+    ====================================================== */
+    const userName =
+        currentUser.fullName ||
+        currentUser.name ||
+        "DOSTEA User";
+
+    const userEmail = currentUser.email || "";
+    const initial =
+        userName.trim().charAt(0).toUpperCase() || "D";
+
+    ["sidebarAvatar", "topbarAvatar"].forEach(function (id) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = initial;
+    });
+
+    ["sidebarUserName", "topbarUserName"].forEach(function (id) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = userName;
+    });
+
+    const sidebarEmail = document.getElementById("sidebarUserEmail");
+    if (sidebarEmail) sidebarEmail.textContent = userEmail;
+
+    /* =====================================================
+       HELPERS
+    ====================================================== */
+    function money(value) {
+        return (
+            "₹" +
+            Math.round(Number(value) || 0).toLocaleString("en-IN")
+        );
+    }
+
+    function escapeHTML(value) {
+        return String(value || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function calculateCart(cart) {
+        let subtotal = 0;
+        let count = 0;
+
+        cart.forEach(function (item) {
+            const quantity = Math.max(
+                1,
+                Number(item.quantity || 1)
+            );
+
+            const price = Number(item.price || 0);
+
+            subtotal += price * quantity;
+            count += quantity;
+        });
+
+        const tax = subtotal * 0.05;
+        const packaging = cart.length ? 20 : 0;
+        const total = subtotal + tax + packaging;
+
+        return {
+            subtotal,
+            tax,
+            packaging,
+            total,
+            count
+        };
+    }
+
+    function normalizeCartRow(row) {
+        return {
+            _cartRowId: row.id,
+            id:
+                row.menu_item_id ??
+                row.item_id ??
+                row.product_id ??
+                row.id,
+            name: row.name || "DOSTEA Item",
+            category: row.category || "DOSTEA",
+            description:
+                row.description || "Freshly prepared for you.",
+            image:
+                row.image_url ||
+                row.image ||
+                "",
+            price: Number(row.price || 0),
+            quantity: Math.max(
+                1,
+                Number(row.quantity || 1)
+            )
+        };
+    }
+
+    /* =====================================================
+       LOCAL CART -> SUPABASE MIGRATION
+       This keeps the current menu page working until its
+       Add to Cart logic is also converted to Supabase.
+    ====================================================== */
+    async function syncLegacyLocalCart() {
+        let legacyCart = [];
 
         try {
-
-            currentUser =
-                JSON.parse(
-                    localStorage.getItem(
-                        "dostea_current_user"
-                    )
-                );
-
-        }
-        catch (error) {
-
-            currentUser = null;
-
-        }
-
-
-        if (!currentUser) {
-
-            window.location.replace(
-                "login.html"
+            legacyCart = JSON.parse(
+                localStorage.getItem("dostea_cart") || "[]"
             );
+        } catch (error) {
+            legacyCart = [];
+        }
 
+        if (!Array.isArray(legacyCart) || !legacyCart.length) {
             return;
-
         }
 
+        const { data: existingRows, error: existingError } =
+            await window.supabaseClient
+                .from("cart_items")
+                .select("*")
+                .eq("user_id", authUser.id);
 
+        if (existingError) throw existingError;
 
-        /* =====================================================
-           ELEMENTS
-        ====================================================== */
+        for (const item of legacyCart) {
+            const menuItemId = String(item.id || "");
+            const existing = (existingRows || []).find(function (row) {
+                return String(
+                    row.menu_item_id ??
+                    row.item_id ??
+                    row.product_id ??
+                    ""
+                ) === menuItemId;
+            });
 
-        const cartItems =
-            document.getElementById(
-                "cartItems"
-            );
+            if (existing) {
+                const newQuantity =
+                    Math.max(1, Number(existing.quantity || 1)) +
+                    Math.max(1, Number(item.quantity || 1));
 
+                const { error } =
+                    await window.supabaseClient
+                        .from("cart_items")
+                        .update({ quantity: newQuantity })
+                        .eq("id", existing.id)
+                        .eq("user_id", authUser.id);
 
-        const cartLayout =
-            document.getElementById(
-                "cartLayout"
-            );
+                if (error) throw error;
+            } else {
+                const payload = {
+                    user_id: authUser.id,
+                    menu_item_id: menuItemId || null,
+                    name: item.name || "DOSTEA Item",
+                    category: item.category || null,
+                    description: item.description || null,
+                    image_url: item.image || null,
+                    price: Number(item.price || 0),
+                    quantity: Math.max(
+                        1,
+                        Number(item.quantity || 1)
+                    )
+                };
 
+                const { error } =
+                    await window.supabaseClient
+                        .from("cart_items")
+                        .insert(payload);
 
-        const emptyCart =
-            document.getElementById(
-                "emptyCart"
-            );
-
-
-        const clearButton =
-            document.getElementById(
-                "clearCartBtn"
-            );
-
-
-        const checkoutButton =
-            document.getElementById(
-                "checkoutBtn"
-            );
-
-
-        const clearModal =
-            document.getElementById(
-                "clearModal"
-            );
-
-
-        const successModal =
-            document.getElementById(
-                "successModal"
-            );
-
-
-        let selectedOrderType =
-            "dine-in";
-
-
-
-        /* =====================================================
-           USER
-        ====================================================== */
-
-        const userName =
-            currentUser.fullName ||
-            currentUser.name ||
-            "DOSTEA User";
-
-
-        const userEmail =
-            currentUser.email || "";
-
-
-        const initial =
-            userName
-                .trim()
-                .charAt(0)
-                .toUpperCase() || "D";
-
-
-        [
-            "sidebarAvatar",
-            "topbarAvatar"
-
-        ].forEach(
-            function (id) {
-
-                document.getElementById(
-                    id
-                ).textContent =
-                    initial;
-
+                if (error) throw error;
             }
-        );
-
-
-        [
-            "sidebarUserName",
-            "topbarUserName"
-
-        ].forEach(
-            function (id) {
-
-                document.getElementById(
-                    id
-                ).textContent =
-                    userName;
-
-            }
-        );
-
-
-        document.getElementById(
-            "sidebarUserEmail"
-        ).textContent =
-            userEmail;
-
-
-
-        /* =====================================================
-           CART STORAGE
-        ====================================================== */
-
-        function getCart() {
-
-            try {
-
-                const cart =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "dostea_cart"
-                        ) || "[]"
-                    );
-
-
-                return Array.isArray(cart)
-                    ? cart
-                    : [];
-
-            }
-            catch (error) {
-
-                return [];
-
-            }
-
         }
 
+        localStorage.removeItem("dostea_cart");
+    }
 
+    /* =====================================================
+       FETCH CART FROM SUPABASE
+    ====================================================== */
+    async function loadCart() {
+        const { data, error } =
+            await window.supabaseClient
+                .from("cart_items")
+                .select("*")
+                .eq("user_id", authUser.id);
 
-        function saveCart(cart) {
+        if (error) throw error;
 
-            localStorage.setItem(
-                "dostea_cart",
-                JSON.stringify(cart)
-            );
+        cartCache = (data || []).map(normalizeCartRow);
+        renderCart();
+    }
 
+    /* =====================================================
+       RENDER CART
+    ====================================================== */
+    function renderCart() {
+        const cart = cartCache;
+
+        if (!cart.length) {
+            cartLayout.style.display = "none";
+            emptyCart.classList.add("show");
+            clearButton.style.display = "none";
+
+            document.getElementById("cartItemCount").textContent = "0";
+            document.getElementById("subtotal").textContent = "₹0";
+            document.getElementById("tax").textContent = "₹0";
+            document.getElementById("packaging").textContent = "₹0";
+            document.getElementById("grandTotal").textContent = "₹0";
+            return;
         }
 
+        cartLayout.style.display = "";
+        emptyCart.classList.remove("show");
+        clearButton.style.display = "";
 
-
-        /* =====================================================
-           MONEY
-        ====================================================== */
-
-        function money(value) {
-
-            return (
-                "₹" +
-                Math.round(
-                    Number(value) || 0
-                ).toLocaleString("en-IN")
-            );
-
-        }
-
-
-
-        /* =====================================================
-           ESCAPE HTML
-        ====================================================== */
-
-        function escapeHTML(value) {
-
-            return String(value || "")
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
-
-        }
-
-
-
-        /* =====================================================
-           CALCULATE
-        ====================================================== */
-
-        function calculateCart(cart) {
-
-            let subtotal = 0;
-
-            let count = 0;
-
-
-            cart.forEach(
-                function (item) {
-
-                    const quantity =
-                        Math.max(
-                            1,
-                            Number(
-                                item.quantity || 1
-                            )
-                        );
-
-
-                    const price =
-                        Number(
-                            item.price || 0
-                        );
-
-
-                    subtotal +=
-                        price * quantity;
-
-
-                    count += quantity;
-
-                }
-            );
-
-
-            const tax =
-                subtotal * 0.05;
-
-
-            const packaging =
-                cart.length
-                    ? 20
-                    : 0;
-
-
-            const total =
-                subtotal +
-                tax +
-                packaging;
-
-
-            return {
-                subtotal,
-                tax,
-                packaging,
-                total,
-                count
-            };
-
-        }
-
-
-
-        /* =====================================================
-           RENDER CART
-        ====================================================== */
-
-        function renderCart() {
-
-            const cart =
-                getCart();
-
-
-            if (!cart.length) {
-
-                cartLayout.style.display =
-                    "none";
-
-
-                emptyCart.classList.add(
-                    "show"
+        cartItems.innerHTML = cart
+            .map(function (item, index) {
+                const quantity = Math.max(
+                    1,
+                    Number(item.quantity || 1)
                 );
 
+                const price = Number(item.price || 0);
+                const itemTotal = price * quantity;
 
-                clearButton.style.display =
-                    "none";
-
-
-                return;
-
-            }
-
-
-            cartLayout.style.display =
-                "";
-
-
-            emptyCart.classList.remove(
-                "show"
-            );
-
-
-            clearButton.style.display =
-                "";
-
-
-            cartItems.innerHTML =
-                cart.map(
-                    function (item, index) {
-
-                        const quantity =
-                            Math.max(
-                                1,
-                                Number(
-                                    item.quantity || 1
-                                )
-                            );
-
-
-                        const price =
-                            Number(
-                                item.price || 0
-                            );
-
-
-                        const itemTotal =
-                            price * quantity;
-
-
-                        const image =
-                            item.image
-                                ? `
-                                <img
-                                    src="${escapeHTML(item.image)}"
-                                    alt="${escapeHTML(item.name)}"
-                                >
-                                `
-                                : `
-                                <div class="cart-item-placeholder">
-                                    <i class="fa-solid fa-mug-hot"></i>
-                                </div>
-                                `;
-
-
-                        return `
-
-                        <article
-                            class="cart-item"
-                            data-index="${index}"
+                const image = item.image
+                    ? `
+                        <img
+                            src="${escapeHTML(item.image)}"
+                            alt="${escapeHTML(item.name)}"
                         >
+                    `
+                    : `
+                        <div class="cart-item-placeholder">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                    `;
 
-                            <div class="cart-item-image">
+                return `
+                    <article
+                        class="cart-item"
+                        data-index="${index}"
+                    >
+                        <div class="cart-item-image">
+                            ${image}
+                        </div>
 
-                                ${image}
+                        <div class="cart-item-info">
+                            <span class="item-category">
+                                ${escapeHTML(item.category || "DOSTEA")}
+                            </span>
 
+                            <h3>
+                                ${escapeHTML(item.name || "DOSTEA Item")}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    item.description ||
+                                    "Freshly prepared for you."
+                                )}
+                            </p>
+
+                            <div class="mobile-item-price">
+                                ${money(price)}
                             </div>
+                        </div>
 
+                        <div class="cart-item-price">
+                            <span>PRICE</span>
+                            <strong>${money(price)}</strong>
+                        </div>
 
-                            <div class="cart-item-info">
+                        <div class="quantity-control">
+                            <button
+                                type="button"
+                                class="quantity-btn minus-btn"
+                                data-index="${index}"
+                                aria-label="Decrease quantity"
+                            >
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
 
-                                <span class="item-category">
-                                    ${escapeHTML(
-                                        item.category ||
-                                        "DOSTEA"
-                                    )}
-                                </span>
-
-
-                                <h3>
-                                    ${escapeHTML(
-                                        item.name ||
-                                        "DOSTEA Item"
-                                    )}
-                                </h3>
-
-
-                                <p>
-                                    ${escapeHTML(
-                                        item.description ||
-                                        "Freshly prepared for you."
-                                    )}
-                                </p>
-
-
-                                <div class="mobile-item-price">
-
-                                    ${money(price)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="cart-item-price">
-
-                                <span>
-                                    PRICE
-                                </span>
-
-                                <strong>
-                                    ${money(price)}
-                                </strong>
-
-                            </div>
-
-
-                            <div class="quantity-control">
-
-                                <button
-                                    type="button"
-                                    class="quantity-btn minus-btn"
-                                    data-index="${index}"
-                                    aria-label="Decrease quantity"
-                                >
-
-                                    <i class="fa-solid fa-minus"></i>
-
-                                </button>
-
-
-                                <span>
-                                    ${quantity}
-                                </span>
-
-
-                                <button
-                                    type="button"
-                                    class="quantity-btn plus-btn"
-                                    data-index="${index}"
-                                    aria-label="Increase quantity"
-                                >
-
-                                    <i class="fa-solid fa-plus"></i>
-
-                                </button>
-
-                            </div>
-
-
-                            <div class="cart-item-total">
-
-                                <span>
-                                    TOTAL
-                                </span>
-
-                                <strong>
-                                    ${money(itemTotal)}
-                                </strong>
-
-                            </div>
-
+                            <span>${quantity}</span>
 
                             <button
                                 type="button"
-                                class="remove-item-btn"
+                                class="quantity-btn plus-btn"
                                 data-index="${index}"
-                                aria-label="Remove item"
+                                aria-label="Increase quantity"
                             >
-
-                                <i class="fa-regular fa-trash-can"></i>
-
+                                <i class="fa-solid fa-plus"></i>
                             </button>
+                        </div>
 
-                        </article>
+                        <div class="cart-item-total">
+                            <span>TOTAL</span>
+                            <strong>${money(itemTotal)}</strong>
+                        </div>
 
-                        `;
+                        <button
+                            type="button"
+                            class="remove-item-btn"
+                            data-index="${index}"
+                            aria-label="Remove item"
+                        >
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </article>
+                `;
+            })
+            .join("");
 
-                    }
-                )
-                .join("");
+        const totals = calculateCart(cart);
 
+        document.getElementById("cartItemCount").textContent =
+            totals.count;
 
+        document.getElementById("subtotal").textContent =
+            money(totals.subtotal);
 
-            const totals =
-                calculateCart(cart);
+        document.getElementById("tax").textContent =
+            money(totals.tax);
 
+        document.getElementById("packaging").textContent =
+            money(totals.packaging);
 
-            document.getElementById(
-                "cartItemCount"
-            ).textContent =
-                totals.count;
+        document.getElementById("grandTotal").textContent =
+            money(totals.total);
 
-
-            document.getElementById(
-                "subtotal"
-            ).textContent =
-                money(totals.subtotal);
-
-
-            document.getElementById(
-                "tax"
-            ).textContent =
-                money(totals.tax);
-
-
-            document.getElementById(
-                "packaging"
-            ).textContent =
-                money(totals.packaging);
-
-
-            document.getElementById(
-                "grandTotal"
-            ).textContent =
-                money(totals.total);
-
-
-
-            /* =============================================
-               QUANTITY -
-            ============================================== */
-
-            document
-                .querySelectorAll(
-                    ".minus-btn"
-                )
-                .forEach(
-                    function (button) {
-
-                        button.addEventListener(
-                            "click",
-                            function () {
-
-                                updateQuantity(
-                                    Number(
-                                        button.dataset.index
-                                    ),
-                                    -1
-                                );
-
-                            }
-                        );
-
-                    }
+        document.querySelectorAll(".minus-btn").forEach(function (button) {
+            button.addEventListener("click", async function () {
+                await updateQuantity(
+                    Number(button.dataset.index),
+                    -1
                 );
+            });
+        });
 
-
-
-            /* =============================================
-               QUANTITY +
-            ============================================== */
-
-            document
-                .querySelectorAll(
-                    ".plus-btn"
-                )
-                .forEach(
-                    function (button) {
-
-                        button.addEventListener(
-                            "click",
-                            function () {
-
-                                updateQuantity(
-                                    Number(
-                                        button.dataset.index
-                                    ),
-                                    1
-                                );
-
-                            }
-                        );
-
-                    }
-                );
-
-
-
-            /* =============================================
-               REMOVE
-            ============================================== */
-
-            document
-                .querySelectorAll(
-                    ".remove-item-btn"
-                )
-                .forEach(
-                    function (button) {
-
-                        button.addEventListener(
-                            "click",
-                            function () {
-
-                                removeItem(
-                                    Number(
-                                        button.dataset.index
-                                    )
-                                );
-
-                            }
-                        );
-
-                    }
-                );
-
-        }
-
-
-
-        /* =====================================================
-           QUANTITY
-        ====================================================== */
-
-        function updateQuantity(
-            index,
-            change
-        ) {
-
-            const cart =
-                getCart();
-
-
-            if (!cart[index]) {
-                return;
-            }
-
-
-            const currentQuantity =
-                Math.max(
-                    1,
-                    Number(
-                        cart[index].quantity ||
-                        1
-                    )
-                );
-
-
-            const newQuantity =
-                currentQuantity +
-                change;
-
-
-            if (newQuantity <= 0) {
-
-                cart.splice(
-                    index,
+        document.querySelectorAll(".plus-btn").forEach(function (button) {
+            button.addEventListener("click", async function () {
+                await updateQuantity(
+                    Number(button.dataset.index),
                     1
                 );
+            });
+        });
 
-            }
-            else {
+        document.querySelectorAll(".remove-item-btn").forEach(function (button) {
+            button.addEventListener("click", async function () {
+                await removeItem(
+                    Number(button.dataset.index)
+                );
+            });
+        });
+    }
 
-                cart[index].quantity =
-                    newQuantity;
+    /* =====================================================
+       QUANTITY — SUPABASE
+    ====================================================== */
+    async function updateQuantity(index, change) {
+        const item = cartCache[index];
+        if (!item) return;
 
-            }
+        const newQuantity =
+            Math.max(1, Number(item.quantity || 1)) + change;
 
-
-            saveCart(cart);
-
-            renderCart();
-
-        }
-
-
-
-        /* =====================================================
-           REMOVE ITEM
-        ====================================================== */
-
-        function removeItem(index) {
-
-            const cart =
-                getCart();
-
-
-            if (!cart[index]) {
+        try {
+            if (newQuantity <= 0) {
+                await removeItem(index);
                 return;
             }
 
+            const { error } =
+                await window.supabaseClient
+                    .from("cart_items")
+                    .update({ quantity: newQuantity })
+                    .eq("id", item._cartRowId)
+                    .eq("user_id", authUser.id);
 
-            cart.splice(
-                index,
-                1
-            );
+            if (error) throw error;
 
-
-            saveCart(cart);
-
+            item.quantity = newQuantity;
             renderCart();
-
+        } catch (error) {
+            console.error("DOSTEA quantity update error:", error);
+            alert(error.message || "Unable to update quantity.");
         }
+    }
 
+    /* =====================================================
+       REMOVE ITEM — SUPABASE
+    ====================================================== */
+    async function removeItem(index) {
+        const item = cartCache[index];
+        if (!item) return;
 
+        try {
+            const { error } =
+                await window.supabaseClient
+                    .from("cart_items")
+                    .delete()
+                    .eq("id", item._cartRowId)
+                    .eq("user_id", authUser.id);
 
-        /* =====================================================
-           ORDER TYPE
-        ====================================================== */
+            if (error) throw error;
 
-        document
-            .querySelectorAll(
-                ".order-type-btn"
-            )
-            .forEach(
-                function (button) {
-
-                    button.addEventListener(
-                        "click",
-                        function () {
-
-                            document
-                                .querySelectorAll(
-                                    ".order-type-btn"
-                                )
-                                .forEach(
-                                    function (item) {
-
-                                        item.classList.remove(
-                                            "active"
-                                        );
-
-                                    }
-                                );
-
-
-                            button.classList.add(
-                                "active"
-                            );
-
-
-                            selectedOrderType =
-                                button.dataset.type;
-
-                        }
-                    );
-
-                }
-            );
-
-
-
-        /* =====================================================
-           CLEAR CART
-        ====================================================== */
-
-        clearButton.addEventListener(
-            "click",
-            function () {
-
-                if (!getCart().length) {
-                    return;
-                }
-
-
-                clearModal.classList.add(
-                    "show"
-                );
-
-
-                document.body.classList.add(
-                    "modal-open"
-                );
-
-            }
-        );
-
-
-        document.getElementById(
-            "cancelClear"
-        ).addEventListener(
-            "click",
-            closeClearModal
-        );
-
-
-        function closeClearModal() {
-
-            clearModal.classList.remove(
-                "show"
-            );
-
-
-            document.body.classList.remove(
-                "modal-open"
-            );
-
+            cartCache.splice(index, 1);
+            renderCart();
+        } catch (error) {
+            console.error("DOSTEA remove cart item error:", error);
+            alert(error.message || "Unable to remove this item.");
         }
+    }
 
+    /* =====================================================
+       ORDER TYPE
+    ====================================================== */
+    document
+        .querySelectorAll(".order-type-btn")
+        .forEach(function (button) {
+            button.addEventListener("click", function () {
+                document
+                    .querySelectorAll(".order-type-btn")
+                    .forEach(function (item) {
+                        item.classList.remove("active");
+                    });
 
-        document.getElementById(
-            "confirmClear"
-        ).addEventListener(
-            "click",
-            function () {
+                button.classList.add("active");
+                selectedOrderType = button.dataset.type;
+            });
+        });
 
-                saveCart([]);
+    /* =====================================================
+       CLEAR CART — SUPABASE
+    ====================================================== */
+    clearButton.addEventListener("click", function () {
+        if (!cartCache.length) return;
 
+        clearModal.classList.add("show");
+        document.body.classList.add("modal-open");
+    });
+
+    document
+        .getElementById("cancelClear")
+        .addEventListener("click", closeClearModal);
+
+    function closeClearModal() {
+        clearModal.classList.remove("show");
+        document.body.classList.remove("modal-open");
+    }
+
+    document
+        .getElementById("confirmClear")
+        .addEventListener("click", async function () {
+            try {
+                const { error } =
+                    await window.supabaseClient
+                        .from("cart_items")
+                        .delete()
+                        .eq("user_id", authUser.id);
+
+                if (error) throw error;
+
+                cartCache = [];
                 closeClearModal();
-
                 renderCart();
-
+            } catch (error) {
+                console.error("DOSTEA clear cart error:", error);
+                alert(error.message || "Unable to clear cart.");
             }
-        );
+        });
 
+    /* =====================================================
+       PLACE ORDER — SUPABASE
+    ====================================================== */
+    checkoutButton.addEventListener("click", async function () {
+        const cart = cartCache;
 
+        if (!cart.length) return;
 
-       /* =====================================================
-   PLACE ORDER — SUPABASE
-====================================================== */
-
-checkoutButton.addEventListener(
-    "click",
-    async function () {
-
-        const cart =
-            getCart();
-
-
-        if (!cart.length) {
-            return;
-        }
-
-
-        if (!window.supabaseClient) {
-
-            alert(
-                "Order service is unavailable. Please refresh the page."
-            );
-
-            return;
-        }
-
-
-        /* =================================================
-           LOADING
-        ================================================= */
-
-        checkoutButton.disabled =
-            true;
-
-
+        checkoutButton.disabled = true;
         checkoutButton.innerHTML = `
             <span>Placing Order</span>
             <i class="fa-solid fa-circle-notch fa-spin"></i>
         `;
 
-
         try {
+            const totals = calculateCart(cart);
 
-            /* =================================================
-               GET VERIFIED USER
-            ================================================= */
-
-            const {
-                data: userData,
-                error: userError
-            } =
-                await window
-                    .supabaseClient
-                    .auth
-                    .getUser();
-
-
-            if (
-                userError ||
-                !userData?.user
-            ) {
-
-                localStorage.setItem(
-                    "dostea_redirect_after_login",
-                    "cart.html"
-                );
-
-
-                window.location.href =
-                    "login.html";
-
-
-                return;
-            }
-
-
-            const user =
-                userData.user;
-
-
-            const metadata =
-                user.user_metadata || {};
-
+            const metadata = authUser.user_metadata || {};
 
             const customerName =
                 metadata.full_name ||
                 metadata.name ||
                 currentUser?.fullName ||
-                currentUser?.name ||
-                user.email?.split("@")[0] ||
+                authUser.email?.split("@")[0] ||
                 "DOSTEA User";
 
-
-            const customerEmail =
-                user.email || "";
-
-
-            /* =================================================
-               CALCULATE TOTALS
-            ================================================= */
-
-            const totals =
-                calculateCart(
-                    cart
-                );
-
-
-            /* =================================================
-               ORDER NUMBER
-            ================================================= */
+            const customerEmail = authUser.email || "";
 
             const orderNumber =
                 "DOSTEA" +
-                Date.now()
-                    .toString()
-                    .slice(-8);
-
-
-            /* =================================================
-               CREATE ORDER
-            ================================================= */
+                Date.now().toString().slice(-8);
 
             const {
                 data: createdOrder,
                 error: orderError
             } =
-                await window
-                    .supabaseClient
-                    .from(
-                        "orders"
-                    )
+                await window.supabaseClient
+                    .from("orders")
                     .insert({
-
-                        order_number:
-                            orderNumber,
-
-                        user_id:
-                            user.id,
-
-                        customer_name:
-                            customerName,
-
-                        customer_email:
-                            customerEmail,
-
-                        order_type:
-                            selectedOrderType,
-
-                        status:
-                            "pending",
-
-                        subtotal:
-                            Number(
-                                totals.subtotal.toFixed(
-                                    2
-                                )
-                            ),
-
-                        tax:
-                            Number(
-                                totals.tax.toFixed(
-                                    2
-                                )
-                            ),
-
-                        packaging:
-                            Number(
-                                totals.packaging
-                            ),
-
-                        total:
-                            Number(
-                                totals.total.toFixed(
-                                    2
-                                )
-                            ),
-
-                        payment_method:
-                            "Not selected"
-
+                        order_number: orderNumber,
+                        user_id: authUser.id,
+                        customer_name: customerName,
+                        customer_email: customerEmail,
+                        order_type: selectedOrderType,
+                        status: "pending",
+                        subtotal: Number(
+                            totals.subtotal.toFixed(2)
+                        ),
+                        tax: Number(
+                            totals.tax.toFixed(2)
+                        ),
+                        packaging: Number(totals.packaging),
+                        total: Number(
+                            totals.total.toFixed(2)
+                        ),
+                        payment_method: "Not selected"
                     })
-                    .select(
-                        "id, order_number"
-                    )
+                    .select("id, order_number")
                     .single();
 
-
-            if (orderError) {
-
-                throw orderError;
-
-            }
-
+            if (orderError) throw orderError;
 
             if (!createdOrder?.id) {
-
                 throw new Error(
                     "Order could not be created."
                 );
-
             }
-
-
-            /* =================================================
-               CREATE ORDER ITEMS
-            ================================================= */
 
             const orderItems =
-                cart.map(
-                    function (item) {
+                cart.map(function (item) {
+                    return {
+                        order_id: createdOrder.id,
+                        menu_item_id:
+                            String(item.id || "") || null,
+                        name:
+                            item.name || "DOSTEA Item",
+                        category:
+                            item.category || null,
+                        description:
+                            item.description || null,
+                        image_url:
+                            item.image || null,
+                        price:
+                            Number(item.price || 0),
+                        quantity:
+                            Math.max(
+                                1,
+                                Number(item.quantity || 1)
+                            )
+                    };
+                });
 
-                        return {
+            const { error: itemsError } =
+                await window.supabaseClient
+                    .from("order_items")
+                    .insert(orderItems);
 
-                            order_id:
-                                createdOrder.id,
+            if (itemsError) throw itemsError;
 
-                            menu_item_id:
-                                String(
-                                    item.id || ""
-                                ) || null,
+            const { error: clearCartError } =
+                await window.supabaseClient
+                    .from("cart_items")
+                    .delete()
+                    .eq("user_id", authUser.id);
 
-                            name:
-                                item.name ||
-                                "DOSTEA Item",
+            if (clearCartError) throw clearCartError;
 
-                            category:
-                                item.category ||
-                                null,
-
-                            description:
-                                item.description ||
-                                null,
-
-                            image_url:
-                                item.image ||
-                                null,
-
-                            price:
-                                Number(
-                                    item.price || 0
-                                ),
-
-                            quantity:
-                                Math.max(
-                                    1,
-                                    Number(
-                                        item.quantity ||
-                                        1
-                                    )
-                                )
-
-                        };
-
-                    }
-                );
-
-
-            const {
-                error: itemsError
-            } =
-                await window
-                    .supabaseClient
-                    .from(
-                        "order_items"
-                    )
-                    .insert(
-                        orderItems
-                    );
-
-
-            if (itemsError) {
-
-                throw itemsError;
-
-            }
-
-
-            /* =================================================
-               SUCCESS — CLEAR CART
-            ================================================= */
-
-            saveCart([]);
-
-
+            cartCache = [];
             renderCart();
-
 
             document.getElementById(
                 "successOrderId"
             ).textContent =
-                "#" +
-                createdOrder.order_number;
+                "#" + createdOrder.order_number;
 
-
-            successModal.classList.add(
-                "show"
-            );
-
-
-            document.body.classList.add(
-                "modal-open"
-            );
-
+            successModal.classList.add("show");
+            document.body.classList.add("modal-open");
 
             console.log(
                 "DOSTEA order created:",
                 createdOrder.order_number
             );
-
-        }
-        catch (error) {
-
+        } catch (error) {
             console.error(
                 "DOSTEA order error:",
                 error
             );
 
-
             alert(
                 error.message ||
                 "Unable to place your order. Please try again."
             );
-
-        }
-        finally {
-
-            checkoutButton.disabled =
-                false;
-
-
+        } finally {
+            checkoutButton.disabled = false;
             checkoutButton.innerHTML = `
                 <span>Place Order</span>
                 <i class="fa-solid fa-arrow-right"></i>
             `;
-
         }
+    });
 
-    }
-);
+    /* =====================================================
+       VIEW ORDERS
+    ====================================================== */
+    document
+        .getElementById("viewOrdersBtn")
+        .addEventListener("click", function () {
+            window.location.href = "orders.html";
+        });
 
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay =
+        document.getElementById("sidebarOverlay");
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
 
+    mobileMenuBtn.addEventListener("click", function () {
+        sidebar.classList.add("open");
+        sidebarOverlay.classList.add("active");
+    });
 
-        /* =====================================================
-           VIEW ORDERS
-        ====================================================== */
+    sidebarOverlay.addEventListener("click", function () {
+        sidebar.classList.remove("open");
+        sidebarOverlay.classList.remove("active");
+    });
 
-        document.getElementById(
-            "viewOrdersBtn"
-        ).addEventListener(
-            "click",
-            function () {
-
-                window.location.href =
-                    "orders.html";
-
-            }
+    /* =====================================================
+       ACCORDION
+    ====================================================== */
+    const accordions =
+        document.querySelectorAll(
+            ".sidebar-accordion"
         );
 
-
-
-        /* =====================================================
-           SIDEBAR
-        ====================================================== */
-
-        const sidebar =
-            document.getElementById(
-                "sidebar"
+    accordions.forEach(function (accordion) {
+        const button =
+            accordion.querySelector(
+                ".sidebar-parent"
             );
 
+        button.addEventListener("click", function () {
+            const isOpen =
+                accordion.classList.contains("open");
 
-        const sidebarOverlay =
-            document.getElementById(
-                "sidebarOverlay"
-            );
+            accordions.forEach(function (item) {
+                item.classList.remove("open");
 
-
-        const mobileMenuBtn =
-            document.getElementById(
-                "mobileMenuBtn"
-            );
-
-
-        mobileMenuBtn.addEventListener(
-            "click",
-            function () {
-
-                sidebar.classList.add(
-                    "open"
-                );
-
-
-                sidebarOverlay.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
-
-        sidebarOverlay.addEventListener(
-            "click",
-            function () {
-
-                sidebar.classList.remove(
-                    "open"
-                );
-
-
-                sidebarOverlay.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-
-        /* =====================================================
-           ACCORDION
-        ====================================================== */
-
-        const accordions =
-            document.querySelectorAll(
-                ".sidebar-accordion"
-            );
-
-
-        accordions.forEach(
-            function (accordion) {
-
-                const button =
-                    accordion.querySelector(
+                item
+                    .querySelector(
                         ".sidebar-parent"
+                    )
+                    ?.setAttribute(
+                        "aria-expanded",
+                        "false"
                     );
+            });
 
+            if (!isOpen) {
+                accordion.classList.add("open");
 
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        const isOpen =
-                            accordion.classList.contains(
-                                "open"
-                            );
-
-
-                        accordions.forEach(
-                            function (item) {
-
-                                item.classList.remove(
-                                    "open"
-                                );
-
-
-                                item
-                                    .querySelector(
-                                        ".sidebar-parent"
-                                    )
-                                    ?.setAttribute(
-                                        "aria-expanded",
-                                        "false"
-                                    );
-
-                            }
-                        );
-
-
-                        if (!isOpen) {
-
-                            accordion.classList.add(
-                                "open"
-                            );
-
-
-                            button.setAttribute(
-                                "aria-expanded",
-                                "true"
-                            );
-
-                        }
-
-                    }
+                button.setAttribute(
+                    "aria-expanded",
+                    "true"
                 );
-
             }
+        });
+    });
+
+    clearModal.addEventListener("click", function (event) {
+        if (event.target === clearModal) {
+            closeClearModal();
+        }
+    });
+
+    /* =====================================================
+       INITIAL LOAD
+    ====================================================== */
+    try {
+        await syncLegacyLocalCart();
+        await loadCart();
+    } catch (error) {
+        console.error("DOSTEA cart load error:", error);
+        alert(
+            error.message ||
+            "Unable to load your cart from Supabase."
         );
-
-
-
-        /* =====================================================
-           MODAL OUTSIDE CLICK
-        ====================================================== */
-
-        clearModal.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target ===
-                    clearModal
-                ) {
-
-                    closeClearModal();
-
-                }
-
-            }
-        );
-
-
-
-        /* =====================================================
-           INITIAL
-        ====================================================== */
-
+        cartCache = [];
         renderCart();
-
     }
-);
-
+});
 </script>
 
 <script>
