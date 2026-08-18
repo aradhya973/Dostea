@@ -10,6 +10,165 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
 <link href="cart.css" rel="stylesheet"/>
+
+<style>
+/* =========================================================
+   DOSTEA PAYMENT MODAL
+========================================================= */
+.payment-card{
+    position:relative;
+    width:min(520px,calc(100vw - 32px));
+    max-width:520px;
+    text-align:left;
+}
+.payment-card .payment-close{
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:inherit;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    transition:.2s ease;
+}
+.payment-card .payment-close:hover{
+    transform:rotate(90deg);
+    border-color:rgba(244,207,69,.55);
+}
+.payment-total-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin:22px 0 18px;
+    padding:15px 16px;
+    border:1px solid rgba(244,207,69,.22);
+    border-radius:14px;
+    background:rgba(244,207,69,.06);
+}
+.payment-total-box span{
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    opacity:.72;
+}
+.payment-total-box strong{
+    font-family:'Playfair Display',serif;
+    font-size:24px;
+}
+.payment-options{
+    display:grid;
+    gap:10px;
+    margin:10px 0 20px;
+}
+.payment-option{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 15px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.035);
+    color:inherit;
+    text-align:left;
+    cursor:pointer;
+    transition:.2s ease;
+}
+.payment-option:hover{
+    border-color:rgba(244,207,69,.35);
+    transform:translateY(-1px);
+}
+.payment-option.active{
+    border-color:#f4cf45;
+    background:rgba(244,207,69,.10);
+    box-shadow:0 0 0 1px rgba(244,207,69,.12) inset;
+}
+.payment-option-icon{
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:rgba(244,207,69,.10);
+    color:#f4cf45;
+    font-size:17px;
+}
+.payment-option-copy{
+    flex:1;
+    min-width:0;
+}
+.payment-option-copy strong{
+    display:block;
+    font-size:14px;
+    margin-bottom:3px;
+}
+.payment-option-copy small{
+    display:block;
+    font-size:12px;
+    line-height:1.45;
+    opacity:.62;
+}
+.payment-check{
+    width:22px;
+    height:22px;
+    flex:0 0 22px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:10px;
+    color:transparent;
+    transition:.2s ease;
+}
+.payment-option.active .payment-check{
+    background:#f4cf45;
+    border-color:#f4cf45;
+    color:#11130e;
+}
+.payment-confirm-btn{
+    width:100%;
+    min-height:50px;
+    border:0;
+    border-radius:13px;
+    background:#f4cf45;
+    color:#11130e;
+    font:700 13px/1 'DM Sans',sans-serif;
+    letter-spacing:.03em;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:.2s ease;
+}
+.payment-confirm-btn:hover:not(:disabled){
+    transform:translateY(-1px);
+}
+.payment-confirm-btn:disabled{
+    cursor:not-allowed;
+    opacity:.42;
+}
+.payment-note{
+    margin-top:12px !important;
+    font-size:11px !important;
+    line-height:1.5 !important;
+    opacity:.56;
+    text-align:center;
+}
+@media (max-width:560px){
+    .payment-card{width:calc(100vw - 22px)}
+    .payment-option{padding:12px}
+    .payment-total-box strong{font-size:21px}
+}
+</style>
+
 </head>
 <body>
 <!-- =========================================================
@@ -402,6 +561,65 @@
 </div>
 </div>
 <!-- =========================================================
+     PAYMENT METHOD MODAL
+========================================================= -->
+<div class="cart-modal" id="paymentModal">
+<div class="cart-modal-card payment-card">
+<button class="payment-close" id="closePaymentModal" type="button" aria-label="Close payment options">
+<i class="fa-solid fa-xmark"></i>
+</button>
+<div class="modal-icon success">
+<i class="fa-solid fa-wallet"></i>
+</div>
+<span>
+            PAYMENT METHOD
+        </span>
+<h2>
+            Choose how you want to pay.
+        </h2>
+<p>
+            Select a payment method before confirming your DOSTEA order.
+        </p>
+<div class="payment-total-box">
+<span>Amount to Pay</span>
+<strong id="paymentTotal">₹0</strong>
+</div>
+<div class="payment-options" id="paymentOptions">
+<button class="payment-option" data-payment="Cash at Counter" type="button">
+<span class="payment-option-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+<span class="payment-option-copy">
+<strong>Cash</strong>
+<small>Pay at the DOSTEA counter.</small>
+</span>
+<span class="payment-check"><i class="fa-solid fa-check"></i></span>
+</button>
+<button class="payment-option" data-payment="UPI at Counter" type="button">
+<span class="payment-option-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+<span class="payment-option-copy">
+<strong>UPI</strong>
+<small>Pay using your UPI app at the counter.</small>
+</span>
+<span class="payment-check"><i class="fa-solid fa-check"></i></span>
+</button>
+<button class="payment-option" data-payment="Card at Counter" type="button">
+<span class="payment-option-icon"><i class="fa-regular fa-credit-card"></i></span>
+<span class="payment-option-copy">
+<strong>Card</strong>
+<small>Pay by debit or credit card at the counter.</small>
+</span>
+<span class="payment-check"><i class="fa-solid fa-check"></i></span>
+</button>
+</div>
+<button class="payment-confirm-btn" id="confirmPaymentBtn" type="button" disabled>
+<span>Confirm &amp; Place Order</span>
+<i class="fa-solid fa-arrow-right"></i>
+</button>
+<p class="payment-note">
+Payment details are not collected on this page. The selected method is saved with your order.
+</p>
+</div>
+</div>
+<!-- =========================================================
      ORDER SUCCESS MODAL
 ========================================================= -->
 <div class="cart-modal" id="successModal">
@@ -446,9 +664,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     const clearButton = document.getElementById("clearCartBtn");
     const checkoutButton = document.getElementById("checkoutBtn");
     const clearModal = document.getElementById("clearModal");
+    const paymentModal = document.getElementById("paymentModal");
     const successModal = document.getElementById("successModal");
+    const paymentTotal = document.getElementById("paymentTotal");
+    const confirmPaymentButton = document.getElementById("confirmPaymentBtn");
 
     let selectedOrderType = "dine-in";
+    let selectedPaymentMethod = "";
     let authUser = null;
     let currentUser = null;
     let cartCache = [];
@@ -968,15 +1190,74 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
     /* =====================================================
+       PAYMENT STEP
+    ====================================================== */
+    checkoutButton.addEventListener("click", function () {
+        if (!cartCache.length) return;
+
+        selectedPaymentMethod = "";
+
+        document
+            .querySelectorAll(".payment-option")
+            .forEach(function (option) {
+                option.classList.remove("active");
+            });
+
+        confirmPaymentButton.disabled = true;
+        paymentTotal.textContent = money(
+            calculateCart(cartCache).total
+        );
+
+        paymentModal.classList.add("show");
+        document.body.classList.add("modal-open");
+    });
+
+    document
+        .querySelectorAll(".payment-option")
+        .forEach(function (option) {
+            option.addEventListener("click", function () {
+                document
+                    .querySelectorAll(".payment-option")
+                    .forEach(function (item) {
+                        item.classList.remove("active");
+                    });
+
+                option.classList.add("active");
+                selectedPaymentMethod = option.dataset.payment || "";
+                confirmPaymentButton.disabled = !selectedPaymentMethod;
+            });
+        });
+
+    function closePaymentModal() {
+        paymentModal.classList.remove("show");
+        document.body.classList.remove("modal-open");
+    }
+
+    document
+        .getElementById("closePaymentModal")
+        .addEventListener("click", closePaymentModal);
+
+    paymentModal.addEventListener("click", function (event) {
+        if (event.target === paymentModal) {
+            closePaymentModal();
+        }
+    });
+
+    confirmPaymentButton.addEventListener("click", async function () {
+        if (!selectedPaymentMethod || !cartCache.length) return;
+        await placeOrder(selectedPaymentMethod);
+    });
+
+    /* =====================================================
        PLACE ORDER — SUPABASE
     ====================================================== */
-    checkoutButton.addEventListener("click", async function () {
+    async function placeOrder(paymentMethod) {
         const cart = cartCache;
 
         if (!cart.length) return;
 
-        checkoutButton.disabled = true;
-        checkoutButton.innerHTML = `
+        confirmPaymentButton.disabled = true;
+        confirmPaymentButton.innerHTML = `
             <span>Placing Order</span>
             <i class="fa-solid fa-circle-notch fa-spin"></i>
         `;
@@ -1022,7 +1303,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         total: Number(
                             totals.total.toFixed(2)
                         ),
-                        payment_method: "Not selected"
+                        payment_method: paymentMethod
                     })
                     .select("id, order_number")
                     .single();
@@ -1082,12 +1363,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             ).textContent =
                 "#" + createdOrder.order_number;
 
+            closePaymentModal();
             successModal.classList.add("show");
             document.body.classList.add("modal-open");
 
             console.log(
                 "DOSTEA order created:",
-                createdOrder.order_number
+                createdOrder.order_number,
+                "Payment:",
+                paymentMethod
             );
         } catch (error) {
             console.error(
@@ -1100,13 +1384,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "Unable to place your order. Please try again."
             );
         } finally {
-            checkoutButton.disabled = false;
-            checkoutButton.innerHTML = `
-                <span>Place Order</span>
+            confirmPaymentButton.innerHTML = `
+                <span>Confirm &amp; Place Order</span>
                 <i class="fa-solid fa-arrow-right"></i>
             `;
+            confirmPaymentButton.disabled = !selectedPaymentMethod;
         }
-    });
+    }
+
 
     /* =====================================================
        VIEW ORDERS
