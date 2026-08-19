@@ -1,5 +1,5 @@
 /* =========================================================
-   DOSTEA — GLOBAL AUTH
+   DOSTEA â€” GLOBAL AUTH
    auth.js
 ========================================================= */
 
@@ -35,6 +35,37 @@ document.addEventListener("DOMContentLoaded", async function () {
         "login.html",
         "signup.html"
     ];
+
+
+    const allowedPostLoginPages = [
+        "cart.html",
+        "orders.html",
+        "profile.html",
+        "booking.html",
+        "reservations.html"
+    ];
+
+
+    function getPostLoginPage() {
+
+        const requestedPage =
+            localStorage.getItem(
+                "dostea_redirect_after_login"
+            );
+
+
+        localStorage.removeItem(
+            "dostea_redirect_after_login"
+        );
+
+
+        return allowedPostLoginPages.includes(
+            requestedPage
+        )
+            ? requestedPage
+            : "index.html";
+
+    }
 
 
     /* =====================================================
@@ -348,7 +379,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         ) {
 
             window.location.replace(
-                "index.html"
+                getPostLoginPage()
             );
 
         }
@@ -508,6 +539,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
                 attachLogoutButtons();
+
+
+                if (
+                    event === "SIGNED_IN" &&
+                    user &&
+                    guestOnlyPages.includes(
+                        currentPage
+                    )
+                ) {
+
+                    window.location.replace(
+                        getPostLoginPage()
+                    );
+
+                    return;
+
+                }
 
 
                 if (

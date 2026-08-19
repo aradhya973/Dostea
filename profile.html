@@ -714,28 +714,41 @@ document.addEventListener(
 
         try {
 
+            /*
+               Check the local session before requesting a user.
+               Calling getUser() without a session produces the expected
+               AuthSessionMissingError for logged-out visitors.
+            */
+
             const {
-                data,
-                error
+                data: sessionData,
+                error: sessionError
             } =
                 await window
                     .supabaseClient
                     .auth
-                    .getUser();
+                    .getSession();
 
 
-            if (
-                error ||
-                !data?.user
-            ) {
+            if (sessionError) {
 
-                console.error(
-                    "DOSTEA user error:",
-                    error
-                );
+                throw sessionError;
+
+            }
+
+
+            const session =
+                sessionData?.session;
+
+
+            if (!session?.user) {
 
                 localStorage.removeItem(
                     "dostea_current_user"
+                );
+
+                localStorage.removeItem(
+                    "dostea_profile"
                 );
 
                 window.location.replace(
@@ -747,7 +760,7 @@ document.addEventListener(
 
 
             authUser =
-                data.user;
+                session.user;
 
         }
         catch (error) {
