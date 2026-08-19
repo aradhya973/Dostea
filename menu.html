@@ -4849,6 +4849,102 @@ document.addEventListener("DOMContentLoaded", function () {
         "";
 
 
+    /* =====================================================
+       LIVE MENU DATA FROM SUPABASE
+    ====================================================== */
+
+    function createMenuSlug(value) {
+        return String(value || "")
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+    }
+
+
+    async function loadLiveMenu() {
+
+        if (!window.supabaseClient) {
+            console.warn("DOSTEA menu sync: Supabase client is not available.");
+            return;
+        }
+
+        const { data, error } =
+            await window.supabaseClient
+                .from("menu_items")
+                .select("slug,name,price,image_url,is_available");
+
+        if (error) {
+            console.error("DOSTEA menu sync:", error.message);
+            return;
+        }
+
+        const itemsBySlug = new Map(
+            (data || []).map(function (item) {
+                return [item.slug, item];
+            })
+        );
+
+        menuCards.forEach(function (card) {
+
+            const permanentSlug =
+                card.dataset.menuSlug ||
+                createMenuSlug(card.dataset.name);
+
+            card.dataset.menuSlug = permanentSlug;
+
+            const item = itemsBySlug.get(permanentSlug);
+
+            if (!item) {
+                return;
+            }
+
+            card.dataset.name = item.name;
+            card.dataset.price = String(item.price);
+            card.dataset.adminAvailable = String(item.is_available);
+
+            if (item.image_url) {
+                card.dataset.image = item.image_url;
+                const image = card.querySelector(".food-card-image img");
+                if (image) image.src = item.image_url;
+            }
+
+            const title = card.querySelector(".food-card-content h3");
+            const price = card.querySelector(".food-price strong");
+
+            if (title) title.textContent = item.name;
+            if (price) price.textContent = Math.round(Number(item.price) || 0);
+        });
+
+        const heroButton = document.querySelector(".hero-add-btn[data-name]");
+
+        if (heroButton) {
+            const heroSlug =
+                heroButton.dataset.menuSlug ||
+                createMenuSlug(heroButton.dataset.name);
+
+            heroButton.dataset.menuSlug = heroSlug;
+
+            const heroItem = itemsBySlug.get(heroSlug);
+
+            if (heroItem) {
+                heroButton.dataset.name = heroItem.name;
+                heroButton.dataset.price = String(heroItem.price);
+                heroButton.dataset.image = heroItem.image_url || heroButton.dataset.image;
+                heroButton.disabled = !heroItem.is_available;
+                heroButton.textContent = heroItem.is_available
+                    ? "Add to Cart"
+                    : "Unavailable";
+
+                const heroPrice = document.querySelector(".chef-price");
+                if (heroPrice) heroPrice.textContent = "₹" + Math.round(Number(heroItem.price) || 0);
+            }
+        }
+
+        filterMenu();
+    }
+
+
 
     function syncMenuControls() {
 
@@ -4979,6 +5075,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 const shouldShow =
+                    card.dataset.adminAvailable !== "false" &&
                     matchesMenuType &&
                     matchesCategory &&
                     matchesSearch;
@@ -5599,6 +5696,25 @@ document.addEventListener("DOMContentLoaded", function () {
     syncMenuControls();
 
     filterMenu();
+
+    loadLiveMenu();
+
+    if (window.supabaseClient) {
+        window.supabaseClient
+            .channel("dostea-live-menu")
+            .on(
+                "postgres_changes",
+                {
+                    event: "*",
+                    schema: "public",
+                    table: "menu_items"
+                },
+                loadLiveMenu
+            )
+            .subscribe();
+    }
+
+    window.addEventListener("focus", loadLiveMenu);
 
 
 });
