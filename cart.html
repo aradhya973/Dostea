@@ -162,6 +162,11 @@
     opacity:.56;
     text-align:center;
 }
+.rewards-box{margin-top:14px;padding:14px;border:1px solid rgba(90,78,42,.18);border-radius:14px;background:rgba(244,207,69,.08)}
+.coupon-control{display:flex;gap:8px}.coupon-control input{min-width:0;flex:1;padding:11px 12px;border:1px solid rgba(90,78,42,.22);border-radius:10px;background:transparent;color:inherit;text-transform:uppercase}
+.coupon-control button{padding:0 14px;border:0;border-radius:10px;background:#20271d;color:#fff;font-weight:700;cursor:pointer}
+.reward-message{display:block;margin-top:7px;font-size:11px;line-height:1.4;opacity:.75}.reward-message.ok{color:#35713b;opacity:1}.reward-message.error{color:#b33b32;opacity:1}
+.loyalty-control{display:flex;align-items:flex-start;gap:9px;margin-top:12px;font-size:12px;line-height:1.45}.loyalty-control input{margin-top:3px}.discount-row strong{color:#35713b}
 @media (max-width:560px){
     .payment-card{width:calc(100vw - 22px)}
     .payment-option{padding:12px}
@@ -267,7 +272,7 @@
 <i class="fa-solid fa-chevron-down accordion-arrow"></i>
 </button>
 <div class="sidebar-submenu">
-<a class="nav-link" href="Restaurant.html">
+<a class="nav-link" href="https://dostea.vercel.app/Restaurant.html">
                         Restaurant
                     </a>
 <a class="nav-link" href="amenities.html">
@@ -457,6 +462,21 @@
                                 ₹0
                             </strong>
 </div>
+</div>
+<div class="rewards-box">
+<div class="coupon-control">
+<input id="couponCode" maxlength="24" placeholder="Coupon code" aria-label="Coupon code">
+<button id="applyCoupon" type="button">Apply</button>
+</div>
+<span class="reward-message" id="couponMessage">Try WELCOME10 on eligible orders.</span>
+<label class="loyalty-control">
+<input id="useLoyalty" type="checkbox">
+<span>Use available loyalty points <strong id="loyaltyBalance">0 points</strong></span>
+</label>
+</div>
+<div class="summary-lines" style="margin-top:12px">
+<div class="summary-row discount-row" id="couponDiscountRow" hidden><span>Coupon discount</span><strong id="couponDiscount">− ₹0</strong></div>
+<div class="summary-row discount-row" id="loyaltyDiscountRow" hidden><span>Loyalty discount</span><strong id="loyaltyDiscount">− ₹0</strong></div>
 </div>
 <div class="summary-divider"></div>
 <!-- TOTAL -->
@@ -652,6 +672,7 @@ Payment details are not collected on this page. The selected method is saved wit
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 <script src="auth.js"></script>
+<script src="notifications.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", async function () {
@@ -674,6 +695,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     let authUser = null;
     let currentUser = null;
     let cartCache = [];
+    let appliedCoupon = null;
+    let loyaltyBalance = 0;
+    let useLoyalty = false;
 
     /* =====================================================
        OPTIONAL USER SESSION
@@ -840,14 +864,24 @@ document.addEventListener("DOMContentLoaded", async function () {
             count += quantity;
         });
 
-        const tax = subtotal * 0.05;
+        const discount = Math.min(subtotal, Number(appliedCoupon?.discount || 0));
+        const maxRedeemablePoints = Math.floor(Math.max(subtotal - discount, 0) * 0.20) * 10;
+        const loyaltyPointsUsed = useLoyalty
+            ? Math.floor(Math.min(loyaltyBalance, maxRedeemablePoints) / 10) * 10
+            : 0;
+        const loyaltyDiscount = loyaltyPointsUsed / 10;
+        const taxable = Math.max(subtotal - discount - loyaltyDiscount, 0);
+        const tax = taxable * 0.05;
         const packaging = cart.length ? 20 : 0;
-        const total = subtotal + tax + packaging;
+        const total = taxable + tax + packaging;
 
         return {
             subtotal,
             tax,
             packaging,
+            discount,
+            loyaltyDiscount,
+            loyaltyPointsUsed,
             total,
             count
         };
@@ -987,6 +1021,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("subtotal").textContent = "₹0";
             document.getElementById("tax").textContent = "₹0";
             document.getElementById("packaging").textContent = "₹0";
+            document.getElementById("couponDiscountRow").hidden = true;
+            document.getElementById("loyaltyDiscountRow").hidden = true;
             document.getElementById("grandTotal").textContent = "₹0";
             return;
         }
@@ -1008,7 +1044,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const image = item.image
                     ? `
                         <img
-                            src="${escapeHTML(item.image)}"
+                            src="https://dostea.vercel.app/${escapeHTML(item.image)}"
                             alt="${escapeHTML(item.name)}"
                         >
                     `
@@ -1106,6 +1142,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         document.getElementById("packaging").textContent =
             money(totals.packaging);
+
+        document.getElementById("couponDiscountRow").hidden = totals.discount <= 0;
+        document.getElementById("couponDiscount").textContent = "− " + money(totals.discount);
+        document.getElementById("loyaltyDiscountRow").hidden = totals.loyaltyDiscount <= 0;
+        document.getElementById("loyaltyDiscount").textContent = "− " + money(totals.loyaltyDiscount);
 
         document.getElementById("grandTotal").textContent =
             money(totals.total);
@@ -1341,153 +1382,113 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     confirmPaymentButton.addEventListener("click", async function () {
         if (!selectedPaymentMethod || !cartCache.length) return;
-        await placeOrder(selectedPaymentMethod);
+        await placeOrderSecure(selectedPaymentMethod);
     });
 
-    /* =====================================================
-       PLACE ORDER — SUPABASE
-    ====================================================== */
-    async function placeOrder(paymentMethod) {
-        const cart = cartCache;
+    function slugify(value) {
+        return String(value || "").toLowerCase().trim()
+            .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
 
-        if (!cart.length) return;
+    async function loadLoyalty() {
+        if (!authUser) return;
+        const { data, error } = await window.supabaseClient
+            .from("loyalty_wallets")
+            .select("points_balance")
+            .eq("user_id", authUser.id)
+            .maybeSingle();
+
+        if (!error) loyaltyBalance = Number(data?.points_balance || 0);
+        document.getElementById("loyaltyBalance").textContent = `${loyaltyBalance} points`;
+        document.getElementById("useLoyalty").disabled = loyaltyBalance < 10;
+        renderCart();
+    }
+
+    document.getElementById("useLoyalty").addEventListener("change", function (event) {
+        useLoyalty = Boolean(event.target.checked);
+        renderCart();
+    });
+
+    document.getElementById("applyCoupon").addEventListener("click", async function () {
+        const code = document.getElementById("couponCode").value.trim().toUpperCase();
+        const message = document.getElementById("couponMessage");
+        if (!authUser) {
+            message.textContent = "Sign in to apply a coupon.";
+            message.className = "reward-message error";
+            return;
+        }
+        if (!code) return;
+
+        const { data, error } = await window.supabaseClient.rpc("validate_coupon", {
+            p_code: code,
+            p_subtotal: calculateCart(cartCache).subtotal
+        });
+        const result = Array.isArray(data) ? data[0] : data;
+
+        if (error || !result?.valid) {
+            appliedCoupon = null;
+            message.textContent = error?.message || result?.message || "Coupon is not valid.";
+            message.className = "reward-message error";
+        } else {
+            appliedCoupon = { code: result.normalized_code, discount: Number(result.discount || 0) };
+            message.textContent = `${result.normalized_code} applied — you save ${money(result.discount)}.`;
+            message.className = "reward-message ok";
+        }
+        renderCart();
+    });
+
+    async function placeOrderSecure(paymentMethod) {
+        if (!cartCache.length || !authUser) return;
 
         confirmPaymentButton.disabled = true;
-        confirmPaymentButton.innerHTML = `
-            <span>Placing Order</span>
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        `;
+        confirmPaymentButton.innerHTML = `<span>Placing Order</span><i class="fa-solid fa-circle-notch fa-spin"></i>`;
 
         try {
-            const totals = calculateCart(cart);
-
             const metadata = authUser.user_metadata || {};
+            const customerName = metadata.full_name || metadata.name || currentUser?.fullName || authUser.email?.split("@")[0] || "DOSTEA User";
+            const items = cartCache.map(item => ({
+                slug: item.slug || slugify(item.name),
+                name: item.name,
+                quantity: Math.max(1, Number(item.quantity || 1))
+            }));
+            const totals = calculateCart(cartCache);
+            const { data, error } = await window.supabaseClient.rpc("place_order_secure", {
+                p_order_type: selectedOrderType,
+                p_payment_method: paymentMethod,
+                p_items: items,
+                p_coupon_code: appliedCoupon?.code || null,
+                p_loyalty_points: totals.loyaltyPointsUsed,
+                p_customer_name: customerName
+            });
+            if (error) throw error;
 
-            const customerName =
-                metadata.full_name ||
-                metadata.name ||
-                currentUser?.fullName ||
-                authUser.email?.split("@")[0] ||
-                "DOSTEA User";
+            const createdOrder = Array.isArray(data) ? data[0] : data;
+            if (!createdOrder?.order_id) throw new Error("Order could not be created.");
 
-            const customerEmail = authUser.email || "";
+            const { error: clearCartError } = await window.supabaseClient
+                .from("cart_items").delete().eq("user_id", authUser.id);
+            if (clearCartError) console.warn("Order placed, but cart cleanup failed:", clearCartError.message);
 
-            const orderNumber =
-                "DOSTEA" +
-                Date.now().toString().slice(-8);
-
-            const {
-                data: createdOrder,
-                error: orderError
-            } =
-                await window.supabaseClient
-                    .from("orders")
-                    .insert({
-                        order_number: orderNumber,
-                        user_id: authUser.id,
-                        customer_name: customerName,
-                        customer_email: customerEmail,
-                        order_type: selectedOrderType,
-                        status: "pending",
-                        subtotal: Number(
-                            totals.subtotal.toFixed(2)
-                        ),
-                        tax: Number(
-                            totals.tax.toFixed(2)
-                        ),
-                        packaging: Number(totals.packaging),
-                        total: Number(
-                            totals.total.toFixed(2)
-                        ),
-                        payment_method: paymentMethod
-                    })
-                    .select("id, order_number")
-                    .single();
-
-            if (orderError) throw orderError;
-
-            if (!createdOrder?.id) {
-                throw new Error(
-                    "Order could not be created."
-                );
-            }
-
-            const orderItems =
-                cart.map(function (item) {
-                    return {
-                        order_id: createdOrder.id,
-                        menu_item_id:
-                            String(item.id || "") || null,
-                        name:
-                            item.name || "DOSTEA Item",
-                        category:
-                            item.category || null,
-                        description:
-                            item.description || null,
-                        image_url:
-                            item.image || null,
-                        price:
-                            Number(item.price || 0),
-                        quantity:
-                            Math.max(
-                                1,
-                                Number(item.quantity || 1)
-                            )
-                    };
-                });
-
-            const { error: itemsError } =
-                await window.supabaseClient
-                    .from("order_items")
-                    .insert(orderItems);
-
-            if (itemsError) throw itemsError;
-
-            const { error: clearCartError } =
-                await window.supabaseClient
-                    .from("cart_items")
-                    .delete()
-                    .eq("user_id", authUser.id);
-
-            if (clearCartError) throw clearCartError;
-
+            window.dosteaSendNotification?.("order_created", createdOrder.order_id);
+            loyaltyBalance = Number(createdOrder.points_balance || loyaltyBalance);
+            appliedCoupon = null;
+            useLoyalty = false;
+            document.getElementById("useLoyalty").checked = false;
             cartCache = [];
             renderCart();
 
-            document.getElementById(
-                "successOrderId"
-            ).textContent =
-                "#" + createdOrder.order_number;
-
+            document.getElementById("successOrderId").textContent = "#" + createdOrder.order_number;
             closePaymentModal();
             successModal.classList.add("show");
             document.body.classList.add("modal-open");
-
-            console.log(
-                "DOSTEA order created:",
-                createdOrder.order_number,
-                "Payment:",
-                paymentMethod
-            );
         } catch (error) {
-            console.error(
-                "DOSTEA order error:",
-                error
-            );
-
-            alert(
-                error.message ||
-                "Unable to place your order. Please try again."
-            );
+            console.error("DOSTEA secure order error:", error);
+            alert(error.message || "Unable to place your order. Please try again.");
         } finally {
-            confirmPaymentButton.innerHTML = `
-                <span>Confirm &amp; Place Order</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            `;
+            confirmPaymentButton.innerHTML = `<span>Confirm &amp; Place Order</span><i class="fa-solid fa-arrow-right"></i>`;
             confirmPaymentButton.disabled = !selectedPaymentMethod;
         }
     }
-
 
     /* =====================================================
        VIEW ORDERS
@@ -1572,6 +1573,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (authUser) {
             await syncLegacyLocalCart();
             await loadCart();
+            await loadLoyalty();
         } else {
             cartCache = getLocalCart().map(normalizeCartRow);
             renderCart();
