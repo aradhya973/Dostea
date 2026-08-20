@@ -822,8 +822,12 @@ async function loadOrders() {
                             "Not selected",
 
                         table:
-                            order.table_number ||
-                            "",
+                             order.table_number ||
+                                (
+                                    order.order_type === "dine-in"
+                                    ? "Not Assigned"
+                                    : "N/A"
+                                ),
 
                         date:
                             order.created_at,
