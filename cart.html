@@ -1041,18 +1041,28 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const price = Number(item.price || 0);
                 const itemTotal = price * quantity;
 
-                const image = item.image
-                    ? `
-                        <img
-                            src="https://dostea.vercel.app/${escapeHTML(item.image)}"
-                            alt="${escapeHTML(item.name)}"
-                        >
-                    `
-                    : `
-                        <div class="cart-item-placeholder">
-                            <i class="fa-solid fa-mug-hot"></i>
-                        </div>
-                    `;
+                const imageUrl = String(item.image || "").trim();
+
+const finalImageUrl =
+    imageUrl.startsWith("http://") ||
+    imageUrl.startsWith("https://")
+        ? imageUrl
+        : imageUrl
+            ? `https://dostea.vercel.app/${imageUrl}`
+            : "";
+
+const image = finalImageUrl
+    ? `
+        <img
+            src="${escapeHTML(finalImageUrl)}"
+            alt="${escapeHTML(item.name)}"
+        >
+    `
+    : `
+        <div class="cart-item-placeholder">
+            <i class="fa-solid fa-mug-hot"></i>
+        </div>
+    `;
 
                 return `
                     <article
