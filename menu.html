@@ -4877,6 +4877,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("DOSTEA menu sync:", error.message);
             return;
         }
+        console.log("SUPABASE MENU DATA:", data);
 
         const itemsBySlug = new Map(
             (data || []).map(function (item) {
@@ -4932,6 +4933,158 @@ document.addEventListener("DOMContentLoaded", function () {
                 stockWarning.remove();
             }
         });
+
+        // =====================================================
+// ADD NEW SUPABASE ITEMS
+// =====================================================
+
+const foodGrid = document.getElementById("restaurantFoodGrid");
+
+if (foodGrid) {
+
+    const existingSlugs = new Set(
+        menuCards.map(function (card) {
+            return card.dataset.menuSlug ||
+                createMenuSlug(card.dataset.name);
+        })
+    );
+
+    (data || []).forEach(function (item) {
+
+        const slug =
+            item.slug ||
+            createMenuSlug(item.name);
+
+        // Existing HTML item asel tar skip
+        if (existingSlugs.has(slug)) {
+            return;
+        }
+
+        // Dynamic item already asel tar duplicate nako
+        if (
+            foodGrid.querySelector(
+                `[data-menu-slug="${slug}"]`
+            )
+        ) {
+            return;
+        }
+
+        const stock = Math.max(
+            0,
+            Number(item.stock_quantity || 0)
+        );
+
+        const isAvailable =
+            Boolean(item.is_available) &&
+            stock > 0;
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "restaurant-food-card";
+
+        card.dataset.menuSlug = slug;
+        card.dataset.name = item.name;
+        card.dataset.price =
+            String(item.price || 0);
+
+        card.dataset.image =
+            item.image_url || "";
+
+        card.dataset.menuType =
+            "restaurant";
+
+        card.dataset.adminAvailable =
+            String(isAvailable);
+
+        card.dataset.stockQuantity =
+            String(stock);
+
+        card.innerHTML = `
+    <div class="food-card-image">
+        <img
+            src="${item.image_url || ""}"
+            alt="${item.name}"
+            loading="eager"
+        >
+
+        <span class="food-number">
+            NEW
+        </span>
+    </div>
+
+    <div class="food-card-content">
+
+        <span class="food-category">
+            NEW ITEM
+        </span>
+
+        <h3>${item.name}</h3>
+
+        <p>
+            Freshly added to our menu.
+        </p>
+
+        <div class="food-card-bottom">
+
+            <div class="food-price">
+                <span>₹</span>
+                <strong>
+                    ${Math.round(Number(item.price) || 0)}
+                </strong>
+            </div>
+
+            <button
+                type="button"
+                class="menu-add-btn"
+                ${!isAvailable ? "disabled" : ""}
+            >
+                ${isAvailable
+                    ? `Add <i class="fa-solid fa-plus"></i>`
+                    : "Unavailable"}
+            </button>
+
+        </div>
+
+    </div>
+`;
+
+        foodGrid.appendChild(card);
+
+const addButton = card.querySelector(".menu-add-btn");
+
+if (addButton && isAvailable) {
+
+    addButton.addEventListener("click", function () {
+
+        addItemToCart(
+            card.dataset.name,
+            Number(card.dataset.price),
+            card.dataset.image || ""
+        );
+
+        const originalHTML = addButton.innerHTML;
+
+        addButton.classList.add("added");
+
+        addButton.innerHTML =
+            'Added <i class="fa-solid fa-check"></i>';
+
+        setTimeout(function () {
+
+            addButton.classList.remove("added");
+
+            addButton.innerHTML =
+                originalHTML;
+
+        }, 1100);
+
+    });
+
+}
+    });
+}
 
         const heroButton = document.querySelector(".hero-add-btn[data-name]");
 
@@ -5043,8 +5196,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let visibleCount = 0;
 
 
-        menuCards.forEach(
-            function (card) {
+       document.querySelectorAll(".restaurant-food-card").forEach(function (card) {
 
 
                 const category =
