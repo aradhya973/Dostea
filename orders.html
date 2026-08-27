@@ -11,6 +11,13 @@
 <link href="common.css" rel="stylesheet"/>
 <link href="dashboard.css" rel="stylesheet"/>
 <link href="orders.css" rel="stylesheet"/>
+<style>
+.order-card-actions{display:flex;align-items:center;gap:8px}
+.download-invoice-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 11px;border:1px solid rgba(0,0,0,.14);border-radius:8px;background:transparent;color:inherit;cursor:pointer;font:600 11px/1 inherit;transition:all .2s ease}
+.download-invoice-btn i{font-size:11px}
+.download-invoice-btn:hover{background:rgba(0,0,0,.05);transform:translateY(-1px)}
+@media (max-width:600px){.order-card-actions{flex-wrap:wrap}.download-invoice-btn{padding:8px 10px}}
+</style>
 </head>
 <body>
 <div class="app">
@@ -486,6 +493,7 @@
 ========================================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="supabase.js"></script>
 <script src="auth.js"></script>
 
@@ -1337,16 +1345,24 @@ async function loadOrders() {
                 </div>
 
 
-                <button
-                    type="button"
-                    class="view-order-btn"
-                >
+                <div class="order-card-actions">
+                    <button
+                        type="button"
+                        class="view-order-btn"
+                    >
+                        View Details
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
 
-                    View Details
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </button>
+                    <button
+                        type="button"
+                        class="download-invoice-btn"
+                        title="Download Invoice"
+                    >
+                        <i class="fa-solid fa-file-invoice"></i>
+                        Invoice
+                    </button>
+                </div>
 
 
             </div>
@@ -1369,6 +1385,18 @@ async function loadOrders() {
             }
         );
 
+        const invoiceButton =
+            card.querySelector(".download-invoice-btn");
+
+        invoiceButton?.addEventListener(
+            "click",
+            function () {
+
+                downloadInvoice(order);
+
+            }
+        );
+
 
         return card;
 
@@ -1378,6 +1406,147 @@ async function loadOrders() {
     /* =====================================================
        ORDER DETAILS MODAL
     ====================================================== */
+
+    function downloadInvoice(order) {
+
+        if (!window.jspdf?.jsPDF) {
+            alert("Invoice service is not available. Please try again.");
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const items = Array.isArray(order.items) ? order.items : [];
+        let y = 20;
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.text("DOSTEA", 20, y);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.text("HOTEL • CAFE • LIFESTYLE", 20, y + 6);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.text("INVOICE", pageWidth - 20, y, { align: "right" });
+
+        y += 18;
+        doc.setLineWidth(0.4);
+        doc.line(20, y, pageWidth - 20, y);
+
+        y += 10;
+        doc.setFontSize(10);
+        doc.text("Order Information", 20, y);
+
+        y += 7;
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+
+        const leftInfo = [
+            ["Order ID", order.id || "#DST"],
+            ["Date", formatDate(order.date)],
+            ["Customer", order.customerName || "DOSTEA Customer"],
+            ["Email", order.userEmail || "—"]
+        ];
+
+        const rightInfo = [
+            ["Order Type", order.orderType || "Dine In"],
+            ["Table", order.table || "—"],
+            ["Payment", order.payment || "Not selected"],
+            ["Status", order.status || "Pending"]
+        ];
+
+        leftInfo.forEach(function (item, index) {
+            const yy = y + index * 6;
+            doc.setFont("helvetica", "bold");
+            doc.text(item[0] + ":", 20, yy);
+            doc.setFont("helvetica", "normal");
+            doc.text(String(item[1]), 48, yy);
+        });
+
+        rightInfo.forEach(function (item, index) {
+            const yy = y + index * 6;
+            doc.setFont("helvetica", "bold");
+            doc.text(item[0] + ":", 112, yy);
+            doc.setFont("helvetica", "normal");
+            doc.text(String(item[1]), 140, yy);
+        });
+
+        y += 34;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+        doc.text("Items", 20, y);
+
+        y += 7;
+        doc.setFillColor(245, 245, 245);
+        doc.rect(20, y - 5, pageWidth - 40, 8, "F");
+
+        doc.setFontSize(8);
+        doc.text("ITEM", 22, y);
+        doc.text("QTY", 125, y);
+        doc.text("PRICE", 145, y);
+        doc.text("AMOUNT", pageWidth - 22, y, { align: "right" });
+
+        y += 9;
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+
+        items.forEach(function (item) {
+            if (y > 260) {
+                doc.addPage();
+                y = 20;
+                doc.setFont("helvetica", "bold");
+                doc.text("DOSTEA — Invoice " + (order.id || "#DST"), 20, y);
+                y += 10;
+                doc.setFont("helvetica", "normal");
+            }
+
+            const quantity = Number(item.quantity || 1);
+            const price = Number(item.price || 0);
+            const amount = price * quantity;
+
+            doc.text(String(item.name || "Item").substring(0, 48), 22, y);
+            doc.text(String(quantity), 128, y, { align: "right" });
+            doc.text(money(price), 162, y, { align: "right" });
+            doc.text(money(amount), pageWidth - 22, y, { align: "right" });
+
+            y += 7;
+        });
+
+        y += 5;
+        doc.line(105, y, pageWidth - 20, y);
+
+        y += 8;
+        doc.text("Subtotal", 130, y);
+        doc.text(money(order.subtotal || 0), pageWidth - 22, y, { align: "right" });
+
+        y += 6;
+        doc.text("Tax", 130, y);
+        doc.text(money(order.tax || 0), pageWidth - 22, y, { align: "right" });
+
+        y += 6;
+        doc.text("Packaging", 130, y);
+        doc.text(money(order.packaging || 0), pageWidth - 22, y, { align: "right" });
+
+        y += 8;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.text("TOTAL", 130, y);
+        doc.text(money(totalToNumber(order.total)), pageWidth - 22, y, { align: "right" });
+
+        y += 15;
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.text("Thank you for ordering with DOSTEA.", pageWidth / 2, y, {
+            align: "center"
+        });
+
+        const safeOrderId = String(order.id || "order").replace(/[^a-z0-9_-]/gi, "_");
+        doc.save("DOSTEA-Invoice-" + safeOrderId + ".pdf");
+    }
+
 
     function openOrderDetails(order) {
 
