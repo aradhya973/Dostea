@@ -4871,7 +4871,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const { data, error } =
             await window.supabaseClient
                 .from("menu_items")
-                .select("slug,name,price,image_url,is_available,stock_quantity,low_stock_threshold");
+               .select("slug,name,category,price,image_url,is_available,stock_quantity,low_stock_threshold");
 
         if (error) {
             console.error("DOSTEA menu sync:", error.message);
@@ -4993,7 +4993,7 @@ if (foodGrid) {
             item.image_url || "";
 
         card.dataset.menuType =
-            "restaurant";
+            String(item.category || "").toLowerCase().trim();
 
         card.dataset.adminAvailable =
             String(isAvailable);
